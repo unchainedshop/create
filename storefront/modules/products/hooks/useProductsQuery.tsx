@@ -10,6 +10,7 @@ const ProductsQuery = gql`
         title
         subtitle
         description
+        slug
       }
       media {
         _id

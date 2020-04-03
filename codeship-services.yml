@@ -1,0 +1,12 @@
+storefront:
+  build:
+    context: ./storefront
+    dockerfile: Dockerfile
+engine:
+  build:
+    context: ./engine
+    dockerfile: Dockerfile
+cms:
+  build:
+    context: ./cms
+    dockerfile: Dockerfile

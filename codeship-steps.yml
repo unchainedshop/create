@@ -1,0 +1,62 @@
+- name: Tag images
+  type: parallel
+  encrypted_dockercfg_path: dockercfg.encrypted
+  steps:
+    - service: storefront
+      type: push
+      image_name: registry.ucc.dev/currybag/website/storefront
+      image_tag: "{{.Branch}}-latest"
+      registry: registry.ucc.dev
+    - service: cms
+      type: push
+      image_name: registry.ucc.dev/currybag/website/cms
+      image_tag: "{{.Branch}}-latest"
+      registry: registry.ucc.dev
+    - service: engine
+      type: push
+      image_name: registry.ucc.dev/currybag/website/engine
+      image_tag: "{{.Branch}}-latest"
+      registry: registry.ucc.dev
+
+- name: Tag images as latest
+  tag: develop
+  type: parallel
+  encrypted_dockercfg_path: dockercfg.encrypted
+  steps:
+    - service: storefront
+      type: push
+      image_name: registry.ucc.dev/currybag/website/storefront
+      image_tag: "next"
+      registry: registry.ucc.dev
+    - service: cms
+      type: push
+      image_name: registry.ucc.dev/currybag/website/cms
+      image_tag: "next"
+      registry: registry.ucc.dev
+    - service: engine
+      type: push
+      image_name: registry.ucc.dev/currybag/website/engine
+      image_tag: "next"
+      registry: registry.ucc.dev
+
+
+- name: Tag images as stable
+  tag: master
+  type: parallel
+  encrypted_dockercfg_path: dockercfg.encrypted
+  steps:
+    - service: storefront
+      type: push
+      image_name: registry.ucc.dev/currybag/website/storefront
+      image_tag: "stable"
+      registry: registry.ucc.dev
+    - service: cms
+      type: push
+      image_name: registry.ucc.dev/currybag/website/cms
+      image_tag: "stable"
+      registry: registry.ucc.dev
+    - service: engine
+      type: push
+      image_name: registry.ucc.dev/currybag/website/engine
+      image_tag: "stable"
+      registry: registry.ucc.dev

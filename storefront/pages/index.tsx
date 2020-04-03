@@ -1,12 +1,15 @@
 import Head from 'next/head';
 
 import ProductList from '../modules/products/components/ProductList';
+import LoginCart from '../modules/auth/components/LoginCart';
 
 const Home = () => (
   <div className="container">
     <Head>
       <title>Currybag - Innerhalb von 5 Minuten ready!</title>
     </Head>
+
+    <LoginCart />
 
     <header className="header text-center pt-5">
       <div className="row">

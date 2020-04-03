@@ -10,6 +10,9 @@ const Home = () => (
 
     <main>
       <h1 className="title">Currybag!</h1>
+      <button role="button" className="button button--primary">
+        primary button
+      </button>
       <ProductList />
     </main>
   </div>

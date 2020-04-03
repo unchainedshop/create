@@ -1,5 +1,6 @@
 import React from "react";
 import getConfig from "next/config";
+import "../public/static/css/all.css";
 
 import withApollo from "../modules/apollo/utils/withApollo";
 

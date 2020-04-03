@@ -1,21 +1,14 @@
+/* eslint-disable react/display-name */
 import withApollo from 'next-with-apollo';
-import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import initApollo from './initApollo';
 
-export default withApollo(
-  ({ initialState }) => {
-    return new ApolloClient({
-      uri: 'https://engine.currybag-test.ucc.dev/graphql',
-      cache: new InMemoryCache().restore(initialState || {}),
-    });
+export default withApollo(initApollo, {
+  render: ({ Page, props }) => {
+    return (
+      <ApolloProvider client={props.apollo}>
+        <Page {...props} />
+      </ApolloProvider>
+    );
   },
-  {
-    render: ({ Page, props }) => {
-      return (
-        <ApolloProvider client={props.apollo}>
-          <Page {...props} />
-        </ApolloProvider>
-      );
-    },
-  },
-);
+});

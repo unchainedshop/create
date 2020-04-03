@@ -1,5 +1,5 @@
-import React from "react";
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import React from 'react';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class UnchainedDocument extends Document {
   static async getInitialProps(ctx) {
@@ -26,7 +26,7 @@ class UnchainedDocument extends Document {
 
 -->
 
-  `
+  `,
           }}
         />
         <Head>
@@ -48,10 +48,9 @@ class UnchainedDocument extends Document {
             href="/static/favicon-16x16.png"
           />
           <link
-            rel="mask-icon"
-            href="/static/safari-pinned-tab.svg"
-            color="black"
-          />
+            href="https://fonts.googleapis.com/css2?family=Barlow:wght@900&display=swap"
+            rel="stylesheet"
+          ></link>
         </Head>
         <body>
           <Main />

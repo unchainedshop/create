@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+import ProductList from "../modules/products/components/ProductList";
+
 const Home = () => (
   <div className="container">
     <Head>
@@ -8,6 +10,7 @@ const Home = () => (
 
     <main>
       <h1 className="title">Currybag!</h1>
+      <ProductList />
     </main>
   </div>
 );

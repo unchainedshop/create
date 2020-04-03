@@ -27,7 +27,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+/* @media (min-width: 1200px) {
   .container {
     max-width: 1140px;
   }
@@ -43,7 +43,7 @@
   .container {
     max-width: 1370px;
   }
-}
+} */
 
 .container-fluid {
   width: 100%;
@@ -76,7 +76,7 @@
 }
 
 .no-gutters > .col,
-.no-gutters > [class*="col-"] {
+.no-gutters > [class*='col-'] {
   padding-right: 0;
   padding-left: 0;
 }

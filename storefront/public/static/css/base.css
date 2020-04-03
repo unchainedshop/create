@@ -1,0 +1,75 @@
+:root {
+  --color-brand: #03aa87;
+  --color-brand-lightest: #f3f7ee;
+  --color-dark: #232323;
+  --color-grey-lightest: #e7e7e7;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: var(--color-brand-lightest);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  color: var(--color-dark);
+  font-size: 100%;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
+  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+  font-size: 3.8rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+p {
+  line-height: 1.66;
+}
+
+a {
+  color: var(--color-brand);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+input,
+textarea {
+  font-size: initial;
+}
+
+hr {
+  margin: 20px 0;
+  border-top: 1px solid var(--color-grey-lightest);
+  border-bottom: 0;
+  box-sizing: border-box;
+}
+
+.color-brand {
+  color: var(--color-brand);
+}

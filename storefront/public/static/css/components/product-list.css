@@ -1,0 +1,4 @@
+.product-list-item:hover,
+.product-list-item:focus {
+  background-color: white;
+}

@@ -16,5 +16,6 @@
 @import 'grid.css';
 
 @import 'components/button.css';
+@import 'components/product-list.css';
 
 @import 'print.css';

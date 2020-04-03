@@ -12,7 +12,9 @@ const AddCartProductMutation = gql`
 `;
 
 const useAddCartProductMutation = () => {
-  const [addCartProductMutation] = useMutation(AddCartProductMutation);
+  const [addCartProductMutation] = useMutation(AddCartProductMutation, {
+    refetchQueries: ['UserQuery'],
+  });
 
   const addCartProduct = async ({ productId }) => {
     await addCartProductMutation({ variables: { productId } });

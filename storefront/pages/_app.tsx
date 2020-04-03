@@ -8,7 +8,7 @@ const {
   publicRuntimeConfig: { GRAPHQL_ENDPOINT },
 } = getConfig();
 
-const UnchainedApp = ({ Component, pageProps, locale, messages, apollo }) => {
+const UnchainedApp = ({ Component, pageProps }) => {
   return <Component {...pageProps} />;
 };
 

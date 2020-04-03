@@ -1,0 +1,113 @@
+.no-button {
+  padding: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  text-align: left;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.button-group .button {
+  margin-right: 1em;
+  margin-bottom: 1rem;
+}
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.23s ease-in-out;
+  text-align: center;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 2px;
+  border: 0;
+}
+
+.button[disabled],
+.button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  outline: none;
+}
+
+.button--primary {
+  color: #ffffff;
+  background-color: var(--color-brand);
+  border: 1px solid var(--color-brand);
+}
+
+.button--primary:hover,
+.button--primary:focus {
+  background-color: var(--color-brand);
+}
+
+.button--secondary {
+  color: var(--color-brand);
+  background-color: #ffffff;
+  border: 1px solid var(--color-brand);
+}
+
+.button--ghost {
+  color: var(--color-brand);
+  background-color: transparent;
+  border: 1px solid var(--color-brand);
+}
+
+.button--secondary:hover,
+.button--secondary:focus,
+.button--ghost:hover,
+.button--ghost:focus {
+  color: var(--color-brand);
+  border-color: var(--color-brand);
+}
+
+.button--small {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 13px;
+}
+
+@media (min-width: 768px) {
+  .button--big {
+    padding-top: 13px;
+    padding-right: 30px;
+    padding-bottom: 14px;
+    padding-left: 30px;
+  }
+}
+
+.add-to-cart-counter {
+  height: 44px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.27;
+  color: var(--color-brand);
+  border: 0;
+  width: 44px;
+  border-radius: 2px 0 0 2px;
+  border: 1px solid var(--color-brand);
+}
+
+@media (any-pointer: coarse) {
+  .add-to-cart-counter {
+    width: calc(100% - 2 * 44px);
+    display: block;
+    margin: 0 auto !important;
+    border-radius: 0;
+    border-top: 1px solid var(--color-brand);
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+}

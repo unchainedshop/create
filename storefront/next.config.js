@@ -1,3 +1,6 @@
+// eslint-disable-next-line
+console.log(process.version);
+
 require('dotenv-extended').load({
   silent: process.env.SUPPRESS_ENV_ERRORS,
   errorOnMissing: !process.env.SUPPRESS_ENV_ERRORS,

@@ -16,9 +16,10 @@ const Detail = () => {
 
   return (
     <div>
-      <div className="container">
+      <div className="container py-2">
         <LoginCart />
       </div>
+
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6">

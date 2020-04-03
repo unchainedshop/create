@@ -8,12 +8,31 @@ const Home = () => (
       <title>Currybag - Innerhalb von 5 Minuten ready!</title>
     </Head>
 
-    <header className="header text-center pt-3">
-      <div className="font-heading">LOVING LANKA®</div>
-      <h1 className="title color-brand">Currybag™</h1>
-      <button role="button" className="button button--primary">
-        primary button
-      </button>
+    <header className="header text-center pt-5">
+      <div className="row">
+        <div className="col-lg-8 offset-lg-2">
+          <div className="font-heading">LOVING LANKA®</div>
+          <h1 className="title color-brand">Currybag™</h1>
+          <p>
+            <b>Was ist ein Currybag?</b>
+          </p>
+          <p>
+            Ganz einfach: Das ist ein Beutel und darin befindet sich ein
+            hausgemachtes Curry aus dem Hause Loving Lanka.{' '}
+            <a href="https://www.lovinglanka.ch">www.lovinglanka.ch</a>
+          </p>
+          <button
+            role="button"
+            className="button button--primary button--big text-uppercase font-weight-bold my-4"
+          >
+            primary button big
+          </button>
+          <img
+            src="static/img/freigestellt-1494x2011.png"
+            alt="karrotten curry"
+          />
+        </div>
+      </div>
     </header>
     <main className="my-5">
       <ProductList />

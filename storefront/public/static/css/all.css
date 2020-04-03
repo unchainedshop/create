@@ -14,6 +14,7 @@
 /* base styles */
 @import 'base.css';
 @import 'grid.css';
+@import 'form.css';
 
 @import 'components/button.css';
 @import 'components/product-list.css';

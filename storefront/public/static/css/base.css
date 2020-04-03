@@ -16,12 +16,15 @@ html {
 }
 
 body {
-  background-color: var(--color-brand-lightest);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   color: var(--color-dark);
   font-size: 100%;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.color-bg-brand-lightest {
+  background-color: var(--color-brand-lightest);
 }
 
 h1,

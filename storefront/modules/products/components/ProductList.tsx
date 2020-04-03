@@ -1,11 +1,11 @@
-import useProductsQuery from "../hooks/useProductsQuery";
+import useProductsQuery from '../hooks/useProductsQuery';
 
 const ProductList = () => {
   const { products } = useProductsQuery();
 
   return (
     <div>
-      {products.map(product => (
+      {products.map((product) => (
         <div>{product._id}</div>
       ))}
     </div>

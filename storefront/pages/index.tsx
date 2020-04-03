@@ -1,6 +1,6 @@
-import Head from "next/head";
+import Head from 'next/head';
 
-import ProductList from "../modules/products/components/ProductList";
+import ProductList from '../modules/products/components/ProductList';
 
 const Home = () => (
   <div className="container">

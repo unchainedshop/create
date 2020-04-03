@@ -1,3 +1,5 @@
+@import "vendor/normalize.css";
+
 @import "utilities/align.css";
 @import "utilities/border.css";
 @import "utilities/display.css";

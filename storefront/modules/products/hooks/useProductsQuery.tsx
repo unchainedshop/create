@@ -5,6 +5,30 @@ const ProductsQuery = gql`
   {
     products {
       _id
+      texts {
+        _id
+        title
+        subtitle
+        description
+      }
+      media {
+        _id
+        file {
+          _id
+          url
+        }
+      }
+      ... on SimpleProduct {
+        dimensions {
+          weight
+        }
+        simulatedPrice {
+          price {
+            amount
+            currency
+          }
+        }
+      }
     }
   }
 `;

@@ -39,6 +39,14 @@ h1 {
   font-size: 3.8rem;
 }
 
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
 img {
   max-width: 100%;
 }
@@ -48,13 +56,17 @@ p {
 }
 
 a {
-  color: var(--color-brand);
-  cursor: pointer;
+  color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
-a:hover,
-a:focus {
+a.link {
+  color: var(--color-brand);
+}
+
+a.link:hover,
+a.link:focus {
   text-decoration: underline;
 }
 

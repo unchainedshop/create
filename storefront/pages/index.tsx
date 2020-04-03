@@ -19,14 +19,10 @@ const Home = () => (
           <p>
             Ganz einfach: Das ist ein Beutel und darin befindet sich ein
             hausgemachtes Curry aus dem Hause Loving Lanka.{' '}
-            <a href="https://www.lovinglanka.ch">www.lovinglanka.ch</a>
+            <a className="link" href="https://www.lovinglanka.ch">
+              www.lovinglanka.ch
+            </a>
           </p>
-          <button
-            role="button"
-            className="button button--primary button--big text-uppercase font-weight-bold my-4"
-          >
-            primary button big
-          </button>
           <img
             src="static/img/freigestellt-1494x2011.png"
             alt="karrotten curry"

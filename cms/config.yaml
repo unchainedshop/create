@@ -1,0 +1,15 @@
+app.name: "Currybag CMS"
+site_url: "https://cms.currybag-test.ucc.dev"
+languages:
+  default: "Deutsch"
+groups:
+  author:
+    cockpit:
+      finder: false
+      backend: true
+    collections:
+      manage: true
+    singletons:
+      manage: true
+#responseCache:
+#  duration: 60

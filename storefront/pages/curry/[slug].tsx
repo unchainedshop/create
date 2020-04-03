@@ -1,11 +1,17 @@
 import { useRouter } from 'next/router';
 import useProductDetailQuery from '../../modules/products/hooks/useProductDetailQuery';
 import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
+import useConditionalAddCartProductMutation from '../../modules/checkout/hooks/useConditionalAddCartProductMutation';
 
-const Detail = (props) => {
+const Detail = () => {
   const router = useRouter();
 
   const { product } = useProductDetailQuery({ slug: router.query.slug });
+  const { conditionalAddCartProduct } = useConditionalAddCartProductMutation();
+
+  const handleClick = () => {
+    conditionalAddCartProduct({ productId: product._id });
+  };
 
   return (
     <div className="container mt-5">
@@ -26,6 +32,7 @@ const Detail = (props) => {
           <button
             type="button"
             className="button button--primary button--big  text-uppercase"
+            onClick={handleClick}
           >
             In den Warenkorb
           </button>

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import useProductDetailQuery from '../../modules/products/hooks/useProductDetailQuery';
 import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
 import useConditionalAddCartProductMutation from '../../modules/cart/hooks/useConditionalAddCartProductMutation';
-import LoginCart from '../../modules/auth/components/LoginCart';
+import Header from '../../modules/layout/components/Header';
 
 const Detail = () => {
   const router = useRouter();
@@ -16,10 +16,7 @@ const Detail = () => {
 
   return (
     <div>
-      <div className="container py-2">
-        <LoginCart />
-      </div>
-
+      <Header />
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6">

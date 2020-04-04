@@ -7,6 +7,7 @@ import useCreateUserMutation from '../modules/auth/hooks/useCreateUserMutation';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
 import Header from '../modules/layout/components/Header';
 import Footer from '../modules/layout/components/Footer';
+import LoginForm from '../modules/auth/components/LoginForm';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -85,30 +86,15 @@ const SignUp = () => {
     router.push('/bezahlen');
   };
 
+  const onLogin = () => router.push('/bezahlen');
+
   return (
     <div className="container">
       <Header />
       <h1>Anmelden</h1>
       <p>Du hast schon einen Account? Dann melde dich hier an:</p>
-      <form className="form">
-        <div className="form-row">
-          <div className="mb-3 col-md-6">
-            <label className="form-label">Deine E-Mail Adresse</label>
-            <input className="form-control" name="email" disabled />
-          </div>
-          <div className="mb-3 col-md-6">
-            <label className="form-label">Dein vollständiger Name</label>
-            <input className="form-control" name="username" disabled />
-          </div>
-        </div>
-        <button
-          className="button button--primary button--big"
-          type="submit"
-          disabled
-        >
-          Anmelden (TODO)
-        </button>
-      </form>
+      <LoginForm onLogin={onLogin} />
+
       <h1>Ohne Account bestellen</h1>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-check mb-3">

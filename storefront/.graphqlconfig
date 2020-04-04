@@ -4,7 +4,8 @@
       "schemaPath": "schema.graphql",
       "extensions": {
         "endpoints": {
-          "local": "http://localhost:3000/api/graphql"
+          "local": "http://localhost:3000/api/graphql",
+          "stage": "https://currybag-test.ucc.dev/api/graphql"
         }
       }
     }

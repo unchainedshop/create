@@ -66,12 +66,12 @@ a {
   cursor: pointer;
 }
 
-a.link {
+.link {
   color: var(--color-brand);
 }
 
-a.link:hover,
-a.link:focus {
+.link:hover,
+.link:focus {
   text-decoration: underline;
 }
 
@@ -93,4 +93,9 @@ hr {
 
 table {
   width: 100%;
+  border-collapse: collapse;
+}
+
+tr {
+  margin: 2em;
 }

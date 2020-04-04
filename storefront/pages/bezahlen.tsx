@@ -107,7 +107,7 @@ const DeliverySection = () => {
           ))}
         </tbody>
       </table>
-      <button className="button button--primary" type="submit">
+      <button className="button button--primary mt-3" type="submit">
         {isEditing ? 'Speichern' : 'Ändern'}
       </button>
     </form>
@@ -223,14 +223,12 @@ const BillingSection = () => {
 const Payment = () => {
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-md-8 offset-md-2">
-          <h1>Bezahlen</h1>
-          <h2>Bestellübersicht</h2>
-          <ManageCart />
+      <h1>Bezahlen</h1>
+      <h2>Bestellübersicht</h2>
+      <ManageCart />
 
-          <h2>Lieferadresse</h2>
-          <DeliverySection />
+      <h2>Lieferadresse</h2>
+      <DeliverySection />
 
           <h2>Rechnungsadresse</h2>
           <BillingSection />

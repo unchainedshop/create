@@ -21,19 +21,19 @@ const ManageCart = () => {
             <td>{renderPrice(item.total)}</td>
             <td>
               <button
-                className="button button--secondary button--small"
+                className="no-button"
                 type="button"
                 onClick={handleRemoveClick(item._id)}
               >
-                Entfernen
+                ❌ Entfernen
               </button>
             </td>
           </tr>
         ))}
         <tr className="border-top">
-          <td></td>
-          <td></td>
-          <td>
+          <td className="pt-2"></td>
+          <td className="pt-2">Total</td>
+          <td className="pt-2">
             <b>{renderPrice(user?.cart?.total)}</b>
           </td>
         </tr>

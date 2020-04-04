@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
 import useCreateUserMutation from '../modules/auth/hooks/useCreateUserMutation';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
@@ -9,11 +10,38 @@ import Footer from '../modules/layout/components/Footer';
 
 const isDev = process.env.NODE_ENV === 'development';
 
+const ErrorDisplay = ({ error }) => {
+  if (!error) return '';
+
+  if (error.message.includes('Email already exists.')) {
+    return (
+      <div className="form-error">
+        Es existiert bereits ein Benutzer mit dieser Email Adresse
+      </div>
+    );
+  }
+
+  return (
+    <div className="form-error">Es ist ein unbekannter Fehler aufgetreten</div>
+  );
+};
+
 const SignUp = () => {
   const router = useRouter();
   const { register, handleSubmit, watch, errors, setError } = useForm();
   const { updateCart } = useUpdateCartMutation();
-  const { createUser } = useCreateUserMutation();
+  const { createUser, error } = useCreateUserMutation();
+  const hasErrors = Object.keys(errors).length;
+
+  useEffect(() => {
+    if (error?.message?.includes('Email already exists.')) {
+      setError(
+        'emailAddress',
+        'alreadyExists',
+        'Es existiert bereits ein Benutzer mit dieser Email Adresse',
+      );
+    }
+  }, [error]);
 
   const createAccount = watch('account');
 
@@ -38,7 +66,7 @@ const SignUp = () => {
         setError('password2', 'notMatch', 'Passwörter sind nicht gleich');
         return false;
       } else {
-        // await createUser({ email: emailAddress, password });
+        await createUser({ email: emailAddress, password });
       }
     }
 
@@ -90,7 +118,6 @@ const SignUp = () => {
             id="account"
             name="account"
             ref={register}
-            disabled
           />
           <label className="form-check-label mb-0" htmlFor="account">
             Ich möchte einen Account erstellen
@@ -247,7 +274,13 @@ const SignUp = () => {
           </label>
         </div>
 
-        <button className="button button--primary button--big" type="submit">
+        <ErrorDisplay error={error} />
+
+        <button
+          className="button button--primary button--big"
+          type="submit"
+          disabled={hasErrors}
+        >
           Registrieren
         </button>
       </form>

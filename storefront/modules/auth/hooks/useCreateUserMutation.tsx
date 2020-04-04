@@ -11,7 +11,7 @@ const CreateUserMutation = gql`
 `;
 
 const useCreateUserMutation = () => {
-  const [createUserMutation] = useMutation(CreateUserMutation, {
+  const [createUserMutation, { error }] = useMutation(CreateUserMutation, {
     refetchQueries: ['UserQuery'],
   });
 
@@ -25,6 +25,7 @@ const useCreateUserMutation = () => {
 
   return {
     createUser,
+    error,
   };
 };
 

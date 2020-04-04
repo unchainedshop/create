@@ -34,7 +34,7 @@ const Detail = () => {
             </div>
             <button
               type="button"
-              className="button button--primary button--big  text-uppercase"
+              className="button button--primary button--big mb-5 text-uppercase"
               onClick={handleClick}
             >
               In den Warenkorb

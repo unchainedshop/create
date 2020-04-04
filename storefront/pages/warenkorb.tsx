@@ -25,7 +25,7 @@ const Cart = () => {
           }
         >
           <a
-            className="button button--primary button--big  text-uppercase"
+            className="button button--primary button--big text-uppercase"
             // onClick={handleClick}
           >
             Einmalig Bestellen
@@ -34,7 +34,7 @@ const Cart = () => {
         <button
           disabled
           type="button"
-          className="button button--primary button--big  text-uppercase"
+          className="button button--primary button--big text-uppercase"
           // onClick={handleClick}
         >
           Im Abo Bestellen

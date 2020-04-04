@@ -4,6 +4,8 @@ import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import getProductMediaUrl from '../modules/products/utils/getProductMediaUrl';
 import renderPrice from '../modules/common/utils/renderPrice';
 import useRemoveCartItemMutation from '../modules/cart/hooks/useRemoveCartItemMutation';
+import LoginCart from '../modules/auth/components/LoginCart';
+import Link from 'next/link';
 
 const Cart = () => {
   const router = useRouter();
@@ -16,6 +18,10 @@ const Cart = () => {
 
   return (
     <div className="container">
+      <div className="container py-2">
+        <LoginCart />
+      </div>
+
       <div className="row">
         <div className="col-md-8 offset-md-2">
           <h1>Warenkorb</h1>
@@ -49,6 +55,34 @@ const Cart = () => {
               </tr>
             </tbody>
           </table>
+
+          <div className="mb-1">
+            <Link
+              href={
+                user?.isGuest ?? true
+                  ? '/registrieren?next=bezahlen'
+                  : '/bezahlen'
+              }
+            >
+              <a
+                className="button button--primary button--big  text-uppercase"
+                // onClick={handleClick}
+              >
+                Einmalig Bestellen
+              </a>
+            </Link>
+          </div>
+
+          <div>
+            <button
+              disabled
+              type="button"
+              className="button button--primary button--big  text-uppercase"
+              // onClick={handleClick}
+            >
+              Im Abo Bestellen
+            </button>
+          </div>
         </div>
       </div>
     </div>

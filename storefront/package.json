@@ -27,7 +27,8 @@
     "next": "9.3.4",
     "next-with-apollo": "^5.0.0",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-hook-form": "^5.2.0"
   },
   "devDependencies": {
     "@types/node": "^13.11.0",

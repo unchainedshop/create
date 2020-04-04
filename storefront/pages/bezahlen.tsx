@@ -230,10 +230,8 @@ const Payment = () => {
       <h2>Lieferadresse</h2>
       <DeliverySection />
 
-          <h2>Rechnungsadresse</h2>
-          <BillingSection />
-        </div>
-      </div>
+      <h2>Rechnungsadresse</h2>
+      <BillingSection />
     </div>
   );
 };

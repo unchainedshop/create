@@ -19,9 +19,7 @@ const CreateUserMutation = gql`
 
 const useCreateUserMutation = () => {
   const [createUserMutation, { error }] = useMutation(CreateUserMutation, {
-    // refetchQueries: ['UserQuery'],
     update(cache, result) {
-      // const { todos } = cache.readQuery({ query: GET_TODOS });
       const newUser = result?.data?.createUser?.user;
 
       if (newUser) {
@@ -30,7 +28,6 @@ const useCreateUserMutation = () => {
           data: { me: newUser },
         });
       }
-      console.log(cache, result);
     },
   });
 

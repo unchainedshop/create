@@ -1,7 +1,10 @@
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 
+import ProductFragment from '../../products/fragments/ProductFragment';
+
 const UserQuery = gql`
+  # Try to write your query here
   query UserQuery {
     me {
       _id
@@ -9,6 +12,14 @@ const UserQuery = gql`
         _id
         items {
           _id
+          quantity
+          total {
+            amount
+            currency
+          }
+          product {
+            ...ProductFragment
+          }
         }
         total {
           amount
@@ -17,6 +28,7 @@ const UserQuery = gql`
       }
     }
   }
+  ${ProductFragment}
 `;
 
 const useUserQuery = () => {

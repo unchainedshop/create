@@ -10,7 +10,7 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN NODE_ENV=development npm install
 RUN npm run build
-RUN npm run prune
+RUN npm prune
 
 EXPOSE 3000
 CMD [ "npm", "run", "start" ]

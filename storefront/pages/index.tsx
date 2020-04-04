@@ -49,8 +49,30 @@ const Home = () => (
         </div>
       </div>
     </div>
-    <main className="conntainer my-5">
+    <main className="container my-5">
       <ProductList />
+      <div className="my-5 py-5">
+        <h1>Wie bereite ich einen Currybag zu?</h1>
+        <ol>
+          <li>Currybag 5 Minuten in kochendem Wasser aufwärmen</li>
+          <li>Aufschneiden und mit Reis servieren</li>
+        </ol>
+        <p>
+          Alternativ kannst du Couscous servieren. Oder Weissbrot. Oder einer
+          andere Beilage, die dir schmeckt.
+        </p>
+        <div className="row">
+          <div className="col-4">
+            <img src="static/img/how to video.253.Standbild1.jpg" />
+          </div>
+          <div className="col-4">
+            <img src="static/img/how to video.264.Standbild2.jpg" />
+          </div>
+          <div className="col-4">
+            <img src="static/img/how to video.376.Standbild3.jpg" />
+          </div>
+        </div>
+      </div>
     </main>
     <Footer />
   </div>

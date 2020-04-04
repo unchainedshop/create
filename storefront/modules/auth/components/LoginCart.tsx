@@ -19,7 +19,10 @@ const LoginCart = () => {
   ) : (
     <div className="d-flex justify-content-end">
       <Link href="/anmelden">
-        <a className="button button--ghost">Anmelden</a>
+        <a className="button button--ghost mr-1">Anmelden</a>
+      </Link>
+      <Link href="/registrieren">
+        <a className="button button--ghost">Registrieren</a>
       </Link>
     </div>
   );

@@ -9,7 +9,7 @@ const ProductList = () => {
   return (
     <div className="container">
       <div className="row">
-        {products.map(product => (
+        {products.map((product) => (
           <Link
             key={product._id}
             href="/curry/[slug]"

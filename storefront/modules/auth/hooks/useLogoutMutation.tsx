@@ -16,10 +16,12 @@ const useLogoutMutation = () => {
 
   const logout = async () => {
     if (window && window.localStorage) {
-      await logoutMutation({
-        variables: { token: window.localStorage.getItem('token') },
-      });
+      const token = window.localStorage.getItem('token');
       window.localStorage.removeItem('token');
+
+      await logoutMutation({
+        variables: { token },
+      });
     }
   };
 

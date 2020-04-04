@@ -10,9 +10,14 @@ const UpdateCartMutation = gql`
 `;
 
 const useUpdateCartMutation = () => {
-  const [updateCartMutation] = useMutation(UpdateCartMutation);
+  const [updateCartMutation] = useMutation(UpdateCartMutation, {
+    refetchQueries: ['UserQuery'],
+  });
 
-  const updateCart = async ({ contact, billingAddress }) => {
+  const updateCart = async ({
+    contact = undefined,
+    billingAddress = undefined,
+  }) => {
     return await updateCartMutation({ variables: { contact, billingAddress } });
   };
 

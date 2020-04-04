@@ -1,8 +1,8 @@
 const renderPrice = (
-  { amount, currency }: { amount: number; currency: string } = {
-    amount: 0,
-    currency: 'CHF',
-  },
-) => `${currency} ${(amount / 100).toFixed(2)}`;
+  args: { amount?: number; currency?: string } = {},
+): string => {
+  const { amount = 0, currency = 'CHF' } = args || {};
+  return `${currency} ${(amount / 100).toFixed(2)}`;
+};
 
 export default renderPrice;

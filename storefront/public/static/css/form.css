@@ -65,3 +65,8 @@
 .form-error .form-control {
   border: 1px solid var(--color-danger);
 }
+
+.form-text {
+  display: block;
+  margin-top: 0.25rem;
+}

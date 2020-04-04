@@ -1,7 +1,9 @@
 import Head from 'next/head';
+import Header from '../modules/layout/components/Header';
 
 const SignIn = () => (
   <div className="container">
+    <Header />
     <div className="row">
       <div className="col-md-8 offset-md-2">
         <h1>Anmeldung</h1>

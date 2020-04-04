@@ -229,6 +229,7 @@ Orders.helpers({
     });
   },
   updateContext(context) {
+    if (!this.context && !context) return this;
     return Orders.updateContext({
       orderId: this._id,
       context,
@@ -256,36 +257,14 @@ Orders.helpers({
     // 2. Reserve quantity at Warehousing Provider until order is CANCELLED/FULLFILLED
     // ???
   },
-  generateSubscriptions({ paymentContext, deliveryContext }) {
-    const plans = this.items()
-      .map((item) => {
-        const productPlan = item.product()?.plan;
-        if (!productPlan) return null;
-        return {
-          item,
-          productPlan,
-        };
-      })
-      .filter(Boolean);
+  generateSubscriptions(context) {
+    const items = this.items().filter((item) => {
+      const productPlan = item.product()?.plan;
+      return !!productPlan;
+    });
 
-    if (plans.length > 0) {
-      const payment = this.payment();
-      const delivery = this.delivery();
-
-      Subscriptions.generateFromCheckout({
-        orderId: this._id,
-        userId: this.userId,
-        countryCode: this.country,
-        currencyCode: this.currencyCode,
-        billingAddress: this.billingAddress,
-        contact: this.contact,
-        paymentContext,
-        deliveryContext,
-        payment,
-        delivery,
-        plans,
-        meta: this.meta,
-      });
+    if (items.length > 0) {
+      Subscriptions.generateFromCheckout({ order: this, items, ...context });
     }
   },
   checkout(
@@ -303,6 +282,7 @@ Orders.helpers({
     const language =
       (localeContext && localeContext.normalized) ||
       (lastUserLanguage && lastUserLanguage.isoCode);
+
     return this.updateContext(orderContext)
       .processOrder({ paymentContext, deliveryContext })
       .sendOrderConfirmationToCustomer({ language });

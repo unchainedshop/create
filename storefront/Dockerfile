@@ -8,8 +8,9 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY . /usr/src/app
-RUN npm install
+RUN NODE_ENV=development npm install
 RUN npm run build
+RUN npm run prune
 
 EXPOSE 3000
 CMD [ "npm", "run", "start" ]

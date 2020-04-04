@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 import useLoginWithPasswordMutation from '../hooks/useLoginWithPasswordMutation';
 
@@ -52,6 +53,13 @@ const LoginForm = ({ onLogin }) => {
             name="password"
             ref={register({ required: true })}
           />
+          <Link href="passwort-vergessen">
+            <a>
+              <small id="passwordForgot" className="form-text text-muted">
+                Passwort vergessen?
+              </small>
+            </a>
+          </Link>
         </div>
       </div>
       {hasErrors

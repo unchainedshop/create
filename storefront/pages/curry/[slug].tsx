@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import useProductDetailQuery from '../../modules/products/hooks/useProductDetailQuery';
 import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
-import useConditionalAddCartProductMutation from '../../modules/checkout/hooks/useConditionalAddCartProductMutation';
+import useConditionalAddCartProductMutation from '../../modules/cart/hooks/useConditionalAddCartProductMutation';
 import LoginCart from '../../modules/auth/components/LoginCart';
 
 const Detail = () => {

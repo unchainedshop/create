@@ -16,7 +16,7 @@ const ProductList = () => {
             as={`/curry/${product.texts.slug}`}
           >
             <a className="col-md-6 col-lg-4 product-list-item">
-              <h3 className="px-2">{product?.texts?.title}</h3>
+              <h3 className="px-2 my-3">{product?.texts?.title}</h3>
               <img src={getProductMediaUrl(product)} />
               <div className="p-2">
                 <h4 className="my-0">

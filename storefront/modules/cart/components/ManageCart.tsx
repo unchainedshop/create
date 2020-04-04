@@ -31,9 +31,9 @@ const ManageCart = () => {
           </tr>
         ))}
         <tr className="border-top">
-          <td className="pt-2"></td>
-          <td className="pt-2">Total</td>
-          <td className="pt-2">
+          <td></td>
+          <td>Total</td>
+          <td>
             <b>{renderPrice(user?.cart?.total)}</b>
           </td>
         </tr>

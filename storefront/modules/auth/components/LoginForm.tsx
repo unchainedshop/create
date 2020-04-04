@@ -62,7 +62,7 @@ const LoginForm = ({ onLogin }) => {
           ))
         : ''}
       <button
-        className="button button--primary"
+        className="button button--primary button--big"
         type="submit"
         disabled={hasErrors}
       >

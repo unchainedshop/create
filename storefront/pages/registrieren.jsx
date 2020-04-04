@@ -16,14 +16,16 @@ const ErrorDisplay = ({ error }) => {
 
   if (error.message.includes('Email already exists.')) {
     return (
-      <div className="form-error">
+      <div className="form-error my-3">
         Es existiert bereits ein Benutzer mit dieser Email Adresse
       </div>
     );
   }
 
   return (
-    <div className="form-error">Es ist ein unbekannter Fehler aufgetreten</div>
+    <div className="form-error my-3">
+      Es ist ein unbekannter Fehler aufgetreten
+    </div>
   );
 };
 

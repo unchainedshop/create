@@ -24,7 +24,6 @@ const ProductList = () => {
                 </h4>
                 <h4 className="mb-0">{product?.texts?.subtitle}</h4>
                 <p>{product?.texts?.description?.split('\n')[0]}</p>
-                <p>{product?.dimensions?.weight * 1000} Gramm</p>
               </div>
             </a>
           </Link>

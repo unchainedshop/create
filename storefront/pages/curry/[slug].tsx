@@ -3,6 +3,7 @@ import useProductDetailQuery from '../../modules/products/hooks/useProductDetail
 import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
 import useConditionalAddCartProductMutation from '../../modules/cart/hooks/useConditionalAddCartProductMutation';
 import Header from '../../modules/layout/components/Header';
+import CheckoutFooter from '../../modules/layout/components/CheckoutFooter';
 
 const Detail = () => {
   const router = useRouter();
@@ -42,6 +43,7 @@ const Detail = () => {
           </div>
         </div>
       </div>
+      <CheckoutFooter />
     </div>
   );
 };

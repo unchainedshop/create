@@ -8,6 +8,7 @@ const UserQuery = gql`
   query UserQuery {
     me {
       _id
+      isGuest
       cart {
         _id
         items {

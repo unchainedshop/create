@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import ProductList from '../modules/products/components/ProductList';
-import LoginCart from '../modules/auth/components/LoginCart';
+import Header from '../modules/layout/components/Header';
 
 const Home = () => (
   <div>
@@ -9,16 +9,14 @@ const Home = () => (
       <title>Currybag - Innerhalb von 5 Minuten ready!</title>
     </Head>
 
-    <div className="container py-2">
-      <LoginCart />
-    </div>
+    <Header />
     <div className="color-bg-brand-lightest">
       <div className="container">
-        <header className="header text-center pt-5">
+        <div className="text-center pt-5">
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
               <div className="font-heading">LOVING LANKA®</div>
-              <h1 className="title color-brand">Currybag™</h1>
+              <h1 className="color-brand">Currybag™</h1>
               <p>
                 <b>Was ist ein Currybag?</b>
               </p>
@@ -35,13 +33,15 @@ const Home = () => (
               />
             </div>
           </div>
-        </header>
+        </div>
       </div>
     </div>
     <main className="conntainer my-5">
       <ProductList />
     </main>
-    <footer className="footer"></footer>
+    <footer className="footer container text-center">
+      <h1>Häufig gestellte Fragen</h1>
+    </footer>
   </div>
 );
 

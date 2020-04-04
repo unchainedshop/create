@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import getProductMediaUrl from '../modules/products/utils/getProductMediaUrl';
 import renderPrice from '../modules/common/utils/renderPrice';
 import useRemoveCartItemMutation from '../modules/cart/hooks/useRemoveCartItemMutation';
-import LoginCart from '../modules/auth/components/LoginCart';
-import Link from 'next/link';
+import Header from '../modules/layout/components/Header';
 
 const Cart = () => {
   const router = useRouter();
@@ -18,10 +18,7 @@ const Cart = () => {
 
   return (
     <div className="container">
-      <div className="container py-2">
-        <LoginCart />
-      </div>
-
+      <Header />
       <div className="row">
         <div className="col-md-8 offset-md-2">
           <h1>Warenkorb</h1>

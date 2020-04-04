@@ -90,7 +90,11 @@ const SignUp = () => {
                   ref={register({ required: true })}
                 />
               </div>
-              <div className="mb-3 col-md-6">
+              <div
+                className={`mb-3 col-md-6 ${
+                  errors['lastName'] ? 'form-error' : ''
+                }`}
+              >
                 <label className="form-label">Nachname</label>
                 <input
                   className={`form-control ${
@@ -101,11 +105,19 @@ const SignUp = () => {
                   ref={register({ required: true })}
                 />
               </div>
-              <div className="mb-3 col-md-6">
+              <div
+                className={`mb-3 col-md-6 ${
+                  errors['company'] ? 'form-error' : ''
+                }`}
+              >
                 <label className="form-label">Firma (optional)</label>
                 <input className="form-control" name="company" ref={register} />
               </div>
-              <div className="mb-3 col-md-6">
+              <div
+                className={`mb-3 col-md-6 ${
+                  errors['addressLine'] ? 'form-error' : ''
+                }`}
+              >
                 <label className="form-label">Adresse</label>
                 <input
                   className={`form-control ${
@@ -116,7 +128,11 @@ const SignUp = () => {
                   defaultValue={isDev && 'Teststrasse 1'}
                 />
               </div>
-              <div className="mb-3 col-md-6">
+              <div
+                className={`mb-3 col-md-6 ${
+                  errors['postalCode'] ? 'form-error' : ''
+                }`}
+              >
                 <label className="form-label">PLZ</label>
                 <input
                   className={`form-control ${
@@ -127,7 +143,11 @@ const SignUp = () => {
                   defaultValue={isDev && '8001'}
                 />
               </div>
-              <div className="mb-3 col-md-6">
+              <div
+                className={`mb-3 col-md-6 ${
+                  errors['city'] ? 'form-error' : ''
+                }`}
+              >
                 <label className="form-label">Ort</label>
                 <input
                   className={`form-control ${errors['city'] && 'form-error'}`}
@@ -136,7 +156,11 @@ const SignUp = () => {
                   defaultValue={isDev && 'Zürich'}
                 />
               </div>
-              <div className="mb-3 col-md-6">
+              <div
+                className={`mb-3 col-md-6 ${
+                  errors['emailAddress'] ? 'form-error' : ''
+                }`}
+              >
                 <label className="form-label">Email</label>
                 <input
                   className={`form-control ${
@@ -147,7 +171,11 @@ const SignUp = () => {
                   defaultValue={isDev && 'hans@exmaple.com'}
                 />
               </div>
-              <div className="mb-3 col-md-6">
+              <div
+                className={`mb-3 col-md-6 ${
+                  errors['telNumber'] ? 'form-error' : ''
+                }`}
+              >
                 <label className="form-label">Telefon</label>
                 <input
                   className={`form-control ${
@@ -160,7 +188,11 @@ const SignUp = () => {
               </div>
               {createAccount ? (
                 <>
-                  <div className="mb-3 col-md-6">
+                  <div
+                    className={`mb-3 col-md-6 ${
+                      errors['password'] ? 'form-error' : ''
+                    }`}
+                  >
                     <label className="form-label">Passwort</label>
                     <input
                       className="form-control"
@@ -170,7 +202,11 @@ const SignUp = () => {
                       defaultValue={isDev && 'asdf'}
                     />
                   </div>
-                  <div className="mb-3 col-md-6">
+                  <div
+                    className={`mb-3 col-md-6 ${
+                      errors['password2'] ? 'form-error' : ''
+                    }`}
+                  >
                     <label className="form-label">Passwort wiederholen</label>
                     <input
                       className="form-control"
@@ -185,10 +221,13 @@ const SignUp = () => {
                 ''
               )}
             </div>
-            <div className="form-check mb-3">
+            <div
+              className={`form-check mb-3 ${errors['agb'] && 'form-error'} : ''
+                    }`}
+            >
               <input
                 type="checkbox"
-                className={`form-check-input ${errors['agb'] && 'form-error'}`}
+                className="form-check-input"
                 id="agb"
                 name="agb"
                 ref={register({ required: true })}

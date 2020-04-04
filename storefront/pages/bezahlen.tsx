@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import ManageCart from '../modules/cart/components/ManageCart';
+import Header from '../modules/layout/components/Header';
+import Footer from '../modules/layout/components/Footer';
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
 
@@ -222,16 +224,20 @@ const BillingSection = () => {
 
 const Payment = () => {
   return (
-    <div className="container">
-      <h1>Bezahlen</h1>
-      <h2>Bestellübersicht</h2>
-      <ManageCart />
+    <div>
+      <Header />
+      <div className="container">
+        <h1>Bezahlen</h1>
+        <h2>Bestellübersicht</h2>
+        <ManageCart />
 
-      <h2>Lieferadresse</h2>
-      <DeliverySection />
+        <h2>Lieferadresse</h2>
+        <DeliverySection />
 
-      <h2>Rechnungsadresse</h2>
-      <BillingSection />
+        <h2>Rechnungsadresse</h2>
+        <BillingSection />
+      </div>
+      <Footer />
     </div>
   );
 };

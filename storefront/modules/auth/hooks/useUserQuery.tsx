@@ -15,6 +15,10 @@ const UserQuery = gql`
         billingAddress {
           ...AddressFragment
         }
+        contact {
+          telNumber
+          emailAddress
+        }
         items {
           _id
           quantity

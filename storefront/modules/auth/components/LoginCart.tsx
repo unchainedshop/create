@@ -5,9 +5,9 @@ const LoginCart = () => {
   const { user } = useUserQuery();
 
   return user ? (
-    <div className="d-flex justify-content-end align-items-center">
+    <div className="d-flex justify-content-end align-items-center flex-wrap">
       <Link href="/warenkorb">
-        <a>
+        <a className="link my-2">
           {user?.cart?.items.length} Produkte im Warenkorb für insgesamt{' '}
           {(user?.cart?.total?.amount / 100).toFixed(2)} CHF
         </a>
@@ -17,12 +17,12 @@ const LoginCart = () => {
       </Link>
     </div>
   ) : (
-    <div className="d-flex justify-content-end">
+    <div className="d-flex justify-content-end flex-wrap">
       <Link href="/anmelden">
         <a className="button button--ghost">Anmelden</a>
       </Link>
       <Link href="/registrieren">
-        <a className="button button--ghost ml-3">Registrieren</a>
+        <a className="button button--ghost ml-2">Registrieren</a>
       </Link>
     </div>
   );

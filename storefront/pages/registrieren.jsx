@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
+import Header from '../modules/layout/components/Header';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -40,6 +41,7 @@ const SignUp = () => {
 
   return (
     <div className="container">
+      <Header />
       <div className="row">
         <div className="col-md-8 offset-md-2">
           <h1>Anmelden</h1>
@@ -75,15 +77,17 @@ const SignUp = () => {
               </label>
             </div>
             <div className="form-row">
-              <div className="mb-3 col-md-6">
+              <div
+                className={`mb-3 col-md-6 ${
+                  errors['firstName'] ? 'form-error' : ''
+                }`}
+              >
                 <label className="form-label">Vorname</label>
                 <input
-                  className={`form-control ${
-                    errors['firstName'] && 'form-error'
-                  }`}
+                  className="form-control"
                   name="firstName"
                   defaultValue={isDev && 'Hans'}
-                  ref={register}
+                  ref={register({ required: true })}
                 />
               </div>
               <div className="mb-3 col-md-6">
@@ -94,7 +98,7 @@ const SignUp = () => {
                   }`}
                   name="lastName"
                   defaultValue={isDev && 'Muster'}
-                  ref={register}
+                  ref={register({ required: true })}
                 />
               </div>
               <div className="mb-3 col-md-6">

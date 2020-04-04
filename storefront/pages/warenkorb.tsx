@@ -3,14 +3,16 @@ import { useRouter } from 'next/router';
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import getProductMediaUrl from '../modules/products/utils/getProductMediaUrl';
 import renderPrice from '../modules/common/utils/renderPrice';
+import useRemoveCartItemMutation from '../modules/cart/hooks/useRemoveCartItemMutation';
 
 const Cart = () => {
   const router = useRouter();
   const { user, loading } = useUserQuery();
+  const { removeCartItem } = useRemoveCartItemMutation();
 
   if (!user && !loading) router.push('/anmelden?next=warenkorb');
 
-  console.log(user);
+  const handleRemoveClick = (itemId) => () => removeCartItem({ itemId });
 
   return (
     <div className="container">
@@ -27,6 +29,11 @@ const Cart = () => {
                   </td> */}
                   <td>{item.product.texts.title}</td>
                   <td>{renderPrice(item.total)}</td>
+                  <td>
+                    <button onClick={handleRemoveClick(item._id)}>
+                      Entfernen
+                    </button>
+                  </td>
                 </tr>
               ))}
               <tr className="border-top">

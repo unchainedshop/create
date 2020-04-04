@@ -96,8 +96,18 @@ class PaymentDirector {
 
   async charge({ transactionContext, ...context }) {
     const adapter = this.interface(context);
-    const chargeResult = await adapter.charge(transactionContext);
-    return chargeResult;
+    return adapter.charge(transactionContext);
+  }
+
+  async register({ transactionContext, ...context }) {
+    const adapter = this.interface(context);
+    return adapter.register(transactionContext);
+  }
+
+  async validate({ credentials, ...context }) {
+    const adapter = this.interface(context);
+    const validated = await adapter.validate(credentials);
+    return !!validated;
   }
 
   async run(command, context, ...args) {

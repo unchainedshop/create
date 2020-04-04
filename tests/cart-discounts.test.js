@@ -48,8 +48,8 @@ describe('Cart: Discounts', () => {
           }
         `,
         variables: {
-          orderId: SimpleOrder._id
-        }
+          orderId: SimpleOrder._id,
+        },
       });
       expect(addCartDiscount.order.total.amount).toBe(0);
       expect(addCartDiscount).toMatchObject({
@@ -57,16 +57,16 @@ describe('Cart: Discounts', () => {
         discounted: [
           {
             item: {},
-            total: {}
-          }
+            total: {},
+          },
         ],
         order: {
           discounts: [
             {
-              code: 'HALFPRICE'
-            }
-          ]
-        }
+              code: 'HALFPRICE',
+            },
+          ],
+        },
       });
     });
     it('add order discount to the cart', async () => {
@@ -106,8 +106,8 @@ describe('Cart: Discounts', () => {
           }
         `,
         variables: {
-          orderId: SimpleOrder._id
-        }
+          orderId: SimpleOrder._id,
+        },
       });
 
       expect(addCartDiscount.order.total.amount).toBeLessThan(0);
@@ -117,17 +117,17 @@ describe('Cart: Discounts', () => {
           {
             order: {},
             orderDiscount: {},
-            total: {}
-          }
+            total: {},
+          },
         ],
         order: {
           discounts: [
             {},
             {
-              code: '100OFF'
-            }
-          ]
-        }
+              code: '100OFF',
+            },
+          ],
+        },
       });
     });
 
@@ -147,16 +147,16 @@ describe('Cart: Discounts', () => {
           }
         `,
         variables: {
-          discountId: DiscountedDiscount._id
-        }
+          discountId: DiscountedDiscount._id,
+        },
       });
 
       expect(removeCartDiscount.order.total.amount).toBe(0);
       expect(removeCartDiscount).toMatchObject({
         code: '100OFF',
         order: {
-          total: {}
-        }
+          total: {},
+        },
       });
     });
   });

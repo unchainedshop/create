@@ -1,17 +1,42 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
+
+import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
 
 const isDev = process.env.NODE_ENV === 'development';
 
 const SignUp = () => {
+  const router = useRouter();
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const { updateCart } = useUpdateCartMutation();
 
   const createAccount = watch('account');
 
-  console.log(createAccount, errors);
+  const onSubmit = async ({
+    firstName,
+    lastName,
+    company,
+    addressLine,
+    postalCode,
+    city,
+    emailAddress,
+    telNumber,
+  }) => {
+    const result = await updateCart({
+      contact: { emailAddress, telNumber },
+      billingAddress: {
+        firstName,
+        lastName,
+        company,
+        addressLine,
+        postalCode,
+        city,
+      },
+    });
+
+    router.push('/bezahlen');
+  };
 
   return (
     <div className="container">
@@ -43,6 +68,7 @@ const SignUp = () => {
                 id="account"
                 name="account"
                 ref={register}
+                disabled
               />
               <label className="form-check-label mb-0" htmlFor="account">
                 Ich möchte einen Account erstellen
@@ -52,7 +78,9 @@ const SignUp = () => {
               <div className="mb-3 col-md-6">
                 <label className="form-label">Vorname</label>
                 <input
-                  className="form-control"
+                  className={`form-control ${
+                    errors['firstName'] && 'form-error'
+                  }`}
                   name="firstName"
                   defaultValue={isDev && 'Hans'}
                   ref={register}
@@ -61,7 +89,9 @@ const SignUp = () => {
               <div className="mb-3 col-md-6">
                 <label className="form-label">Nachname</label>
                 <input
-                  className="form-control"
+                  className={`form-control ${
+                    errors['lastName'] && 'form-error'
+                  }`}
                   name="lastName"
                   defaultValue={isDev && 'Muster'}
                   ref={register}
@@ -74,8 +104,10 @@ const SignUp = () => {
               <div className="mb-3 col-md-6">
                 <label className="form-label">Adresse</label>
                 <input
-                  className="form-control"
-                  name="address"
+                  className={`form-control ${
+                    errors['addressLine'] && 'form-error'
+                  }`}
+                  name="addressLine"
                   ref={register({ required: true })}
                   defaultValue={isDev && 'Teststrasse 1'}
                 />
@@ -83,8 +115,10 @@ const SignUp = () => {
               <div className="mb-3 col-md-6">
                 <label className="form-label">PLZ</label>
                 <input
-                  className="form-control"
-                  name="zip"
+                  className={`form-control ${
+                    errors['postalCode'] && 'form-error'
+                  }`}
+                  name="postalCode"
                   ref={register({ required: true })}
                   defaultValue={isDev && '8001'}
                 />
@@ -92,7 +126,7 @@ const SignUp = () => {
               <div className="mb-3 col-md-6">
                 <label className="form-label">Ort</label>
                 <input
-                  className="form-control"
+                  className={`form-control ${errors['city'] && 'form-error'}`}
                   name="city"
                   ref={register({ required: true })}
                   defaultValue={isDev && 'Zürich'}
@@ -101,10 +135,23 @@ const SignUp = () => {
               <div className="mb-3 col-md-6">
                 <label className="form-label">Email</label>
                 <input
-                  className="form-control"
-                  name="email"
+                  className={`form-control ${
+                    errors['emailAddress'] && 'form-error'
+                  }`}
+                  name="emailAddress"
                   ref={register({ required: true })}
                   defaultValue={isDev && 'hans@exmaple.com'}
+                />
+              </div>
+              <div className="mb-3 col-md-6">
+                <label className="form-label">Telefon</label>
+                <input
+                  className={`form-control ${
+                    errors['telNumber'] && 'form-error'
+                  }`}
+                  name="telNumber"
+                  ref={register({ required: true })}
+                  defaultValue={isDev && '0791234567'}
                 />
               </div>
               {createAccount ? (
@@ -137,12 +184,17 @@ const SignUp = () => {
             <div className="form-check mb-3">
               <input
                 type="checkbox"
-                className="form-check-input"
+                className={`form-check-input ${errors['agb'] && 'form-error'}`}
                 id="agb"
                 name="agb"
                 ref={register({ required: true })}
               />
-              <label className="form-check-label mb-0" htmlFor="agb">
+              <label
+                className={`form-check-label mb-0 ${
+                  errors['agb'] && 'form-error'
+                }`}
+                htmlFor="agb"
+              >
                 Ich habe die <a href="/agb">AGBs</a> gelesen
               </label>
             </div>

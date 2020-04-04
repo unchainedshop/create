@@ -30,7 +30,9 @@ const Detail = () => {
                 CHF {product?.simulatedPrice?.price?.amount / 100}.-
               </h3>
               <h4 className="mb-0">{product?.texts?.subtitle}</h4>
-              <p>{product?.texts?.description}</p>
+              {product?.texts?.description.split('\n').map((line, i) => (
+                <p key={i}>{line}</p>
+              ))}
               <p>{product?.dimensions?.weight * 1000} Gramm</p>
             </div>
             <button

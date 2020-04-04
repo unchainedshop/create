@@ -3,10 +3,9 @@ import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 
 import ManageCart from '../modules/cart/components/ManageCart';
-import Header from '../modules/layout/components/Header';
-import Footer from '../modules/layout/components/Footer';
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
+import CheckoutFooter from '../modules/layout/components/CheckoutFooter';
 
 const EditableField = ({
   register,
@@ -250,6 +249,7 @@ const Payment = () => {
         <h2>Rechnungsadresse</h2>
         <BillingSection />
       </div>
+      <CheckoutFooter />
     </>
   );
 };

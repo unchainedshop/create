@@ -1,5 +1,6 @@
-import useUserQuery from '../hooks/useUserQuery';
 import Link from 'next/link';
+
+import useUserQuery from '../hooks/useUserQuery';
 
 const LoginCart = () => {
   const { user } = useUserQuery();

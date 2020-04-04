@@ -9,9 +9,7 @@ const Logout = () => {
   useEffect(() => {
     (async () => {
       await logout();
-      // router.push('/');
-      // HACK
-      window.location.href = '/';
+      router.push('/');
     })();
   }, []);
 

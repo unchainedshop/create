@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
+import useCreateUserMutation from '../modules/auth/hooks/useCreateUserMutation';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
 import Header from '../modules/layout/components/Header';
 import Footer from '../modules/layout/components/Footer';
@@ -10,8 +11,9 @@ const isDev = process.env.NODE_ENV === 'development';
 
 const SignUp = () => {
   const router = useRouter();
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, watch, errors, setError } = useForm();
   const { updateCart } = useUpdateCartMutation();
+  const { createUser } = useCreateUserMutation();
 
   const createAccount = watch('account');
 
@@ -24,8 +26,23 @@ const SignUp = () => {
     city,
     emailAddress,
     telNumber,
+    account,
+    password,
+    password2,
   }) => {
-    const result = await updateCart({
+    console.log({ account, password, password2 });
+
+    if (account) {
+      if (password !== password2) {
+        setError('password', 'notMatch', 'Passwörter sind nicht gleich');
+        setError('password2', 'notMatch', 'Passwörter sind nicht gleich');
+        return false;
+      } else {
+        // await createUser({ email: emailAddress, password });
+      }
+    }
+
+    await updateCart({
       contact: { emailAddress, telNumber },
       billingAddress: {
         firstName,
@@ -214,10 +231,7 @@ const SignUp = () => {
             ''
           )}
         </div>
-        <div
-          className={`form-check mb-3 ${errors['agb'] && 'form-error'} : ''
-                    }`}
-        >
+        <div className={`form-check mb-3 ${errors['agb'] ? 'form-error' : ''}`}>
           <input
             type="checkbox"
             className="form-check-input"

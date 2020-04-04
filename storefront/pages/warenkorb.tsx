@@ -23,14 +23,18 @@ const Cart = () => {
             <tbody>
               {(user?.cart?.items || []).map((item) => (
                 <tr key={item._id}>
-                  <td>{item.quantity}</td>
+                  <td>{item.quantity} x</td>
                   {/* <td>
                     <img src={getProductMediaUrl(item.product)} />
                   </td> */}
                   <td>{item.product.texts.title}</td>
                   <td>{renderPrice(item.total)}</td>
                   <td>
-                    <button onClick={handleRemoveClick(item._id)}>
+                    <button
+                      className="button button--secondary button--small"
+                      type="button"
+                      onClick={handleRemoveClick(item._id)}
+                    >
                       Entfernen
                     </button>
                   </td>

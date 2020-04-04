@@ -38,6 +38,7 @@ import reorderProductMedia from './reorderProductMedia';
 import updateProductCommerce from './updateProductCommerce';
 import updateProductWarehousing from './updateProductWarehousing';
 import updateProductSupply from './updateProductSupply';
+import updateProductPlan from './updateProductPlan';
 import addProductAssignment from './addProductAssignment';
 import removeProductAssignment from './removeProductAssignment';
 import createCart from './createCart';
@@ -48,7 +49,6 @@ import addCartQuotation from './addCartQuotation';
 import updateCart from './updateCart';
 import emptyCart from './emptyCart';
 import updateCartItem from './updateCartItem';
-
 import removeCartItem from './removeCartItem';
 import removeCartDiscount from './removeCartDiscount';
 import removeOrder from './removeOrder';
@@ -110,6 +110,7 @@ import allocateWork from './allocateWork';
 import finishWork from './finishWork';
 import doWork from './doWork';
 import heartbeat from './heartbeat';
+import createSubscription from './createSubscription';
 
 export default {
   ...Accounts,
@@ -151,6 +152,7 @@ export default {
     updateProductWarehousing
   ),
   updateProductSupply: acl(actions.manageProducts)(updateProductSupply),
+  updateProductPlan: acl(actions.manageProducts)(updateProductPlan),
   removeProductVariation: acl(actions.manageProducts)(removeProductVariation),
   updateProductVariationTexts: acl(actions.manageProducts)(
     updateProductVariationTexts
@@ -201,6 +203,8 @@ export default {
   confirmOrder: acl(actions.markOrderConfirmed)(confirmOrder),
   payOrder: acl(actions.markOrderPaid)(payOrder),
   deliverOrder: acl(actions.markOrderDelivered)(deliverOrder),
+
+  createSubscription: acl(actions.createSubscription)(createSubscription),
 
   createPaymentProvider: acl(actions.managePaymentProviders)(
     createPaymentProvider

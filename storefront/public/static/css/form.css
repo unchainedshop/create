@@ -53,6 +53,10 @@
   margin-left: -1.25rem;
 }
 
+.form-error {
+  color: var(--color-danger);
+}
+
 .form-error .form-label,
 .form-error .form-check-label {
   color: var(--color-danger);

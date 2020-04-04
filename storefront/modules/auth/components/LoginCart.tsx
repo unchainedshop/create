@@ -6,8 +6,12 @@ const LoginCart = () => {
 
   return user ? (
     <div className="d-flex justify-content-end">
-      {user?.cart?.items.length} Produkte im Warenkorb für insgesamt{' '}
-      {(user?.cart?.total?.amount / 100).toFixed(2)} CHF
+      <Link href="/warenkorb">
+        <a>
+          {user?.cart?.items.length} Produkte im Warenkorb für insgesamt{' '}
+          {(user?.cart?.total?.amount / 100).toFixed(2)} CHF
+        </a>
+      </Link>
       <Link href="/abmelden">
         <a>Abmelden</a>
       </Link>

@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 
 import ProductFragment from '../../products/fragments/ProductFragment';
+import AddressFragment from '../fragments/AddressFragment';
 
 const UserQuery = gql`
   # Try to write your query here
@@ -11,6 +12,9 @@ const UserQuery = gql`
       isGuest
       cart {
         _id
+        billingAddress {
+          ...AddressFragment
+        }
         items {
           _id
           quantity
@@ -30,6 +34,7 @@ const UserQuery = gql`
     }
   }
   ${ProductFragment}
+  ${AddressFragment}
 `;
 
 const useUserQuery = () => {

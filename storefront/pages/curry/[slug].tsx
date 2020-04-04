@@ -34,7 +34,7 @@ const Detail = () => {
               {product?.texts?.description.split('\n').map((line, i) => (
                 <p key={i}>{line}</p>
               ))}
-              <p>{product?.dimensions?.weight * 1000} Gramm</p>
+              <p>Gewicht: {product?.dimensions?.weight * 1000} Gramm</p>
             </div>
             <button
               type="button"

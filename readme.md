@@ -1,24 +1,17 @@
 [![Codeship Status for unchainedshop/currybag-website](https://app.codeship.com/projects/2f18b4a0-57dc-0138-8b6d-4230a644a556/status?branch=master)](https://app.codeship.com/projects/391300)
 
-## Working with Git Subtree
+## How to deploy a Home Food Delivery Shop
 
-**Setup Engine integration through git subtree**
+1. Get some VM
 
-cd into root
+2. Install Docker
 
-```
-  git remote add subtree_unchained git@github.com:unchainedshop/unchained.git
-  git subtree add --prefix=engine/common --squash subtree_unchained currybag
-```
+3. Fork Repository and checkout inside VM
 
-**Pull most recent version of unchained engine into this project**
+4. Build up .env for production (needs documentation on how to to that and .env.schema)
 
-```
-  git subtree pull --prefix=engine/common --squash subtree_unchained currybag
-```
+5. Run npm run deploy which calls “./docker-deploy.sh”
 
-**Push back the changes to unchained engine from this project**
+6. Configure Cockpit & Unchained (setup admin users, build catalog, products, content)
 
-```
-  git subtree push --prefix=engine/common subtree_unchained currybag
-```
+7. Enjoy your page

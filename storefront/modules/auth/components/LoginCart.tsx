@@ -21,9 +21,6 @@ const LoginCart = () => {
       <Link href="/anmelden">
         <a className="button button--ghost my-1">Anmelden</a>
       </Link>
-      <Link href="/registrieren">
-        <a className="button button--ghost ml-2 my-1">Registrieren</a>
-      </Link>
     </div>
   );
 };

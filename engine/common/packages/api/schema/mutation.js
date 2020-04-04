@@ -158,6 +158,18 @@ export default [
       removeCartDiscount(discountId: ID!): OrderDiscount!
 
       """
+      Creates a subscription.
+      """
+      createSubscription(
+        plan: SubscriptionPlanInput!
+        billingAddress: AddressInput
+        contact: ContactInput
+        payment: SubscriptionPaymentInput
+        delivery: SubscriptionDeliveryInput
+        meta: JSON
+      ): Subscription!
+
+      """
       Change the delivery method/provider
       """
       setOrderDeliveryProvider(orderId: ID!, deliveryProviderId: ID!): Order!
@@ -326,6 +338,11 @@ export default [
         productId: ID!
         supply: UpdateProductSupplyInput!
       ): Product
+
+      """
+      Modify plan part of a product
+      """
+      updateProductPlan(productId: ID!, plan: UpdateProductPlanInput!): Product
 
       """
       Modify warehousing part of a product

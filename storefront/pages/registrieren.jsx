@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
 import Header from '../modules/layout/components/Header';
+import Footer from '../modules/layout/components/Footer';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -249,6 +250,7 @@ const SignUp = () => {
           <p></p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

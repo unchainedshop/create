@@ -15,7 +15,7 @@ const LoginCart = () => {
       </Link>
       {!user.isGuest ? (
         <Link href="/abmelden">
-          <a className="button button--ghost ml-3 my-1">Abmelden</a>
+          <a className="button button--secondary ml-3 my-1">Abmelden</a>
         </Link>
       ) : (
         ''
@@ -24,7 +24,7 @@ const LoginCart = () => {
   ) : (
     <div className="d-flex justify-content-end flex-wrap">
       <Link href="/anmelden">
-        <a className="button button--ghost my-1">Anmelden</a>
+        <a className="button button--secondary my-1">Anmelden</a>
       </Link>
     </div>
   );

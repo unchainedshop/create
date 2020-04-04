@@ -1,44 +1,15 @@
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 
-import ProductFragment from '../../products/fragments/ProductFragment';
-import AddressFragment from '../fragments/AddressFragment';
+import CurrentUserFragment from '../fragments/CurrentUserFragment';
 
-const UserQuery = gql`
-  # Try to write your query here
+export const UserQuery = gql`
   query UserQuery {
     me {
-      _id
-      isGuest
-      cart {
-        _id
-        billingAddress {
-          ...AddressFragment
-        }
-        contact {
-          telNumber
-          emailAddress
-        }
-        items {
-          _id
-          quantity
-          total {
-            amount
-            currency
-          }
-          product {
-            ...ProductFragment
-          }
-        }
-        total {
-          amount
-          currency
-        }
-      }
+      ...CurrentUserFragment
     }
   }
-  ${ProductFragment}
-  ${AddressFragment}
+  ${CurrentUserFragment}
 `;
 
 const useUserQuery = () => {

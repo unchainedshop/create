@@ -12,9 +12,13 @@ const LoginCart = () => {
           {user?.cart?.total?.amount / 100}.-
         </a>
       </Link>
-      <Link href="/abmelden">
-        <a className="button button--ghost ml-3 my-1">Abmelden</a>
-      </Link>
+      {!user.isGuest ? (
+        <Link href="/abmelden">
+          <a className="button button--ghost ml-3 my-1">Abmelden</a>
+        </Link>
+      ) : (
+        ''
+      )}
     </div>
   ) : (
     <div className="d-flex justify-content-end flex-wrap">

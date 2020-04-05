@@ -240,14 +240,19 @@ const Payment = () => {
       ;
       <div className="container">
         <h1 className="mt-0">Bezahlen</h1>
-        <h2>Bestellübersicht</h2>
-        <ManageCart />
+        <div className="row">
+          <div className="col-lg-6">
+            <h2>Bestellübersicht</h2>
+            <ManageCart />
+          </div>
+          <div className="col-lg-6">
+            <h2>Lieferadresse</h2>
+            <DeliverySection />
 
-        <h2>Lieferadresse</h2>
-        <DeliverySection />
-
-        <h2>Rechnungsadresse</h2>
-        <BillingSection />
+            <h2>Rechnungsadresse</h2>
+            <BillingSection />
+          </div>
+        </div>
       </div>
       <CheckoutFooter />
     </>

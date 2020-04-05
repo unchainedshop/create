@@ -3,6 +3,8 @@ ADD . /source
 WORKDIR /source
 ENV METEOR_ALLOW_SUPERUSER true
 
+RUN cp -R /source/common/packages /source/packages
+
 RUN meteor npm install && \
   meteor build --server-only --directory /bundle
 

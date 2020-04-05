@@ -10,7 +10,6 @@ Meteor.startup(() => {
   const {
     MAIL_URL,
     TRACING,
-    JOBS_HOOK_SECRET,
     ADMIN_ACCESS_SECRET,
   } = process.env;
 
@@ -22,6 +21,5 @@ Meteor.startup(() => {
     introspection: true,
     disableEmailInterception: !!MAIL_URL,
     tracing: !!TRACING,
-    sharedSecret: JOBS_HOOK_SECRET || 'secret',
   });
 });

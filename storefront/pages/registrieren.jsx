@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import useCreateUserMutation from '../modules/auth/hooks/useCreateUserMutation';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
 import Header from '../modules/layout/components/Header';
-import Footer from '../modules/layout/components/Footer';
+import Faq from '../modules/layout/components/Faq';
 import LoginForm from '../modules/auth/components/LoginForm';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -291,7 +291,7 @@ const SignUp = () => {
           </form>
         </div>
       </div>
-      <Footer />
+      <Faq />
     </div>
   );
 };

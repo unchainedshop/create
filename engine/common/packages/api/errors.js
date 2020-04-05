@@ -107,3 +107,11 @@ export const QueryStringRequiredError = createError(
   'QueryStringRequiredError',
   'Query string is required if no assortmentId is provided'
 );
+export const PaymentProviderNotFoundError = createError(
+  'PaymentProviderNotFoundError',
+  'Payment provider not found'
+);
+export const PaymentCredentialsNotFoundError = createError(
+  'PaymentCredentialsNotFoundError',
+  'Payment credentials not found'
+);

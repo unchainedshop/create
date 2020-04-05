@@ -112,7 +112,7 @@ describe('Cart: Discounts', () => {
 
       expect(addCartDiscount.order.total.amount).toBeLessThan(0);
       expect(addCartDiscount).toMatchObject({
-        code: '100OFF',
+        code: '100off',
         discounted: [
           {
             order: {},
@@ -124,7 +124,7 @@ describe('Cart: Discounts', () => {
           discounts: [
             {},
             {
-              code: '100OFF',
+              code: '100off',
             },
           ],
         },

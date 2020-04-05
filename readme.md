@@ -1,6 +1,9 @@
 [![Codeship Status for unchainedshop/currybag-website](https://app.codeship.com/projects/2f18b4a0-57dc-0138-8b6d-4230a644a556/status?branch=master)](https://app.codeship.com/projects/391300)
 
-# Currybag: DIY Home Food Delivery Business (HFD)
+# Currybag: Unchained Food Delivery (UDF)
+
+Test: https://currybag-test.ucc.dev
+Live: https://currybag.ch
 
 Benefits:
 - 100% Open Source
@@ -10,7 +13,7 @@ Benefits:
 - Simple logistics process for a restaurant pre-implemented digitally
 
 
-## How to deploy HFD
+## How to deploy UDF
 
 ### Step 1: Provision a VM with Docker installed
 
@@ -34,7 +37,19 @@ Once docker engine is running, please activate swarm mode:
 docker swarm init
 ```
 
-### Step 2: Setup a production HFD Stack
+### Step 2: DNS
+
+Get a domain name and a DNS server, now setup DNS records for your-website.ch, so your provisioned server is reachable at a certain domain:
+
+```
+. IN A IP.OF.YOUR.SERVER
+cms IN CNAME your-website.ch
+engine IN CNAME your-website.ch
+```
+
+It is really important that you set these DNS records early enough so they propagate through the world wide web, UDF uses letsencrypt to automatically provision SSL certificates for your page. Letsencrypt needs to validate that the server is reachable via the domain provided in the configuration (Step 3, env variable DOMAIN).
+
+### Step 3: Deploy the UDF Stack
 
 We assume that you have already forked this repository and conducted the "contributing.md" file which tells you how to change the styles, markup, images and logos to suit your business's CI/CD.
 
@@ -47,16 +62,40 @@ cp .env.schema .env
 nano -w .env
 ```
 
+Environment variable | Where to get and how to set?
+--- | ---
+`MAIL_URL` | Use any smtp server that you have access to and correctly set it in connection url style like here: https://nodemailer.com/smtp/
+`EMAIL_FROM` | noreply@your-website.ch
+`EMAIL_WEBSITE_NAME` | The Name of your Website
+`DOMAIN` | The Root domain of your website, like: your-website.ch
+`ADMIN_ACCESS_SECRET` | A random string, DANGER: if you don't set this env variable your whole system can be accessed via the default secret (is known by anybody who looks at the source code)
+`GETCOCKPIT_TOKEN` | Token generated via the CMS UI (see Step 3), set later
+`DATATRANS_SECRET` | Datatrans Secret (see Datatrans specific documentation below)
+`DATATRANS_SIGN_KEY` | Datatrans Sign Key (see Datatrans specific documentation below)
+`DATATRANS_API_ENDPOINT` | If not set, this will default to the sandbox endpoint, so please set to "https://api.datatrans.com"
+
 When all the parameters are set, you can run:
 
 ```
-./docker-deploy
+./docker-deploy.sh
 ```
 
-It will create a docker stack out of the docker-compose.production.yml file and the environment variables in the .env file.
+It will build and create a docker stack out of the docker-compose.production.yml file and the environment variables in the .env file.
 
-5. Run npm run deploy which calls “./docker-deploy.sh”
 
-6. Configure Cockpit & Unchained (setup admin users, build catalog, products, content)
+### Step 4: Setup Cockpit & Unchained
 
-7. Enjoy your page
+Now you have a running UDF Stack, but data is still missing, visit the URL's:
+
+https://cms.your-website.ch
+Please call the install URL: https://cms.your-website.ch/install to generate an admin user, then
+generate a new access key, adjust the env variable for the cockpit token and redeploy the UDF stack (Step 2)
+
+https://engine.your-website.ch
+Please login as admin and change the password:
+```
+User: admin@localhost
+Password: password
+```
+
+Enjoy your UDF App!

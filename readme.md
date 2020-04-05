@@ -85,6 +85,17 @@ When all the parameters are set, you can run:
 
 It will build and create a docker stack out of the docker-compose.production.yml file and the environment variables in the .env file.
 
+#### Setup Datatrans
+
+Set https://ROOT_URL/graphql/datatrans as POST URL in the Datatrans Admin interface.
+
+Go to UPP Verwaltung -> UPP Daten in the Datatrans Admin interface and get the "Merchant-ID". Use that as Datatrans Plugin configuration variable "merchantId". Use that as env DATATRANS_MERCHANT_ID for seed payment plugin setup, else configure via API.
+
+Get the private key (password) from UPP Verwaltung -> Sicherheit -> Server-to-Server services security. Use that as DATATRANS_SECRET.
+
+In UPP Verwaltung -> Sicherheit set "Wichtige Parameter werden digital unterschrieben und die Unterschrift (HMAC-SHA256) in der Zahlungsmeldung mitgeschickt" and generate a new sign, use that as ENV DATATRANS_SIGN_KEY.
+
+More information you can find on docs.datatrans.com.
 
 ### Step 4: Setup Cockpit & Unchained
 

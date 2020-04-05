@@ -196,4 +196,5 @@ networks:
   db:
     attachable: true
   traefik:
+    name: 'traefik'
     attachable: true

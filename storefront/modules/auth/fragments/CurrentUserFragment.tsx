@@ -27,6 +27,18 @@ const CurrentUserFragment = gql`
           ...ProductFragment
         }
       }
+      taxes: total(category: TAXES) {
+        amount
+        currency
+      }
+      delivery: total(category: DELIVERY) {
+        amount
+        currency
+      }
+      payment: total(category: PAYMENT) {
+        amount
+        currency
+      }
       total {
         amount
         currency

@@ -12,10 +12,10 @@ import moniker from 'moniker';
 const { UI_ENDPOINT } = process.env;
 
 Accounts.urls.resetPassword = (token) =>
-  `${UI_ENDPOINT}/set-password?token=${token}`;
+  `${UI_ENDPOINT}/passwort-zuruecksetzen?token=${token}`;
 
 Accounts.urls.verifyEmail = (token) =>
-  `${UI_ENDPOINT}/verify-email?token=${token}`;
+  `${UI_ENDPOINT}/email-verifiziert?token=${token}`;
 
 Accounts.urls.enrollAccount = (token) =>
   `${UI_ENDPOINT}/enroll-account?token=${token}`;

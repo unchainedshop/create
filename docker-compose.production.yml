@@ -142,6 +142,7 @@ services:
       context: ./storefront
       dockerfile: Dockerfile
     environment:
+      FRONTEND_URL: $UDF_HTTP_METHOD://$UDF_DOMAIN
       GETCOCKPIT_ENDPOINT: $UDF_HTTP_METHOD://cms.$UDF_DOMAIN
       GETCOCKPIT_TOKEN: $GETCOCKPIT_TOKEN
       GRAPHQL_ENDPOINT: $UDF_HTTP_METHOD://$UDF_DOMAIN/api/graphql

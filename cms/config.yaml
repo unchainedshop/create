@@ -1,5 +1,5 @@
-app.name: "Currybag CMS"
-site_url: "https://cms.currybag-test.ucc.dev"
+app.name: "UDF CMS"
+#site_url: "https://cms.currybag-test.ucc.dev"
 languages:
   default: "Deutsch"
 groups:

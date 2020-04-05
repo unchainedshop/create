@@ -13,9 +13,9 @@ const Home = () => (
     <Header />
     <div className="color-bg-brand-lightest">
       <div className="container">
-        <div className="text-center pt-5">
+        <div className="text-center py-5">
           <div className="row">
-            <div className="col-lg-8 offset-lg-2">
+            <div className="col-lg-8">
               <h3 className="font-heading my-0">LOVING LANKA®</h3>
               <h1 className="color-brand mt-2">Currybag™</h1>
               <p>
@@ -40,6 +40,8 @@ const Home = () => (
                   www.lovinglanka.ch
                 </a>
               </p>
+            </div>
+            <div className="col-lg-4">
               <img
                 src="static/img/freigestellt-1494x2011.png"
                 alt="karrotten curry"

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import ProductList from '../modules/products/components/ProductList';
 import Header from '../modules/layout/components/Header';
 import Faq from '../modules/layout/components/Faq';
-import CheckoutFooter from '../modules/layout/components/CheckoutFooter';
+import Footer from '../modules/layout/components/Footer';
 
 const Home = () => (
   <div>
@@ -78,7 +78,7 @@ const Home = () => (
       </div>
     </main>
     <Faq />
-    <CheckoutFooter />
+    <Footer />
   </div>
 );
 

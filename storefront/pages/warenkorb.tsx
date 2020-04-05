@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import ManageCart from '../modules/cart/components/ManageCart';
 import Header from '../modules/layout/components/Header';
-import CheckoutFooter from '../modules/layout/components/CheckoutFooter';
+import Footer from '../modules/layout/components/Footer';
 
 const Cart = () => {
   const router = useRouter();
@@ -40,7 +40,7 @@ const Cart = () => {
           Im Abo Bestellen
         </button>
       </div>
-      <CheckoutFooter />
+      <Footer />
     </div>
   );
 };

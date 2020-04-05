@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
-import LoginCart from '../modules/auth/components/LoginCart';
 import ManageCart from '../modules/cart/components/ManageCart';
 import Header from '../modules/layout/components/Header';
 import CheckoutFooter from '../modules/layout/components/CheckoutFooter';

@@ -19,8 +19,9 @@ const ManageCart = () => {
             <img src={getProductMediaUrl(item.product)} />
           </div>
           <div className="w-50 mr-2">
-            <div>{item.quantity} x</div>
-            <div>{item.product.texts.title}</div>
+            <div>
+              {item.quantity} x {item.product.texts.title}
+            </div>
           </div>
           <div className="align-self-end">{renderPrice(item.total)}</div>
           <button

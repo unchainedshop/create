@@ -67,12 +67,15 @@ Environment variable | Where to get and how to set?
 `MAIL_URL` | Use any smtp server that you have access to and correctly set it in connection url style like here: https://nodemailer.com/smtp/
 `EMAIL_FROM` | noreply@your-website.ch
 `EMAIL_WEBSITE_NAME` | The Name of your Website
-`DOMAIN` | The Root domain of your website, like: your-website.ch
+`UDF_DOMAIN` | The Root domain of your website, like: your-website.ch
+`UDF_HTTP_METHOD` | HTTP Method can be http or https
 `ADMIN_ACCESS_SECRET` | A random string, DANGER: if you don't set this env variable your whole system can be accessed via the default secret (is known by anybody who looks at the source code)
 `GETCOCKPIT_TOKEN` | Token generated via the CMS UI (see Step 3), set later
+`DATATRANS_MERCHANT_ID`: | Datatrans Merchant ID (see Datatrans specific documentation below)
 `DATATRANS_SECRET` | Datatrans Secret (see Datatrans specific documentation below)
 `DATATRANS_SIGN_KEY` | Datatrans Sign Key (see Datatrans specific documentation below)
 `DATATRANS_API_ENDPOINT` | If not set, this will default to the sandbox endpoint, so please set to "https://api.datatrans.com"
+`MONGO_VERSION` | The MongoDB Version, use 4.2 if you're unsure
 
 When all the parameters are set, you can run:
 

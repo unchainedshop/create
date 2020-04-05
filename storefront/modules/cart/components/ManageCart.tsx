@@ -34,8 +34,18 @@ const ManageCart = () => {
         </div>
       ))}
       <div className="text-right">
-        <h3 className="border-top pt-3 mt-0">
-          {renderPrice(user?.cart?.total)}
+        <div className="border-top py-3 mt-0">
+          Enthaltene MwSt: {renderPrice(user?.cart?.taxes)}
+        </div>
+      </div>
+      <div className="text-right">
+        <div className="border-top py-3 mt-0">
+          Versandkosten: {renderPrice(user?.cart?.delivery)}
+        </div>
+      </div>
+      <div className="text-right">
+        <h3 className="border-top border-bottom py-3 mt-0">
+          Gesamtbetrag {renderPrice(user?.cart?.total)}
         </h3>
       </div>
     </div>

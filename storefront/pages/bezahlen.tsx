@@ -250,6 +250,8 @@ const Payment = () => {
 
             <h2>Rechnungsadresse</h2>
             <BillingSection />
+
+            <a href="https://pay.sandbox.datatrans.com/upp/jsp/upStart.jsp?merchantId=1100004624&refno=1234567890&amount=1000&currency=CHF&theme=DT2015" className="button button--primary mt-3">Bestellung abschicken und bezahlen</a>
           </div>
         </div>
       </div>

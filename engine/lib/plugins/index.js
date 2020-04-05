@@ -1,5 +1,6 @@
 import 'meteor/unchained:core-messaging/plugins/local-mail';
 import 'meteor/unchained:core-payment/plugins/invoice';
+import 'meteor/unchained:core-payment/plugins/datatrans';
 import 'meteor/unchained:core-delivery/plugins/send-mail';
 import 'meteor/unchained:core-pricing/plugins/order-items';
 import 'meteor/unchained:core-pricing/plugins/order-discount';

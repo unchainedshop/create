@@ -19,5 +19,6 @@
 @import 'components/header.css';
 @import 'components/button.css';
 @import 'components/product-list.css';
+@import 'components/cart.css';
 
 @import 'print.css';

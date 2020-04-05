@@ -23,7 +23,7 @@ const ManageCart = () => {
               {item.quantity} x {item.product.texts.title}
             </div>
           </div>
-          <div className="align-self-end">{renderPrice(item.total)}</div>
+          <div className="align-self-start">{renderPrice(item.total)}</div>
           <button
             className="no-button align-self-start ml-2"
             type="button"
@@ -35,17 +35,26 @@ const ManageCart = () => {
       ))}
       <div className="text-right">
         <div className="border-top py-3 mt-0">
-          Enthaltene MwSt: {renderPrice(user?.cart?.taxes)}
+          <div className="d-flex flex-wrap justify-content-between">
+            <div>Enthaltene MwSt. 7.7%</div>
+            <div>{renderPrice(user?.cart?.taxes)}</div>
+          </div>
         </div>
       </div>
       <div className="text-right">
         <div className="border-top py-3 mt-0">
-          Versandkosten: {renderPrice(user?.cart?.delivery)}
+          <div className="d-flex flex-wrap justify-content-between">
+            <div>Versandkosten</div>
+            <div>{renderPrice(user?.cart?.delivery)}</div>
+          </div>
         </div>
       </div>
       <div className="text-right">
         <h3 className="border-top border-bottom py-3 mt-0">
-          Gesamtbetrag {renderPrice(user?.cart?.total)}
+          <div className="d-flex flex-wrap justify-content-between">
+            <div>Gesamtbetrag</div>
+            <div>{renderPrice(user?.cart?.total)}</div>
+          </div>
         </h3>
       </div>
     </div>

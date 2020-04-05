@@ -6,6 +6,5 @@ node_modules
 .env
 .npm
 /bundle
-packages
 common/examples
 common/controlpanel

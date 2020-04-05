@@ -15,7 +15,7 @@ const Cart = () => {
   return (
     <div className="container">
       <Header />
-      <h1>Warenkorb</h1>
+      <h1>Warenkorb 🛒</h1>
       <ManageCart />
 
       <div className="button-group mt-5">
@@ -37,7 +37,7 @@ const Cart = () => {
           className="button button--primary button--big text-uppercase"
           // onClick={handleClick}
         >
-          Im Abo Bestellen
+          Im Abo Bestellen bald verfügbar
         </button>
       </div>
       <Footer />

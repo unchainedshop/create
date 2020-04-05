@@ -6,8 +6,8 @@ import { useEffect } from 'react';
 import useCreateUserMutation from '../modules/auth/hooks/useCreateUserMutation';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
 import Header from '../modules/layout/components/Header';
-import Faq from '../modules/layout/components/Faq';
 import LoginForm from '../modules/auth/components/LoginForm';
+import Footer from '../modules/layout/components/Footer';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -95,12 +95,12 @@ const SignUp = () => {
       <Header />
       <div className="row">
         <div className="col-lg-6">
-          <h1>Anmelden</h1>
+          <h2>Anmelden</h2>
           <p>Du hast schon einen Account? Dann melde dich hier an:</p>
           <LoginForm onLogin={onLogin} />
         </div>
         <div className="col-lg-6">
-          <h1>Ohne Account bestellen</h1>
+          <h2>Ohne Account bestellen</h2>
           <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-check mb-3">
               <input
@@ -124,7 +124,7 @@ const SignUp = () => {
                 <input
                   className="form-control"
                   name="firstName"
-                  defaultValue={isDev && 'Hans'}
+                  // defaultValue={isDev && 'Hans'}
                   ref={register({ required: true })}
                 />
               </div>
@@ -139,7 +139,7 @@ const SignUp = () => {
                     errors['lastName'] && 'form-error'
                   }`}
                   name="lastName"
-                  defaultValue={isDev && 'Muster'}
+                  // defaultValue={isDev && 'Muster'}
                   ref={register({ required: true })}
                 />
               </div>
@@ -163,7 +163,7 @@ const SignUp = () => {
                   }`}
                   name="addressLine"
                   ref={register({ required: true })}
-                  defaultValue={isDev && 'Teststrasse 1'}
+                  // defaultValue={isDev && 'Teststrasse 1'}
                 />
               </div>
               <div
@@ -178,7 +178,7 @@ const SignUp = () => {
                   }`}
                   name="postalCode"
                   ref={register({ required: true })}
-                  defaultValue={isDev && '8001'}
+                  // defaultValue={isDev && '8001'}
                 />
               </div>
               <div
@@ -191,7 +191,7 @@ const SignUp = () => {
                   className={`form-control ${errors['city'] && 'form-error'}`}
                   name="city"
                   ref={register({ required: true })}
-                  defaultValue={isDev && 'Zürich'}
+                  // defaultValue={isDev && 'Zürich'}
                 />
               </div>
               <div
@@ -206,7 +206,7 @@ const SignUp = () => {
                   }`}
                   name="emailAddress"
                   ref={register({ required: true })}
-                  defaultValue={isDev && 'hans@exmaple.com'}
+                  // defaultValue={isDev && 'hans@exmaple.com'}
                 />
               </div>
               <div
@@ -221,7 +221,7 @@ const SignUp = () => {
                   }`}
                   name="telNumber"
                   ref={register({ required: true })}
-                  defaultValue={isDev && '0791234567'}
+                  // defaultValue={isDev && '0791234567'}
                 />
               </div>
               {createAccount ? (
@@ -237,7 +237,7 @@ const SignUp = () => {
                       name="password"
                       type="password"
                       ref={register({ required: true })}
-                      defaultValue={isDev && 'asdf'}
+                      // defaultValue={isDev && 'asdf'}
                     />
                   </div>
                   <div
@@ -251,7 +251,7 @@ const SignUp = () => {
                       name="password2"
                       type="password"
                       ref={register({ required: true })}
-                      defaultValue={isDev && 'asdf'}
+                      // defaultValue={isDev && 'asdf'}
                     />
                   </div>
                 </>
@@ -291,7 +291,7 @@ const SignUp = () => {
           </form>
         </div>
       </div>
-      <Faq />
+      <Footer />
     </div>
   );
 };

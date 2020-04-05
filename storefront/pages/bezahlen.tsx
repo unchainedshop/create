@@ -110,7 +110,7 @@ const DeliverySection = () => {
           </div>
         ))}
       </div>
-      <button className="button button--primary mt-3" type="submit">
+      <button className="button button--secondary mt-3" type="submit">
         {isEditing ? 'Speichern' : 'Ändern'}
       </button>
     </form>
@@ -214,7 +214,7 @@ const BillingSection = () => {
               </div>
             ))}
           </div>
-          <button className="button button--primary mt-3 mb-5" type="submit">
+          <button className="button button--secondary mt-3 mb-5" type="submit">
             {isEditing ? 'Speichern' : 'Ändern'}
           </button>
         </>
@@ -235,6 +235,12 @@ const Payment = () => {
               <h3 className="my-2 mr-2">Currybag™</h3>
             </a>
           </Link>
+          <a
+            href="https://pay.sandbox.datatrans.com/upp/jsp/upStart.jsp?merchantId=1100004624&refno=1234567890&amount=1000&currency=CHF&theme=DT2015"
+            className="button button--primary"
+          >
+            Bestellung abschicken und bezahlen 💳
+          </a>
         </div>
       </header>
       <div className="container">
@@ -253,9 +259,9 @@ const Payment = () => {
 
             <a
               href="https://pay.sandbox.datatrans.com/upp/jsp/upStart.jsp?merchantId=1100004624&refno=1234567890&amount=1000&currency=CHF&theme=DT2015"
-              className="button button--primary mt-3"
+              className="button button--primary button--big mt-3"
             >
-              Bestellung abschicken und bezahlen
+              Bestellung abschicken und bezahlen 💳
             </a>
           </div>
         </div>

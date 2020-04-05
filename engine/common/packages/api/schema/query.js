@@ -262,6 +262,13 @@ export default [
       Get all work from the queue
       """
       workQueue(status: [WorkStatus] = [NEW]): [Work]
+
+      """
+      Sign a generic payment provider for registration
+      """
+      signPaymentProviderForCredentialRegistration(
+        paymentProviderId: ID!
+      ): String
     }
   `,
 ];

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import ManageCart from '../modules/cart/components/ManageCart';
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
-import CheckoutFooter from '../modules/layout/components/CheckoutFooter';
+import Footer from '../modules/layout/components/Footer';
 
 const EditableField = ({
   register,
@@ -255,7 +255,7 @@ const Payment = () => {
           </div>
         </div>
       </div>
-      <CheckoutFooter />
+      <Footer />
     </>
   );
 };

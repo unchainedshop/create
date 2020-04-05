@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import CheckoutFooter from '../modules/layout/components/CheckoutFooter';
+import Footer from '../modules/layout/components/Footer';
 
 const MyAccout = () => {
   return (
@@ -16,7 +16,7 @@ const MyAccout = () => {
           <p>...</p>
         </div>
       </div>
-      <CheckoutFooter />
+      <Footer />
     </div>
   );
 };

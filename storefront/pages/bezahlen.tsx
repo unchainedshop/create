@@ -237,7 +237,6 @@ const Payment = () => {
           </Link>
         </div>
       </header>
-      ;
       <div className="container">
         <h1 className="mt-0">Bezahlen</h1>
         <div className="row">

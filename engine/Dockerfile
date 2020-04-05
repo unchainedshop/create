@@ -1,34 +1,28 @@
-FROM pozylon/meteor-docker-auto as bundler
+FROM geoffreybooth/meteor-base as bundler
+
 ADD . /source
 WORKDIR /source
-ENV METEOR_ALLOW_SUPERUSER true
 
 RUN cp -R /source/common/packages /source/packages
 
 RUN meteor npm install && \
-  meteor build --server-only --directory /bundle
+  meteor build --server-only --allow-superuser --directory /bundle
 
-FROM node:12-alpine as rebuilder
-RUN apk add --no-cache make gcc g++ python sudo
-RUN adduser -D -u 501 -h /home/meteor meteor
-COPY --from=bundler /bundle /rebuild
-WORKDIR /rebuild/bundle/programs/server
-RUN npm install && npm run install --production
 
-FROM node:12-alpine as runtime
-
+FROM node:12 as runtime
 # Unchained specific
 RUN mkdir /unchained-uploads
 RUN chmod 777 /unchained-uploads
 VOLUME /unchained-uploads
+RUN apt-get update
 
-RUN adduser -D -u 501 -h /home/meteor meteor
-COPY --from=rebuilder /rebuild/bundle /webapp
+RUN useradd -u 501 -d /home/meteor meteor
+COPY --from=bundler /bundle/bundle /webapp
+WORKDIR /webapp/programs/server
+RUN npm install && npm run install --production
 WORKDIR /webapp
 ENV PORT 3000
 ENV NODE_ENV production
-RUN chmod -R +w /webapp/programs/server/
-
 EXPOSE 3000
-# USER meteor
+USER meteor
 CMD node main.js

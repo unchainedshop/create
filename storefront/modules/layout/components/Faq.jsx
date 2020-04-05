@@ -1,4 +1,4 @@
-const Footer = () => {
+const FAQ = () => {
   return (
     <footer className="footer container my-5 pt-4">
       <div className="text-center">
@@ -60,11 +60,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="text-center my-5 color-brand">
-        © Copyright 2020 LOVING LANKA® - All Rights Reserved
-      </div>
     </footer>
   );
 };
 
-export default Footer;
+export default FAQ;

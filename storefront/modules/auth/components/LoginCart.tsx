@@ -9,8 +9,11 @@ const LoginCart = () => {
     <div className="d-flex justify-content-end align-items-center flex-wrap">
       <Link href="/warenkorb">
         <a className="button button--tertiary my-1">
-          {user?.cart?.items.reduce((acc, item) => acc + item.quantity, 0)}{' '}
-          Produkte im 🛒 für insgesamt CHF {user?.cart?.total?.amount / 100}.-
+          <span className="cart-counter">
+            {user?.cart?.items.reduce((acc, item) => acc + item.quantity, 0)}
+          </span>
+          Produkte im 🛒 für insgesamt
+          <b className="ml-1">CHF {user?.cart?.total?.amount / 100}.-</b>
         </a>
       </Link>
       {!user.isGuest ? (

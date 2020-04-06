@@ -17,14 +17,14 @@ const ErrorDisplay = ({ error }) => {
   if (error.message.includes('Email already exists.')) {
     return (
       <div className="form-error my-3">
-        Es existiert bereits ein Benutzer mit dieser Email Adresse
+        👬 Es existiert bereits ein Benutzer mit dieser E-Mail Adresse.
       </div>
     );
   }
 
   return (
     <div className="form-error my-3">
-      Es ist ein unbekannter Fehler aufgetreten
+      👷‍♀️ Es ist ein unbekannter Fehler aufgetreten.
     </div>
   );
 };
@@ -41,7 +41,7 @@ const SignUp = () => {
       setError(
         'emailAddress',
         'alreadyExists',
-        'Es existiert bereits ein Benutzer mit dieser Email Adresse',
+        '👬 Es existiert bereits ein Benutzer mit dieser E-Mail Adresse.',
       );
     }
   }, [error]);
@@ -199,7 +199,7 @@ const SignUp = () => {
                   errors['emailAddress'] ? 'form-error' : ''
                 }`}
               >
-                <label className="form-label">Email</label>
+                <label className="form-label">E-mail</label>
                 <input
                   className={`form-control ${
                     errors['emailAddress'] && 'form-error'

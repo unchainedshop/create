@@ -15,7 +15,7 @@ const Home = () => (
     <div className="color-bg-brand-lightest">
       <div className="container">
         <div className="text-center py-5">
-          <div className="row">
+          <div className="row d-flex align-items-center">
             <div className="col-lg-8">
               <h3 className="font-heading my-0">LOVING LANKA®</h3>
               <h1 className="color-brand mt-2">Currybag™</h1>

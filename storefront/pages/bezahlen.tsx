@@ -77,7 +77,7 @@ const DeliverySection = () => {
     { name: 'city', translation: 'Ort', type: 'text', required: true },
     {
       name: 'emailAddress',
-      translation: 'Email',
+      translation: 'E-mail',
       type: 'email',
       required: true,
     },
@@ -259,7 +259,7 @@ const Payment = () => {
 
             <a
               href="https://pay.sandbox.datatrans.com/upp/jsp/upStart.jsp?merchantId=1100004624&refno=1234567890&amount=1000&currency=CHF&theme=DT2015"
-              className="button button--primary button--big mt-3"
+              className="button button--primary button--big"
             >
               Bestellung abschicken und bezahlen 💳
             </a>

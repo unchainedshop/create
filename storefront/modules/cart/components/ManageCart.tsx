@@ -44,7 +44,7 @@ const ManageCart = () => {
       <div className="text-right">
         <div className="border-top py-3 mt-0">
           <div className="d-flex flex-wrap justify-content-between">
-            <div>Versandkosten</div>
+            <div>Liefergebühren</div>
             <div>{renderPrice(user?.cart?.delivery)}</div>
           </div>
         </div>

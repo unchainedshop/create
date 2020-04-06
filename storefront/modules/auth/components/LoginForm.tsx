@@ -14,7 +14,7 @@ const LoginForm = ({ onLogin }) => {
       setError(
         'email',
         'doesNotExists',
-        'Kein Benutzer mit dieser Email vorhanden.',
+        '🤷‍♀️ Kein Benutzer mit dieser E-mail vorhanden.',
       );
     } else if (error?.message?.includes('Incorrect password')) {
       setError('password', 'incorrect', 'Falsches Passwort.');
@@ -22,7 +22,7 @@ const LoginForm = ({ onLogin }) => {
       setError(
         'email',
         'unknownError',
-        'Es ist ein unbekannter Fehler aufgetreten.',
+        '👷‍♀️ Es ist ein unbekannter Fehler aufgetreten.',
       );
     }
   }, [error]);

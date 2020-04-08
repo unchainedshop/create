@@ -15,7 +15,7 @@ Benefits:
 
 ## How to deploy UDF
 
-### Step 1: Provision a VM with Docker installed
+### Step 1: Provision a VM with Docker installed
 
 You need to get a VM or Managed Docker Environment from a local cloud provider, for Switzerland we can recommendone of the following (there are many more of course):
 

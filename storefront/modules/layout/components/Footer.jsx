@@ -18,7 +18,7 @@ const Footer = () => {
         </Link>
       </div>
       <div className="text-center mt-3 color-brand">
-        © Copyright 2020 LOVING LANKA® - All Rights Reserved
+        © 2020 Corona Virus Pandemic
       </div>
     </footer>
   );

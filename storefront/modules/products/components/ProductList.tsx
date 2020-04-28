@@ -36,7 +36,7 @@ const ProductList = () => {
             </Link>
             <button
               type="button"
-              className="button button--primary button--big mb-5 text-uppercase"
+              className="button button--primary button--big mb-3 text-uppercase"
               onClick={() => handleClick(product._id)}
             >
               In den Warenkorb

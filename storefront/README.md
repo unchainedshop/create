@@ -15,5 +15,6 @@ SKIP_INVALID_REMOTES=true
 Then run:
 
 ```bash
+npm install
 npm run dev
 ```

@@ -6,12 +6,16 @@ Test: https://currybag-test.ucc.dev
 Live: https://currybag.ch
 
 Benefits:
+
 - 100% Open Source
 - Total data ownership and no FAGA
 - Contains a CMS to edit content
 - Contains a scalable Enterprise Shop Engine (https://unchained.shop)
 - Simple logistics process for a restaurant pre-implemented digitally
 
+## How to contribute
+
+See [contributing.md](./contributing.md)
 
 ## How to deploy UDF
 
@@ -62,20 +66,20 @@ cp .env.schema .env
 nano -w .env
 ```
 
-Environment variable | Where to get and how to set?
---- | ---
-`MAIL_URL` | Use any smtp server that you have access to and correctly set it in connection url style like here: https://nodemailer.com/smtp/
-`EMAIL_FROM` | noreply@your-website.ch
-`EMAIL_WEBSITE_NAME` | The Name of your Website
-`UDF_DOMAIN` | The Root domain of your website, like: your-website.ch
-`UDF_HTTP_METHOD` | HTTP Method can be http or https
-`ADMIN_ACCESS_SECRET` | A random string, DANGER: if you don't set this env variable your whole system can be accessed via the default secret (is known by anybody who looks at the source code)
-`GETCOCKPIT_TOKEN` | Token generated via the CMS UI (see Step 3), set later
-`DATATRANS_MERCHANT_ID`: | Datatrans Merchant ID (see Datatrans specific documentation below)
-`DATATRANS_SECRET` | Datatrans Secret (see Datatrans specific documentation below)
-`DATATRANS_SIGN_KEY` | Datatrans Sign Key (see Datatrans specific documentation below)
-`DATATRANS_API_ENDPOINT` | If not set, this will default to the sandbox endpoint, so please set to "https://api.datatrans.com"
-`MONGO_VERSION` | The MongoDB Version, use 4.2 if you're unsure
+| Environment variable     | Where to get and how to set?                                                                                                                                             |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `MAIL_URL`               | Use any smtp server that you have access to and correctly set it in connection url style like here: https://nodemailer.com/smtp/                                         |
+| `EMAIL_FROM`             | noreply@your-website.ch                                                                                                                                                  |
+| `EMAIL_WEBSITE_NAME`     | The Name of your Website                                                                                                                                                 |
+| `UDF_DOMAIN`             | The Root domain of your website, like: your-website.ch                                                                                                                   |
+| `UDF_HTTP_METHOD`        | HTTP Method can be http or https                                                                                                                                         |
+| `ADMIN_ACCESS_SECRET`    |  A random string, DANGER: if you don't set this env variable your whole system can be accessed via the default secret (is known by anybody who looks at the source code) |
+| `GETCOCKPIT_TOKEN`       | Token generated via the CMS UI (see Step 3), set later                                                                                                                   |
+| `DATATRANS_MERCHANT_ID`: | Datatrans Merchant ID (see Datatrans specific documentation below)                                                                                                       |
+| `DATATRANS_SECRET`       | Datatrans Secret (see Datatrans specific documentation below)                                                                                                            |
+| `DATATRANS_SIGN_KEY`     | Datatrans Sign Key (see Datatrans specific documentation below)                                                                                                          |
+| `DATATRANS_API_ENDPOINT` | If not set, this will default to the sandbox endpoint, so please set to "https://api.datatrans.com"                                                                      |
+| `MONGO_VERSION`          | The MongoDB Version, use 4.2 if you're unsure                                                                                                                            |
 
 When all the parameters are set, you can run:
 
@@ -107,6 +111,7 @@ generate a new access key, adjust the env variable for the cockpit token and red
 
 https://engine.your-website.ch
 Please login as admin and change the password:
+
 ```
 User: admin@localhost
 Password: password

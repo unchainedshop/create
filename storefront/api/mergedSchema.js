@@ -13,20 +13,6 @@ const namedQueryCacheMap = {
   assortmentTree: { maxAge: 60 * 60, scope: 'PUBLIC' },
   assortmentPaths: { maxAge: 60 * 60, scope: 'PUBLIC' },
   assortmentChildren: { maxAge: 60 * 60, scope: 'PUBLIC' },
-
-  // Cockpit
-  // cmsPage: { maxAge: 60, scope: 'PUBLIC' },
-  // cmsCategories: { maxAge: 60, scope: 'PUBLIC' },
-  // cmsInfoText: { maxAge: 60, scope: 'PUBLIC' },
-  // cmsNavigationTitles: { maxAge: 60, scope: 'PUBLIC' },
-  // cmsPageNavigationTitle: { maxAge: 60, scope: 'PUBLIC' },
-  // cmsPageById: { maxAge: 60, scope: 'PUBLIC' },
-  // cmsGetEvents: { maxAge: 60, scope: 'PUBLIC' },
-  // cmsGetNewsletters: { maxAge: 60, scope: 'PUBLIC' },
-  // cmsGetStories: { maxAge: 60, scope: 'PUBLIC' },
-  // cmsGetJobs: { maxAge: 60, scope: 'PUBLIC' },
-  // cmsCategoryByUnchainedSlug: { maxAge: 60, scope: 'PUBLIC' },
-  // cmsHomeCollection: { maxAge: 60, scope: 'PUBLIC' },
 };
 
 const addCacheHintToQueryOrType = (
@@ -49,29 +35,10 @@ const addCacheHintToQueryOrType = (
 // eslint-disable-next-line
 export default async () => {
   try {
-    const [unchainedSchema, getCockpitSchema] = await getSchemas();
+    const schemas = await getSchemas();
+
     const mergedSchema = mergeSchemas({
-      schemas: [unchainedSchema, getCockpitSchema],
-      // resolvers: {
-      //   Mutation: {
-      //     async uploadRecipe(parent, { pdf, ...args }, context, info) {
-      //       const file = await pdf;
-      //       const fileObj = await convertStreamToBufferObject(file);
-      //       const result = await info.mergeInfo.delegateToSchema({
-      //         schema: unchainedSchema,
-      //         operation: 'mutation',
-      //         fieldName: 'uploadRecipe',
-      //         args: {
-      //           ...args,
-      //           pdf: fileObj,
-      //         },
-      //         context,
-      //         info,
-      //       });
-      //       return result;
-      //     },
-      //   },
-      // },
+      schemas,
     });
 
     const typeMap = mergedSchema.getTypeMap();
@@ -98,7 +65,6 @@ export default async () => {
 
     return mergedSchema;
   } catch (e) {
-    // eslint-disable-next-line
     console.error(
       'Could not load all schemas, abort here so the docker container restarts...',
       e,

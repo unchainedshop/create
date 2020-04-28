@@ -1,6 +1,6 @@
 ## Setup for development
 
-Prerequisits:
+Prerequisites:
 
 1. Install Meteor
 2. Install Docker
@@ -21,7 +21,9 @@ cd storefront
 npm run dev
 ```
 
-## Use a locally deployed CMS
+For more information about developing the storefront see: [storefront/README.md](./storefront/README.md)
+
+## Use a locally deployed CMS
 
 ```
 cd cms
@@ -30,7 +32,6 @@ docker run cms
 ```
 
 Now use the host and port as GETCOCKPIT_ENDPOINT env in storefront/.env. Also set the GETCOCKPIT_TOKEN
-
 
 ## Working with Git Subtree (pulling in newest version of unchained or a fork)
 

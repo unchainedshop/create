@@ -26,7 +26,11 @@
 }
 
 .product-list-add-to-cart {
-  font-size: 1.5rem;
+  width: 3rem;
+  min-width: 3rem;
+  height: 3rem;
+  line-height: 3;
+  text-align: center;
   transition: background-color 0.18s ease-in-out;
   cursor: copy;
   border-radius: 50%;
@@ -36,7 +40,10 @@
 
 @media (min-width: 768px) {
   .product-list-add-to-cart {
-    font-size: 100%;
+    width: 2.5rem;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    line-height: 2.5;
   }
 }
 

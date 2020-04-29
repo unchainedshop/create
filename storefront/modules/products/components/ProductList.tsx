@@ -28,7 +28,7 @@ const ProductList = () => {
               <div className="product-list-header">
                 <h3 className="px-2 my-3">{product?.texts?.title}</h3>
                 <a
-                  className="no-button p-2 product-list-add-to-cart"
+                  className="product-list-add-to-cart"
                   aria-label="In den Warenkorb"
                   onClick={() => handleClick(product._id)}
                 >

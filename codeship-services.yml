@@ -2,11 +2,23 @@ storefront:
   build:
     context: ./storefront
     dockerfile: Dockerfile
+  cached: true
+
+engine-pre-flight:
+  build:
+    dockerfile: Dockerfile.pre-flight
+    context: ./engine
+    image: engine-pre-flight
+  cached: true
+
 engine:
   build:
     context: ./engine
-    dockerfile: Dockerfile
+    dockerfile: Dockerfile.final
+  cached: true
+
 cms:
   build:
     context: ./cms
     dockerfile: Dockerfile
+  cached: true

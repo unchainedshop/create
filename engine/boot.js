@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import configureEmailTemplates from './lib/messaging/templates';
-import loadPlugins from './lib/plugins';
+import './lib/plugins';
 import setupDatabase from './lib/seed/setup';
 import setupAPI from './api';
 import setupAuth from './lib/auth';
@@ -13,7 +13,6 @@ Meteor.startup(() => {
     ADMIN_ACCESS_SECRET,
   } = process.env;
 
-  loadPlugins();
   configureEmailTemplates();
   setupDatabase();
   setupAuth({ adminAccessKey: ADMIN_ACCESS_SECRET || 'secret' });

@@ -11,39 +11,29 @@ class EventListenerWorker extends BaseWorker {
 
   static type = 'EVENT_LISTENER';
 
-  async handleAllocateWorkFinish() {
-    const work = await this.WorkerDirector.allocateWork({
-      types: this.getInternalTypes(),
-      worker: this.worker,
-    });
-
-    if (work) {
-      const output = await this.WorkerDirector.doWork(work);
-
-      await this.WorkerDirector.finishWork({
-        workId: work._id,
-        ...output,
-        worker: this.worker,
-      });
-    }
-  }
-
   start() {
-    this.WorkerDirector.events.on(WorkerEventTypes.added, () =>
-      this.handleAllocateWorkFinish()
-    );
-    this.WorkerDirector.events.on(WorkerEventTypes.finished, () =>
-      this.handleAllocateWorkFinish()
-    );
+    this.onAdded = ({ work }) => {
+      this.process({
+        maxWorkItemCount: 0,
+        referenceDate: new Date(work.scheduled),
+      });
+    };
+    this.onFinished = ({ work }) => {
+      this.process({
+        maxWorkItemCount: 0,
+        referenceDate: new Date(work.scheduled),
+      });
+    };
+    this.WorkerDirector.events.on(WorkerEventTypes.added, this.onAdded);
+    this.WorkerDirector.events.on(WorkerEventTypes.finished, this.onFinished);
+    setTimeout(() => {
+      this.autorescheduleTypes();
+    }, 300);
   }
 
   stop() {
-    this.WorkerDirector.events.off(WorkerEventTypes.added, () =>
-      this.handleAllocateWorkFinish()
-    );
-    this.WorkerDirector.events.off(WorkerEventTypes.finished, () =>
-      this.handleAllocateWorkFinish()
-    );
+    this.WorkerDirector.events.off(WorkerEventTypes.added, this.onAdded);
+    this.WorkerDirector.events.off(WorkerEventTypes.finished, this.onFinished);
   }
 }
 

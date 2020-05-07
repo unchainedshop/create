@@ -1,9 +1,13 @@
 Package.describe({
   name: 'unchained:core',
-  version: '0.45.0',
+  version: '0.47.0',
   summary: 'Unchained Engine Core: Base Layer',
   git: 'https://github.com/unchainedshop/unchained',
   documentation: 'README.md',
+});
+
+Npm.depends({
+  'lru-cache': '5.1.1',
 });
 
 Package.onUse((api) => {
@@ -12,9 +16,9 @@ Package.onUse((api) => {
   api.use('ecmascript');
   api.use('promise');
 
-  api.use('unchained:core-logger@0.45.0');
-  api.use('unchained:core-countries@0.45.0');
-  api.use('unchained:core-languages@0.45.0');
+  api.use('unchained:core-logger@0.47.0');
+  api.use('unchained:core-countries@0.47.0');
+  api.use('unchained:core-languages@0.47.0');
 
   api.mainModule('core.js', 'server');
 });

@@ -74,7 +74,7 @@ export default [
       media(limit: Int = 10, offset: Int = 0, tags: [String!]): [ProductMedia!]!
       reviews: [ProductReview!]!
       meta: JSON
-      assortmentPaths(forceLocale: String): [ProductAssortmentPath!]!
+      assortmentPaths: [ProductAssortmentPath!]!
       siblings(assortmentId: ID, limit: Int = 10, offset: Int = 0): [Product!]!
     }
 

@@ -15,7 +15,7 @@ export default [
       texts(forceLocale: String): ProductTexts
       bundleItems: [ProductBundleItem!]
       reviews(limit: Int = 10, offset: Int = 0): [ProductReview!]!
-      assortmentPaths(forceLocale: String): [ProductAssortmentPath!]!
+      assortmentPaths: [ProductAssortmentPath!]!
       siblings(assortmentId: ID, limit: Int = 10, offset: Int = 0): [Product!]!
       meta: JSON
     }

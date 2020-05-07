@@ -261,7 +261,11 @@ export default [
       """
       Get all work from the queue
       """
-      workQueue(status: [WorkStatus] = [NEW]): [Work]
+      workQueue(
+        limit: Int = 10
+        offset: Int = 0
+        status: [WorkStatus] = [NEW]
+      ): [Work]
 
       """
       Sign a generic payment provider for registration
@@ -269,6 +273,11 @@ export default [
       signPaymentProviderForCredentialRegistration(
         paymentProviderId: ID!
       ): String
+
+      """
+      Get a specific work unit by ID
+      """
+      work(workId: ID!): Work
     }
   `,
 ];

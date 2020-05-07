@@ -1,9 +1,13 @@
 Package.describe({
   name: 'unchained:core-payment',
-  version: '0.45.0',
+  version: '0.47.0',
   summary: 'Unchained Engine Core: Payment',
   git: 'https://github.com/unchainedshop/unchained',
   documentation: 'README.md',
+});
+
+Npm.depends({
+  xml2js: '0.4.23',
 });
 
 Package.onUse((api) => {
@@ -17,8 +21,8 @@ Package.onUse((api) => {
   api.use('aldeed:collection2@3.0.2');
   api.use('aldeed:schema-index@3.0.0');
 
-  api.use('unchained:utils@0.45.0');
-  api.use('unchained:core-logger@0.45.0');
+  api.use('unchained:utils@0.47.0');
+  api.use('unchained:core-logger@0.47.0');
 
   api.mainModule('payment.js', 'server');
 });

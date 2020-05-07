@@ -27,8 +27,8 @@ describe('Worker Module', () => {
           }
         `,
         variables: {
-          type: 'HEARTBEAT'
-        }
+          type: 'HEARTBEAT',
+        },
       });
 
       expect(addWorkResult.errors).toBeUndefined();
@@ -38,20 +38,23 @@ describe('Worker Module', () => {
           query($status: [WorkStatus]) {
             workQueue(status: $status) {
               _id
+              type
               status
             }
           }
         `,
         variables: {
           // Empty array as status queries the whole queue
-          status: []
-        }
+          status: [],
+        },
       });
 
-      expect(workQueue).toHaveLength(1);
+      expect(workQueue.filter(({ type }) => type === 'HEARTBEAT')).toHaveLength(
+        1
+      );
 
       const work = workQueue.find(
-        w => w._id === addWorkResult.data.addWork._id
+        (w) => w._id === addWorkResult.data.addWork._id
       );
 
       expect(work.status).toBe('SUCCESS');
@@ -68,8 +71,8 @@ describe('Worker Module', () => {
           }
         `,
         variables: {
-          type: 'EXTERNAL'
-        }
+          type: 'EXTERNAL',
+        },
       });
 
       expect(addWork._id).toBeTruthy();
@@ -82,20 +85,23 @@ describe('Worker Module', () => {
           query {
             workQueue {
               _id
+              type
             }
           }
-        `
+        `,
       });
 
-      expect(workQueue).toHaveLength(1);
+      expect(workQueue.filter(({ type }) => type === 'EXTERNAL')).toHaveLength(
+        1
+      );
     });
 
     it('Get work synchroniously. Only one gets it.', async () => {
       const makeAllocatePromise = () =>
         graphqlFetch({
           query: /* GraphQL */ `
-            mutation allocateWork($worker: String) {
-              allocateWork(worker: $worker) {
+            mutation allocateWork($types: [WorkType], $worker: String) {
+              allocateWork(types: $types, worker: $worker) {
                 _id
                 input
                 type
@@ -103,23 +109,30 @@ describe('Worker Module', () => {
             }
           `,
           variables: {
-            worker: 'TEST-GRAPHQL'
-          }
+            worker: 'TEST-GRAPHQL',
+            types: ['EXTERNAL'],
+          },
         });
 
       const results = await Promise.all([
         makeAllocatePromise(),
-        makeAllocatePromise()
+        makeAllocatePromise(),
       ]);
 
       // There should only be one result with allocated work
       expect(
-        results.filter(r => r.data.allocateWork && r.data.allocateWork._id)
+        results.filter(
+          (r) =>
+            r.data.allocateWork &&
+            r.data.allocateWork.type === 'EXTERNAL' &&
+            r.data.allocateWork._id
+        )
       ).toHaveLength(1);
 
       // Hoist workId for later use
-      workId = results.find(r => r.data.allocateWork && r.data.allocateWork._id)
-        .data.allocateWork._id;
+      workId = results.find(
+        (r) => r.data.allocateWork && r.data.allocateWork._id
+      ).data.allocateWork._id;
     });
 
     it('No more work in the queue', async () => {
@@ -128,12 +141,15 @@ describe('Worker Module', () => {
           query {
             workQueue {
               _id
+              type
             }
           }
-        `
+        `,
       });
 
-      expect(workQueue).toHaveLength(0);
+      expect(workQueue.filter(({ type }) => type === 'HEARTBEAT')).toHaveLength(
+        0
+      );
     });
 
     it('Finish successful work.', async () => {
@@ -153,8 +169,8 @@ describe('Worker Module', () => {
         variables: {
           workId,
           success: true,
-          worker: 'TEST-GRAPHQL'
-        }
+          worker: 'TEST-GRAPHQL',
+        },
       });
 
       expect(finishWork.status).toBe('SUCCESS');
@@ -172,8 +188,8 @@ describe('Worker Module', () => {
           }
         `,
         variables: {
-          type: 'EXTERNAL'
-        }
+          type: 'EXTERNAL',
+        },
       });
 
       expect(addWorkResult.errors).toBeUndefined();
@@ -190,8 +206,8 @@ describe('Worker Module', () => {
         `,
         variables: {
           worker: 'TEST-GRAPHQL',
-          types: ['EXTERNAL']
-        }
+          types: ['EXTERNAL'],
+        },
       });
 
       expect(allocateWorkResult.errors).toBeUndefined();
@@ -206,7 +222,7 @@ describe('Worker Module', () => {
             }
           }
         `,
-        variables: { type: 'HEARTBEAT' }
+        variables: { type: 'HEARTBEAT' },
       });
 
       expect(doWorkResult.errors).toBeUndefined();
@@ -234,8 +250,8 @@ describe('Worker Module', () => {
         `,
         variables: {
           workId: addWorkResult.data.addWork._id,
-          ...doWorkResult.data.doWork
-        }
+          ...doWorkResult.data.doWork,
+        },
       });
 
       expect(finishWorkResult.errors).toBeUndefined();
@@ -257,8 +273,8 @@ describe('Worker Module', () => {
         `,
         variables: {
           type: 'HEARTBEAT',
-          scheduled
-        }
+          scheduled,
+        },
       });
 
       expect(addWorkResult.errors).toBeUndefined();
@@ -272,10 +288,12 @@ describe('Worker Module', () => {
               type
             }
           }
-        `
+        `,
       });
 
-      expect(workQueueBefore).toHaveLength(1);
+      expect(
+        workQueueBefore.filter(({ type }) => type === 'HEARTBEAT')
+      ).toHaveLength(1);
 
       // Test if work is not done immediately
       await wait(1000);
@@ -285,28 +303,37 @@ describe('Worker Module', () => {
           query {
             workQueue {
               _id
+              status
+              type
+              worker
             }
           }
-        `
+        `,
       });
 
-      expect(workQueueMiddle).toHaveLength(1);
+      expect(
+        workQueueMiddle.filter(({ type }) => type === 'HEARTBEAT')
+      ).toHaveLength(1);
 
       // Test if work is done eventually
-      await wait(2000);
+      await wait(3000);
 
       const { data: { workQueue: workQueueAfter } = {} } = await graphqlFetch({
         query: /* GraphQL */ `
           query {
             workQueue {
               _id
+              status
+              type
               worker
             }
           }
-        `
+        `,
       });
 
-      expect(workQueueAfter).toHaveLength(0);
+      expect(
+        workQueueAfter.filter(({ type }) => type === 'HEARTBEAT')
+      ).toHaveLength(0);
     });
 
     it('Worker fails and retries', async () => {
@@ -315,17 +342,19 @@ describe('Worker Module', () => {
           mutation addWork($type: WorkType!, $input: JSON, $retries: Int) {
             addWork(type: $type, input: $input, retries: $retries) {
               _id
+              status
               type
+              worker
             }
           }
         `,
         variables: {
           type: 'HEARTBEAT',
           input: {
-            fails: true
+            fails: true,
           },
-          retries: 2
-        }
+          retries: 2,
+        },
       });
 
       expect(addWorkResult.errors).toBeUndefined();
@@ -340,18 +369,25 @@ describe('Worker Module', () => {
           query {
             workQueue {
               _id
-              original
+              status
+              type
+              worker
+              original {
+                _id
+              }
               retries
             }
           }
-        `
+        `,
       });
 
-      expect(workQueueBefore).toHaveLength(1);
+      expect(
+        workQueueBefore.filter(({ type }) => type === 'HEARTBEAT')
+      ).toHaveLength(1);
 
-      const workBefore = workQueueBefore[0];
+      const workBefore = workQueueBefore.pop();
 
-      expect(workBefore.original).toBe(addWorkResult.data.addWork._id);
+      expect(workBefore.original._id).toBe(addWorkResult.data.addWork._id);
       expect(workBefore.retries).toBe(1);
 
       // Await the expected reschedule time (should be done by the plugin itself)
@@ -362,15 +398,18 @@ describe('Worker Module', () => {
           query {
             workQueue {
               _id
+              type
               worker
               retries
               # schedule
             }
           }
-        `
+        `,
       });
 
-      expect(workQueueAfter).toHaveLength(1);
+      expect(
+        workQueueAfter.filter(({ type }) => type === 'HEARTBEAT')
+      ).toHaveLength(1);
     });
 
     it.todo('Only admin can interact with worker');

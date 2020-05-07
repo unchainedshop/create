@@ -11,7 +11,6 @@ class FailedRescheduler {
 
   constructor({ WorkerDirector }) {
     this.WorkerDirector = WorkerDirector;
-    // this.handleFinishedWork.bind(this);
   }
 
   handleFinishedWork({ work }) {
@@ -26,7 +25,7 @@ class FailedRescheduler {
           : new Date(now.setSeconds(now.getSeconds() + 5));
 
       log(
-        `${this.name} -> Reschedule failed work ${work._id} ${
+        `${this.constructor.key} -> Reschedule failed work ${work._id} ${
           work.type
         } for ${scheduled} (in ${Math.round(
           workDelayMs / 1000
@@ -37,7 +36,7 @@ class FailedRescheduler {
         type: work.type,
         input: work.input,
         priority: work.priority,
-        original: work.original || work._id,
+        originalWorkId: work.originalWorkId || work._id,
         retries: work.retries - 1,
         scheduled,
       });

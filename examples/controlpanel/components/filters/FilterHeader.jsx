@@ -31,17 +31,11 @@ const FilterHeader = ({ loading, filter = {} }) => [
           <List>
             <List.Item>
               <List.Icon name="key" />
-              <List.Content>
-                  Key: {filter.key // eslint-disable-line
-                }
-              </List.Content>
+              <List.Content>Key: {filter.key}</List.Content>
             </List.Item>
             <List.Item>
               <List.Icon name="cube" />
-              <List.Content>
-                  Filter type: {filter.__typename // eslint-disable-line
-                }
-              </List.Content>
+              <List.Content>Filter type: {filter.__typename}</List.Content>
             </List.Item>
             <List.Item>
               <List.Icon name="add to calendar" />
@@ -64,7 +58,7 @@ const FilterHeader = ({ loading, filter = {} }) => [
         </Grid.Column>
       </Grid.Row>
     </Grid>
-  </Segment>
+  </Segment>,
 ];
 
 export default compose(
@@ -90,7 +84,7 @@ export default compose(
   mapProps(({ data: { filter, loading }, ...rest }) => ({
     filter,
     loading,
-    ...rest
+    ...rest,
   })),
   pure
 )(FilterHeader);

@@ -2,13 +2,11 @@ import { setupDatabase, createLoggedInGraphqlFetch } from './helpers';
 import { PlanProduct } from './seeds/products';
 
 let connection;
-// eslint-disable-next-line no-unused-vars
-let db;
 let graphqlFetch;
 
 describe('Subscriptions', () => {
   beforeAll(async () => {
-    [db, connection] = await setupDatabase();
+    [, connection] = await setupDatabase();
     graphqlFetch = await createLoggedInGraphqlFetch();
   });
 
@@ -17,7 +15,7 @@ describe('Subscriptions', () => {
   });
 
   describe('Mutation.createCart (Subscription)', () => {
-    it('create a cart with a specific order number', async () => {
+    it('checking out a plan product generates a new subscription', async () => {
       const { data: { createCart } = {} } = await graphqlFetch({
         query: /* GraphQL */ `
           mutation {
@@ -30,7 +28,7 @@ describe('Subscriptions', () => {
       });
       const { data: { checkoutCart } = {} } = await graphqlFetch({
         query: /* GraphQL */ `
-          mutation addCartProduct(
+          mutation prepareAndCheckout(
             $productId: ID!
             $quantity: Int
             $orderId: ID
@@ -61,6 +59,9 @@ describe('Subscriptions', () => {
               _id
               orderNumber
               status
+              subscription {
+                status
+              }
             }
           }
         `,
@@ -88,7 +89,95 @@ describe('Subscriptions', () => {
       expect(checkoutCart).toMatchObject({
         orderNumber: 'subscriptionCart',
         status: 'CONFIRMED',
+        subscription: {
+          status: 'ACTIVE',
+        },
       });
     });
+  });
+  describe('Mutation.createSubscription', () => {
+    it('create a new subscription manually will not activate automatically because of missing order', async () => {
+      const { data: { createSubscription } = {} } = await graphqlFetch({
+        query: /* GraphQL */ `
+          mutation createSubscription($plan: SubscriptionPlanInput!) {
+            createSubscription(plan: $plan) {
+              _id
+              status
+              subscriptionNumber
+              updated
+              expires
+              meta
+              plan {
+                product {
+                  _id
+                }
+                quantity
+                configuration {
+                  key
+                  value
+                }
+              }
+              payment {
+                provider {
+                  _id
+                }
+              }
+              delivery {
+                provider {
+                  _id
+                }
+              }
+              billingAddress {
+                firstName
+              }
+              contact {
+                emailAddress
+              }
+              status
+              created
+              expires
+              isExpired
+              subscriptionNumber
+              country {
+                isoCode
+              }
+              currency {
+                isoCode
+              }
+              meta
+              periods {
+                order {
+                  _id
+                }
+                start
+                end
+              }
+            }
+          }
+        `,
+        variables: {
+          plan: {
+            productId: PlanProduct._id,
+          },
+        },
+      });
+      expect(createSubscription).toMatchObject({
+        status: 'INITIAL',
+        plan: {
+          product: {
+            _id: PlanProduct._id,
+          },
+        },
+      });
+    });
+  });
+  describe('Mutation.terminateSubscription', () => {
+    it.todo('Mutation.terminateSubscription');
+  });
+  describe('Mutation.updateSubscription', () => {
+    it.todo('Mutation.updateSubscription');
+  });
+  describe('Mutation.activateSubscription', () => {
+    it.todo('Mutation.activateSubscription');
   });
 });

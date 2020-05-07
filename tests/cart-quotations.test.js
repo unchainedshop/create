@@ -4,12 +4,11 @@ import { USER_TOKEN } from './seeds/users';
 import { ProposedQuotation } from './seeds/quotations';
 
 let connection;
-let db; // eslint-disable-line
 let graphqlFetch;
 
 describe('Cart: Quotations', () => {
   beforeAll(async () => {
-    [db, connection] = await setupDatabase();
+    [, connection] = await setupDatabase();
     graphqlFetch = await createLoggedInGraphqlFetch(USER_TOKEN);
   });
 
@@ -54,8 +53,8 @@ describe('Cart: Quotations', () => {
         `,
         variables: {
           orderId: SimpleOrder._id,
-          quotationId: ProposedQuotation._id
-        }
+          quotationId: ProposedQuotation._id,
+        },
       });
       expect(addCartQuotation).toMatchObject({
         product: {},
@@ -65,7 +64,7 @@ describe('Cart: Quotations', () => {
         quotation: {},
         unitPrice: {},
         total: {},
-        configuration: null
+        configuration: null,
       });
     });
   });

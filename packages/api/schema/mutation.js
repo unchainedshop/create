@@ -158,7 +158,7 @@ export default [
       removeCartDiscount(discountId: ID!): OrderDiscount!
 
       """
-      Creates a subscription.
+      Create a subscription.
       """
       createSubscription(
         plan: SubscriptionPlanInput!
@@ -168,6 +168,29 @@ export default [
         delivery: SubscriptionDeliveryInput
         meta: JSON
       ): Subscription!
+
+      """
+      Update a subscription
+      """
+      updateSubscription(
+        subscriptionId: ID
+        plan: SubscriptionPlanInput
+        billingAddress: AddressInput
+        contact: ContactInput
+        payment: SubscriptionPaymentInput
+        delivery: SubscriptionDeliveryInput
+        meta: JSON
+      ): Order!
+
+      """
+      Activate a subscription
+      """
+      activateSubscription(subscriptionId: ID!): Subscription!
+
+      """
+      Terminate an actively running subscription
+      """
+      terminateSubscription(subscriptionId: ID!): Subscription!
 
       """
       Change the delivery method/provider
@@ -648,10 +671,11 @@ export default [
       """
       addWork(
         type: WorkType!
+        priority: Int! = 0
         input: JSON
-        original: ID
+        originalWorkId: ID
         scheduled: Date
-        retries: Int
+        retries: Int! = 20
       ): Work
 
       """
@@ -679,7 +703,12 @@ export default [
         worker: String
         started: Date
         finished: Date
-      ): Work
+      ): Work!
+
+      """
+      Manually remove a work
+      """
+      removeWork(workId: ID!): Work!
 
       """
       Register credentials for an existing payment provider allowing to store and use them

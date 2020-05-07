@@ -83,26 +83,21 @@ export default ({
 
 Array.prototype.diff = function(a) {return this.filter(i => a.indexOf(i) !== -1)}; // eslint-disable-line
 
-export const withDataTableLoader = ({
-  query,
-  queryName,
-  queryOptions,
-  itemsPerPage = 5
-}) =>
+export const withDataTableLoader = ({ query, queryName, itemsPerPage = 5 }) =>
   compose(
     withState('hasMore', 'updateHasMore', true),
     graphql(query, {
-      options: ({ hasMore, updateHasMore, ...props }) => ({
+      options: ({ hasMore, updateHasMore, queryOptions, ...props }) => ({
         variables: {
           offset: 0,
           limit: process.browser ? itemsPerPage : 1,
-          ...props
+          ...props,
         },
-        ...queryOptions
+        ...queryOptions,
       }),
       props: ({
         data: { loading, fetchMore, ...data },
-        ownProps: { updateHasMore, hasMore }
+        ownProps: { updateHasMore, hasMore },
       }) => ({
         loading,
         hasMore:
@@ -116,7 +111,7 @@ export const withDataTableLoader = ({
               offset:
                 Math.floor(data[queryName].length / itemsPerPage) *
                 itemsPerPage,
-              limit: itemsPerPage
+              limit: itemsPerPage,
             },
             updateQuery: (previousResult, { fetchMoreResult }) => {
               if (!fetchMoreResult || fetchMoreResult[queryName].length === 0) {
@@ -124,9 +119,9 @@ export const withDataTableLoader = ({
                 return previousResult;
               }
 
-              const oldIds = previousResult[queryName].map(item => item._id);
+              const oldIds = previousResult[queryName].map((item) => item._id);
               const newIds = fetchMoreResult[queryName].filter(
-                item => oldIds.indexOf(item._id) === -1
+                (item) => oldIds.indexOf(item._id) === -1
               );
               if (newIds.length === 0) {
                 updateHasMore(false);
@@ -136,8 +131,8 @@ export const withDataTableLoader = ({
               const newObj = {};
               newObj[queryName] = [...previousResult[queryName], ...newIds];
               return { ...previousResult, ...newObj };
-            }
-          })
-      })
+            },
+          }),
+      }),
     })
   );

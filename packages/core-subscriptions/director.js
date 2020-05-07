@@ -1,10 +1,25 @@
 import { log } from 'meteor/unchained:core-logger';
+import moment from 'moment';
 
 const SubscriptionError = {
   ADAPTER_NOT_FOUND: 'ADAPTER_NOT_FOUND',
   NOT_IMPLEMENTED: 'NOT_IMPLEMENTED',
   INCOMPLETE_CONFIGURATION: 'INCOMPLETE_CONFIGURATION',
   WRONG_CREDENTIALS: 'WRONG_CREDENTIALS',
+};
+
+const periodForReferenceDate = (
+  referenceDate,
+  intervalCount = 1,
+  interval = 'WEEK'
+) => {
+  const start = moment(referenceDate).startOf(
+    interval === 'HOUR' ? 'minute' : 'hour'
+  );
+  return {
+    start: start.toDate(),
+    end: start.add(intervalCount, interval).toDate(),
+  };
 };
 
 class SubscriptionAdapter {
@@ -24,6 +39,51 @@ class SubscriptionAdapter {
       configuration: item.configuration,
       productId: item.productId,
     };
+  }
+
+  async nextPeriod() {
+    const { subscription } = this.context;
+    const plan = subscription?.product()?.plan;
+    const referenceDate = new Date();
+    if (!plan) return null;
+
+    if (plan.trialIntervalCount && !subscription?.periods?.length) {
+      return {
+        ...periodForReferenceDate(
+          referenceDate,
+          plan.trialIntervalCount,
+          plan.trialInterval
+        ),
+        isTrial: true,
+      };
+    }
+
+    const lastEnd = subscription?.periods?.reduce((acc, item) => {
+      if (!acc) return item.end;
+      const endDate = new Date(item.end);
+      if (acc.getTime() < endDate.getTime()) {
+        return endDate;
+      }
+      return acc;
+    }, referenceDate);
+    return {
+      ...periodForReferenceDate(
+        lastEnd,
+        plan.billingIntervalCount,
+        plan.billingInterval
+      ),
+      isTrial: false,
+    };
+  }
+
+  // eslint-disable-next-line
+  async shouldTriggerAction({ period, action }) {
+    throw new Error(`Not implemented on ${this.constructor.key}`);
+  }
+
+  // eslint-disable-next-line
+  async configurationForOrder(context) {
+    throw new Error(`Not implemented on ${this.constructor.key}`);
   }
 
   constructor(context) {
@@ -67,6 +127,21 @@ class SubscriptionDirector {
   async isOverdue(context) {
     const adapter = this.resolveAdapter(context);
     return adapter.isOverdue(context);
+  }
+
+  async nextPeriod(context) {
+    const adapter = this.resolveAdapter();
+    return adapter.nextPeriod(context);
+  }
+
+  async shouldTriggerAction(context) {
+    const adapter = this.resolveAdapter();
+    return adapter.shouldTriggerAction(context);
+  }
+
+  async configurationForOrder(context) {
+    const adapter = this.resolveAdapter();
+    return adapter.configurationForOrder(context);
   }
 
   static adapters = new Map();

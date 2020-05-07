@@ -32,25 +32,7 @@ import 'meteor/unchained:core-worker/plugins/external';
 import 'meteor/unchained:core-worker/plugins/http-request';
 import 'meteor/unchained:core-worker/plugins/heartbeat';
 
-import { WorkerDirector } from 'meteor/unchained:core-worker';
-import EventListenerWorker from 'meteor/unchained:core-worker/workers/eventListener';
-import CronWorker from 'meteor/unchained:core-worker/workers/cron';
-import FailedRescheduler from 'meteor/unchained:core-worker/schedulers/failedRescheduler';
-
 import configureEmailTemplates from './templates';
-
-const { DISABLE_WORKER } = process.env;
-
-new FailedRescheduler({ WorkerDirector }).start();
-
-if (!DISABLE_WORKER) {
-  new EventListenerWorker({ WorkerDirector, workerId: 'EventWorker' }).start();
-  new CronWorker({
-    WorkerDirector,
-    workerId: 'CronWorker',
-    cronText: 'every 1 seconds',
-  }).start();
-}
 
 const logger = console;
 
@@ -105,17 +87,20 @@ const initializeDatabase = () => {
   }
 };
 
-const typeDefs = [
-  /* GraphQL */ `
-    extend enum WorkType {
-      ${WorkerDirector.getActivePluginTypes().join(',')}
-    }
-  `,
-];
-
 Meteor.startup(() => {
   configureEmailTemplates();
+  startPlatform({
+    introspection: true,
+    modules: {
+      delivery: {
+        sortProviders: () => (left, right) => {
+          return (
+            new Date(left.created).getTime() - new Date(right.created).getTime()
+          );
+        },
+      },
+    },
+  });
   initializeDatabase();
-  startPlatform({ introspection: true, typeDefs });
   embedControlpanelInMeteorWebApp(WebApp);
 });

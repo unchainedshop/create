@@ -1,6 +1,14 @@
 import { WorkerDirector } from 'meteor/unchained:core-worker';
 import WorkerPlugin from './base';
 
+const wait = async (time) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, time);
+  });
+};
+
 class Heartbeat extends WorkerPlugin {
   static key = 'shop.unchained.worker-plugin.heartbeat';
 
@@ -10,8 +18,11 @@ class Heartbeat extends WorkerPlugin {
 
   static type = 'HEARTBEAT';
 
-  static doWork(input) {
-    if (input && input.fails) {
+  static async doWork(input) {
+    if (input?.wait) {
+      await wait(input.wait);
+    }
+    if (input?.fails) {
       return {
         success: false,
         result: input,

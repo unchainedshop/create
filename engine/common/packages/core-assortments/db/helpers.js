@@ -1,82 +1,23 @@
 import 'meteor/dburles:collection-helpers';
-import { Promise } from 'meteor/promise';
 import { Countries } from 'meteor/unchained:core-countries';
 import { Products, ProductStatus } from 'meteor/unchained:core-products';
 import { findUnusedSlug, findPreservingIds } from 'meteor/unchained:utils';
 import { search, Filters } from 'meteor/unchained:core-filters';
 import { findLocalizedText } from 'meteor/unchained:core';
 import { Locale } from 'locale';
-import * as R from 'ramda';
 import { log } from 'meteor/unchained:core-logger';
 import { makeBreadcrumbsBuilder } from '../breadcrumbs';
 import * as Collections from './collections';
+import settings from '../settings';
 
 const eqSet = (as, bs) => {
   return [...as].join(',') === [...bs].join(',');
 };
 
-const fillUp = (arr, size) =>
-  [...arr, ...new Array(size).fill(null)].slice(0, size);
-
-const fillToSameLengthArray = (a, b) => {
-  const length = Math.max(a.length, b.length);
-  return [fillUp(a, length), fillUp(b, length)];
-};
-
-const divideTreeByLevels = (array, level = 0) => {
-  const currentLevel = array.reduce((acc, item) => {
-    if (typeof item === 'string') {
-      return [...acc, item];
-    }
-    return acc;
-  }, []);
-
-  const nextLevels = array.reduce((acc, item) => {
-    if (typeof item !== 'string') {
-      return [...acc, ...divideTreeByLevels(item, level + 1)];
-    }
-    return acc;
-  }, []);
-
-  return [
-    currentLevel.length && { level, items: currentLevel },
-    ...nextLevels,
-  ].filter(Boolean);
-};
-
-const concatItemsByLevels = (levelArray) => {
-  return Object.values(
-    levelArray.reduce((acc, { level, items }) => {
-      return {
-        ...acc,
-        [level]: [...(acc[level] || []), items],
-      };
-    }, {})
-  );
-};
-
-const shuffleEachLevel = (unshuffledLevels) => {
-  return unshuffledLevels.map((subArrays) => {
-    const shuffled = subArrays.reduce((a, b) => {
-      const [accumulator, currentArray] = fillToSameLengthArray(a, b);
-      return R.zip(accumulator, currentArray);
-    }, []);
-    return shuffled;
-  });
-};
-
-const zipTreeByDeepness = (tree) => {
-  const levels = divideTreeByLevels(tree);
-  const concattedLevels = concatItemsByLevels(levels);
-  const items = shuffleEachLevel(concattedLevels);
-
-  return R.pipe(R.flatten, R.filter(Boolean))(items);
-};
-
-export const resolveAssortmentLinkFromDatabase = ({
-  locale,
-  selector = {},
-} = {}) => (assortmentId, childAssortmentId) => {
+export const resolveAssortmentLinkFromDatabase = ({ selector = {} } = {}) => (
+  assortmentId,
+  childAssortmentId
+) => {
   const assortment = Collections.Assortments.findOne({
     _id: assortmentId,
     ...selector,
@@ -85,7 +26,6 @@ export const resolveAssortmentLinkFromDatabase = ({
     assortment && {
       assortmentId,
       childAssortmentId,
-      assortmentSlug: assortment.getLocalizedTexts(locale).slug,
       parentIds: assortment.parentIds(),
     }
   );
@@ -101,15 +41,14 @@ export const resolveAssortmentProductsFromDatabase = ({
 };
 
 export const makeAssortmentBreadcrumbsBuilder = ({
-  locale,
   resolveAssortmentProducts,
   resolveAssortmentLink,
-}) => {
+} = {}) => {
   return makeBreadcrumbsBuilder({
     resolveAssortmentProducts:
       resolveAssortmentProducts || resolveAssortmentProductsFromDatabase(),
     resolveAssortmentLink:
-      resolveAssortmentLink || resolveAssortmentLinkFromDatabase({ locale }),
+      resolveAssortmentLink || resolveAssortmentLinkFromDatabase(),
   });
 };
 
@@ -120,11 +59,12 @@ Collections.Assortments.createAssortment = ({
   isActive = true,
   isRoot = false,
   meta = {},
+  sequence,
   ...rest
 }) => {
   const assortment = {
     created: new Date(),
-    sequence: Collections.Assortments.getNewSequence(),
+    sequence: sequence ?? Collections.Assortments.find({}).count() + 10,
     isBase,
     isActive,
     isRoot,
@@ -301,15 +241,6 @@ Collections.Assortments.wipeAssortments = (onlyDirty = true) => {
   });
 };
 
-Collections.Assortments.getNewSequence = (oldSequence) => {
-  const sequence =
-    oldSequence + 1 || Collections.Assortments.find({}).count() * 10;
-  if (Collections.Assortments.find({ sequence }).count() > 0) {
-    return Collections.Assortments.getNewSequence(sequence);
-  }
-  return sequence;
-};
-
 Collections.Assortments.getLocalizedTexts = (assortmentId, locale) =>
   findLocalizedText(Collections.AssortmentTexts, { assortmentId }, locale);
 
@@ -319,7 +250,7 @@ Collections.AssortmentProducts.getNewSortKey = (assortmentId) => {
       assortmentId,
     },
     {
-      sort: { sortKey: 1 },
+      sort: { sortKey: -1 },
     }
   ) || { sortKey: 0 };
   return lastAssortmentProduct.sortKey + 1;
@@ -364,7 +295,7 @@ Collections.AssortmentFilters.getNewSortKey = (assortmentId) => {
       assortmentId,
     },
     {
-      sort: { sortKey: 1 },
+      sort: { sortKey: -1 },
     }
   ) || { sortKey: 0 };
   return lastAssortmentFilter.sortKey + 1;
@@ -395,7 +326,7 @@ Collections.AssortmentLinks.getNewSortKey = (parentAssortmentId) => {
       parentAssortmentId,
     },
     {
-      sort: { sortKey: 1 },
+      sort: { sortKey: -1 },
     }
   ) || { sortKey: 0 };
   return lastAssortmentProduct.sortKey + 1;
@@ -429,13 +360,11 @@ Products.helpers({
       .fetch()
       .map(({ assortmentId: id }) => id);
   },
-  assortmentPaths({ locale } = {}) {
-    const build = makeAssortmentBreadcrumbsBuilder({ locale });
-    return Promise.await(
-      build({
-        productId: this._id,
-      })
-    );
+  async assortmentPaths() {
+    const build = makeAssortmentBreadcrumbsBuilder();
+    return build({
+      productId: this._id,
+    });
   },
   siblings({ assortmentId, limit, offset, sort = {} } = {}) {
     const assortmentIds = assortmentId ? [assortmentId] : this.assortmentIds();
@@ -593,18 +522,15 @@ Collections.Assortments.helpers({
       }
     ).fetch();
   },
-  productIds({
-    forceLiveCollection = false,
-    zipperFunction = zipTreeByDeepness,
-  } = {}) {
+  productIds({ forceLiveCollection = false } = {}) {
     // eslint-disable-next-line
     if (!this._cachedProductIds || forceLiveCollection) {
       const collectedProductIdTree = this.collectProductIdCacheTree() || [];
-      return [...new Set(zipperFunction(collectedProductIdTree))];
+      return [...new Set(settings.zipTree(collectedProductIdTree))];
     }
     return this._cachedProductIds; // eslint-disable-line
   },
-  search({ forceLiveCollection, ...query }) {
+  async search({ forceLiveCollection, ...query }) {
     const productIds = this.productIds({ forceLiveCollection });
     const filterIds = this.filterAssignments().map(({ filterId }) => filterId);
     return search({
@@ -711,13 +637,11 @@ Collections.Assortments.helpers({
 
     return updateCount;
   },
-  assortmentPaths({ locale } = {}) {
-    const build = makeAssortmentBreadcrumbsBuilder({ locale });
-    return Promise.await(
-      build({
-        assortmentId: this._id,
-      })
-    );
+  async assortmentPaths() {
+    const build = makeAssortmentBreadcrumbsBuilder();
+    return build({
+      assortmentId: this._id,
+    });
   },
 });
 

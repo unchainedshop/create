@@ -56,10 +56,7 @@ const ProductHeader = ({ loading, productId, product = {} }) => [
           <List>
             <List.Item>
               <List.Icon name="cube" />
-              <List.Content>
-                  Product type: {product.__typename // eslint-disable-line
-                }
-              </List.Content>
+              <List.Content>Product type: {product.__typename}</List.Content>
             </List.Item>
             <List.Item>
               <List.Icon name="add to calendar" />
@@ -89,7 +86,7 @@ const ProductHeader = ({ loading, productId, product = {} }) => [
         </Grid.Column>
       </Grid.Row>
     </Grid>
-  </Segment>
+  </Segment>,
 ];
 
 export default compose(
@@ -112,7 +109,7 @@ export default compose(
   mapProps(({ data: { product, loading }, ...rest }) => ({
     product,
     loading,
-    ...rest
+    ...rest,
   })),
   pure
 )(ProductHeader);

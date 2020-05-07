@@ -29,7 +29,7 @@ PaymentCredentials.attachSchema(
     {
       paymentProviderId: { type: String, required: true, index: true },
       userId: { type: String, required: true, index: true },
-      credentials: { type: Object, blackbox: true },
+      token: String,
       isPreferred: Boolean,
       meta: { type: Object, blackbox: true },
       ...Schemas.timestampFields,
@@ -62,7 +62,5 @@ Migrations.add({
 });
 
 export default () => {
-  Meteor.startup(() => {
-    Migrations.migrateTo('latest');
-  });
+  Migrations.migrateTo('latest');
 };

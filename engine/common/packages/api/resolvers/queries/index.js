@@ -44,6 +44,7 @@ import workQueue from './workQueue';
 import subscription from './subscription';
 import subscriptions from './subscriptions';
 import signPaymentProviderForCredentialRegistration from './signPaymentProviderForCredentialRegistration';
+import work from './work';
 
 export default {
   me,
@@ -101,6 +102,7 @@ export default {
   subscription: acl(actions.viewQuotation)(subscription),
   subscriptions: acl(actions.viewQuotations)(subscriptions),
 
+  work: acl(actions.manageWorker)(work),
   signPaymentProviderForCredentialRegistration: acl(
     actions.registerPaymentCredentials
   )(signPaymentProviderForCredentialRegistration),

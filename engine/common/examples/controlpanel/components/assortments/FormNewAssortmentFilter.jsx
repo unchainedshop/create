@@ -48,33 +48,33 @@ export default compose(
     {
       name: 'addAssortmentFilter',
       options: {
-        refetchQueries: ['assortment', 'assortmentFilters']
-      }
+        refetchQueries: ['assortment', 'assortmentFilters'],
+      },
     }
   ),
   withFormSchema({
     assortmentId: {
       type: String,
       label: null,
-      optional: false
+      optional: false,
     },
     filterId: {
       type: String,
       optional: false,
-      label: 'Filter'
-    }
+      label: 'Filter',
+    },
   }),
   withHandlers({
     onSubmitSuccess: () => () => {
-      toast('Filtered', { type: toast.TYPE.SUCCESS }); // eslint-disable-line
+      toast('Filtered', { type: toast.TYPE.SUCCESS });
     },
     onSubmit: ({ addAssortmentFilter }) => ({ assortmentId, filterId }) =>
       addAssortmentFilter({
         variables: {
           assortmentId,
-          filterId
-        }
-      })
+          filterId,
+        },
+      }),
   }),
   withFormErrorHandlers,
   mapProps(
@@ -85,15 +85,15 @@ export default compose(
       ...rest
     }) => ({
       filters: [{ label: 'Select', value: false }].concat(
-        filters.map(filter => ({
+        filters.map((filter) => ({
           label: filter.texts ? filter.texts.title : filter.key,
-          value: filter._id
+          value: filter._id,
         }))
       ),
       model: {
-        assortmentId
+        assortmentId,
       },
-      ...rest
+      ...rest,
     })
   )
 )(FormNewAssortmentFilter);

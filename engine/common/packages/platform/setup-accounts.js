@@ -6,16 +6,17 @@ import { getFallbackLocale } from 'meteor/unchained:core';
 import { Users } from 'meteor/unchained:core-users';
 import { Orders } from 'meteor/unchained:core-orders';
 import { Bookmarks } from 'meteor/unchained:core-bookmarks';
+import { Promise } from 'meteor/promise';
 import cloneDeep from 'lodash.clonedeep';
 import moniker from 'moniker';
 
 const { UI_ENDPOINT } = process.env;
 
 Accounts.urls.resetPassword = (token) =>
-  `${UI_ENDPOINT}/passwort-zuruecksetzen?token=${token}`;
+  `${UI_ENDPOINT}/set-password?token=${token}`;
 
 Accounts.urls.verifyEmail = (token) =>
-  `${UI_ENDPOINT}/email-verifiziert?token=${token}`;
+  `${UI_ENDPOINT}/verify-email?token=${token}`;
 
 Accounts.urls.enrollAccount = (token) =>
   `${UI_ENDPOINT}/enroll-account?token=${token}`;
@@ -138,13 +139,15 @@ export default ({ mergeUserCartsOnLogin = true } = {}) => {
       countryContext,
     });
     if (userIdBeforeLogin) {
-      Orders.migrateCart({
-        fromUserId: userIdBeforeLogin,
-        toUserId: user._id,
-        locale: normalizedLocale,
-        countryContext,
-        mergeCarts: mergeUserCartsOnLogin,
-      });
+      Promise.await(
+        Orders.migrateCart({
+          fromUserId: userIdBeforeLogin,
+          toUserId: user._id,
+          locale: normalizedLocale,
+          countryContext,
+          mergeCarts: mergeUserCartsOnLogin,
+        })
+      );
 
       Bookmarks.migrateBookmarks({
         fromUserId: userIdBeforeLogin,

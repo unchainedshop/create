@@ -72,7 +72,7 @@ export default [
       published: Date
       media(limit: Int = 10, offset: Int = 0, tags: [String!]): [ProductMedia!]!
       texts(forceLocale: String): ProductTexts
-      assortmentPaths(forceLocale: String): [ProductAssortmentPath!]!
+      assortmentPaths: [ProductAssortmentPath!]!
       siblings(assortmentId: ID, limit: Int = 10, offset: Int = 0): [Product!]!
       reviews(limit: Int = 10, offset: Int = 0): [ProductReview!]!
 

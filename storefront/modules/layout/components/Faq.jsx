@@ -43,7 +43,7 @@ const FAQ = () => {
             <b>Wie lange dauert die Lieferung ab Bestellung?</b>
           </div>
           <div className="col-md-7">
-            Je nach Eingang deiner Bestellung. 2 – 9 Tage. Wir lieferen einmal
+            Je nach Eingang deiner Bestellung. 1 – 7 Tage. Wir lieferen einmal
             pro Woche aus, am Mittwoch.
           </div>
         </div>

@@ -67,17 +67,53 @@ Subscriptions.helpers({
       context,
     });
   },
-  terminate({ subscriptionContext } = {}, options) {
-    if (this.status === SubscriptionStatus.TERMINATED) return this;
-    return this.setStatus(SubscriptionStatus.TERMINATED, 'terminated manually')
-      .process({ subscriptionContext })
-      .sendStatusToCustomer(options);
+  updateBillingAddress(billingAddress = {}) {
+    return Subscriptions.updateBillingAddress({
+      subscriptionId: this._id,
+      billingAddress,
+    });
   },
-  activate({ subscriptionContext } = {}, options) {
+  updateContact(contact = {}) {
+    return Subscriptions.updateContact({
+      subscriptionId: this._id,
+      contact,
+    });
+  },
+  updateDelivery(delivery = {}) {
+    return Subscriptions.updateDelivery({
+      subscriptionId: this._id,
+      delivery,
+    });
+  },
+  updatePayment(payment = {}) {
+    return Subscriptions.updatePayment({
+      subscriptionId: this._id,
+      payment,
+    });
+  },
+  updatePlan(plan = {}) {
+    return Subscriptions.updatePlan({
+      subscriptionId: this._id,
+      plan,
+    });
+  },
+  async terminate({ subscriptionContext } = {}, options) {
     if (this.status === SubscriptionStatus.TERMINATED) return this;
-    return this.setStatus(SubscriptionStatus.ACTIVE, 'activated manually')
-      .process({ subscriptionContext })
-      .sendStatusToCustomer(options);
+    return (
+      await this.setStatus(
+        SubscriptionStatus.TERMINATED,
+        'terminated manually'
+      ).process({ subscriptionContext })
+    ).sendStatusToCustomer(options);
+  },
+  async activate({ subscriptionContext } = {}, options) {
+    if (this.status === SubscriptionStatus.TERMINATED) return this;
+    return (
+      await this.setStatus(
+        SubscriptionStatus.ACTIVE,
+        'activated manually'
+      ).process({ subscriptionContext })
+    ).sendStatusToCustomer(options);
   },
   sendStatusToCustomer(options) {
     const user = this.user();
@@ -99,20 +135,28 @@ Subscriptions.helpers({
     });
     return this;
   },
-  initializeSubscription() {},
-  reactivateSubscription() {},
-  process({ subscriptionContext } = {}) {
-    if (
-      this.status === SubscriptionStatus.INITIAL &&
-      this.nextStatus() === SubscriptionStatus.ACTIVE
-    ) {
-      this.initializeSubscription(subscriptionContext);
+  async initializeSubscription(orderIdForFirstPeriod) {
+    const period = await this.director().nextPeriod({
+      orderId: orderIdForFirstPeriod,
+    });
+    if (period && (orderIdForFirstPeriod || period.isTrial)) {
+      const initialized = await Subscriptions.linkOrderToSubscription({
+        orderId: orderIdForFirstPeriod,
+        subscriptionId: this._id,
+        period,
+      });
+      return initialized.process({ orderIdForFirstPeriod });
     }
-    if (
-      this.status === SubscriptionStatus.PAUSED &&
-      this.nextStatus() === SubscriptionStatus.ACTIVE
-    ) {
-      this.reactivateSubscription(subscriptionContext);
+    return this.process({ orderIdForFirstPeriod });
+  },
+  // eslint-disable-next-line
+  async reactivateSubscription() {},
+  async process({ subscriptionContext, orderIdForFirstPeriod } = {}) {
+    if (this.nextStatus() === SubscriptionStatus.ACTIVE) {
+      await this.reactivateSubscription(
+        subscriptionContext,
+        orderIdForFirstPeriod
+      );
     }
     return this.setStatus(this.nextStatus(), 'subscription processed');
   },
@@ -166,39 +210,7 @@ Subscriptions.helpers({
   },
 });
 
-Subscriptions.generateFromCheckout = async ({ items, order, ...context }) => {
-  const payment = order.payment();
-  const delivery = order.delivery();
-  const template = {
-    orderId: order._id,
-    userId: order.userId,
-    countryCode: order.countryCode,
-    currencyCode: order.currency,
-    billingAddress: order.billingAddress,
-    contact: order.contact,
-    payment: {
-      paymentProviderId: payment.paymentProviderId,
-      context: payment.context,
-    },
-    delivery: {
-      deliveryProviderId: delivery.deliveryProviderId,
-      context: delivery.context,
-    },
-    meta: order.meta,
-  };
-  return Promise.all(
-    items.map(async (item) => {
-      const subscriptionData = await SubscriptionDirector.transformOrderItemToSubscription(
-        item,
-        { ...template, ...context }
-      );
-      const subscription = Subscriptions.createSubscription(subscriptionData);
-      subscription.addOrder(order);
-    })
-  );
-};
-
-Subscriptions.createSubscription = (
+Subscriptions.createSubscription = async (
   {
     productId,
     quantity,
@@ -210,6 +222,7 @@ Subscriptions.createSubscription = (
     billingAddress,
     payment,
     delivery,
+    orderIdForFirstPeriod,
   },
   options
 ) => {
@@ -224,6 +237,7 @@ Subscriptions.createSubscription = (
     contact,
     billingAddress,
     payment,
+    periods: [],
     delivery,
     currencyCode:
       currencyCode ||
@@ -233,7 +247,105 @@ Subscriptions.createSubscription = (
     countryCode,
   });
   const subscription = Subscriptions.findOne({ _id: subscriptionId });
-  return subscription.process().sendStatusToCustomer(options);
+  const initialized = await subscription.initializeSubscription(
+    orderIdForFirstPeriod
+  );
+  return initialized.sendStatusToCustomer(options);
+};
+
+Subscriptions.linkOrderToSubscription = async ({
+  subscriptionId,
+  period,
+  orderId,
+}) => {
+  const { start, end, isTrial } = period;
+  Subscriptions.update(
+    { _id: subscriptionId },
+    {
+      $push: {
+        periods: {
+          start,
+          end,
+          isTrial,
+          orderId,
+        },
+      },
+      $set: {
+        updated: new Date(),
+      },
+    }
+  );
+  return Subscriptions.findOne({ _id: subscriptionId });
+};
+
+Subscriptions.updateBillingAddress = ({ billingAddress, subscriptionId }) => {
+  log('Update Billing Address', { subscriptionId });
+  Subscriptions.update(
+    { _id: subscriptionId },
+    {
+      $set: {
+        billingAddress,
+        updated: new Date(),
+      },
+    }
+  );
+  return Subscriptions.findOne({ _id: subscriptionId });
+};
+
+Subscriptions.updateContact = ({ contact, subscriptionId }) => {
+  log('Update Contact', { subscriptionId });
+  Subscriptions.update(
+    { _id: subscriptionId },
+    {
+      $set: {
+        contact,
+        updated: new Date(),
+      },
+    }
+  );
+  return Subscriptions.findOne({ _id: subscriptionId });
+};
+
+Subscriptions.updatePayment = ({ payment, subscriptionId }) => {
+  log('Update Payment', { subscriptionId });
+  Subscriptions.update(
+    { _id: subscriptionId },
+    {
+      $set: {
+        payment,
+        updated: new Date(),
+      },
+    }
+  );
+  return Subscriptions.findOne({ _id: subscriptionId });
+};
+
+Subscriptions.updateDelivery = ({ delivery, subscriptionId }) => {
+  log('Update Delivery', { subscriptionId });
+  Subscriptions.update(
+    { _id: subscriptionId },
+    {
+      $set: {
+        delivery,
+        updated: new Date(),
+      },
+    }
+  );
+  return Subscriptions.findOne({ _id: subscriptionId });
+};
+
+Subscriptions.updatePlan = ({ plan, subscriptionId }) => {
+  log('Update Plan', { subscriptionId });
+  Subscriptions.update(
+    { _id: subscriptionId },
+    {
+      $set: {
+        plan,
+        updated: new Date(),
+      },
+    }
+  );
+  return Subscriptions.findOne({ _id: subscriptionId });
 };
 
 Subscriptions.updateContext = ({ context, subscriptionId }) => {
@@ -286,6 +398,16 @@ Subscriptions.updateStatus = ({ status, subscriptionId, info = '' }) => {
       },
     },
   };
+  switch (status) {
+    case SubscriptionStatus.ACTIVE:
+      modifier.$set.subscriptionNumber = Subscriptions.newSubscriptionNumber();
+      break;
+    case SubscriptionStatus.TERMINATED:
+      modifier.$set.expires = subscription.periods?.pop()?.end || new Date();
+      break;
+    default:
+      break;
+  }
   log(`New Status: ${status}`, { subscriptionId });
   Subscriptions.update({ _id: subscriptionId }, modifier);
   return Subscriptions.findOne({ _id: subscriptionId });

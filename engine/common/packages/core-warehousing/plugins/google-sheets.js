@@ -3,27 +3,36 @@ import {
   WarehousingAdapter,
 } from 'meteor/unchained:core-warehousing';
 import Sheets from 'node-sheets';
-import NodeCache from 'node-cache';
 import { log } from 'meteor/unchained:core-logger';
+import LRU from 'lru-cache';
 
-const { NODE_ENV, GOOGLE_SHEETS_PRIVATE_KEY_DATA } = process.env;
+const {
+  NODE_ENV,
+  GOOGLE_SHEETS_ID,
+  GOOGLE_SHEETS_PRIVATE_KEY_DATA,
+} = process.env;
 
-const googleCache = new NodeCache(
-  NODE_ENV === 'production'
-    ? { stdTTL: 180, checkperiod: 10 } // 4 minutes lag in production
-    : { stdTTL: 30, checkperiod: 5 }
-); // 7 seconds lag in development
+const maxAge = NODE_ENV === 'production' ? 1000 * 60 * 60 : 1000 * 1; // 1 hour or 1 second
+let updateGoogleCache;
+const googleCache = new LRU({
+  max: 500,
+  maxAge, // 1 second in dev
+  stale: true,
+  dispose() {
+    updateGoogleCache();
+  },
+});
 
 async function downloadSpreadsheet() {
-  if (!GOOGLE_SHEETS_PRIVATE_KEY_DATA) return null;
+  if (!GOOGLE_SHEETS_PRIVATE_KEY_DATA || !GOOGLE_SHEETS_ID) return null;
   try {
-    // https://docs.google.com/spreadsheets/d/1lVplebvDHgPfPZnnp7NCM60iyu3WARGE1JZh6Xx5uvc/edit?usp=sharing
-    const gs = new Sheets('1lVplebvDHgPfPZnnp7NCM60iyu3WARGE1JZh6Xx5uvc');
+    // https://docs.google.com/spreadsheets/d/GOOGLE_SHEETS_ID/edit?usp=sharing
+    const gs = new Sheets(GOOGLE_SHEETS_ID);
     const authData = JSON.parse(GOOGLE_SHEETS_PRIVATE_KEY_DATA);
     await gs.authorizeJWT(authData);
     const delivery = await gs.tables('delivery!A:ZZZ');
     const inventory = await gs.tables('inventory!A:ZZZ');
-    log(`GoogleSheet: Updated cache with TTL: ${googleCache.options.stdTTL}`, {
+    log(`GoogleSheet: Updated cache with TTL: ${maxAge}`, {
       level: 'verbose',
     });
     return {
@@ -31,26 +40,23 @@ async function downloadSpreadsheet() {
       inventory,
     };
   } catch (err) {
-    log(err, { level: 'error' }); // eslint-disable-line
+    log(err, { level: 'error' });
     throw err;
   }
 }
 
-const updateGoogleCache = async () => {
+updateGoogleCache = async () => {
   try {
     const sheet = await downloadSpreadsheet();
     if (sheet) {
       googleCache.set('tables', sheet);
-      googleCache.set('tablesFallback', sheet, 0);
       return sheet;
     }
   } catch (e) {
-    console.error(e); // eslint-disable-line
+    log(e, { level: 'error' });
   }
   return null;
 };
-
-googleCache.on('expired', updateGoogleCache);
 
 updateGoogleCache();
 
@@ -75,8 +81,7 @@ class GoogleSheets extends WarehousingAdapter {
   }
 
   static async getRows(name) {
-    const cachedTables =
-      googleCache.get('tables') || googleCache.get('tablesFallback');
+    const cachedTables = googleCache.get('tables');
     let tables = cachedTables;
     if (!cachedTables) {
       tables = await updateGoogleCache();
@@ -85,11 +90,13 @@ class GoogleSheets extends WarehousingAdapter {
     return tables[name].rows;
   }
 
-  isActive(context) { // eslint-disable-line
+  // eslint-disable-next-line
+  isActive(context) {
     return true;
   }
 
-  configurationError() { // eslint-disable-line
+  // eslint-disable-next-line
+  configurationError() {
     return null;
   }
 

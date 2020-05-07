@@ -3,12 +3,11 @@ import { SimpleProduct, SimpleProductReview } from './seeds/products';
 import { ADMIN_TOKEN } from './seeds/users';
 
 let connection;
-let db; // eslint-disable-line
 let graphqlFetch;
 
 describe('Products: Reviews', () => {
   beforeAll(async () => {
-    [db, connection] = await setupDatabase();
+    [, connection] = await setupDatabase();
     graphqlFetch = await createLoggedInGraphqlFetch(ADMIN_TOKEN);
   });
 
@@ -58,16 +57,16 @@ describe('Products: Reviews', () => {
           productReview: {
             rating: 5,
             title: 'Hello',
-            review: 'World'
-          }
-        }
+            review: 'World',
+          },
+        },
       });
       expect(createProductReview).toMatchObject({
         author: {
-          username: 'admin'
+          username: 'admin',
         },
         product: {
-          _id: SimpleProduct._id
+          _id: SimpleProduct._id,
         },
         rating: 5,
         title: 'Hello',
@@ -76,7 +75,7 @@ describe('Products: Reviews', () => {
         upvotes: 0,
         downvotes: 0,
         reports: 0,
-        ownVotes: []
+        ownVotes: [],
       });
     });
   });
@@ -121,16 +120,16 @@ describe('Products: Reviews', () => {
           productReviewId: SimpleProductReview._id,
           productReview: {
             rating: 1,
-            review: 'World2'
-          }
-        }
+            review: 'World2',
+          },
+        },
       });
       expect(updateProductReview).toMatchObject({
         author: {
-          _id: SimpleProductReview.authorId
+          _id: SimpleProductReview.authorId,
         },
         product: {
-          _id: SimpleProduct._id
+          _id: SimpleProduct._id,
         },
         rating: 1,
         title: SimpleProductReview.title,
@@ -139,7 +138,7 @@ describe('Products: Reviews', () => {
         upvotes: 0,
         downvotes: 0,
         reports: 0,
-        ownVotes: []
+        ownVotes: [],
       });
     });
   });
@@ -169,17 +168,17 @@ describe('Products: Reviews', () => {
         variables: {
           productReviewId: SimpleProductReview._id,
           type: 'UPVOTE',
-          meta: {}
-        }
+          meta: {},
+        },
       });
       expect(addProductReviewVote).toMatchObject({
         upvotes: 1,
         downvotes: 0,
         ownVotes: [
           {
-            type: 'UPVOTE'
-          }
-        ]
+            type: 'UPVOTE',
+          },
+        ],
       });
     });
 
@@ -208,17 +207,17 @@ describe('Products: Reviews', () => {
         variables: {
           productReviewId: SimpleProductReview._id,
           type: 'DOWNVOTE',
-          meta: {}
-        }
+          meta: {},
+        },
       });
       expect(addProductReviewVote).toMatchObject({
         upvotes: 0,
         downvotes: 1,
         ownVotes: [
           {
-            type: 'DOWNVOTE'
-          }
-        ]
+            type: 'DOWNVOTE',
+          },
+        ],
       });
     });
   });
@@ -245,13 +244,13 @@ describe('Products: Reviews', () => {
         `,
         variables: {
           productReviewId: SimpleProductReview._id,
-          type: 'DOWNVOTE'
-        }
+          type: 'DOWNVOTE',
+        },
       });
       expect(removeProductReviewVote).toMatchObject({
         upvotes: 0,
         downvotes: 0,
-        ownVotes: []
+        ownVotes: [],
       });
     });
   });
@@ -267,8 +266,8 @@ describe('Products: Reviews', () => {
           }
         `,
         variables: {
-          productReviewId: SimpleProductReview._id
-        }
+          productReviewId: SimpleProductReview._id,
+        },
       });
       expect(removeProductReview.deleted).toBeTruthy();
     });
@@ -288,14 +287,14 @@ describe('Products: Reviews', () => {
           }
         `,
         variables: {
-          productId: SimpleProduct._id
-        }
+          productId: SimpleProduct._id,
+        },
       });
       expect(reviews).toMatchObject([
         {
           title: 'Hello',
-          rating: 5
-        }
+          rating: 5,
+        },
       ]);
     });
   });
@@ -313,16 +312,16 @@ describe('Products: Reviews', () => {
               }
             }
           }
-        `
+        `,
       });
       expect(productReviews).toMatchObject([
         {
           title: 'Hello',
           rating: 5,
           product: {
-            _id: SimpleProduct._id
-          }
-        }
+            _id: SimpleProduct._id,
+          },
+        },
       ]);
     });
   });
@@ -342,15 +341,15 @@ describe('Products: Reviews', () => {
           }
         `,
         variables: {
-          productReviewId: SimpleProductReview._id
-        }
+          productReviewId: SimpleProductReview._id,
+        },
       });
       expect(productReview).toMatchObject({
         title: 'Title of my Review',
         rating: 1,
         product: {
-          _id: SimpleProduct._id
-        }
+          _id: SimpleProduct._id,
+        },
       });
     });
   });

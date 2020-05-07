@@ -2,13 +2,11 @@ import { setupDatabase, createLoggedInGraphqlFetch } from './helpers';
 import { SimpleOrder, ConfirmedOrder, PendingOrder } from './seeds/orders';
 
 let connection;
-// eslint-disable-next-line no-unused-vars
-let db;
 let graphqlFetch;
 
 describe('Order: Management', () => {
   beforeAll(async () => {
-    [db, connection] = await setupDatabase();
+    [, connection] = await setupDatabase();
     graphqlFetch = await createLoggedInGraphqlFetch();
   });
 
@@ -28,8 +26,8 @@ describe('Order: Management', () => {
           }
         `,
         variables: {
-          orderId: ConfirmedOrder._id
-        }
+          orderId: ConfirmedOrder._id,
+        },
       });
       expect(errors.length).toEqual(1);
     });
@@ -45,11 +43,11 @@ describe('Order: Management', () => {
           }
         `,
         variables: {
-          orderId: SimpleOrder._id
-        }
+          orderId: SimpleOrder._id,
+        },
       });
       expect(removeOrder).toMatchObject({
-        _id: SimpleOrder._id
+        _id: SimpleOrder._id,
       });
     });
   });
@@ -65,8 +63,8 @@ describe('Order: Management', () => {
           }
         `,
         variables: {
-          orderId: ConfirmedOrder._id
-        }
+          orderId: ConfirmedOrder._id,
+        },
       });
       expect(errors.length).toEqual(1);
     });
@@ -82,12 +80,12 @@ describe('Order: Management', () => {
           }
         `,
         variables: {
-          orderId: PendingOrder._id
-        }
+          orderId: PendingOrder._id,
+        },
       });
       expect(confirmOrder).toMatchObject({
         _id: PendingOrder._id,
-        status: 'CONFIRMED'
+        status: 'CONFIRMED',
       });
     });
   });
@@ -104,12 +102,12 @@ describe('Order: Management', () => {
           }
         `,
         variables: {
-          orderId: ConfirmedOrder._id
-        }
+          orderId: ConfirmedOrder._id,
+        },
       });
       expect(payOrder).toMatchObject({
         _id: ConfirmedOrder._id,
-        status: 'CONFIRMED'
+        status: 'CONFIRMED',
       });
     });
 
@@ -124,12 +122,12 @@ describe('Order: Management', () => {
           }
         `,
         variables: {
-          orderId: ConfirmedOrder._id
-        }
+          orderId: ConfirmedOrder._id,
+        },
       });
       expect(deliverOrder).toMatchObject({
         _id: ConfirmedOrder._id,
-        status: 'FULLFILLED'
+        status: 'FULLFILLED',
       });
     });
   });

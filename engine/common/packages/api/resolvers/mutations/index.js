@@ -108,9 +108,13 @@ import removeBookmark from './removeBookmark';
 import addWork from './addWork';
 import allocateWork from './allocateWork';
 import finishWork from './finishWork';
+import removeWork from './removeWork';
 import doWork from './doWork';
 import heartbeat from './heartbeat';
 import createSubscription from './createSubscription';
+import terminateSubscription from './terminateSubscription';
+import activateSubscription from './activateSubscription';
+import updateSubscription from './updateSubscription';
 import registerPaymentCredentials from './registerPaymentCredentials';
 import markPaymentCredentialsPreferred from './markPaymentCredentialsPreferred';
 import removePaymentCredentials from './removePaymentCredentials';
@@ -217,6 +221,9 @@ export default {
   deliverOrder: acl(actions.markOrderDelivered)(deliverOrder),
 
   createSubscription: acl(actions.createSubscription)(createSubscription),
+  terminateSubscription: acl(actions.updateSubscription)(terminateSubscription),
+  activateSubscription: acl(actions.updateSubscription)(activateSubscription),
+  updateSubscription: acl(actions.updateSubscription)(updateSubscription),
 
   createPaymentProvider: acl(actions.managePaymentProviders)(
     createPaymentProvider
@@ -300,5 +307,6 @@ export default {
   addWork: acl(actions.manageWorker)(addWork),
   allocateWork: acl(actions.manageWorker)(allocateWork),
   finishWork: acl(actions.manageWorker)(finishWork),
+  removeWork: acl(actions.manageWorker)(removeWork),
   doWork: acl(actions.manageWorker)(doWork),
 };

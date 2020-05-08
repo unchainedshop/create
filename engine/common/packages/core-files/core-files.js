@@ -1,1 +1,0 @@
-export createFilesCollection from './createFilesCollection';

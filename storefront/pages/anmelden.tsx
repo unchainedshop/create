@@ -1,7 +1,6 @@
-import { useRouter } from 'next/router';
-
 import Header from '../modules/layout/components/Header';
 import LoginForm from '../modules/auth/components/LoginForm';
+import { useRouter } from 'next/router';
 
 const SignIn = () => {
   const router = useRouter();
@@ -11,8 +10,8 @@ const SignIn = () => {
     <div className="container">
       <Header />
       <div className="row">
-        <div className="col-md-8 offset-md-2">
-          <h1>Anmeldung</h1>
+        <div className="col-md-6 m-auto">
+          <h1 className="text-center">Anmeldung</h1>
           <LoginForm onLogin={onLogin} />
         </div>
       </div>

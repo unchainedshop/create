@@ -1,7 +1,6 @@
-import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
 import Link from 'next/link';
-
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import useLoginWithPasswordMutation from '../hooks/useLoginWithPasswordMutation';
 
 const LoginForm = ({ onLogin }) => {
@@ -35,7 +34,11 @@ const LoginForm = ({ onLogin }) => {
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-row">
-        <div className={`mb-3 col-md-6 ${errors['email'] ? 'form-error' : ''}`}>
+        <div
+          className={`d-flex justify-between flex-column w-100 ${
+            errors['email'] ? 'form-error' : ''
+          }`}
+        >
           <label className="form-label">Deine E-Mail Adresse</label>
           <input
             className="form-control"
@@ -45,16 +48,19 @@ const LoginForm = ({ onLogin }) => {
           />
         </div>
         <div
-          className={`mb-3 col-md-6 ${errors['password'] ? 'form-error' : ''}`}
+          className={`d-flex flex-column mt-2  justify-between w-100 ${
+            errors['password'] ? 'form-error' : ''
+          }`}
         >
           <label className="form-label">Dein Passwort</label>
           <input
             className="form-control"
+            type="password"
             name="password"
             ref={register({ required: true })}
           />
           <Link href="passwort-vergessen">
-            <a>
+            <a className="mt-2 text-right">
               <small id="passwordForgot" className="form-text text-muted">
                 Passwort vergessen?
               </small>
@@ -70,7 +76,7 @@ const LoginForm = ({ onLogin }) => {
           ))
         : ''}
       <button
-        className="button button--primary button--big"
+        className="button button--primary mt-2 align-center button--big"
         type="submit"
         disabled={hasErrors}
       >

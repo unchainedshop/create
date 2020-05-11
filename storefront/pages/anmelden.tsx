@@ -1,6 +1,7 @@
+import { useRouter } from 'next/router';
+
 import Header from '../modules/layout/components/Header';
 import LoginForm from '../modules/auth/components/LoginForm';
-import { useRouter } from 'next/router';
 
 const SignIn = () => {
   const router = useRouter();

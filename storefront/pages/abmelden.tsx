@@ -1,6 +1,7 @@
-import useLogoutMutation from '../modules/auth/hooks/useLogoutMutation';
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
+import useLogoutMutation from '../modules/auth/hooks/useLogoutMutation';
 
 const Logout = () => {
   const { logout } = useLogoutMutation();

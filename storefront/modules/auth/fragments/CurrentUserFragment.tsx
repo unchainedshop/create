@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
-import ProductFragment from '../../products/fragments/ProductFragment';
 import AddressFragment from './AddressFragment';
+import ProductFragment from '../../products/fragments/ProductFragment';
 
 const CurrentUserFragment = gql`
   fragment CurrentUserFragment on User {
@@ -42,6 +42,10 @@ const CurrentUserFragment = gql`
       total {
         amount
         currency
+      }
+      supportedPaymentProviders {
+        _id
+        type
       }
     }
   }

@@ -47,6 +47,10 @@ const CurrentUserFragment = gql`
         _id
         type
       }
+      supportedDeliveryProviders {
+        _id
+        type
+      }
     }
   }
   ${ProductFragment}

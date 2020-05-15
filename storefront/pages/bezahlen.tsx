@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 
+import Footer from '../modules/layout/components/Footer';
 import ManageCart from '../modules/cart/components/ManageCart';
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
-import Footer from '../modules/layout/components/Footer';
+import useSetOrderPaymentProviderMutation from '../modules/orders/hooks/setPaymentOrderProvider';
 
 const EditableField = ({
   register,
@@ -226,6 +227,20 @@ const BillingSection = () => {
 };
 
 const Payment = () => {
+  const { user } = useUserQuery();
+  const { setOrderPaymentProvider } = useSetOrderPaymentProviderMutation();
+
+  const handleCheckout = () => {
+    const paymentProvider = user.cart.supportedPaymentProviders.find(
+      ({ type }) => type === 'INVOICE',
+    );
+    console.log(paymentProvider);
+
+    setOrderPaymentProvider({
+      orderId: user.cart._id,
+      paymentProviderId: paymentProvider._id,
+    });
+  };
   return (
     <>
       <header className="header sticky-top">
@@ -257,12 +272,15 @@ const Payment = () => {
             <h2>Rechnungsadresse</h2>
             <BillingSection />
 
-            <a
+            {/* <a
               href="https://pay.sandbox.datatrans.com/upp/jsp/upStart.jsp?merchantId=1100004624&refno=1234567890&amount=1000&currency=CHF&theme=DT2015"
               className="button button--primary button--big"
             >
               Bestellung abschicken und bezahlen 💳
-            </a>
+            </a> */}
+            <button onClick={handleCheckout} className="button button--primary">
+              Bestellung abschicken
+            </button>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
 import useSetOrderPaymentProviderMutation from '../modules/orders/hooks/setPaymentOrderProvider';
 import useSetOrderDeliveryProviderMutation from '../modules/orders/hooks/setOrderDeliveryProvider';
+import useCheckOutCartMutation from '../modules/cart/hooks/useCheckOutCart';
 
 const EditableField = ({
   register,
@@ -231,6 +232,7 @@ const Payment = () => {
   const { user } = useUserQuery();
   const { setOrderPaymentProvider } = useSetOrderPaymentProviderMutation();
   const { setOrderDeliveryProvider } = useSetOrderDeliveryProviderMutation();
+  const { checkOutCart } = useCheckOutCartMutation();
 
   const handleCheckout = () => {
     const paymentProvider = user.cart.supportedPaymentProviders.find(
@@ -247,6 +249,13 @@ const Payment = () => {
     setOrderDeliveryProvider({
       orderId: user.cart._id,
       deliveryProviderId: deliveryProvider._id,
+    });
+
+    checkOutCart({
+      orderId: user.cart._id,
+      orderContext: { status: 'CONFIRMED' },
+      paymentContext: { status: 'PAID' },
+      deliveryContext: { status: 'OPEN' },
     });
   };
   return (

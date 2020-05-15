@@ -5,8 +5,8 @@ import OrderFragment from '../fragments/OrderFragment';
 import OrderItemFragment from '../fragments/OrderItemFragment';
 
 const OrderDetailQuery = gql`
-  query OrderDetailQuery($orderNumber: ID!) {
-    order(orderId: $orderNumber) {
+  query OrderDetailQuery($orderId: ID!) {
+    order(orderId: $orderId) {
       ...OrderFragment
       ...OrderItemFragment
     }
@@ -15,9 +15,9 @@ const OrderDetailQuery = gql`
   ${OrderItemFragment}
 `;
 
-const useOrderDetailQuery = ({ orderNumber }) => {
+const useOrderDetailQuery = ({ orderId }) => {
   const { data, loading, error } = useQuery(OrderDetailQuery, {
-    variables: { orderNumber },
+    variables: { orderId: orderId },
   });
 
   return {

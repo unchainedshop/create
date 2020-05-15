@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import useOrderListQuery from '../hooks/useUserOrderListQuery';
 
-const orders = [
+/* const orders = [
   {
     status: 'Active',
     created: new Date().toString(),
@@ -71,10 +71,10 @@ const orders = [
       },
     },
   },
-];
+]; */
 
 const OrderList = () => {
-  /* const { orders } = useOrderListQuery(); */
+  const { orders } = useOrderListQuery();
 
   return (
     <div className="container">
@@ -84,10 +84,10 @@ const OrderList = () => {
             <Link
               key={order.orderNumber}
               href="/order/[slug]"
-              as={`/order/${order.orderNumber}`}
+              as={`/order/${order._id}`}
             >
               <a className="card">
-                <h5 className="card-header">{order.orderNumber}</h5>
+                <h5 className="card-header">{order._id}</h5>
                 <div className="card-body">
                   <h5 className="card-title">{order.created}</h5>
                   <p className="color-brand">{order.status}</p>

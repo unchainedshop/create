@@ -7,7 +7,7 @@ import useOrderDetailQuery from '../../modules/orders/hooks/useOrderDetailQuery'
 const OrderDetail = () => {
   const router = useRouter();
 
-  const { order } = useOrderDetailQuery({ orderNumber: router.query.id });
+  const { order } = useOrderDetailQuery({ orderId: router.query.id });
 
   return (
     <div>

@@ -18,7 +18,7 @@ const useOrderListQuery = () => {
   const { data, loading, error } = useQuery(UserOrderListQuery);
 
   return {
-    orders: data?.orders || [],
+    orders: data?.me?.orders || [],
     loading,
     error,
   };

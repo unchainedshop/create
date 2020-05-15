@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 
 const OrderFragment = gql`
   fragment OrderFragment on Order {
+    _id
     status
     created
     orderNumber

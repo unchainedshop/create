@@ -4,11 +4,11 @@ import { useState } from 'react';
 
 import Footer from '../modules/layout/components/Footer';
 import ManageCart from '../modules/cart/components/ManageCart';
+import useCheckOutCartMutation from '../modules/cart/hooks/useCheckOutCart';
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
 import useSetOrderPaymentProviderMutation from '../modules/orders/hooks/setPaymentOrderProvider';
 import useSetOrderDeliveryProviderMutation from '../modules/orders/hooks/setOrderDeliveryProvider';
-import useCheckOutCartMutation from '../modules/cart/hooks/useCheckOutCart';
 
 const EditableField = ({
   register,

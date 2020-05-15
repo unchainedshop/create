@@ -7,6 +7,7 @@ import ManageCart from '../modules/cart/components/ManageCart';
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
 import useSetOrderPaymentProviderMutation from '../modules/orders/hooks/setPaymentOrderProvider';
+import useSetOrderDeliveryProviderMutation from '../modules/orders/hooks/setOrderDeliveryProvider';
 
 const EditableField = ({
   register,
@@ -229,16 +230,23 @@ const BillingSection = () => {
 const Payment = () => {
   const { user } = useUserQuery();
   const { setOrderPaymentProvider } = useSetOrderPaymentProviderMutation();
+  const { setOrderDeliveryProvider } = useSetOrderDeliveryProviderMutation();
 
   const handleCheckout = () => {
     const paymentProvider = user.cart.supportedPaymentProviders.find(
       ({ type }) => type === 'INVOICE',
     );
-    console.log(paymentProvider);
+
+    const deliveryProvider = user.cart.supportedDeliveryProviders[0];
 
     setOrderPaymentProvider({
       orderId: user.cart._id,
       paymentProviderId: paymentProvider._id,
+    });
+
+    setOrderDeliveryProvider({
+      orderId: user.cart._id,
+      deliveryProviderId: deliveryProvider._id,
     });
   };
   return (

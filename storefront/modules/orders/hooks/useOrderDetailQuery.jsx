@@ -8,7 +8,9 @@ const OrderDetailQuery = gql`
   query OrderDetailQuery($orderId: ID!) {
     order(orderId: $orderId) {
       ...OrderFragment
-      ...OrderItemFragment
+      items {
+        ...OrderItemFragment
+      }
     }
   }
   ${OrderFragment}

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import Footer from '../modules/layout/components/Footer';
 import ManageCart from '../modules/cart/components/ManageCart';
@@ -229,34 +230,37 @@ const BillingSection = () => {
 };
 
 const Payment = () => {
+  const router = useRouter();
   const { user } = useUserQuery();
   const { setOrderPaymentProvider } = useSetOrderPaymentProviderMutation();
   const { setOrderDeliveryProvider } = useSetOrderDeliveryProviderMutation();
   const { checkOutCart } = useCheckOutCartMutation();
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     const paymentProvider = user.cart.supportedPaymentProviders.find(
       ({ type }) => type === 'INVOICE',
     );
 
     const deliveryProvider = user.cart.supportedDeliveryProviders[0];
 
-    setOrderPaymentProvider({
+    await setOrderPaymentProvider({
       orderId: user.cart._id,
       paymentProviderId: paymentProvider._id,
     });
 
-    setOrderDeliveryProvider({
+    await setOrderDeliveryProvider({
       orderId: user.cart._id,
       deliveryProviderId: deliveryProvider._id,
     });
 
-    checkOutCart({
+    await checkOutCart({
       orderId: user.cart._id,
       orderContext: { status: 'CONFIRMED' },
       paymentContext: { status: 'PAID' },
       deliveryContext: { status: 'OPEN' },
     });
+
+    router.push('/order');
   };
   return (
     <>

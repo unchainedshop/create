@@ -21,9 +21,10 @@ const useOrderDetailQuery = ({ orderId }) => {
   const { data, loading, error } = useQuery(OrderDetailQuery, {
     variables: { orderId: orderId },
   });
+  console.log(data);
 
   return {
-    product: data?.product,
+    order: data?.order,
     loading,
     error,
   };

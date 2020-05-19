@@ -4,9 +4,10 @@ import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from 'apollo-link-context';
 import { ApolloLink } from 'apollo-link';
 import getConfig from 'next/config';
+import setLoginCookie from './setLoginCookie';
 
 const {
-  publicRuntimeConfig: { UNCHAINED_ENDPOINT },
+  publicRuntimeConfig: { UNCHAINED_ENDPOINT, COOKIE_DOMAIN },
 } = getConfig();
 
 console.log(`Connecting to Unchained API at: ${UNCHAINED_ENDPOINT}`); // eslint-disable-line
@@ -15,7 +16,13 @@ const httpLink = createUploadLink({
   uri: UNCHAINED_ENDPOINT,
   fetch,
   includeExtensions: true,
+  credentials: 'same-origin',
 });
+
+const setCookieLink = setLoginCookie({
+  cookieDomain: COOKIE_DOMAIN ? `Domain=${COOKIE_DOMAIN};` : '',
+});
+
 const errorFix = new ApolloLink((operation, forward) =>
   forward(operation).map((data) => {
     if (data.errors) {
@@ -37,7 +44,12 @@ const contextLink = setContext((request, previousContext) => {
   };
 });
 
-export const link = ApolloLink.from([errorFix, contextLink, httpLink]);
+export const link = ApolloLink.from([
+  errorFix,
+  contextLink,
+  setCookieLink,
+  httpLink,
+]);
 
 export default async () => {
   try {

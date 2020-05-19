@@ -25,24 +25,10 @@ function create(initialState) {
     credentials: 'same-origin',
   });
 
-  const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem('token');
-
-    return {
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${token}` : '',
-      },
-    };
-  });
-
   return new ApolloClient({
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
-    // TODO: Share GraphQL Auth-token between client and server
-    link: process.browser
-      ? ApolloLink.from([authLink, httpLink])
-      : ApolloLink.from([httpLink]),
+    link: httpLink,
     cache: new InMemoryCache().restore(initialState || {}),
   });
 }

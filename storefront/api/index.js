@@ -11,23 +11,28 @@ const createApolloServer = async () => {
     cors: false,
     cacheControl: true,
     tracing: false,
-    context: ({ req }) => {
+    context: (graphqlContext) => {
       return {
-        forwardHeaders: mapForwardHeaders(req),
-        request: req,
+        ...graphqlContext,
+        forwardHeaders: mapForwardHeaders(graphqlContext.req),
       };
+    },
+    playground: {
+      settings: {
+        'request.credentials': 'same-origin',
+      },
     },
     plugins: [
       responseCachePlugin({
         extraCacheKeyData: ({ context }) => {
           return context?.locale?.normalized || '';
         },
-        shouldReadFromCache: ({ request }) => {
-          const bustCache = request?.query?.bustCache;
+        shouldReadFromCache: ({ req }) => {
+          const bustCache = req?.query?.bustCache;
           return !bustCache;
         },
-        shouldWriteToCache: ({ request }) => {
-          const bustCache = request?.query?.bustCache;
+        shouldWriteToCache: ({ req }) => {
+          const bustCache = req?.query?.bustCache;
           return !bustCache;
         },
       }),

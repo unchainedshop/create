@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:local": "UNCHAINED_ENDPOINT=http://localhost:4010/graphql next dev",
     "build": "SUPPRESS_ENV_ERRORS=1 next build",
     "start": "next start",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,jsx,ts,tsx}' --quiet --fix"

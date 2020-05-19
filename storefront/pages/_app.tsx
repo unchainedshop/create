@@ -8,10 +8,10 @@ const UnchainedApp = ({ Component, pageProps }) => {
   return <Component {...pageProps} />;
 };
 
-UnchainedApp.getInitialProps = async appContext => {
+UnchainedApp.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
   return { ...appProps };
-}
+};
 
 export default withApollo(UnchainedApp);

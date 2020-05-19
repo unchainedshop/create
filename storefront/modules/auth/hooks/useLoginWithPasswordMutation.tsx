@@ -1,6 +1,5 @@
 import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
-
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import CurrentUserFragment from '../fragments/CurrentUserFragment';
 import { UserQuery } from './useUserQuery';
 
@@ -18,6 +17,7 @@ const LoginWithPasswordMutation = gql`
 `;
 
 const useLoginWithPasswordMutation = () => {
+  const client = useApolloClient();
   const [loginWithPasswordMutation, { error }] = useMutation(
     LoginWithPasswordMutation,
     {
@@ -38,10 +38,8 @@ const useLoginWithPasswordMutation = () => {
     const result = await loginWithPasswordMutation({
       variables: { email, password },
     });
-    const token = result?.data?.loginWithPassword?.token;
-
-    if (window && window.localStorage && token)
-      window.localStorage.setItem('token', token);
+    await client.resetStore();
+    return result;
   };
 
   return {

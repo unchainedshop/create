@@ -4,6 +4,7 @@ import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl'
 import useConditionalAddCartProductMutation from '../../modules/cart/hooks/useConditionalAddCartProductMutation';
 import Header from '../../modules/layout/components/Header';
 import Footer from '../../modules/layout/components/Footer';
+import ApplePay from '../../modules/products/components/ApplePay';
 
 const Detail = () => {
   const router = useRouter();
@@ -31,7 +32,7 @@ const Detail = () => {
                 <small className="taxes">(inkl. MwSt.)</small>
               </h3>
               <h4 className="mb-0">{product?.texts?.subtitle}</h4>
-              {product?.texts?.description.split('\n').map((line, i) => (
+              {product?.texts?.description?.split('\n').map((line, i) => (
                 <p key={i}>{line}</p>
               ))}
               <p>Gewicht: {product?.dimensions?.weight * 1000} Gramm</p>
@@ -43,6 +44,7 @@ const Detail = () => {
             >
               In den Warenkorb
             </button>
+            <ApplePay productId={product?._id} />
           </div>
         </div>
       </div>

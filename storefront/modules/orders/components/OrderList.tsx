@@ -15,25 +15,25 @@ const OrderList = () => {
             <Link href="/order/[id]" as={`/order/${order._id}`}>
               <a className="card">
                 <h5 className="card-header">
-                  Order Number: {order.orderNumber}
+                  Bestellnummer: {order.orderNumber}
                 </h5>
                 <div className="card-body">
                   <h5 className="card-title">
-                    Created: {new Date(order.created).toISOString()}
+                    Erstellt: {new Date(order.created).toISOString()}
                   </h5>
                   <dl>
-                    <dt>Delivery type</dt>
+                    <dt>Lieferart</dt>
                     <dd>{order.delivery.provider.type}</dd>
-                    <dt>Payment type</dt>
+                    <dt>Zahlungsart</dt>
                     <dd>{order.supportedPaymentProviders[0].type}</dd>
 
-                    <dt>Payment status</dt>
+                    <dt>Zahlungsstatus</dt>
                     <dd>{order.payment.status}</dd>
-                    <dt>Total</dt>
+                    <dt>Gesamt</dt>
                     <dd>
                       {order.total.amount} {order.total.currency}
                     </dd>
-                    <dt>Country</dt>
+                    <dt>Land</dt>
                     <dd>
                       {order.country.name}
                       <span>{order.country.flagEmoji}</span>

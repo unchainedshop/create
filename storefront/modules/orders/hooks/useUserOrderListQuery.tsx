@@ -6,6 +6,7 @@ import OrderFragment from '../fragments/OrderFragment';
 const UserOrderListQuery = gql`
   {
     me {
+      _id
       orders {
         ...OrderFragment
       }

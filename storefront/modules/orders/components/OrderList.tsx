@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import useOrderListQuery from '../hooks/useUserOrderListQuery';
-
+import styles from './order.module.css';
 const OrderList = () => {
   const { orders, loading } = useOrderListQuery();
 
@@ -10,41 +10,58 @@ const OrderList = () => {
   return (
     <div className="container">
       <div className="row">
-        {orders.map((order) => (
-          <div className="col-sm-12" key={order._id}>
-            <Link href="/order/[id]" as={`/order/${order._id}`}>
-              <a className="card">
-                <h5 className="card-header">
-                  Bestellnummer: {order.orderNumber}
-                </h5>
-                <div className="card-body">
-                  <h5 className="card-title">
-                    Erstellt: {new Date(order.created).toISOString()}
-                  </h5>
-                  <dl>
-                    <dt>Lieferart</dt>
-                    <dd>{order.delivery.provider.type}</dd>
-                    <dt>Zahlungsart</dt>
-                    <dd>{order.supportedPaymentProviders[0].type}</dd>
-
-                    <dt>Zahlungsstatus</dt>
-                    <dd>{order.payment.status}</dd>
-                    <dt>Gesamt</dt>
-                    <dd>
-                      {order.total.amount} {order.total.currency}
-                    </dd>
-                    <dt>Land</dt>
-                    <dd>
-                      {order.country.name}
-                      <span>{order.country.flagEmoji}</span>
-                    </dd>
-                  </dl>
-                  <p className="color-brand">{order.status}</p>
-                </div>
-              </a>
-            </Link>
-          </div>
-        ))}
+        <table id={styles.order}>
+          <thead>
+            <tr>
+              <th>Bestellnummer</th>
+              <th>Erstellt</th>
+              <th>Lieferart</th>
+              <th>Zahlungsart</th>
+              <th>Zahlungsstatus</th>
+              <th>Gesamt</th>
+              <th>Land</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order) => (
+              <Link href="/order/[id]" as={`/order/${order._id}`}>
+                <tr>
+                  <td className="font-weight-bolder">{order.orderNumber}</td>
+                  <td> {new Date(order.created).toISOString()} </td>
+                  <td>{order.delivery.provider.type} </td>
+                  <td> {order.supportedPaymentProviders[0].type}</td>
+                  <td
+                    className={`font-weight-bolder ${
+                      order.payment.status == 'PAID'
+                        ? 'text-success'
+                        : 'text-warning'
+                    }`}
+                  >
+                    {order.payment.status}{' '}
+                  </td>
+                  <td>
+                    {' '}
+                    {order.total.amount} {order.total.currency}
+                  </td>
+                  <td>
+                    {order.country.name}
+                    <span>{order.country.flagEmoji}</span>
+                  </td>
+                  <td
+                    className={`font-weight-bolder  ${
+                      order.status == 'CONFIRMED'
+                        ? 'text-success'
+                        : 'text-warning'
+                    }`}
+                  >
+                    {order.status}{' '}
+                  </td>
+                </tr>
+              </Link>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

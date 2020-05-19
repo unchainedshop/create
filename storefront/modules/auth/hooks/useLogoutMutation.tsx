@@ -1,34 +1,23 @@
 import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import { UserQuery } from './useUserQuery';
 
 const LogoutMutation = gql`
-  mutation Logout($token: String!) {
-    logout(token: $token) {
+  mutation Logout {
+    logout {
       success
     }
   }
 `;
 
 const useLogoutMutation = () => {
-  const [logoutMutation] = useMutation(LogoutMutation, {
-    update(cache) {
-      cache.writeQuery({
-        query: UserQuery,
-        data: { me: null },
-      });
-    },
-  });
+  const client = useApolloClient();
+  const [logoutMutation] = useMutation(LogoutMutation);
 
   const logout = async () => {
-    if (window && window.localStorage) {
-      const token = window.localStorage.getItem('token');
-      window.localStorage.removeItem('token');
-
-      await logoutMutation({
-        variables: { token },
-      });
-    }
+    const result = await logoutMutation();
+    client.resetStore();
+    return result;
   };
 
   return {

@@ -1,19 +1,16 @@
 import useLoginAsGuestMutation from '../../auth/hooks/useLoginAsGuestMutation';
+import useUserQuery from '../../auth/hooks/useUserQuery';
 import useAddCartProductMutation from './useAddCartProductMutation';
 
-/**
- * If user is not logged in, create a guest user
- * TODO: This logic
- */
 const useConditionalAddCartProductMutation = () => {
   const { loginAsGuest } = useLoginAsGuestMutation();
   const { addCartProduct } = useAddCartProductMutation();
+  const { user } = useUserQuery();
 
   const conditionalAddCartProduct = async ({ productId }) => {
-    if (window && !window.localStorage.getItem('token')) {
+    if (!user?._id) {
       await loginAsGuest();
     }
-
     return addCartProduct({ productId });
   };
 

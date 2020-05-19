@@ -15,30 +15,30 @@ const OrderDetail = () => {
   return (
     <div>
       <Header />
-      <h2 className="text-center">Order Detail</h2>
+      <h2 className="text-center">Bestelldetails</h2>
       <div className="container">
         <div className="row">
           <div className="col-sm-6">
             <dl>
-              <dt>Order Number</dt>
+              <dt>Bestellnummer</dt>
               <dd>{order.orderNumber}</dd>
-              <dt>Created</dt>
+              <dt>Erstellt</dt>
               <dd>{new Date(order.created).toISOString()}</dd>
-              <dt>Ordered</dt>
+              <dt>Bestellt</dt>
               <dd>{new Date(order.ordered).toISOString()}</dd>
               <dt>Status</dt>
               <dd>{order.status}</dd>
-              <dt>Payment type</dt>
+              <dt>Zahlungsart</dt>
               <dd>{order.supportedPaymentProviders[0].type}</dd>
-              <dt>Payment Status</dt>
+              <dt>Zahlungsstatus</dt>
               <dd>{order.payment.status}</dd>
-              <dt>Delivery type</dt>
+              <dt>Lieferart</dt>
               <dd>{order.supportedDeliveryProviders[0].type}</dd>
-              <dt>Delivery Status</dt>
+              <dt>Lieferstatus</dt>
               <dd>{order.delivery.status}</dd>
-              <dt>Total Amount</dt>
+              <dt>Gesamtsumme</dt>
               <dd>{order.total.amount}</dd>
-              <dt>Country</dt>
+              <dt>Land</dt>
               <dd>
                 {order.country.name}
                 {order.country.flagEmoji}
@@ -53,8 +53,7 @@ const OrderDetail = () => {
                   <img src={getProductMediaUrl(item.product)} />
                   <div className="p-2">
                     <h4 className="my-0">
-                      {item?.total.currency}{' '}
-                      {item?.total.amount * item?.quantity}
+                      {item?.total.currency} {item?.total.amount}
                     </h4>
                     <h4 className="mb-0">{item?.product?.texts?.subtitle}</h4>
                     <p>{item?.texts?.description?.split('\n')[0]}</p>

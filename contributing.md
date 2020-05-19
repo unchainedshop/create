@@ -5,6 +5,12 @@ Prerequisites:
 1. Install Meteor
 2. Install Docker
 
+## Run the Engine and the Storefront next to each other in Dev Mode
+
+```
+npm run dev
+```
+
 ## Run the Shop Engine in Dev Mode
 
 ```

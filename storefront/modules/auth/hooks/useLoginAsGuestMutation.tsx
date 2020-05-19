@@ -1,24 +1,24 @@
 import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
 
 const LoginAsGuestMutation = gql`
   mutation LoginAsGuest {
     loginAsGuest {
       id
       token
+      tokenExpires
     }
   }
 `;
 
 const useLoginAsGuestMutation = () => {
+  const client = useApolloClient();
   const [loginAsGuestMutation] = useMutation(LoginAsGuestMutation);
 
   const loginAsGuest = async () => {
     const result = await loginAsGuestMutation();
-    const token = result?.data?.loginAsGuest?.token;
-
-    if (window && window.localStorage && token)
-      window.localStorage.setItem('token', token);
+    await client.resetStore();
+    return result;
   };
 
   return {

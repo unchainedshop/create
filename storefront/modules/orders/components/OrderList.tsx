@@ -1,6 +1,9 @@
 import Link from 'next/link';
 
+import formatDate from '../../common/utils/formatDate';
+import renderPrice from '../../common/utils/renderPrice';
 import useOrderListQuery from '../hooks/useUserOrderListQuery';
+
 import styles from './order.module.css';
 const OrderList = () => {
   const { orders, loading } = useOrderListQuery();
@@ -28,29 +31,26 @@ const OrderList = () => {
               <Link href="/order/[id]" as={`/order/${order._id}`}>
                 <tr>
                   <td className="font-weight-bolder">{order.orderNumber}</td>
-                  <td> {new Date(order.created).toISOString()} </td>
+                  <td> {formatDate(order.created)} </td>
                   <td>{order.delivery.provider.type} </td>
                   <td> {order.supportedPaymentProviders[0].type}</td>
                   <td
                     className={`font-weight-bolder ${
-                      order.payment.status == 'PAID'
+                      order?.payment?.status == 'PAID'
                         ? 'text-success'
                         : 'text-warning'
                     }`}
                   >
                     {order.payment.status}{' '}
                   </td>
-                  <td>
-                    {' '}
-                    {order.total.amount} {order.total.currency}
-                  </td>
+                  <td> {renderPrice(order.total)}</td>
                   <td>
                     {order.country.name}
                     <span>{order.country.flagEmoji}</span>
                   </td>
                   <td
-                    className={`font-weight-bolder  ${
-                      order.status == 'CONFIRMED'
+                    className={`font-weight-bolder ${
+                      order?.status == 'CONFIRMED'
                         ? 'text-success'
                         : 'text-warning'
                     }`}

@@ -15,6 +15,12 @@ const OrderFragment = gql`
       provider {
         _id
         type
+        simulatedPrice {
+          price {
+            amount
+            currency
+          }
+        }
       }
       status
       fee {

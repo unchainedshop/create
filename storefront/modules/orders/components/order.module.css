@@ -1,0 +1,133 @@
+table#order {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2em;
+  text-align: left;
+}
+table#order,
+table#order thead,
+table#order tbody,
+table#order th,
+table#order td,
+table#order tr {
+  display: block;
+}
+
+table#order td {
+  padding: 0;
+}
+
+table#order tr {
+  border: 1px solid #ccc;
+}
+table#order thead tr {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+table#order td {
+  border: none;
+  position: relative;
+  line-height: 2;
+  padding-left: 50%;
+}
+table#order td input {
+  line-height: 2;
+}
+table#order td::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  padding-right: 10px;
+  white-space: nowrap;
+  background-color: #03aa87;
+  color: #fff;
+}
+table#order tr:nth-of-type(odd) {
+  background: #eee;
+}
+
+table#order tr:hover {
+  background-color: #ace4d6;
+  color: white;
+  cursor: pointer;
+}
+
+table#order td:nth-of-type(1)::before {
+  content: 'Bestellnummer';
+}
+table#order td:nth-of-type(2)::before {
+  content: 'Erstellt';
+}
+table#order td:nth-of-type(3)::before {
+  content: 'Lieferart';
+}
+table#order td:nth-of-type(4)::before {
+  content: 'Zahlungsart';
+}
+table#order td:nth-of-type(5)::before {
+  content: 'Zahlungsstatus';
+}
+table#order td:nth-of-type(6)::before {
+  content: 'Gesamt';
+}
+table#order td:nth-of-type(7)::before {
+  content: 'Land';
+}
+table#order td:nth-of-type(8)::before {
+  content: 'Status';
+}
+
+@media only screen and (min-width: 768px) {
+  table#order {
+    display: table;
+  }
+  table#order thead,
+  table#order tbody {
+    display: table-header-group;
+  }
+  table#order thead tr,
+  table#order tbody tr {
+    position: static;
+    display: table-row;
+  }
+  table#order th,
+  table#order td {
+    display: table-cell;
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  table#order th {
+    background: #03aa87;
+    color: white;
+    font-weight: 700;
+  }
+
+  table#order td:nth-of-type(1)::before {
+    content: '';
+  }
+  table#order td:nth-of-type(2)::before {
+    content: '';
+  }
+  table#order td:nth-of-type(3)::before {
+    content: '';
+  }
+  table#order td:nth-of-type(4)::before {
+    content: '';
+  }
+
+  table#order td:nth-of-type(5)::before {
+    content: '';
+  }
+  table#order td:nth-of-type(6)::before {
+    content: '';
+  }
+  table#order td:nth-of-type(7)::before {
+    content: '';
+  }
+  table#order td:nth-of-type(8)::before {
+    content: '';
+  }
+}

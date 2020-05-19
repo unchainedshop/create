@@ -2,7 +2,6 @@ import { mergeSchemas, addSchemaLevelResolveFunction } from 'graphql-tools';
 import getConfig from 'next/config';
 
 import getSchemas from './remotes';
-import convertStreamToBufferObject from './convertStreamToBufferObject';
 
 const {
   publicRuntimeConfig: { NODE_ENV },

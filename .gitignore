@@ -1,3 +1,4 @@
 dockercfg
 codeship.aes
 .env
+node_modules

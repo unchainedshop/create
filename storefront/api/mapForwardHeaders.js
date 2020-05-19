@@ -1,6 +1,6 @@
 import { lookup } from 'geoip-country';
 
-const mapForwardHeaders = ({ headers, ...req }) => {
+const mapForwardHeaders = ({ headers = {}, ...req } = {}) => {
   const ip =
     headers['x-real-ip'] ||
     headers['x-forwarded-for'] ||
@@ -9,8 +9,8 @@ const mapForwardHeaders = ({ headers, ...req }) => {
     req?.connection?.socket?.remoteAddress;
 
   const forwardHeaders = {
+    ...headers,
     'accept-language': headers['accept-language'],
-    authorization: headers.authorization,
     'x-real-ip': ip,
     'x-shop-country': headers['x-shop-country'] || lookup(ip),
   };

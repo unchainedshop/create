@@ -92,15 +92,8 @@ const createPaymentRequest = async ({ apolloClient, cart }) => {
       countryCode: 'CH',
     },
   };
-  const creditCardMethod = {
-    supportedMethods: 'basic-card',
-    data: {
-      supportedNetworks: ['visa', 'mastercard'],
-      supportedTypes: ['debit', 'credit'],
-    },
-  };
   const request = new PaymentRequest(
-    [applePayMethod, creditCardMethod],
+    [applePayMethod],
     paymentDetails,
     paymentOptions,
   );
@@ -154,7 +147,7 @@ export default () => {
     console.log(response);
 
     try {
-      const { data } = await apolloClient.mutate({
+      await apolloClient.mutate({
         mutation: gql`
           mutation checkoutCart(
             $orderId: ID
@@ -201,7 +194,6 @@ export default () => {
           },
         },
       });
-      console.log(data);
       // https://webkit.org/blog/8182/introducing-the-payment-request-api-for-apple-pay/
       //const status = null; // processResponse(response);
       response.complete('success');
@@ -211,5 +203,9 @@ export default () => {
     }
   };
 
-  return { isApplePayAvailable, showPaymentRequest };
+  return {
+    isApplePayAvailable,
+    showPaymentRequest,
+    isGeneralPaymentAvailable: false,
+  };
 };

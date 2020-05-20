@@ -4,7 +4,7 @@ export default {
   deliveryProviders: [
     {
       id: 'send-mail',
-      adapterKey: 'shop.unchained.send-mail',
+      adapterKey: 'shop.unchained.delivery.send-message',
       type: DeliveryProviderType.DELIVERY,
     },
   ],

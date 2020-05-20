@@ -1,15 +1,16 @@
-import useConditionalAddCartProductMutation from '../../cart/hooks/useConditionalAddCartProductMutation';
 import usePaymentRequest from '../hooks/usePaymentRequest';
 
-const WebPayment = ({ productId }) => {
-  const { conditionalAddCartProduct } = useConditionalAddCartProductMutation();
-  const { isApplePayAvailable, showPaymentRequest } = usePaymentRequest();
+const WebPayment = ({ onClick, onSuccess = null }) => {
+  const {
+    isApplePayAvailable,
+    isGeneralPaymentAvailable,
+    showPaymentRequest,
+  } = usePaymentRequest();
 
-  const handleClick = async () => {
-    await conditionalAddCartProduct({ productId });
-    const result = await showPaymentRequest();
-    console.log(result);
-    return;
+  const handlePayment = async () => {
+    const onClickResult = await onClick();
+    const result = await showPaymentRequest(onClickResult);
+    return onSuccess?.(result);
   };
 
   try {
@@ -19,13 +20,22 @@ const WebPayment = ({ productId }) => {
           style={{
             '-webkit-appearance': '-apple-pay-button',
           }}
-          onClick={handleClick}
+          onClick={handlePayment}
         ></button>
       );
-    } else {
-      return <button onClick={handleClick}>Pay</button>;
+    } else if (isGeneralPaymentAvailable) {
+      return (
+        <button
+          type="button"
+          className="button button--primary button--big text-uppercase"
+          onClick={handlePayment}
+        >
+          Payment Request API
+        </button>
+      );
     }
   } catch (e) {}
+  return null;
 };
 
 export default WebPayment;

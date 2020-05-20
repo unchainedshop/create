@@ -4,7 +4,6 @@ import useConditionalAddCartProductMutation from '../../cart/hooks/useConditiona
 
 import useProductListQuery from '../hooks/useProductListQuery';
 import getProductMediaUrl from '../utils/getProductMediaUrl';
-import ApplePay from './ApplePay';
 
 const ProductList = () => {
   const { products } = useProductListQuery();

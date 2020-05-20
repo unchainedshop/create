@@ -4,7 +4,7 @@ import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl'
 import useConditionalAddCartProductMutation from '../../modules/cart/hooks/useConditionalAddCartProductMutation';
 import Header from '../../modules/layout/components/Header';
 import Footer from '../../modules/layout/components/Footer';
-import ApplePay from '../../modules/products/components/ApplePay';
+import WebPayment from '../../modules/products/components/WebPayment';
 
 const Detail = () => {
   const router = useRouter();
@@ -44,7 +44,7 @@ const Detail = () => {
             >
               In den Warenkorb
             </button>
-            <ApplePay productId={product?._id} />
+            <WebPayment productId={product?._id} />
           </div>
         </div>
       </div>

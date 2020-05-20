@@ -8,11 +8,9 @@ import WebPayment from '../../modules/products/components/WebPayment';
 
 const Detail = () => {
   const router = useRouter();
-
   const { product } = useProductDetailQuery({ slug: router.query.slug });
   const { conditionalAddCartProduct } = useConditionalAddCartProductMutation();
-
-  const handleClick = () => {
+  const handleClick = async () => {
     conditionalAddCartProduct({ productId: product._id });
   };
 
@@ -44,7 +42,7 @@ const Detail = () => {
             >
               In den Warenkorb
             </button>
-            <WebPayment productId={product?._id} />
+            <WebPayment onClick={handleClick} />
           </div>
         </div>
       </div>

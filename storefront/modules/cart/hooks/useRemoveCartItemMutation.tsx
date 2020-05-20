@@ -11,7 +11,7 @@ const RemoveCartItemMutation = gql`
 
 const useRemoveCartItemMutation = () => {
   const [removeCartItemMutation] = useMutation(RemoveCartItemMutation, {
-    refetchQueries: ['UserQuery'],
+    refetchQueries: ['UserQuery', 'cart'],
   });
 
   const removeCartItem = async ({ itemId }) => {

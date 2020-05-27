@@ -1,11 +1,10 @@
 import Link from 'next/link';
 
-import useUserQuery from '../../auth/hooks/useUserQuery';
+import useUserOrderOrderListQuery from '../hooks/useUserOrderListQuery';
 
 const OrderButton = () => {
-  const { user } = useUserQuery();
-  console.log(user);
-  if (!user) return null;
+  const { orders } = useUserOrderOrderListQuery();
+  if (orders.length === 0) return null;
 
   return (
     <Link href="/order">

@@ -15,6 +15,7 @@
 @import 'base.css';
 @import 'grid.css';
 @import 'form.css';
+@import 'table.css';
 
 @import 'components/header.css';
 @import 'components/button.css';

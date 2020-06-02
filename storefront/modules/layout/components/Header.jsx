@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import LoginCart from '../../auth/components/LoginCart';
+import OrderButton from '../../orders/components/UserOrderButton';
 
 const Header = () => {
   return (
@@ -11,6 +12,7 @@ const Header = () => {
             <h3 className="my-2 mr-2">Currybag™</h3>
           </a>
         </Link>
+        <OrderButton />
         <LoginCart />
       </div>
     </header>

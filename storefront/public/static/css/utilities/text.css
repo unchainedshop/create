@@ -148,7 +148,7 @@ a.text-secondary:focus {
 }
 
 .text-success {
-  color: var(--color-success);
+  color: #03aa87;
 }
 
 a.text-success:hover,

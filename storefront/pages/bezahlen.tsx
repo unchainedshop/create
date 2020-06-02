@@ -1,11 +1,15 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
+import Footer from '../modules/layout/components/Footer';
 import ManageCart from '../modules/cart/components/ManageCart';
+import useCheckOutCartMutation from '../modules/cart/hooks/useCheckOutCart';
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
-import Footer from '../modules/layout/components/Footer';
+import useSetOrderPaymentProviderMutation from '../modules/orders/hooks/setPaymentOrderProvider';
+import useSetOrderDeliveryProviderMutation from '../modules/orders/hooks/setOrderDeliveryProvider';
 
 const EditableField = ({
   register,
@@ -226,6 +230,38 @@ const BillingSection = () => {
 };
 
 const Payment = () => {
+  const router = useRouter();
+  const { user } = useUserQuery();
+  const { setOrderPaymentProvider } = useSetOrderPaymentProviderMutation();
+  const { setOrderDeliveryProvider } = useSetOrderDeliveryProviderMutation();
+  const { checkOutCart } = useCheckOutCartMutation();
+
+  const handleCheckout = async () => {
+    const paymentProvider = user.cart.supportedPaymentProviders.find(
+      ({ type }) => type === 'INVOICE',
+    );
+
+    const deliveryProvider = user.cart.supportedDeliveryProviders[0];
+
+    await setOrderPaymentProvider({
+      orderId: user.cart._id,
+      paymentProviderId: paymentProvider._id,
+    });
+
+    await setOrderDeliveryProvider({
+      orderId: user.cart._id,
+      deliveryProviderId: deliveryProvider._id,
+    });
+
+    await checkOutCart({
+      orderId: user.cart._id,
+      orderContext: { status: 'CONFIRMED' },
+      paymentContext: { status: 'PAID' },
+      deliveryContext: { status: 'OPEN' },
+    });
+
+    router.push('/order');
+  };
   return (
     <>
       <header className="header sticky-top">
@@ -257,12 +293,15 @@ const Payment = () => {
             <h2>Rechnungsadresse</h2>
             <BillingSection />
 
-            <a
+            {/* <a
               href="https://pay.sandbox.datatrans.com/upp/jsp/upStart.jsp?merchantId=1100004624&refno=1234567890&amount=1000&currency=CHF&theme=DT2015"
               className="button button--primary button--big"
             >
               Bestellung abschicken und bezahlen 💳
-            </a>
+            </a> */}
+            <button onClick={handleCheckout} className="button button--primary">
+              Bestellung abschicken
+            </button>
           </div>
         </div>
       </div>

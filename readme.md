@@ -34,7 +34,7 @@ https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
 Once docker engine is running, please activate swarm mode:
 
-```
+```bash
 docker swarm init
 ```
 

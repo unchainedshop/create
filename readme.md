@@ -1,9 +1,6 @@
 [![Codeship Status for unchainedshop/currybag-website](https://app.codeship.com/projects/2f18b4a0-57dc-0138-8b6d-4230a644a556/status?branch=master)](https://app.codeship.com/projects/391300)
 
-# Currybag: Unchained Food Delivery (UDF)
-
-Test: https://currybag-test.ucc.dev
-Live: https://currybag.ch
+# Unchained Food Delivery (UDF)
 
 Benefits:
 

@@ -1,4 +1,4 @@
-- name: Build Currybag Website
+- name: Build Boilerplate Website
   type: parallel
   encrypted_dockercfg_path: dockercfg.encrypted
   steps:
@@ -11,21 +11,21 @@
         - name: Build
           service: engine
           type: push
-          image_name: registry.ucc.dev/currybag/website/engine
+          image_name: registry.ucc.dev/boilerplate/website/engine
           image_tag: "{{.Branch}}-latest"
           registry: registry.ucc.dev
         - name: Tag image as latest
           service: engine
           tag: develop
           type: push
-          image_name: registry.ucc.dev/currybag/website/engine
+          image_name: registry.ucc.dev/boilerplate/website/engine
           image_tag: "next"
           registry: registry.ucc.dev
         - name: Tag image as stable
           service: engine
           tag: master
           type: push
-          image_name: registry.ucc.dev/currybag/website/engine
+          image_name: registry.ucc.dev/boilerplate/website/engine
           image_tag: "stable"
           registry: registry.ucc.dev
     - name: Storefront
@@ -34,21 +34,21 @@
         - name: Build
           service: storefront
           type: push
-          image_name: registry.ucc.dev/currybag/website/storefront
+          image_name: registry.ucc.dev/boilerplate/website/storefront
           image_tag: "{{.Branch}}-latest"
           registry: registry.ucc.dev
         - name: Tag image as latest
           service: storefront
           tag: develop
           type: push
-          image_name: registry.ucc.dev/currybag/website/storefront
+          image_name: registry.ucc.dev/boilerplate/website/storefront
           image_tag: "next"
           registry: registry.ucc.dev
         - name: Tag image as stable
           service: storefront
           tag: master
           type: push
-          image_name: registry.ucc.dev/currybag/website/storefront
+          image_name: registry.ucc.dev/boilerplate/website/storefront
           image_tag: "stable"
           registry: registry.ucc.dev
     - name: CMS
@@ -57,20 +57,20 @@
         - name: Build
           service: cms
           type: push
-          image_name: registry.ucc.dev/currybag/website/cms
+          image_name: registry.ucc.dev/boilerplate/website/cms
           image_tag: "{{.Branch}}-latest"
           registry: registry.ucc.dev
         - name: Tag image as latest
           service: cms
           tag: develop
           type: push
-          image_name: registry.ucc.dev/currybag/website/cms
+          image_name: registry.ucc.dev/boilerplate/website/cms
           image_tag: "next"
           registry: registry.ucc.dev
         - name: Tag image as stable
           service: cms
           tag: master
           type: push
-          image_name: registry.ucc.dev/currybag/website/cms
+          image_name: registry.ucc.dev/boilerplate/website/cms
           image_tag: "stable"
           registry: registry.ucc.dev

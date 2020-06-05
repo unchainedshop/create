@@ -8,11 +8,18 @@ const mapForwardHeaders = ({ headers = {}, ...req } = {}) => {
     req?.socket?.remoteAddress ||
     req?.connection?.socket?.remoteAddress;
 
+  console.log(headers);
   const forwardHeaders = {
+    ...headers,
     'accept-language': headers['accept-language'],
     'x-real-ip': ip,
     'x-shop-country': headers['x-shop-country'] || lookup(ip),
   };
+  // delete forwardHeaders.origin;
+  // delete forwardHeaders.host;
+  // delete forwardHeaders.connection;
+  // delete forwardHeaders.referer;
+
   return forwardHeaders;
 };
 

@@ -1,5 +1,5 @@
 app.name: "UNCHAINED CMS"
-#site_url: "https://cms.currybag-test.ucc.dev"
+#site_url: "https://wherever-you-want-to-run-your-cms"
 languages:
   default: "Deutsch"
 groups:

@@ -1,7 +1,7 @@
 import { FilterDirector, FilterAdapter } from 'meteor/unchained:core-filters';
 
 class PublicareAttributeFilter extends FilterAdapter {
-  static key = 'currybag.filter.ingredients';
+  static key = 'unchained-scaffold.filter.ingredients';
 
   static label = 'Filter ingredients';
 
@@ -19,7 +19,7 @@ class PublicareAttributeFilter extends FilterAdapter {
     if (key !== 'author') return last;
     return {
       status: 'ACTIVE',
-      'meta.currybag.ingredients':
+      'meta.unchained-scaffold.ingredients':
         value !== undefined ? value : { $exists: true },
     };
   }

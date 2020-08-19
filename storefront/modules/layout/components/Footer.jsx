@@ -17,9 +17,6 @@ const Footer = () => {
           <a className="link m-4">Über uns</a>
         </Link>
       </div>
-      <div className="text-center mt-3 color-brand">
-        © 2020 Corona Virus Pandemic
-      </div>
     </footer>
   );
 };

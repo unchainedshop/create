@@ -1,5 +1,5 @@
 {
-  "name": "currybag-website-engine",
+  "private": true,
   "meteor": {
     "mainModule": {
       "client": false,

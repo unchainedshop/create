@@ -90,7 +90,7 @@ nano -w .env
 | `DATATRANS_SIGN_KEY`     | Datatrans Sign Key (see Datatrans specific documentation below)                                                                                                          |
 | `DATATRANS_API_ENDPOINT` | If not set, this will default to the sandbox endpoint, so please set to "https://api.datatrans.com"                                                                      |
 | `MONGO_VERSION`          | The MongoDB Version, use 4.2 if you're unsure                                                                                                                            |
-| `COOKIE_DOMAIN`          | The cookie domain, set to the domain the app is running on, currybag.ch?                                                                                                 |
+| `COOKIE_DOMAIN`          | The cookie domain, set to the domain the app is running on                                                                                                 |
 
 When all the parameters are set, you can run:
 

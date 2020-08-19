@@ -21,7 +21,7 @@ const ProductList = () => {
             key={product._id}
             className="col-sm-6 col-lg-4 product-list-item"
           >
-            <Link href="/curry/[slug]" as={`/curry/${product.texts.slug}`}>
+            <Link href="/products/[slug]" as={`/products/${product.texts.slug}`}>
               <a className="product-list-item-overlay" />
             </Link>
             <div className="product-list-item-inner">

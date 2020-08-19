@@ -78,13 +78,13 @@ services:
     environment:
       NODE_ENV: production
       MONGO_URL: mongodb://mongodb/unchained
-      UI_ENDPOINT: $UDF_HTTP_METHOD://$UDF_DOMAIN/de
-      ROOT_URL: $UDF_HTTP_METHOD://engine.$UDF_DOMAIN
+      UI_ENDPOINT: $UNCHAINED_HTTP_METHOD://$UNCHAINED_DOMAIN/de
+      ROOT_URL: $UNCHAINED_HTTP_METHOD://engine.$UNCHAINED_DOMAIN
       FILE_STORAGE_PATH: /unchained-uploads
       MAIL_URL: $MAIL_URL
       EMAIL_FROM: $EMAIL_FROM
       EMAIL_WEBSITE_NAME: $EMAIL_WEBSITE_NAME
-      GRAPHQL_ENDPOINT: $UDF_HTTP_METHOD://engine.$UDF_DOMAIN/graphql
+      GRAPHQL_ENDPOINT: $UNCHAINED_HTTP_METHOD://engine.$UNCHAINED_DOMAIN/graphql
       ADMIN_ACCESS_SECRET: $ADMIN_ACCESS_SECRET
       DATATRANS_SECRET: $DATATRANS_SECRET
       DATATRANS_SIGN_KEY: $DATATRANS_SIGN_KEY
@@ -103,7 +103,7 @@ services:
         condition: any
       labels:
         traefik.http.services.udf-engine.loadbalancer.server.port: '3000'
-        traefik.http.routers.udf-engine.rule: Host(`engine.$UDF_DOMAIN`)
+        traefik.http.routers.udf-engine.rule: Host(`engine.$UNCHAINED_DOMAIN`)
         traefik.http.routers.udf-engine.entryPoints: websecure
         traefik.http.routers.udf-engine.tls.certresolver: le
         traefik.docker.network: traefik
@@ -129,7 +129,7 @@ services:
         condition: any
       labels:
         traefik.http.routers.udf-cms.tls.certresolver: le
-        traefik.http.routers.udf-cms.rule: Host(`cms.$UDF_DOMAIN`)
+        traefik.http.routers.udf-cms.rule: Host(`cms.$UNCHAINED_DOMAIN`)
         traefik.http.services.udf-cms.loadbalancer.server.port: '80'
         traefik.http.routers.udf-cms.entryPoints: websecure
         traefik.docker.network: traefik
@@ -142,12 +142,12 @@ services:
       context: ./storefront
       dockerfile: Dockerfile
     environment:
-      FRONTEND_URL: $UDF_HTTP_METHOD://$UDF_DOMAIN
-      GETCOCKPIT_ENDPOINT: $UDF_HTTP_METHOD://cms.$UDF_DOMAIN
+      FRONTEND_URL: $UNCHAINED_HTTP_METHOD://$UNCHAINED_DOMAIN
+      GETCOCKPIT_ENDPOINT: $UNCHAINED_HTTP_METHOD://cms.$UNCHAINED_DOMAIN
       GETCOCKPIT_TOKEN: $GETCOCKPIT_TOKEN
-      GRAPHQL_ENDPOINT: $UDF_HTTP_METHOD://$UDF_DOMAIN/api/graphql
+      GRAPHQL_ENDPOINT: $UNCHAINED_HTTP_METHOD://$UNCHAINED_DOMAIN/api/graphql
       NODE_ENV: production
-      UNCHAINED_ENDPOINT: $UDF_HTTP_METHOD://engine.$UDF_DOMAIN/graphql
+      UNCHAINED_ENDPOINT: $UNCHAINED_HTTP_METHOD://engine.$UNCHAINED_DOMAIN/graphql
     networks:
       - traefik
     deploy:
@@ -162,7 +162,7 @@ services:
         traefik.http.routers.udf-storefront.tls.certresolver: le
         traefik.http.services.udf-storefront.loadbalancer.server.port: '3000'
         traefik.http.routers.udf-storefront.entryPoints: websecure
-        traefik.http.routers.udf-storefront.rule: Host(`$UDF_DOMAIN`)
+        traefik.http.routers.udf-storefront.rule: Host(`$UNCHAINED_DOMAIN`)
         traefik.docker.network: traefik
         traefik.enable: 'true'
         swarmpit.service.deployment.autoredeploy: 'true'

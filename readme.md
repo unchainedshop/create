@@ -1,24 +1,37 @@
-[![Codeship Status for unchainedshop/currybag-website](https://app.codeship.com/projects/2f18b4a0-57dc-0138-8b6d-4230a644a556/status?branch=master)](https://app.codeship.com/projects/391300)
+[![Codeship Status for unchainedshop/create](https://app.codeship.com/projects/2f18b4a0-57dc-0138-8b6d-4230a644a556/status?branch=master)](https://app.codeship.com/projects/391300)
 
-# Unchained Food Delivery (UDF)
+# Unchained E-Commerce Scaffold
 
-Benefits:
+## Prerequisites
 
-- 100% Open Source
-- Total data ownership and no FAGA
-- Contains a CMS to edit content
-- Contains a scalable Enterprise Shop Engine (https://unchained.shop)
-- Simple logistics process for a restaurant pre-implemented digitally
+- [Currently, you have to have Meteor installed locally](https://www.meteor.com/install).
+- Node.js >= v12
 
-## How to contribute
+## Quickstart
 
-See [contributing.md](./contributing.md)
+Welcome to your new e-commerce online experience! To get started, simply run:
 
-## How to deploy UDF
+```bash
+mkdir your-awesome-ecommerce-project
+cd your-awesome-ecommerce-project
+npm init @unchainedshop
+npm run install-all
+npm run dev
+```
+
+Now you have a fully running Unchained E-Commerce environment running locally. Check it out by browsing to the following URLs:
+
+- http://localhost:3000 to see the front-end (storefront)
+- http://localhost:4010 to see the control panel. Login with username: admin@localhost / password: password
+- http://localhost:4010/graphql to see the Unchained GraphQL Playground
+
+Go to [docs.unchained.shop](https://docs.unchained.shop) for more further information.
+
+## Deploy with Docker
 
 ### Step 1: Provision a VM with Docker installed
 
-You need to get a VM or Managed Docker Environment from a local cloud provider, for Switzerland we can recommendone of the following (there are many more of course):
+You need to get a VM or Managed Docker Environment from a local cloud provider. For Switzerland we can recommend one of the following (there are many more of course):
 
 https://www.exoscale.com/compute/
 https://www.metanet.ch/server/cloud-server
@@ -48,9 +61,9 @@ cms IN CNAME your-website.ch
 engine IN CNAME your-website.ch
 ```
 
-It is really important that you set these DNS records early enough so they propagate through the world wide web, UDF uses letsencrypt to automatically provision SSL certificates for your page. Letsencrypt needs to validate that the server is reachable via the domain provided in the configuration (Step 3, env variable DOMAIN).
+It is really important that you set these DNS records early enough so they propagate through the world wide web, UNCHAINED uses letsencrypt to automatically provision SSL certificates for your page. Letsencrypt needs to validate that the server is reachable via the domain provided in the configuration (Step 3, env variable DOMAIN).
 
-### Step 3: Deploy the UDF Stack
+### Step 3: Deploy the UNCHAINED Stack
 
 We assume that you have already forked this repository and conducted the "contributing.md" file which tells you how to change the styles, markup, images and logos to suit your business's CI/CD.
 
@@ -68,8 +81,8 @@ nano -w .env
 | `MAIL_URL`               | Use any smtp server that you have access to and correctly set it in connection url style like here: https://nodemailer.com/smtp/                                         |
 | `EMAIL_FROM`             | noreply@your-website.ch                                                                                                                                                  |
 | `EMAIL_WEBSITE_NAME`     | The Name of your Website                                                                                                                                                 |
-| `UDF_DOMAIN`             | The Root domain of your website, like: your-website.ch                                                                                                                   |
-| `UDF_HTTP_METHOD`        | HTTP Method can be http or https                                                                                                                                         |
+| `UNCHAINED_DOMAIN`             | The Root domain of your website, like: your-website.ch                                                                                                                   |
+| `UNCHAINED_HTTP_METHOD`        | HTTP Method can be http or https                                                                                                                                         |
 | `ADMIN_ACCESS_SECRET`    |  A random string, DANGER: if you don't set this env variable your whole system can be accessed via the default secret (is known by anybody who looks at the source code) |
 | `GETCOCKPIT_TOKEN`       | Token generated via the CMS UI (see Step 3), set later                                                                                                                   |
 | `DATATRANS_MERCHANT_ID`: | Datatrans Merchant ID (see Datatrans specific documentation below)                                                                                                       |
@@ -101,11 +114,11 @@ More information you can find on docs.datatrans.com.
 
 ### Step 4: Setup Cockpit & Unchained
 
-Now you have a running UDF Stack, but data is still missing, visit the URL's:
+Now you have a running UNCHAINED Stack, but data is still missing, visit the URL's:
 
 https://cms.your-website.ch
 Please call the install URL: https://cms.your-website.ch/install to generate an admin user, then
-generate a new access key, adjust the env variable for the cockpit token and redeploy the UDF stack (Step 2)
+generate a new access key, adjust the env variable for the cockpit token and redeploy the UNCHAINED stack (Step 2)
 
 https://engine.your-website.ch
 Please login as admin and change the password:
@@ -115,4 +128,9 @@ User: admin@localhost
 Password: password
 ```
 
-Enjoy your UDF App!
+Enjoy your UNCHAINED App!
+
+
+## Contribute
+
+See [contributing.md](./contributing.md)

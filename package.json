@@ -2,7 +2,7 @@
   "name": "@unchainedshop/create",
   "private": false,
   "description": "Bootstrap your amazing e-commerce experienced based on the Unchained Engine in less than 5 minutes",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "./init.js",
   "bin": {
     "create-unchainedshop": "./init.js"

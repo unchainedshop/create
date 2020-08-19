@@ -21,7 +21,7 @@ function copyFileSync( source, target ) {
     }
 
 
-    // console.log('writing', targetFile);
+    console.log('creating', targetFile);
     fs.writeFileSync(targetFile, fs.readFileSync(source));
 }
 
@@ -30,7 +30,6 @@ function copyFolderRecursiveSync( source, target, depth = 0 ) {
       return
     }
 
-    console.log(source, target, depth)
 
     var files = [];
 
@@ -55,5 +54,41 @@ function copyFolderRecursiveSync( source, target, depth = 0 ) {
     }
 }
 
-copyFolderRecursiveSync(__dirname, path.join(process.cwd(), '.'));
-// console.log(__dirname, path.join(process.cwd(), '.'))
+const start = new Date();
+
+console.log(`
+Initializing
+
+_____ _____ _____ _____ _____ _____ _____ _____ ____
+|  |  |   | |     |  |  |  _  |     |   | |   __|    \\
+|  |  | | | |   --|     |     |-   -| | | |   __|  |  |
+|_____|_|___|_____|__|__|__|__|_____|_|___|_____|____/
+
+...
+`);
+
+fs.readdir(process.cwd(), function(err, files) {
+  if (err) {
+     // some sort of error
+  } else {
+     if (files.length) {
+       console.log('Error: Current working directory not empty. Run this command inside of an empty directory.')
+     } else {
+       copyFolderRecursiveSync(__dirname, path.join(process.cwd(), '.'));
+       const finish = new Date();
+       
+       console.log(`
+
+Finished in ${finish-start} milliseconds.
+
+To get started run:
+
+$ npm install
+$ npm run dev
+
+Have fun!
+`       );
+     }
+  }
+});
+

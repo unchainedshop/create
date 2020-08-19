@@ -81,8 +81,8 @@ nano -w .env
 | `MAIL_URL`               | Use any smtp server that you have access to and correctly set it in connection url style like here: https://nodemailer.com/smtp/                                         |
 | `EMAIL_FROM`             | noreply@your-website.ch                                                                                                                                                  |
 | `EMAIL_WEBSITE_NAME`     | The Name of your Website                                                                                                                                                 |
-| `UNCHAINED_DOMAIN`             | The Root domain of your website, like: your-website.ch                                                                                                                   |
-| `UNCHAINED_HTTP_METHOD`        | HTTP Method can be http or https                                                                                                                                         |
+| `WEBSITE_DOMAIN`             | The Root domain of your website, like: your-website.ch                                                                                                                   |
+| `HTTP_METHOD`        | HTTP Method can be http or https                                                                                                                                         |
 | `ADMIN_ACCESS_SECRET`    |  A random string, DANGER: if you don't set this env variable your whole system can be accessed via the default secret (is known by anybody who looks at the source code) |
 | `GETCOCKPIT_TOKEN`       | Token generated via the CMS UI (see Step 3), set later                                                                                                                   |
 | `DATATRANS_MERCHANT_ID`: | Datatrans Merchant ID (see Datatrans specific documentation below)                                                                                                       |

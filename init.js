@@ -83,7 +83,7 @@ Finished in ${finish-start} milliseconds.
 
 To get started run:
 
-$ npm install
+$ npm run install:all
 $ npm run dev
 
 Have fun!

@@ -2,7 +2,7 @@
   "name": "@unchainedshop/create",
   "private": false,
   "description": "Bootstrap your amazing e-commerce experienced based on the Unchained Engine in less than 5 minutes",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./init.js",
   "bin": {
     "create-unchainedshop": "./init.js"
@@ -12,7 +12,7 @@
     "dev": "run-p --race --print-label dev:*",
     "dev:engine": "cd engine && npm run dev",
     "dev:storefront": "cd storefront && npm run dev:local",
-    "install:*": "run-p --print-label install:*",
+    "install:all": "npm install && run-p --print-label install:*",
     "install:engine": "cd engine && npm install",
     "install:storefront": "cd storefront && npm install"
   },

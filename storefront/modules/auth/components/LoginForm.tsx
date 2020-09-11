@@ -37,7 +37,7 @@ const LoginForm = ({ onLogin }) => {
       <div className="form-row">
         <div
           className={`d-flex justify-between flex-column w-100 ${
-            errors['email'] ? 'form-error' : ''
+            errors.email ? 'form-error' : ''
           }`}
         >
           <label className="form-label">Deine E-Mail Adresse</label>
@@ -50,7 +50,7 @@ const LoginForm = ({ onLogin }) => {
         </div>
         <div
           className={`d-flex flex-column mt-2  justify-between w-100 ${
-            errors['password'] ? 'form-error' : ''
+            errors.password ? 'form-error' : ''
           }`}
         >
           <label className="form-label">Dein Passwort</label>
@@ -72,8 +72,8 @@ const LoginForm = ({ onLogin }) => {
       {hasErrors
         ? Object.values(errors).map((error) => (
             <div key={error.message} className="form-error">
-              {error.message}
-            </div>
+            {error.message}
+          </div>
           ))
         : ''}
       <button

@@ -1,6 +1,6 @@
 import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
 import renderPrice from '../../common/utils/renderPrice';
-import useRemoveCartItemMutation from '../../cart/hooks/useRemoveCartItemMutation';
+import useRemoveCartItemMutation from "../hooks/useRemoveCartItemMutation";
 import useUserQuery from '../../auth/hooks/useUserQuery';
 
 const ManageCart = () => {
@@ -20,7 +20,7 @@ const ManageCart = () => {
           </div>
           <div className="w-50 mr-2">
             <div>
-              {item.quantity} x {item.product.texts.title}
+              {item.quantity} x{item.product.texts.title}
             </div>
           </div>
           <div className="align-self-start">{renderPrice(item.total)}</div>

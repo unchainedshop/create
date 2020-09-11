@@ -190,7 +190,7 @@ const BillingSection = () => {
           ref={register}
           defaultChecked
         />
-        <label className={`form-check-label mb-5`} htmlFor="same">
+        <label className="form-check-label mb-5" htmlFor="same">
           Gleich wie Lieferadresse
         </label>
       </div>

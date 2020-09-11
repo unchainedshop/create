@@ -1,6 +1,6 @@
 import { useApolloClient } from '@apollo/react-hooks';
-import CartFragment from '../../cart/fragments/CartFragment';
 import gql from 'graphql-tag';
+import CartFragment from '../../cart/fragments/CartFragment';
 
 const CART_QUERY = gql`
   query cart {
@@ -102,7 +102,7 @@ const createPaymentRequest = async ({ apolloClient, cart }) => {
     console.log(event);
     // https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session
     // const sessionPromise = fetchPaymentSession(event.validationURL);
-    event.complete(/*sessionPromise*/);
+    event.complete(/* sessionPromise */);
   };
 
   request.onshippingoptionchange = function (event) {
@@ -195,7 +195,7 @@ export default () => {
         },
       });
       // https://webkit.org/blog/8182/introducing-the-payment-request-api-for-apple-pay/
-      //const status = null; // processResponse(response);
+      // const status = null; // processResponse(response);
       response.complete('success');
     } catch (e) {
       console.error(e);

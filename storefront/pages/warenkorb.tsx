@@ -4,7 +4,6 @@ import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import ManageCart from '../modules/cart/components/ManageCart';
 import Header from '../modules/layout/components/Header';
 import Footer from '../modules/layout/components/Footer';
-import WebPayment from '../modules/products/components/WebPayment';
 
 const Cart = () => {
   const router = useRouter();
@@ -15,7 +14,7 @@ const Cart = () => {
   return (
     <div className="container">
       <Header />
-      <h1>Warenkorb 🛒</h1>
+      <h1>Warenkorb <span role="img" aria-label="Cart Icon">🛒</span></h1>
       <ManageCart />
 
       <div className="button-group mt-5">
@@ -26,7 +25,6 @@ const Cart = () => {
         >
           <a
             className="button button--primary button--big text-uppercase"
-            // onClick={handleClick}
           >
             Einmalig Bestellen
           </a>
@@ -35,12 +33,9 @@ const Cart = () => {
           disabled
           type="button"
           className="button button--primary button--big text-uppercase"
-          // onClick={handleClick}
         >
           Im Abo Bestellen bald verfügbar
         </button>
-
-        <WebPayment onClick={() => {}} />
       </div>
       <Footer />
     </div>

@@ -68,9 +68,8 @@ const SignUp = () => {
         setError('password', 'notMatch', 'Passwörter sind nicht gleich');
         setError('password2', 'notMatch', 'Passwörter sind nicht gleich');
         return false;
-      } else {
-        await createUser({ email: emailAddress, password });
       }
+      await createUser({ email: emailAddress, password });
     }
 
     await updateCart({
@@ -117,7 +116,7 @@ const SignUp = () => {
             <div className="form-row">
               <div
                 className={`mb-3 col-md-6 ${
-                  errors['firstName'] ? 'form-error' : ''
+                  errors.firstName ? 'form-error' : ''
                 }`}
               >
                 <label className="form-label">Vorname</label>
@@ -130,14 +129,12 @@ const SignUp = () => {
               </div>
               <div
                 className={`mb-3 col-md-6 ${
-                  errors['lastName'] ? 'form-error' : ''
+                  errors.lastName ? 'form-error' : ''
                 }`}
               >
                 <label className="form-label">Nachname</label>
                 <input
-                  className={`form-control ${
-                    errors['lastName'] && 'form-error'
-                  }`}
+                  className={`form-control ${errors.lastName && 'form-error'}`}
                   name="lastName"
                   // defaultValue={isDev && 'Muster'}
                   ref={register({ required: true })}
@@ -145,7 +142,7 @@ const SignUp = () => {
               </div>
               <div
                 className={`mb-3 col-md-6 ${
-                  errors['company'] ? 'form-error' : ''
+                  errors.company ? 'form-error' : ''
                 }`}
               >
                 <label className="form-label">Firma (optional)</label>
@@ -153,13 +150,13 @@ const SignUp = () => {
               </div>
               <div
                 className={`mb-3 col-md-6 ${
-                  errors['addressLine'] ? 'form-error' : ''
+                  errors.addressLine ? 'form-error' : ''
                 }`}
               >
                 <label className="form-label">Adresse</label>
                 <input
                   className={`form-control ${
-                    errors['addressLine'] && 'form-error'
+                    errors.addressLine && 'form-error'
                   }`}
                   name="addressLine"
                   ref={register({ required: true })}
@@ -168,13 +165,13 @@ const SignUp = () => {
               </div>
               <div
                 className={`mb-3 col-md-6 ${
-                  errors['postalCode'] ? 'form-error' : ''
+                  errors.postalCode ? 'form-error' : ''
                 }`}
               >
                 <label className="form-label">PLZ</label>
                 <input
                   className={`form-control ${
-                    errors['postalCode'] && 'form-error'
+                    errors.postalCode && 'form-error'
                   }`}
                   name="postalCode"
                   ref={register({ required: true })}
@@ -182,13 +179,11 @@ const SignUp = () => {
                 />
               </div>
               <div
-                className={`mb-3 col-md-6 ${
-                  errors['city'] ? 'form-error' : ''
-                }`}
+                className={`mb-3 col-md-6 ${errors.city ? 'form-error' : ''}`}
               >
                 <label className="form-label">Ort</label>
                 <input
-                  className={`form-control ${errors['city'] && 'form-error'}`}
+                  className={`form-control ${errors.city && 'form-error'}`}
                   name="city"
                   ref={register({ required: true })}
                   // defaultValue={isDev && 'Zürich'}
@@ -196,13 +191,13 @@ const SignUp = () => {
               </div>
               <div
                 className={`mb-3 col-md-6 ${
-                  errors['emailAddress'] ? 'form-error' : ''
+                  errors.emailAddress ? 'form-error' : ''
                 }`}
               >
                 <label className="form-label">E-mail</label>
                 <input
                   className={`form-control ${
-                    errors['emailAddress'] && 'form-error'
+                    errors.emailAddress && 'form-error'
                   }`}
                   name="emailAddress"
                   ref={register({ required: true })}
@@ -211,14 +206,12 @@ const SignUp = () => {
               </div>
               <div
                 className={`mb-3 col-md-6 ${
-                  errors['telNumber'] ? 'form-error' : ''
+                  errors.telNumber ? 'form-error' : ''
                 }`}
               >
                 <label className="form-label">Telefon</label>
                 <input
-                  className={`form-control ${
-                    errors['telNumber'] && 'form-error'
-                  }`}
+                  className={`form-control ${errors.telNumber && 'form-error'}`}
                   name="telNumber"
                   ref={register({ required: true })}
                   // defaultValue={isDev && '0791234567'}
@@ -228,7 +221,7 @@ const SignUp = () => {
                 <>
                   <div
                     className={`mb-3 col-md-6 ${
-                      errors['password'] ? 'form-error' : ''
+                      errors.password ? 'form-error' : ''
                     }`}
                   >
                     <label className="form-label">Passwort</label>
@@ -242,7 +235,7 @@ const SignUp = () => {
                   </div>
                   <div
                     className={`mb-3 col-md-6 ${
-                      errors['password2'] ? 'form-error' : ''
+                      errors.password2 ? 'form-error' : ''
                     }`}
                   >
                     <label className="form-label">Passwort wiederholen</label>
@@ -260,7 +253,7 @@ const SignUp = () => {
               )}
             </div>
             <div
-              className={`form-check mb-3 ${errors['agb'] ? 'form-error' : ''}`}
+              className={`form-check mb-3 ${errors.agb ? 'form-error' : ''}`}
             >
               <input
                 type="checkbox"
@@ -271,7 +264,7 @@ const SignUp = () => {
               />
               <label
                 className={`form-check-label mb-0 ${
-                  errors['agb'] && 'form-error'
+                  errors.agb && 'form-error'
                 }`}
                 htmlFor="agb"
               >

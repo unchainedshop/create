@@ -10,6 +10,7 @@ const loginMutations = [
 const logoutMutations = ['logout'];
 
 const extractMutationFromDataObject = (
+  // eslint-disable-next-line @typescript-eslint/ban-types
   data?: object,
   mutations: string[] = [],
 ) => {

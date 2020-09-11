@@ -1,6 +1,7 @@
 // eslint-disable-next-line
 console.log(process.version);
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv-extended').load({
   silent: process.env.SUPPRESS_ENV_ERRORS,
   errorOnMissing: !process.env.SUPPRESS_ENV_ERRORS,

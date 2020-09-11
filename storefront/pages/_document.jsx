@@ -50,7 +50,7 @@ class UnchainedDocument extends Document {
           <link
             href="https://fonts.googleapis.com/css2?family=Barlow:wght@900&display=swap"
             rel="stylesheet"
-          ></link>
+          />
         </Head>
         <body>
           <Main />

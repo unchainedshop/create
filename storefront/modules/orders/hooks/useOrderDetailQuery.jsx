@@ -19,7 +19,7 @@ const OrderDetailQuery = gql`
 
 const useOrderDetailQuery = ({ orderId }) => {
   const { data, loading, error } = useQuery(OrderDetailQuery, {
-    variables: { orderId: orderId },
+    variables: { orderId },
   });
   console.log(data);
 

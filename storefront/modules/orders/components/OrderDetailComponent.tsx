@@ -1,8 +1,8 @@
+import { useRouter } from 'next/router';
 import renderPrice from '../../common/utils/renderPrice';
 import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
 import ListItem from '../../common/components/ListItem';
 import formatDate from '../../common/utils/formatDate';
-import { useRouter } from 'next/router';
 import useOrderDetailQuery from '../hooks/useOrderDetailQuery';
 
 const OrderDetailComponent = () => {
@@ -30,7 +30,7 @@ const OrderDetailComponent = () => {
                 </div>
                 <div className="w-50 mr-2">
                   <div>
-                    {item.quantity} x {item.product.texts.title}
+                    {item.quantity} x{item.product.texts.title}
                   </div>
                 </div>
                 <div className="font-weight-bold">

@@ -2,7 +2,6 @@ import Head from 'next/head';
 
 import ProductList from '../modules/products/components/ProductList';
 import Header from '../modules/layout/components/Header';
-import Faq from '../modules/layout/components/Faq';
 import Footer from '../modules/layout/components/Footer';
 
 const Home = () => (
@@ -18,9 +17,7 @@ const Home = () => (
           <div className="row d-flex align-items-center">
             <div className="col-lg-8">
               <h1 className="color-brand mt-2">Hello</h1>
-              <p>
-                Have a look
-              </p>
+              <p>Have a look</p>
             </div>
           </div>
         </div>

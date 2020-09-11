@@ -13,7 +13,11 @@ const LoginCart = () => {
             {user?.cart?.items.reduce((acc, item) => acc + item.quantity, 0)}
           </span>
           Produkte im 🛒 für insgesamt
-          <b className="ml-1">CHF {user?.cart?.total?.amount / 100}.-</b>
+          <b className="ml-1">
+            CHF
+            {user?.cart?.total?.amount / 100}
+            .-
+          </b>
         </a>
       </Link>
       {!user.isGuest ? (

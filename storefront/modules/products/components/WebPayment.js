@@ -21,9 +21,10 @@ const WebPayment = ({ onClick, onSuccess = null }) => {
             '-webkit-appearance': '-apple-pay-button',
           }}
           onClick={handlePayment}
-        ></button>
+        />
       );
-    } else if (isGeneralPaymentAvailable) {
+    }
+    if (isGeneralPaymentAvailable) {
       return (
         <button
           type="button"

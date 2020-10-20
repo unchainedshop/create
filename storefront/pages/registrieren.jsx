@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
@@ -8,8 +7,6 @@ import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutati
 import Header from '../modules/layout/components/Header';
 import LoginForm from '../modules/auth/components/LoginForm';
 import Footer from '../modules/layout/components/Footer';
-
-const isDev = process.env.NODE_ENV === 'development';
 
 const ErrorDisplay = ({ error }) => {
   if (!error) return '';
@@ -69,6 +66,7 @@ const SignUp = () => {
         setError('password2', 'notMatch', 'Passwörter sind nicht gleich');
         return false;
       }
+
       await createUser({ email: emailAddress, password });
     }
 
@@ -103,11 +101,11 @@ const SignUp = () => {
           <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-check mb-3">
               <input
+                ref={register}
                 type="checkbox"
                 className="form-check-input"
                 id="account"
                 name="account"
-                ref={register}
               />
               <label className="form-check-label mb-0" htmlFor="account">
                 Ich möchte einen Account erstellen
@@ -121,10 +119,10 @@ const SignUp = () => {
               >
                 <label className="form-label">Vorname</label>
                 <input
-                  className="form-control"
-                  name="firstName"
-                  // defaultValue={isDev && 'Hans'}
                   ref={register({ required: true })}
+                  className="form-control"
+                  // DefaultValue={isDev && 'Hans'}
+                  name="firstName"
                 />
               </div>
               <div
@@ -134,10 +132,10 @@ const SignUp = () => {
               >
                 <label className="form-label">Nachname</label>
                 <input
-                  className={`form-control ${errors.lastName && 'form-error'}`}
-                  name="lastName"
-                  // defaultValue={isDev && 'Muster'}
                   ref={register({ required: true })}
+                  className={`form-control ${errors.lastName && 'form-error'}`}
+                  // DefaultValue={isDev && 'Muster'}
+                  name="lastName"
                 />
               </div>
               <div
@@ -146,7 +144,7 @@ const SignUp = () => {
                 }`}
               >
                 <label className="form-label">Firma (optional)</label>
-                <input className="form-control" name="company" ref={register} />
+                <input ref={register} className="form-control" name="company" />
               </div>
               <div
                 className={`mb-3 col-md-6 ${
@@ -155,12 +153,12 @@ const SignUp = () => {
               >
                 <label className="form-label">Adresse</label>
                 <input
+                  ref={register({ required: true })}
                   className={`form-control ${
                     errors.addressLine && 'form-error'
                   }`}
                   name="addressLine"
-                  ref={register({ required: true })}
-                  // defaultValue={isDev && 'Teststrasse 1'}
+                  // DefaultValue={isDev && 'Teststrasse 1'}
                 />
               </div>
               <div
@@ -170,12 +168,12 @@ const SignUp = () => {
               >
                 <label className="form-label">PLZ</label>
                 <input
+                  ref={register({ required: true })}
                   className={`form-control ${
                     errors.postalCode && 'form-error'
                   }`}
                   name="postalCode"
-                  ref={register({ required: true })}
-                  // defaultValue={isDev && '8001'}
+                  // DefaultValue={isDev && '8001'}
                 />
               </div>
               <div
@@ -183,10 +181,10 @@ const SignUp = () => {
               >
                 <label className="form-label">Ort</label>
                 <input
+                  ref={register({ required: true })}
                   className={`form-control ${errors.city && 'form-error'}`}
                   name="city"
-                  ref={register({ required: true })}
-                  // defaultValue={isDev && 'Zürich'}
+                  // DefaultValue={isDev && 'Zürich'}
                 />
               </div>
               <div
@@ -196,12 +194,12 @@ const SignUp = () => {
               >
                 <label className="form-label">E-mail</label>
                 <input
+                  ref={register({ required: true })}
                   className={`form-control ${
                     errors.emailAddress && 'form-error'
                   }`}
                   name="emailAddress"
-                  ref={register({ required: true })}
-                  // defaultValue={isDev && 'hans@exmaple.com'}
+                  // DefaultValue={isDev && 'hans@exmaple.com'}
                 />
               </div>
               <div
@@ -211,10 +209,10 @@ const SignUp = () => {
               >
                 <label className="form-label">Telefon</label>
                 <input
+                  ref={register({ required: true })}
                   className={`form-control ${errors.telNumber && 'form-error'}`}
                   name="telNumber"
-                  ref={register({ required: true })}
-                  // defaultValue={isDev && '0791234567'}
+                  // DefaultValue={isDev && '0791234567'}
                 />
               </div>
               {createAccount ? (
@@ -226,11 +224,11 @@ const SignUp = () => {
                   >
                     <label className="form-label">Passwort</label>
                     <input
+                      ref={register({ required: true })}
                       className="form-control"
                       name="password"
                       type="password"
-                      ref={register({ required: true })}
-                      // defaultValue={isDev && 'asdf'}
+                      // DefaultValue={isDev && 'asdf'}
                     />
                   </div>
                   <div
@@ -240,11 +238,11 @@ const SignUp = () => {
                   >
                     <label className="form-label">Passwort wiederholen</label>
                     <input
+                      ref={register({ required: true })}
                       className="form-control"
                       name="password2"
                       type="password"
-                      ref={register({ required: true })}
-                      // defaultValue={isDev && 'asdf'}
+                      // DefaultValue={isDev && 'asdf'}
                     />
                   </div>
                 </>
@@ -256,11 +254,11 @@ const SignUp = () => {
               className={`form-check mb-3 ${errors.agb ? 'form-error' : ''}`}
             >
               <input
+                ref={register({ required: true })}
                 type="checkbox"
                 className="form-check-input"
                 id="agb"
                 name="agb"
-                ref={register({ required: true })}
               />
               <label
                 className={`form-check-label mb-0 ${

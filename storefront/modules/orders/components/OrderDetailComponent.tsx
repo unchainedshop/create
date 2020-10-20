@@ -22,8 +22,8 @@ const OrderDetailComponent = () => {
             <ListItem title="Bestellnummer" value={order.orderNumber} />
             {order.items.map((item, i) => (
               <div
-                className="d-flex justify-content-between flex-wrap border-top py-2"
                 key={i}
+                className="d-flex justify-content-between flex-wrap border-top py-2"
               >
                 <div className="cart-img mr-2">
                   <img src={getProductMediaUrl(item.product)} />

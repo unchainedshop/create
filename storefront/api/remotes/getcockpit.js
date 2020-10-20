@@ -15,7 +15,7 @@ const {
   serverRuntimeConfig: { GETCOCKPIT_TOKEN },
 } = getConfig();
 
-console.log(`Connecting to GetCockpit API at: ${GETCOCKPIT_ENDPOINT}`); // eslint-disable-line
+console.log(`Connecting to GetCockpit API at: ${GETCOCKPIT_ENDPOINT}`);
 
 const uri = `${GETCOCKPIT_ENDPOINT}/api/graphql/query?token=${GETCOCKPIT_TOKEN}`;
 const httpLink = new HttpLink({ uri, fetch });
@@ -33,11 +33,11 @@ const pathFix = new ApolloLink((operation, forward) =>
   forward(operation).map((response) => {
     const rawResponseDataString = JSON.stringify(response.data);
     const fixedDataString = rawResponseDataString
-      // fixes asset paths
+      // Fixes asset paths
       .replace(/"path":"\//g, `"path":"/storage/uploads/`)
-      // fixes image paths which have a path including storage/uplodas
+      // Fixes image paths which have a path including storage/uplodas
       .replace(
-        /"path":"\/storage\/uploads\/storage\/uploads\//g,
+        /"path":"(?:\/storage\/uploads){2}\//g,
         `"path":"/storage/uploads/`,
       );
 
@@ -60,8 +60,8 @@ export default async () => {
       }),
     ]);
     return transformedSchema;
-  } catch (e) {
-    console.error(e); // eslint-disable-line
+  } catch (error) {
+    console.error(error);
     return null;
   }
 };

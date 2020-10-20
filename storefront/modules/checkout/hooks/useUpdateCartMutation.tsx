@@ -18,7 +18,7 @@ const useUpdateCartMutation = () => {
     contact = undefined,
     billingAddress = undefined,
   }) => {
-    return await updateCartMutation({ variables: { contact, billingAddress } });
+    return updateCartMutation({ variables: { contact, billingAddress } });
   };
 
   return {

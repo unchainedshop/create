@@ -1,3 +1,10 @@
 {
-	"space": true
+  "extends": "xo-react",
+  "space": true,
+  "prettier": true,
+  "rules": {
+    "unicorn/filename-case": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "warn"
+  }
 }

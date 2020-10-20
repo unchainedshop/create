@@ -24,14 +24,12 @@ const addCacheHintToQueryOrType = (
   if (cacheHint) {
     cacheControl.setCacheHint(cacheHint);
   } else if (NODE_ENV !== 'production') {
-    // eslint-disable-next-line
     console.warn(
       `Could not find cache configuration for ${operation?.name?.value} (${info.fieldName})`,
     );
   }
 };
 
-// eslint-disable-next-line
 export default async () => {
   try {
     const schemas = await getSchemas();
@@ -63,10 +61,10 @@ export default async () => {
     addSchemaLevelResolveFunction(mergedSchema, addCacheHintToQueryOrType);
 
     return mergedSchema;
-  } catch (e) {
+  } catch (error) {
     console.error(
       'Could not load all schemas, abort here so the docker container restarts...',
-      e,
+      error,
     );
     process.exit(500);
   }

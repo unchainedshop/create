@@ -21,11 +21,11 @@ const EditableField = ({
 }) => {
   return isEditing ? (
     <input
+      ref={register({ required })}
       className="form-control"
       type={type}
       name={name}
       defaultValue={value}
-      ref={register({ required })}
     />
   ) : (
     <div>{value}</div>
@@ -92,8 +92,8 @@ const DeliverySection = () => {
       <div>
         {addressFields.map(({ name, translation, type, required }) => (
           <div
-            className="d-flex flex-wrap justify-content-start align-items-center my-2"
             key={name}
+            className="d-flex flex-wrap justify-content-start align-items-center my-2"
           >
             <div className="col-md-4 my-1 pl-0">
               <b>{translation}</b>
@@ -138,7 +138,7 @@ const BillingSection = () => {
     city,
   }) => {
     if (isEditing) {
-      // await updateCart({
+      // Await updateCart({
       //   contact: { emailAddress, telNumber },
       //   billingAddress: {
       //     firstName,
@@ -183,12 +183,12 @@ const BillingSection = () => {
     <form className="form mb-5" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-check mb-3">
         <input
+          ref={register}
+          defaultChecked
           type="checkbox"
           className="form-check-input"
           id="same"
           name="same"
-          ref={register}
-          defaultChecked
         />
         <label className="form-check-label mb-5" htmlFor="same">
           Gleich wie Lieferadresse
@@ -199,8 +199,8 @@ const BillingSection = () => {
           <div>
             {addressFields.map(({ name, translation, type, required }) => (
               <div
-                className="row d-flex justify-content-start align-items-center my-2"
                 key={name}
+                className="row d-flex justify-content-start align-items-center my-2"
               >
                 <div className="col-md-4 my-1">
                   <b>{translation}</b>
@@ -262,6 +262,7 @@ const Payment = () => {
 
     router.push('/order');
   };
+
   return (
     <>
       <header className="header sticky-top">
@@ -299,7 +300,7 @@ const Payment = () => {
             >
               Bestellung abschicken und bezahlen 💳
             </a> */}
-            <button onClick={handleCheckout} className="button button--primary">
+            <button className="button button--primary" onClick={handleCheckout}>
               Bestellung abschicken
             </button>
           </div>

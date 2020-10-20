@@ -11,7 +11,6 @@ class UnchainedDocument extends Document {
     return (
       <Html>
         <noscript
-          // eslint-disable-next-line
           dangerouslySetInnerHTML={{
             __html: `
 <!--

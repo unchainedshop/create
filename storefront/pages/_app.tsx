@@ -9,7 +9,7 @@ const UnchainedApp = ({ Component, pageProps }) => {
 };
 
 UnchainedApp.getInitialProps = async (appContext) => {
-  // calls page's `getInitialProps` and fills `appProps.pageProps`
+  // Calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
   return { ...appProps };
 };

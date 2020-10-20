@@ -118,6 +118,7 @@ const createPaymentRequest = async ({ apolloClient, cart }) => {
       return buildPaymentDetailsFromCart(cart);
     });
   };
+
   return request;
 };
 
@@ -128,7 +129,7 @@ const resolveIsApplePayAvailable = () => {
       window.ApplePaySession &&
       ApplePaySession.canMakePayments()
     );
-  } catch (e) {
+  } catch {
     return false;
   }
 };
@@ -197,8 +198,8 @@ export default () => {
       // https://webkit.org/blog/8182/introducing-the-payment-request-api-for-apple-pay/
       // const status = null; // processResponse(response);
       response.complete('success');
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
       response.complete('fail');
     }
   };

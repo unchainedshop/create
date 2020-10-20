@@ -10,7 +10,7 @@ const {
   publicRuntimeConfig: { UNCHAINED_ENDPOINT, COOKIE_DOMAIN },
 } = getConfig();
 
-console.log(`Connecting to Unchained API at: ${UNCHAINED_ENDPOINT}`); // eslint-disable-line
+console.log(`Connecting to Unchained API at: ${UNCHAINED_ENDPOINT}`);
 
 const httpLink = createUploadLink({
   uri: UNCHAINED_ENDPOINT,
@@ -26,7 +26,6 @@ const setCookieLink = setLoginCookie({
 const errorFix = new ApolloLink((operation, forward) =>
   forward(operation).map((data) => {
     if (data.errors) {
-      // eslint-disable-next-line
       for (const error of data.errors) {
         if (!(error instanceof Error))
           Object.setPrototypeOf(error, Error.prototype);
@@ -58,8 +57,8 @@ export default async () => {
       link,
     });
     return schema;
-  } catch (e) {
-    console.error(e); // eslint-disable-line
+  } catch (error) {
+    console.error(error);
     return null;
   }
 };

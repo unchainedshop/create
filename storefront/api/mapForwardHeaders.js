@@ -1,12 +1,12 @@
 import { lookup } from 'geoip-country';
 
-const mapForwardHeaders = ({ headers = {}, ...req } = {}) => {
+const mapForwardHeaders = ({ headers = {}, ...request } = {}) => {
   const ip =
     headers['x-real-ip'] ||
     headers['x-forwarded-for'] ||
-    req?.connection?.remoteAddress ||
-    req?.socket?.remoteAddress ||
-    req?.connection?.socket?.remoteAddress;
+    request?.connection?.remoteAddress ||
+    request?.socket?.remoteAddress ||
+    request?.connection?.socket?.remoteAddress;
 
   console.log(headers);
   const forwardHeaders = {
@@ -15,7 +15,7 @@ const mapForwardHeaders = ({ headers = {}, ...req } = {}) => {
     'x-real-ip': ip,
     'x-shop-country': headers['x-shop-country'] || lookup(ip),
   };
-  // delete forwardHeaders.origin;
+  // Delete forwardHeaders.origin;
   // delete forwardHeaders.host;
   // delete forwardHeaders.connection;
   // delete forwardHeaders.referer;

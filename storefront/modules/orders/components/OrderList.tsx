@@ -28,7 +28,7 @@ const OrderList = () => {
         </thead>
         <tbody>
           {orders.map((order) => (
-            <Link href="/order/[id]" as={`/order/${order._id}`} key={order._id}>
+            <Link key={order._id} href="/order/[id]" as={`/order/${order._id}`}>
               <tr>
                 <td className="font-weight-bolder p-2">{order.orderNumber}</td>
                 <td className="p-2"> {formatDate(order.created)} </td>

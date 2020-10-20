@@ -11,6 +11,7 @@ const useConditionalAddCartProductMutation = () => {
     if (!user?._id) {
       await loginAsGuest();
     }
+
     return addCartProduct({ productId });
   };
 

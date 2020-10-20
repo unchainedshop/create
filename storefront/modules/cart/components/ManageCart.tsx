@@ -1,6 +1,6 @@
 import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
 import renderPrice from '../../common/utils/renderPrice';
-import useRemoveCartItemMutation from "../hooks/useRemoveCartItemMutation";
+import useRemoveCartItemMutation from '../hooks/useRemoveCartItemMutation';
 import useUserQuery from '../../auth/hooks/useUserQuery';
 
 const ManageCart = () => {
@@ -12,8 +12,8 @@ const ManageCart = () => {
     <div>
       {(user?.cart?.items || []).map((item) => (
         <div
-          className="d-flex justify-content-between flex-wrap border-top py-2"
           key={item._id}
+          className="d-flex justify-content-between flex-wrap border-top py-2"
         >
           <div className="cart-img mr-2">
             <img src={getProductMediaUrl(item.product)} />

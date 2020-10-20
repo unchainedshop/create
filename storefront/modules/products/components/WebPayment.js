@@ -24,6 +24,7 @@ const WebPayment = ({ onClick, onSuccess = null }) => {
         />
       );
     }
+
     if (isGeneralPaymentAvailable) {
       return (
         <button
@@ -35,7 +36,8 @@ const WebPayment = ({ onClick, onSuccess = null }) => {
         </button>
       );
     }
-  } catch (e) {}
+  } catch {}
+
   return null;
 };
 

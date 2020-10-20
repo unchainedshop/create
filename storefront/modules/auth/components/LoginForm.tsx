@@ -42,10 +42,10 @@ const LoginForm = ({ onLogin }) => {
         >
           <label className="form-label">Deine E-Mail Adresse</label>
           <input
+            ref={register({ required: true })}
             className="form-control"
             name="email"
             type="email"
-            ref={register({ required: true })}
           />
         </div>
         <div
@@ -55,10 +55,10 @@ const LoginForm = ({ onLogin }) => {
         >
           <label className="form-label">Dein Passwort</label>
           <input
+            ref={register({ required: true })}
             className="form-control"
             type="password"
             name="password"
-            ref={register({ required: true })}
           />
           <Link href="passwort-vergessen">
             <a className="mt-2 text-right">
@@ -72,8 +72,8 @@ const LoginForm = ({ onLogin }) => {
       {hasErrors
         ? Object.values(errors).map((error) => (
             <div key={error.message} className="form-error">
-            {error.message}
-          </div>
+              {error.message}
+            </div>
           ))
         : ''}
       <button

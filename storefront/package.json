@@ -7,7 +7,7 @@
     "dev:local": "UNCHAINED_ENDPOINT=http://localhost:4010/graphql next dev",
     "dev": "next dev",
     "format": "npm run lint -- --fix",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --quiet .",
+    "lint": "xo",
     "test": "npm run lint && npm run typecheck",
     "typecheck": "tsc --noEmit",
     "start": "next start",
@@ -34,7 +34,8 @@
     "next-with-apollo": "^5.0.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-hook-form": "^5.7.2"
+    "react-hook-form": "^5.7.2",
+    "xo": "^0.34.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "6.0.5",

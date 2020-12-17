@@ -84,10 +84,10 @@ const SignUp = () => {
       },
     });
 
-    router.push('/bezahlen');
+    router.push('/payment');
   };
 
-  const onLogin = () => router.push('/bezahlen');
+  const onLogin = () => router.push('/payment');
 
   return (
     <div className="container">
@@ -266,9 +266,9 @@ const SignUp = () => {
                 className={`form-check-label mb-0 ${
                   errors.agb && 'form-error'
                 }`}
-                htmlFor="agb"
+                htmlFor="conditions"
               >
-                Ich habe die <a href="/agb">AGBs</a> gelesen
+                Ich habe die <a href="/conditions">AGBs</a> gelesen
               </label>
             </div>
 

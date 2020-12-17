@@ -9,7 +9,7 @@ const Cart = () => {
   const router = useRouter();
   const { user, loading } = useUserQuery();
 
-  if (!user && !loading) router.push('/anmelden?next=warenkorb');
+  if (!user && !loading) router.push('/login?next=cart');
 
   return (
     <div className="container">
@@ -24,9 +24,7 @@ const Cart = () => {
 
       <div className="button-group mt-5">
         <Link
-          href={
-            user?.isGuest ?? true ? '/registrieren?next=bezahlen' : '/bezahlen'
-          }
+          href={user?.isGuest ?? true ? '/register?next=payment' : '/payment'}
         >
           <a className="button button--primary button--big text-uppercase">
             Einmalig Bestellen

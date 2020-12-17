@@ -15,8 +15,14 @@ const logger = console;
 export default () => {
   try {
     const existingUser = Users.findOne({ username: 'admin' });
+    logger.log(`
+      HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL BEFORE CHECKING`);
     if (existingUser) {
+      logger.log(`
+      HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL USER DOES EXIST`);
       if (process.env.NODE_ENV !== 'production') {
+        logger.log(`
+      HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL NOT PRODUCTION`);
         // In dev mode: Remove master data every restart to reconfigure the shop.
         Countries.remove({});
         Currencies.remove({});
@@ -32,6 +38,7 @@ export default () => {
         username: 'admin',
         roles: ['admin'],
         emails: [{ address: 'admin@localhost', verified: true }],
+        profile: { address: {} },
         guest: false,
       });
 
@@ -101,6 +108,6 @@ export default () => {
     logger.log(`
       initialized database with user: admin@localhost / password`);
   } catch (e) {
-    logger.log('database was already initialized');
+    logger.log(`database was already initialized  ${e}`);
   }
 };

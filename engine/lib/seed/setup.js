@@ -5,7 +5,6 @@ import { Languages } from 'meteor/unchained:core-languages';
 import { PaymentProviders } from 'meteor/unchained:core-payment';
 import { DeliveryProviders } from 'meteor/unchained:core-delivery';
 
-import { Factory } from 'meteor/dburles:factory';
 import i18nConfiguration from './i18n.config';
 import paymentConfiguration from './payment.config';
 import deliveryConfiguration from './delivery.config';
@@ -15,14 +14,9 @@ const logger = console;
 export default () => {
   try {
     const existingUser = Users.findOne({ username: 'admin' });
-    logger.log(`
-      HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL BEFORE CHECKING`);
     if (existingUser) {
-      logger.log(`
-      HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL USER DOES EXIST`);
       if (process.env.NODE_ENV !== 'production') {
-        logger.log(`
-      HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL NOT PRODUCTION`);
+        
         // In dev mode: Remove master data every restart to reconfigure the shop.
         Countries.remove({});
         Currencies.remove({});
@@ -34,7 +28,7 @@ export default () => {
       }
     }
     const admin = existingUser
-      || Factory.create('user', {
+      || Users.createUser({
         username: 'admin',
         roles: ['admin'],
         emails: [{ address: 'admin@localhost', verified: true }],
@@ -51,7 +45,7 @@ export default () => {
     } = i18nConfiguration;
 
     languages.forEach(({ isoCode, ...rest }) => {
-      Factory.create('language', {
+      Languages.createLanguage({
         isoCode,
         isActive: true,
         isBase: isoCode === baseLanguageCode,
@@ -62,7 +56,7 @@ export default () => {
 
     const currencyCodeToObjectMap = currencies.reduce(
       (acc, { isoCode, ...rest }) => {
-        const currencyObject = Factory.create('currency', {
+        const currencyObject = Currencies.createCurrency({
           isoCode,
           isActive: true,
           authorId: admin._id,
@@ -77,7 +71,7 @@ export default () => {
     );
 
     countries.forEach(({ isoCode, defaultCurrencyCode, ...rest }) => {
-      Factory.create('country', {
+      Countries.createCountry({
         isoCode,
         isBase: isoCode === baseCountryCode,
         isActive: true,

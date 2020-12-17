@@ -1,7 +1,7 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["meteor"],
-  "extends": ["airbnb-base", "plugin:meteor/recommended"],
+  "plugins": ["meteor", "prettier"],
+  "extends": ["airbnb-base", "plugin:meteor/recommended", "plugin:prettier/recommended"],
   "env": {
     "node": true,
     "browser": false,
@@ -17,6 +17,16 @@
     }
   },
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80,
+        "semi": true,
+        "trailingComma": "all",
+        "singleQuote": true,
+        "proseWrap": "always"
+      }
+    ],
     "allow-parens": [0, "as-needed"],
     "no-underscore-dangle": ["error", { "allow": ["_id"] }],
     "import/no-unresolved": ["error", { "ignore": ["meteor/"] }],

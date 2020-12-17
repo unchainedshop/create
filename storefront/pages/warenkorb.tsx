@@ -14,7 +14,12 @@ const Cart = () => {
   return (
     <div className="container">
       <Header />
-      <h1>Warenkorb <span role="img" aria-label="Cart Icon">🛒</span></h1>
+      <h1>
+        Warenkorb{' '}
+        <span role="img" aria-label="Cart Icon">
+          🛒
+        </span>
+      </h1>
       <ManageCart />
 
       <div className="button-group mt-5">
@@ -23,9 +28,7 @@ const Cart = () => {
             user?.isGuest ?? true ? '/registrieren?next=bezahlen' : '/bezahlen'
           }
         >
-          <a
-            className="button button--primary button--big text-uppercase"
-          >
+          <a className="button button--primary button--big text-uppercase">
             Einmalig Bestellen
           </a>
         </Link>

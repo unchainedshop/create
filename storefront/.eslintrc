@@ -2,6 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
   "extends": [
+    "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin
     "prettier",
@@ -9,7 +10,8 @@
     "prettier/@typescript-eslint",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "plugin:prettier/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
@@ -17,11 +19,17 @@
     "project": "tsconfig.json"
   },
   "rules": {
-    "react/prop-types": [
-      0
-    ],
-    "react/react-in-jsx-scope": [
-      0
+    "react/prop-types": [0],
+    "react/react-in-jsx-scope": [0],
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80,
+        "semi": true,
+        "trailingComma": "all",
+        "singleQuote": true,
+        "proseWrap": "always"
+      }
     ],
     "import/extensions": [
       "error",

@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.9.6",
-    "@unchainedshop/controlpanel": "^0.49.0",
+    "@unchainedshop/controlpanel": "^0.53.1",
     "apollo-server-express": "^2.14.2",
     "bcrypt": "^5.0.0",
     "braintree": "^2.23.0",
@@ -58,6 +58,9 @@
     "jest": "^26.0.1",
     "ts-node": "^8.10.1",
     "typescript": "^3.9.3",
-    "xliff": "^5.0.5"
+    "xliff": "^5.0.5",
+    "prettier": "^2.1.2",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-config-prettier": "^6.12.0"
   }
 }

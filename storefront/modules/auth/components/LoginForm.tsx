@@ -72,8 +72,8 @@ const LoginForm = ({ onLogin }) => {
       {hasErrors
         ? Object.values(errors).map((error) => (
             <div key={error.message} className="form-error">
-            {error.message}
-          </div>
+              {error.message}
+            </div>
           ))
         : ''}
       <button

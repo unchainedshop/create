@@ -60,7 +60,7 @@ const LoginForm = ({ onLogin }) => {
             name="password"
             ref={register({ required: true })}
           />
-          <Link href="passwort-vergessen">
+          <Link href="forget-password">
             <a className="mt-2 text-right">
               <small id="passwordForgot" className="form-text text-muted">
                 Passwort vergessen?

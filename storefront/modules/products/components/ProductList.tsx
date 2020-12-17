@@ -8,6 +8,7 @@ import getProductMediaUrl from '../utils/getProductMediaUrl';
 const ProductList = () => {
   const { products } = useProductListQuery();
   const { conditionalAddCartProduct } = useConditionalAddCartProductMutation();
+  console.log(products);
 
   const handleClick = (productId) => {
     conditionalAddCartProduct({ productId });

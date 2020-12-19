@@ -1,307 +1,184 @@
-import Link from 'next/link';
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
 
+import useUserQuery from '../modules/auth/hooks/useUserQuery';
+import useSetOrderPaymentProviderMutation from '../modules/orders/hooks/setPaymentOrderProvider';
+import useCheckOutCart from '../modules/cart/hooks/useCheckOutCart';
+
+import Header from '../modules/layout/components/Header';
 import Footer from '../modules/layout/components/Footer';
 import ManageCart from '../modules/cart/components/ManageCart';
-import useCheckOutCartMutation from '../modules/cart/hooks/useCheckOutCart';
-import useUserQuery from '../modules/auth/hooks/useUserQuery';
+import DeliveryAddressEditable from '../modules/checkout/components/DeliveryAddressEditable';
+import BillingAddressEditable from '../modules/checkout/components/BillingAddressEditable';
+import useUpdateOrderDeliveryShipping from '../modules/checkout/hooks/useUpdateDeliveryShipping';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
-import useSetOrderPaymentProviderMutation from '../modules/orders/hooks/setPaymentOrderProvider';
-import useSetOrderDeliveryProviderMutation from '../modules/orders/hooks/setOrderDeliveryProvider';
 
-const EditableField = ({
-  register,
-  name,
-  value,
-  isEditing,
-  type = 'text',
-  required = false,
-}) => {
-  return isEditing ? (
-    <input
-      className="form-control"
-      type={type}
-      name={name}
-      defaultValue={value}
-      ref={register({ required })}
-    />
-  ) : (
-    <div>{value}</div>
-  );
+const titleForProvider = (_id) => {
+  return {
+    wiretransfer: 'Wire Transfer',
+  }[_id];
 };
 
-const DeliverySection = () => {
-  const { user } = useUserQuery();
-  const [isEditing, setEditing] = useState(false);
-  const { updateCart } = useUpdateCartMutation();
-  const { register, handleSubmit, errors } = useForm();
-
-  const onSubmit = async ({
-    firstName,
-    lastName,
-    company,
-    addressLine,
-    postalCode,
-    city,
-    emailAddress,
-    telNumber,
-  }) => {
-    if (isEditing) {
-      await updateCart({
-        contact: { emailAddress, telNumber },
-        billingAddress: {
-          firstName,
-          lastName,
-          company,
-          addressLine,
-          postalCode,
-          city,
-        },
-      });
-
-      setEditing(false);
-    } else {
-      setEditing(true);
-    }
-  };
-
-  const addressFields = [
-    { name: 'firstName', translation: 'Vorname', type: 'text', required: true },
-    { name: 'lastName', translation: 'Nachname', type: 'text', required: true },
-    { name: 'company', translation: 'Firma', type: 'text', required: false },
-    {
-      name: 'addressLine',
-      translation: 'Adresse',
-      type: 'text',
-      required: true,
-    },
-    { name: 'postalCode', translation: 'PLZ', type: 'text', required: true },
-    { name: 'city', translation: 'Ort', type: 'text', required: true },
-    {
-      name: 'emailAddress',
-      translation: 'E-mail',
-      type: 'email',
-      required: true,
-    },
-    { name: 'telNumber', translation: 'Telefon', type: 'text', required: true },
-  ];
-  return (
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        {addressFields.map(({ name, translation, type, required }) => (
-          <div
-            className="d-flex flex-wrap justify-content-start align-items-center my-2"
-            key={name}
-          >
-            <div className="col-md-4 my-1 pl-0">
-              <b>{translation}</b>
-            </div>
-            <div className="col-md-8 my-1 pl-0">
-              <EditableField
-                name={name}
-                value={
-                  user?.cart?.billingAddress?.[name] ||
-                  user?.cart?.contact?.[name]
-                }
-                register={register}
-                isEditing={isEditing}
-                type={type}
-                required={required}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-      <button className="button button--secondary mt-3" type="submit">
-        {isEditing ? 'Speichern' : 'Ändern'}
-      </button>
-    </form>
-  );
-};
-
-const BillingSection = () => {
-  const { user } = useUserQuery();
-  const [isEditing, setEditing] = useState(false);
-  const { updateCart } = useUpdateCartMutation();
-  const { register, handleSubmit, watch } = useForm();
-
-  const sameAsDelivery = watch('same');
-
-  const onSubmit = async ({
-    firstName,
-    lastName,
-    company,
-    addressLine,
-    postalCode,
-    city,
-  }) => {
-    if (isEditing) {
-      // await updateCart({
-      //   contact: { emailAddress, telNumber },
-      //   billingAddress: {
-      //     firstName,
-      //     lastName,
-      //     company,
-      //     addressLine,
-      //     postalCode,
-      //     city,
-      //   },
-      // });
-
-      console.log({
-        firstName,
-        lastName,
-        company,
-        addressLine,
-        postalCode,
-        city,
-      });
-
-      setEditing(false);
-    } else {
-      setEditing(true);
-    }
-  };
-
-  const addressFields = [
-    { name: 'firstName', translation: 'Vorname', type: 'text', required: true },
-    { name: 'lastName', translation: 'Nachname', type: 'text', required: true },
-    { name: 'company', translation: 'Firma', type: 'text', required: false },
-    {
-      name: 'addressLine',
-      translation: 'Adresse',
-      type: 'text',
-      required: true,
-    },
-    { name: 'postalCode', translation: 'PLZ', type: 'text', required: true },
-    { name: 'city', translation: 'Ort', type: 'text', required: true },
-  ];
-
-  return (
-    <form className="form mb-5" onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-check mb-3">
-        <input
-          type="checkbox"
-          className="form-check-input"
-          id="same"
-          name="same"
-          ref={register}
-          defaultChecked
-        />
-        <label className="form-check-label mb-5" htmlFor="same">
-          Gleich wie Lieferadresse
-        </label>
-      </div>
-      {!sameAsDelivery ? (
-        <>
-          <div>
-            {addressFields.map(({ name, translation, type, required }) => (
-              <div
-                className="row d-flex justify-content-start align-items-center my-2"
-                key={name}
-              >
-                <div className="col-md-4 my-1">
-                  <b>{translation}</b>
-                </div>
-                <div className="col-md-8 my-1">
-                  <EditableField
-                    name={name}
-                    value={user?.cart?.billingAddress?.[name]}
-                    register={register}
-                    isEditing={isEditing}
-                    type={type}
-                    required={required}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-          <button className="button button--secondary mt-3 mb-5" type="submit">
-            {isEditing ? 'Speichern' : 'Ändern'}
-          </button>
-        </>
-      ) : (
-        ''
-      )}
-    </form>
-  );
-};
-
-const Payment = () => {
+const Review = () => {
   const router = useRouter();
   const { user } = useUserQuery();
+  const { checkOutCart } = useCheckOutCart();
   const { setOrderPaymentProvider } = useSetOrderPaymentProviderMutation();
-  const { setOrderDeliveryProvider } = useSetOrderDeliveryProviderMutation();
-  const { checkOutCart } = useCheckOutCartMutation();
+  const { updateOrderDeliveryAddress } = useUpdateOrderDeliveryShipping();
+  const { updateCart } = useUpdateCartMutation();
 
-  const handleCheckout = async () => {
-    const paymentProvider = user.cart.supportedPaymentProviders.find(
-      ({ type }) => type === 'INVOICE',
-    );
-
-    const deliveryProvider = user.cart.supportedDeliveryProviders[0];
-
-    await setOrderPaymentProvider({
-      orderId: user.cart._id,
-      paymentProviderId: paymentProvider._id,
-    });
-
-    await setOrderDeliveryProvider({
-      orderId: user.cart._id,
-      deliveryProviderId: deliveryProvider._id,
-    });
-
+  const checkout = async ({
+    paymentContext = undefined,
+    deliveryContext = undefined,
+    orderContext = undefined,
+  } = {}) => {
     await checkOutCart({
       orderId: user.cart._id,
-      orderContext: { status: 'CONFIRMED' },
-      paymentContext: { status: 'PAID' },
-      deliveryContext: { status: 'OPEN' },
+      orderContext,
+      paymentContext,
+      deliveryContext,
     });
 
-    router.push('/order');
+    setTimeout(() => {
+      router.replace({
+        pathname: '/thank-you',
+        query: { orderId: user.cart._id },
+      });
+    }, 1000);
   };
+
+  const selectPayment = async (providerId) => {
+    await setOrderPaymentProvider({
+      orderId: user.cart._id,
+      paymentProviderId: providerId,
+    });
+  };
+
+  if (!user?.cart) {
+    return (
+      <>
+        <Header />
+        <div className="container mt-5"></div>
+        <Footer />
+      </>
+    );
+  }
+  const sameAsDeliveryChange = (event) => {
+    if (event.target.checked) {
+      if (user?.cart?.deliveryInfo?.address) {
+        updateCart({
+          billingAddress: {
+            firstName: user?.cart?.deliveryInfo?.address?.firstName,
+            lastName: user?.cart?.deliveryInfo?.address?.lastName,
+            company: user?.cart?.deliveryInfo?.address?.company,
+            addressLine: user?.cart?.deliveryInfo?.address?.addressLine,
+            postalCode: user?.cart?.deliveryInfo?.address?.postalCode,
+            city: user?.cart?.deliveryInfo?.address?.city,
+            countryCode: user?.cart?.deliveryInfo?.address?.countryCode,
+          },
+        });
+      }
+      updateOrderDeliveryAddress({
+        orderDeliveryId: user?.cart?.deliveryInfo?._id,
+        address: null,
+        meta: null,
+      });
+    } else {
+      updateOrderDeliveryAddress({
+        orderDeliveryId: user?.cart?.deliveryInfo?._id,
+        address: {
+          firstName: user?.cart?.billingAddress?.firstName,
+          lastName: user?.cart?.billingAddress?.lastName,
+          company: user?.cart?.billingAddress?.company,
+          addressLine: user?.cart?.billingAddress?.addressLine,
+          postalCode: user?.cart?.billingAddress?.postalCode,
+          city: user?.cart?.billingAddress?.city,
+          countryCode: user?.cart?.billingAddress?.countryCode,
+        },
+        meta: null,
+      });
+    }
+  };
+
   return (
     <>
-      <header className="header sticky-top">
-        <div className="container d-flex justify-content-between align-items-center flex-wrap">
-          <Link href="/">
-            <a className="color-brand">
-              <h3 className="my-2 mr-2">Unchained</h3>
-            </a>
-          </Link>
-          <a
-            href="https://pay.sandbox.datatrans.com/upp/jsp/upStart.jsp?merchantId=1100004624&refno=1234567890&amount=1000&currency=CHF&theme=DT2015"
-            className="button button--primary"
-          >
-            Bestellung abschicken und bezahlen 💳
-          </a>
-        </div>
-      </header>
-      <div className="container">
-        <h1>Bezahlen</h1>
+      <Header />
+
+      <div className="container mt-5">
         <div className="row">
-          <div className="col-lg-6">
-            <h2>Bestellübersicht</h2>
-            <ManageCart />
+          <div className="col-lg-8 mb-5">
+            <h3 className="h4 mt-0 mb-5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                height="16"
+                fill="#00B75B"
+                className="mr-2"
+              >
+                <title>lock-shield</title>
+                <path d="M13.75,7.244a1.75,1.75,0,0,0-3.5,0v1.5a.25.25,0,0,0,.25.25h3a.25.25,0,0,0,.25-.25Z" />
+                <path d="M24,1.953A1.959,1.959,0,0,0,22.043.006H1.959A1.958,1.958,0,0,0,.012,1.965L0,9.306A15.145,15.145,0,0,0,11.862,23.975a.974.974,0,0,0,.194.019,1,1,0,0,0,.2-.021A15.145,15.145,0,0,0,23.988,9.2ZM7.5,15.494v-5.5a1,1,0,0,1,1-1h.25V7.244a3.25,3.25,0,0,1,6.5,0v1.75h.25a1,1,0,0,1,1,1v5.5a1,1,0,0,1-1,1h-7A1,1,0,0,1,7.5,15.494Z" />
+                <circle cx="12" cy="13.244" r="1.25" />
+              </svg>
+              Secure Checkout - Order Review
+            </h3>
+            <h4>Delivery Address</h4>
+            <DeliveryAddressEditable user={user} />
+
+            <h4 className="mt-5">Billing Address</h4>
+
+            <div className="form-check my-3">
+              <label className={`form-check-label mb-5`} htmlFor="same">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="same"
+                  defaultChecked={user?.cart?.deliveryInfo?.address === null}
+                  name="same"
+                  onChange={(e) => sameAsDeliveryChange(e)}
+                />
+                <span className="ml-3">Same as delivery address</span>
+              </label>
+            </div>
+            <BillingAddressEditable user={user} />
+
+            <h4 className="mt-5">Payment Method</h4>
+            <section className="">
+              {user?.cart?.supportedPaymentProviders.map(({ _id }) => (
+                <div key={_id} className="form-check my-2 my-lg-1">
+                  <label className="form-check-label">
+                    <input
+                      type="radio"
+                      className="form-check-input"
+                      name="paymentmethods"
+                      value={_id}
+                      checked={_id === user?.cart.paymentInfo.provider._id}
+                      onChange={(e) => {
+                        e.preventDefault();
+                        selectPayment(_id);
+                      }}
+                    />
+                    <span className="ml-3">{titleForProvider(_id)}</span>
+                  </label>
+                </div>
+              ))}
+            </section>
+            <div className="">
+              {user?.cart.paymentInfo.provider._id === 'wiretransfer' ? (
+                <button
+                  role="link"
+                  className="button button--primary button--big"
+                  onClick={() => checkout()}
+                >
+                  Confirm Purchase
+                </button>
+              ) : (
+                ''
+              )}
+            </div>
           </div>
-          <div className="col-lg-6">
-            <h2>Lieferadresse</h2>
-            <DeliverySection />
-
-            <h2>Rechnungsadresse</h2>
-            <BillingSection />
-
-            {/* <a
-              href="https://pay.sandbox.datatrans.com/upp/jsp/upStart.jsp?merchantId=1100004624&refno=1234567890&amount=1000&currency=CHF&theme=DT2015"
-              className="button button--primary button--big"
-            >
-              Bestellung abschicken und bezahlen 💳
-            </a> */}
-            <button onClick={handleCheckout} className="button button--primary">
-              Bestellung abschicken
-            </button>
+          <div className="col-lg-4">
+            <h4 className="mt-0 mb-5">Order Summary</h4>
+            <ManageCart />
           </div>
         </div>
       </div>
@@ -310,4 +187,4 @@ const Payment = () => {
   );
 };
 
-export default Payment;
+export default Review;

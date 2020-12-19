@@ -8,7 +8,6 @@ const mapForwardHeaders = ({ headers = {}, ...req } = {}) => {
     req?.socket?.remoteAddress ||
     req?.connection?.socket?.remoteAddress;
 
-  console.log(headers);
   const forwardHeaders = {
     ...headers,
     'accept-language': headers['accept-language'],

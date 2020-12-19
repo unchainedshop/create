@@ -25,7 +25,11 @@ const LoginCart = () => {
           <a className="button button--secondary ml-3 my-1">Abmelden</a>
         </Link>
       ) : (
-        ''
+        <div className="d-flex justify-content-end flex-wrap">
+          <Link href="/login">
+            <a className="button button--secondary my-1">Anmelden</a>
+          </Link>
+        </div>
       )}
     </div>
   ) : (

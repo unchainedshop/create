@@ -16,8 +16,7 @@ const Home = () => (
         <div className="text-center py-5">
           <div className="row d-flex align-items-center">
             <div className="col-lg-8">
-              <h1 className="color-brand mt-2">Hello</h1>
-              <p>Have a look</p>
+              <h1 className="color-brand mt-2">Unchained Shop</h1>
             </div>
           </div>
         </div>

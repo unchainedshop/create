@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useApolloClient } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import CartFragment from '../../cart/fragments/CartFragment';
@@ -99,7 +100,6 @@ const createPaymentRequest = async ({ apolloClient, cart }) => {
   );
 
   request.onmerchantvalidation = function (event) {
-    console.log(event);
     // https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session
     // const sessionPromise = fetchPaymentSession(event.validationURL);
     event.complete(/* sessionPromise */);
@@ -144,7 +144,6 @@ export default () => {
       apolloClient,
     });
     const response = await request.show();
-    console.log(response);
 
     try {
       await apolloClient.mutate({

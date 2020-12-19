@@ -8,10 +8,8 @@ const Logout = () => {
   const router = useRouter();
 
   useEffect(() => {
-    (async () => {
-      await logout();
-      router.push('/');
-    })();
+    logout();
+    router.push('/');
   }, []);
 
   return <div className="text-center m-5">🙏 Du wirst abgemeldet</div>;

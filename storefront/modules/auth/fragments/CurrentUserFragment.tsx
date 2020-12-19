@@ -12,6 +12,7 @@ const CurrentUserFragment = gql`
       billingAddress {
         ...AddressFragment
       }
+
       contact {
         telNumber
         emailAddress
@@ -27,6 +28,17 @@ const CurrentUserFragment = gql`
           ...ProductFragment
         }
       }
+      paymentInfo: payment {
+        _id
+        status
+        provider {
+          _id
+          type
+        }
+        ... on OrderPaymentGeneric {
+          sign
+        }
+      }
       taxes: total(category: TAXES) {
         amount
         currency
@@ -38,6 +50,15 @@ const CurrentUserFragment = gql`
       payment: total(category: PAYMENT) {
         amount
         currency
+      }
+      deliveryInfo: delivery {
+        _id
+        meta
+        ... on OrderDeliveryShipping {
+          address {
+            ...AddressFragment
+          }
+        }
       }
       total {
         amount

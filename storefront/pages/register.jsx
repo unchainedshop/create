@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
@@ -8,8 +7,6 @@ import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutati
 import Header from '../modules/layout/components/Header';
 import LoginForm from '../modules/auth/components/LoginForm';
 import Footer from '../modules/layout/components/Footer';
-
-const isDev = process.env.NODE_ENV === 'development';
 
 const ErrorDisplay = ({ error }) => {
   if (!error) return '';
@@ -61,8 +58,6 @@ const SignUp = () => {
     password,
     password2,
   }) => {
-    console.log({ account, password, password2 });
-
     if (account) {
       if (password !== password2) {
         setError('password', 'notMatch', 'Passwörter sind nicht gleich');

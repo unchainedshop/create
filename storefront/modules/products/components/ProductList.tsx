@@ -8,7 +8,6 @@ import getProductMediaUrl from '../utils/getProductMediaUrl';
 const ProductList = () => {
   const { products } = useProductListQuery();
   const { conditionalAddCartProduct } = useConditionalAddCartProductMutation();
-  console.log(products);
 
   const handleClick = (productId) => {
     conditionalAddCartProduct({ productId });
@@ -43,7 +42,6 @@ const ProductList = () => {
               <div className="p-2">
                 <h4 className="my-0">
                   CHF {product?.simulatedPrice?.price?.amount / 100}
-                  .-
                 </h4>
                 <h4 className="mb-0">{product?.texts?.subtitle}</h4>
                 <p>{product?.texts?.description?.split('\n')[0]}</p>

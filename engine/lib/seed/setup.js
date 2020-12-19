@@ -8,6 +8,7 @@ import { DeliveryProviders } from 'meteor/unchained:core-delivery';
 import i18nConfiguration from './i18n.config';
 import paymentConfiguration from './payment.config';
 import deliveryConfiguration from './delivery.config';
+import warehousingConfiguration from './warehousing.config';
 
 const logger = console;
 
@@ -84,6 +85,7 @@ export default () => {
     const { paymentProviders } = paymentConfiguration;
     paymentProviders.forEach((paymentProvider) => {
       PaymentProviders.insert({
+        authorId: admin._id,
         configuration: [],
         created: new Date(),
         ...paymentProvider,
@@ -93,9 +95,20 @@ export default () => {
     const { deliveryProviders } = deliveryConfiguration;
     deliveryProviders.forEach((deliveryProvider) => {
       DeliveryProviders.insert({
+        authorId: admin._id,
         configuration: [],
         created: new Date(),
         ...deliveryProvider,
+      });
+    });
+
+    const { warehousingProviders } = warehousingConfiguration;
+    warehousingProviders.forEach((warehousingProvider) => {
+      WarehousingProviders.insert({
+        authorId: admin._id,
+        configuration: [],
+        created: new Date(),
+        ...warehousingProvider,
       });
     });
 

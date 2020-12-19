@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { mergeSchemas, addSchemaLevelResolveFunction } from 'graphql-tools';
 import getConfig from 'next/config';
 

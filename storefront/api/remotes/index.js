@@ -7,6 +7,7 @@ const {
 } = getConfig();
 
 export default async () => {
+  // eslint-disable-next-line no-undef
   const [unchainedSchema, getCockpitSchema] = await Promise.all([
     buildUnchainedSchema(),
     buildGetCockpitSchema(),

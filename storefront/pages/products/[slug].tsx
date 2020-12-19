@@ -26,7 +26,7 @@ const Detail = () => {
             <h2 className="px-2 mt-md-0">{product?.texts?.title}</h2>
             <div className="p-2">
               <h3 className="my-0">
-                CHF {product?.simulatedPrice?.price?.amount / 100}.-{' '}
+                CHF {product?.simulatedPrice?.price?.amount / 100}{' '}
                 <small className="taxes">(inkl. MwSt.)</small>
               </h3>
               <h4 className="mb-0">{product?.texts?.subtitle}</h4>

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import usePaymentRequest from '../hooks/usePaymentRequest';
 
 const WebPayment = ({ onClick, onSuccess = null }) => {
@@ -18,7 +19,7 @@ const WebPayment = ({ onClick, onSuccess = null }) => {
       return (
         <button
           style={{
-            '-webkit-appearance': '-apple-pay-button',
+            webkitAppearance: '-apple-pay-button',
           }}
           onClick={handlePayment}
         />
@@ -35,7 +36,9 @@ const WebPayment = ({ onClick, onSuccess = null }) => {
         </button>
       );
     }
-  } catch (e) {}
+  } catch (e) {
+    console.error(e);
+  }
   return null;
 };
 

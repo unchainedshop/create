@@ -3,10 +3,16 @@ import {
   ApolloLink,
   InMemoryCache,
   HttpLink,
+  IntrospectionFragmentMatcher,
 } from 'apollo-boost';
 import { setContext } from 'apollo-link-context';
 import fetch from 'isomorphic-unfetch';
 import getConfig from 'next/config';
+import introspectionQueryResultData from '../../../fragmentTypes.json';
+
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData,
+});
 
 const {
   publicRuntimeConfig: { GRAPHQL_ENDPOINT },
@@ -29,7 +35,7 @@ function create(initialState) {
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: httpLink,
-    cache: new InMemoryCache().restore(initialState || {}),
+    cache: new InMemoryCache({ fragmentMatcher }).restore(initialState || {}),
   });
 }
 

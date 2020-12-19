@@ -16,7 +16,7 @@ export default () => {
   try {
     const existingUser = Users.findOne({ username: 'admin' });
     if (existingUser) {
-      if (process.env.NODE_ENV !== 'production') {
+      if (process.env.RESEED_AT_START) {
         
         // In dev mode: Remove master data every restart to reconfigure the shop.
         Countries.remove({});

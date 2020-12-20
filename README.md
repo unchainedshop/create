@@ -31,7 +31,7 @@ If  you were able to complete the previous step with out any issue, you will hav
 use for most of your e-commerce needs. However if your business needs more flexablity you can still integrate the engine with
 a content managment software easily.
 
-This starter kit comes with integration for Cockpit content managment system (CMS) but feel free to use your own CMS following the same principles.
+This starter kit comes with integration for (Cockpit content managment system (CMS))[https://getcockpit.com/] but feel free to use your own CMS following the same principles.
 
 before you proceed make sure you have [docker](https://www.docker.com) installed on your system
 
@@ -61,7 +61,7 @@ if for some reason you are having issue runing the above command use the code be
 cd cms && docker run -d -p 4020:80 cockpit-cms
 ```
 
-when this commands completes successfully you will have a cockpit CMS running locally inside a docker container reachable at
+when this commands completes successfully you will have a [cockpit CMS](https://getcockpit.com/) running locally inside a docker container reachable at
 `http://localhost:4020`. feel free to change the port but make sure you update all the `env` variables that depend on it along with it
 if you do, mainly `GETCOCKPIT_ENDPOINT`.
 

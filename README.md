@@ -21,9 +21,56 @@ npm run dev
 
 Now you have a fully running Unchained E-Commerce environment running locally. Check it out by browsing to the following URLs:
 
-- http://localhost:3000 to see the front-end (storefront)
-- http://localhost:4010 to see the control panel. Login with username: admin@localhost / password: password
-- http://localhost:4010/graphql to see the Unchained GraphQL Playground
+- <http://localhost:3000> to see the front-end (storefront)
+- <http://localhost:4010> to see the control panel. Login with username: admin@localhost / password: password
+- <http://localhost:4010/graphql> to see the Unchained GraphQL Playground
+
+### Interating with Cockpit CMS localy
+
+If  you were able to complete the previous step with out any issue, you will have a local instance of unchained engine which you can
+use for most of your e-commerce needs. However if your business needs more flexablity you can still integrate the engine with
+a content managment software easily.
+
+This starter kit comes with integration for Cockpit content managment system (CMS) but feel free to use your own CMS following the same principles.
+
+before you proceed make sure you have [docker](https://www.docker.com) installed on your system
+
+Now that you have docker installed and ready, to get the CMS runing first you should build the docker images by runing the following command in the root directory.
+
+```
+npm run build-cms
+```
+
+if for some reason you are having issue runing the above command use the code bellow as an alternative
+
+```
+cd cms && docker build -t cockpit-cms . --no-cache
+```
+
+This might take some time depending on your connection speed as all the required images need to be downloaded for the first time.
+
+after the above command completes successfully, you now need to start the container by running the command bellow in the root directory.
+
+```
+npm run run-cms
+```
+
+if for some reason you are having issue runing the above command use the code bellow as an alternative
+
+```
+cd cms && docker run -d -p 4020:80 cockpit-cms
+```
+
+when this commands completes successfully you will have a cockpit CMS running locally inside a docker container reachable at
+`http://localhost:4020`. feel free to change the port but make sure you update all the `env` variables that depend on it along with it
+if you do, mainly `GETCOCKPIT_ENDPOINT`.
+
+Once you have cockpit running you need to install it by hitting the url `http://localhost:4020/install`.
+
+Now that you have cockpit runing and installed the last thing you will need to do is generate an api acceess token you will need to access
+the enpoint. to do that go to `settings` > `API Access` then generate token. finally assigned the generated token to the `env` variable `GETCOCKPIT_TOKEN`.
+
+Thats it restart the engine and you have a a working CMS integration on your local environment
 
 Go to [docs.unchained.shop](https://docs.unchained.shop) for more further information.
 
@@ -33,9 +80,9 @@ Go to [docs.unchained.shop](https://docs.unchained.shop) for more further inform
 
 You need to get a VM or Managed Docker Environment from a local cloud provider. For Switzerland we can recommend one of the following (there are many more of course):
 
-https://www.exoscale.com/compute/
-https://www.metanet.ch/server/cloud-server
-https://www.nine.ch/de/produkte/root-server-datacenter-infrastructure/cloudserver
+<https://www.exoscale.com/compute/>
+<https://www.metanet.ch/server/cloud-server>
+<https://www.nine.ch/de/produkte/root-server-datacenter-infrastructure/cloudserver>
 
 Or you just go and install a Linux distro on any hardware you have sitting around On Premise style.
 
@@ -43,7 +90,7 @@ We recommend Ubuntu as Operating System, as it's best supported for Docker.
 
 Once you have a running virtual server in the cloud or a physical one, connect to the Server with sudo rights and install the Docker Community edition, please follow these setup instructions here:
 
-https://docs.docker.com/install/linux/docker-ce/ubuntu/
+<https://docs.docker.com/install/linux/docker-ce/ubuntu/>
 
 Once docker engine is running, please activate swarm mode:
 
@@ -78,7 +125,7 @@ nano -w .env
 
 | Environment variable     | Where to get and how to set?                                                                                                                                             |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `MAIL_URL`               | Use any smtp server that you have access to and correctly set it in connection url style like here: https://nodemailer.com/smtp/                                         |
+| `MAIL_URL`               | Use any smtp server that you have access to and correctly set it in connection url style like here: <https://nodemailer.com/smtp/>                                         |
 | `EMAIL_FROM`             | noreply@your-website.ch                                                                                                                                                  |
 | `EMAIL_WEBSITE_NAME`     | The Name of your Website                                                                                                                                                 |
 | `WEBSITE_DOMAIN`             | The Root domain of your website, like: your-website.ch                                                                                                                   |
@@ -102,7 +149,7 @@ It will build and create a docker stack out of the docker-compose.production.yml
 
 #### Setup Datatrans
 
-Set https://ROOT_URL/graphql/datatrans as POST URL in the Datatrans Admin interface.
+Set <https://ROOT_URL/graphql/datatrans> as POST URL in the Datatrans Admin interface.
 
 Go to UPP Verwaltung -> UPP Daten in the Datatrans Admin interface and get the "Merchant-ID". Use that as Datatrans Plugin configuration variable "merchantId". Use that as env DATATRANS_MERCHANT_ID for seed payment plugin setup, else configure via API.
 
@@ -116,11 +163,11 @@ More information you can find on docs.datatrans.com.
 
 Now you have a running UNCHAINED Stack, but data is still missing, visit the URL's:
 
-https://cms.your-website.ch
-Please call the install URL: https://cms.your-website.ch/install to generate an admin user, then
+<https://cms.your-website.ch>
+Please call the install URL: <https://cms.your-website.ch/install> to generate an admin user, then
 generate a new access key, adjust the env variable for the cockpit token and redeploy the UNCHAINED stack (Step 2)
 
-https://engine.your-website.ch
+<https://engine.your-website.ch>
 Please login as admin and change the password:
 
 ```
@@ -129,7 +176,6 @@ Password: password
 ```
 
 Enjoy your UNCHAINED App!
-
 
 ## Contribute
 

@@ -36,7 +36,7 @@ const ManageCart = () => {
       <div className="text-right">
         <div className="border-top py-3 mt-0">
           <div className="d-flex flex-wrap justify-content-between">
-            <div>Enthaltene MwSt. 7.7%</div>
+            <div>VAT included 7.7%</div>
             <div>{renderPrice(user?.cart?.taxes)}</div>
           </div>
         </div>
@@ -44,7 +44,7 @@ const ManageCart = () => {
       <div className="text-right">
         <div className="border-top py-3 mt-0">
           <div className="d-flex flex-wrap justify-content-between">
-            <div>Liefergebühren</div>
+            <div>Delivery charges</div>
             <div>{renderPrice(user?.cart?.delivery)}</div>
           </div>
         </div>
@@ -52,7 +52,7 @@ const ManageCart = () => {
       <div className="text-right">
         <h3 className="border-top border-bottom py-3 mt-0">
           <div className="d-flex flex-wrap justify-content-between">
-            <div>Gesamtbetrag</div>
+            <div>Total amount</div>
             <div>{renderPrice(user?.cart?.total)}</div>
           </div>
         </h3>

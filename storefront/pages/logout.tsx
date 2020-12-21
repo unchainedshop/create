@@ -8,11 +8,13 @@ const Logout = () => {
   const router = useRouter();
 
   useEffect(() => {
-    logout();
-    router.push('/');
+    (async () => {
+      await logout();
+      router.push('/');
+    })();
   }, []);
 
-  return <div className="text-center m-5">🙏 Du wirst abgemeldet</div>;
+  return <div className="text-center m-5">🙏 You will be logged out</div>;
 };
 
 export default Logout;

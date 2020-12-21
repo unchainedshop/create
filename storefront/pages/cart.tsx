@@ -15,7 +15,7 @@ const Cart = () => {
     <div className="container">
       <Header />
       <h1>
-        Warenkorb{' '}
+        shopping cart{' '}
         <span role="img" aria-label="Cart Icon">
           🛒
         </span>
@@ -27,7 +27,7 @@ const Cart = () => {
           href={user?.isGuest ?? true ? '/register?next=payment' : '/payment'}
         >
           <a className="button button--primary button--big text-uppercase">
-            Einmalig Bestellen
+            Order once
           </a>
         </Link>
         <button
@@ -35,7 +35,7 @@ const Cart = () => {
           type="button"
           className="button button--primary button--big text-uppercase"
         >
-          Im Abo Bestellen bald verfügbar
+          Available soon by subscription
         </button>
       </div>
       <Footer />

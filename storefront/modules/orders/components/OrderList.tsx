@@ -14,13 +14,13 @@ const OrderList = () => {
       <table className="table table-bordered table-hover text-center table-striped">
         <thead>
           <tr>
-            <th>Bestellnummer</th>
-            <th>Erstellt</th>
-            <th>Lieferart</th>
-            <th>Zahlungsart</th>
-            <th>Zahlungsstatus</th>
-            <th>Gesamt</th>
-            <th>Land</th>
+            <th>Order number</th>
+            <th>Created</th>
+            <th>Delivery method</th>
+            <th>Payment method</th>
+            <th>Payment status</th>
+            <th>total</th>
+            <th>Country</th>
             <th>Status</th>
           </tr>
         </thead>

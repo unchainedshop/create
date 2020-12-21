@@ -14,16 +14,12 @@ const ErrorDisplay = ({ error }) => {
   if (error.message.includes('Email already exists.')) {
     return (
       <div className="form-error my-3">
-        👬 Es existiert bereits ein Benutzer mit dieser E-Mail Adresse.
+        👬 A user with this email address already exists.
       </div>
     );
   }
 
-  return (
-    <div className="form-error my-3">
-      👷‍♀️ Es ist ein unbekannter Fehler aufgetreten.
-    </div>
-  );
+  return <div className="form-error my-3">👷‍♀️ An unknown error occurred.</div>;
 };
 
 const SignUp = () => {
@@ -89,12 +85,12 @@ const SignUp = () => {
       <Header />
       <div className="row">
         <div className="col-lg-6">
-          <h2>Anmelden</h2>
-          <p>Du hast schon einen Account? Dann melde dich hier an:</p>
+          <h2> Register </h2>
+          <p> Do you already have an account? Then register here: </p>
           <LoginForm onLogin={onLogin} />
         </div>
         <div className="col-lg-6">
-          <h2>Ohne Account bestellen</h2>
+          <h2> Order without an account </h2>
           <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-check mb-3">
               <input
@@ -105,7 +101,7 @@ const SignUp = () => {
                 ref={register}
               />
               <label className="form-check-label mb-0" htmlFor="account">
-                Ich möchte einen Account erstellen
+                I want to create an account
               </label>
             </div>
             <div className="form-row">
@@ -114,7 +110,7 @@ const SignUp = () => {
                   errors.firstName ? 'form-error' : ''
                 }`}
               >
-                <label className="form-label">Vorname</label>
+                <label className="form-label">First name</label>
                 <input
                   className="form-control"
                   name="firstName"
@@ -127,7 +123,7 @@ const SignUp = () => {
                   errors.lastName ? 'form-error' : ''
                 }`}
               >
-                <label className="form-label">Nachname</label>
+                <label className="form-label">Surname</label>
                 <input
                   className={`form-control ${errors.lastName && 'form-error'}`}
                   name="lastName"
@@ -140,7 +136,7 @@ const SignUp = () => {
                   errors.company ? 'form-error' : ''
                 }`}
               >
-                <label className="form-label">Firma (optional)</label>
+                <label className="form-label">Company (optional)</label>
                 <input className="form-control" name="company" ref={register} />
               </div>
               <div
@@ -148,7 +144,7 @@ const SignUp = () => {
                   errors.addressLine ? 'form-error' : ''
                 }`}
               >
-                <label className="form-label">Adresse</label>
+                <label className="form-label">Address</label>
                 <input
                   className={`form-control ${
                     errors.addressLine && 'form-error'
@@ -176,7 +172,7 @@ const SignUp = () => {
               <div
                 className={`mb-3 col-md-6 ${errors.city ? 'form-error' : ''}`}
               >
-                <label className="form-label">Ort</label>
+                <label className="form-label">place</label>
                 <input
                   className={`form-control ${errors.city && 'form-error'}`}
                   name="city"
@@ -204,7 +200,7 @@ const SignUp = () => {
                   errors.telNumber ? 'form-error' : ''
                 }`}
               >
-                <label className="form-label">Telefon</label>
+                <label className="form-label">Telephone</label>
                 <input
                   className={`form-control ${errors.telNumber && 'form-error'}`}
                   name="telNumber"
@@ -219,7 +215,7 @@ const SignUp = () => {
                       errors.password ? 'form-error' : ''
                     }`}
                   >
-                    <label className="form-label">Passwort</label>
+                    <label className="form-label">password</label>
                     <input
                       className="form-control"
                       name="password"
@@ -233,7 +229,7 @@ const SignUp = () => {
                       errors.password2 ? 'form-error' : ''
                     }`}
                   >
-                    <label className="form-label">Passwort wiederholen</label>
+                    <label className="form-label">Repeat password</label>
                     <input
                       className="form-control"
                       name="password2"
@@ -263,7 +259,7 @@ const SignUp = () => {
                 }`}
                 htmlFor="conditions"
               >
-                Ich habe die <a href="/conditions">AGBs</a> gelesen
+                I have read the <a href="/conditions">Terms and Conditions</a>
               </label>
             </div>
 
@@ -274,7 +270,7 @@ const SignUp = () => {
               type="submit"
               disabled={hasErrors}
             >
-              Registrieren
+              to register
             </button>
           </form>
         </div>

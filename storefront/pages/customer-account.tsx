@@ -6,7 +6,7 @@ const Account = () => {
       <Header />
       <div className="row">
         <div className="col-md-8 offset-md-2">
-          <h1>Kundenkonto</h1>
+          <h1>Customer account</h1>
         </div>
       </div>
     </div>

@@ -14,31 +14,28 @@ const WebPayment = ({ onClick, onSuccess = null }) => {
     return onSuccess?.(result);
   };
 
-  try {
-    if (isApplePayAvailable) {
-      return (
-        <button
-          style={{
-            webkitAppearance: '-apple-pay-button',
-          }}
-          onClick={handlePayment}
-        />
-      );
-    }
-    if (isGeneralPaymentAvailable) {
-      return (
-        <button
-          type="button"
-          className="button button--primary button--big text-uppercase"
-          onClick={handlePayment}
-        >
-          Payment Request API
-        </button>
-      );
-    }
-  } catch (e) {
-    console.error(e);
+  if (isApplePayAvailable) {
+    return (
+      <button
+        style={{
+          webkitAppearance: '-apple-pay-button',
+        }}
+        onClick={handlePayment}
+      />
+    );
   }
+  if (isGeneralPaymentAvailable) {
+    return (
+      <button
+        type="button"
+        className="button button--primary button--big text-uppercase"
+        onClick={handlePayment}
+      >
+        Payment Request API
+      </button>
+    );
+  }
+
   return null;
 };
 

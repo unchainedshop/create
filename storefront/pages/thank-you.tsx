@@ -12,8 +12,8 @@ const ThankYou = () => {
       </Link>
       <div className="row">
         <div className="col-md-8 offset-md-2">
-          <h1>Danke für deine Bestellung</h1>
-          <p>Wir werden...</p>
+          <h1>thank you for your order</h1>
+          <p>We will...</p>
         </div>
       </div>
       <Footer />

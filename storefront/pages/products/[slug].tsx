@@ -27,20 +27,20 @@ const Detail = () => {
             <div className="p-2">
               <h3 className="my-0">
                 CHF {product?.simulatedPrice?.price?.amount / 100}{' '}
-                <small className="taxes">(inkl. MwSt.)</small>
+                <small className="taxes">(VAT included.)</small>
               </h3>
               <h4 className="mb-0">{product?.texts?.subtitle}</h4>
               {product?.texts?.description?.split('\n').map((line, i) => (
                 <p key={i}>{line}</p>
               ))}
-              <p>Gewicht:{product?.dimensions?.weight * 1000} Gramm</p>
+              <p>Weight:{product?.dimensions?.weight * 1000} Gramm</p>
             </div>
             <button
               type="button"
               className="button button--primary button--big mb-5 text-uppercase"
               onClick={handleClick}
             >
-              In den Warenkorb
+              Add to cart
             </button>
             <WebPayment onClick={handleClick} />
           </div>

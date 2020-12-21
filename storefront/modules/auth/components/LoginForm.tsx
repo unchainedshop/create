@@ -40,7 +40,7 @@ const LoginForm = ({ onLogin }) => {
             errors.email ? 'form-error' : ''
           }`}
         >
-          <label className="form-label">Deine E-Mail Adresse</label>
+          <label className="form-label">E-mail address</label>
           <input
             className="form-control"
             name="email"
@@ -53,7 +53,7 @@ const LoginForm = ({ onLogin }) => {
             errors.password ? 'form-error' : ''
           }`}
         >
-          <label className="form-label">Dein Passwort</label>
+          <label className="form-label">Password</label>
           <input
             className="form-control"
             type="password"
@@ -63,7 +63,7 @@ const LoginForm = ({ onLogin }) => {
           <Link href="forget-password">
             <a className="mt-2 text-right">
               <small id="passwordForgot" className="form-text text-muted">
-                Passwort vergessen?
+                Forgot password?
               </small>
             </a>
           </Link>
@@ -81,7 +81,7 @@ const LoginForm = ({ onLogin }) => {
         type="submit"
         disabled={hasErrors}
       >
-        Anmelden
+        Log in
       </button>
     </form>
   );

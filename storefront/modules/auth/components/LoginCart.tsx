@@ -12,7 +12,7 @@ const LoginCart = () => {
           <span className="cart-counter">
             {user?.cart?.items.reduce((acc, item) => acc + item.quantity, 0)}
           </span>
-          Produkte im 🛒 für insgesamt
+          Products in 🛒 for a total of
           <b className="ml-1">
             CHF
             {user?.cart?.total?.amount / 100}
@@ -22,12 +22,12 @@ const LoginCart = () => {
       </Link>
       {!user.isGuest ? (
         <Link href="/logout">
-          <a className="button button--secondary ml-3 my-1">Abmelden</a>
+          <a className="button button--secondary ml-3 my-1">Sign out</a>
         </Link>
       ) : (
         <div className="d-flex justify-content-end flex-wrap">
           <Link href="/login">
-            <a className="button button--secondary my-1">Anmelden</a>
+            <a className="button button--secondary my-1">register</a>
           </Link>
         </div>
       )}
@@ -35,7 +35,7 @@ const LoginCart = () => {
   ) : (
     <div className="d-flex justify-content-end flex-wrap">
       <Link href="/login">
-        <a className="button button--secondary my-1">Anmelden</a>
+        <a className="button button--secondary my-1">Log in</a>
       </Link>
     </div>
   );

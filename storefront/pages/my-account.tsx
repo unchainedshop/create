@@ -12,7 +12,7 @@ const MyAccout = () => {
       </Link>
       <div className="row">
         <div className="col-md-8 offset-md-2">
-          <h1>Mein Konto</h1>
+          <h1>My account</h1>
           <p>...</p>
         </div>
       </div>

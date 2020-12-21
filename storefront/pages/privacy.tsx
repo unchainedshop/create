@@ -12,7 +12,7 @@ const ThankYou = () => {
       </Link>
       <div className="row">
         <div className="col-md-8 offset-md-2">
-          <h1>Datenschutz</h1>
+          <h1>privacy</h1>
           <p>...</p>
         </div>
       </div>

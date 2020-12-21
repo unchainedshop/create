@@ -12,7 +12,7 @@ const VerifiedEmail = () => {
       </Link>
       <div className="row">
         <div className="col-md-8 offset-md-2">
-          <h1>Deine E-Mail ist erfolgreich verifiziert worden</h1>
+          <h1>Your email has been successfully verified</h1>
           <p>...</p>
         </div>
       </div>

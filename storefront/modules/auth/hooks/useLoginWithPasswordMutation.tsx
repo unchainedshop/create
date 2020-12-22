@@ -8,6 +8,7 @@ const LoginWithPasswordMutation = gql`
     loginWithPassword(email: $email, plainPassword: $password) {
       id
       token
+      tokenExpires
       user {
         ...CurrentUserFragment
       }

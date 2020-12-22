@@ -21,7 +21,6 @@ const useOrderDetailQuery = ({ orderId }) => {
   const { data, loading, error } = useQuery(OrderDetailQuery, {
     variables: { orderId },
   });
-  console.log(data);
 
   return {
     order: data?.order,

@@ -6,15 +6,15 @@ const PasswordReset = () => {
       <Header />
       <div className="row">
         <div className="col-md-8 offset-md-2">
-          <h1>Passwort zurücksetzen</h1>
+          <h1>reset Password</h1>
           <form className="form">
-            <label className="form-label">Neues Passwort eingeben</label>
+            <label className="form-label">Enter a new password</label>
             <input className="form-control" name="email" type="password" />
             <button
               className="button button--primary button--big mt-3"
               type="submit"
             >
-              Passwort zurücksetzen
+              reset Password
             </button>
           </form>
         </div>

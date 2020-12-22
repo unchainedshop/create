@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import Footer from '../modules/layout/components/Footer';
 
-const VerifiedEmail = () => {
+const ThankYou = () => {
   return (
     <div className="container">
       <Link href="/">
@@ -12,7 +12,7 @@ const VerifiedEmail = () => {
       </Link>
       <div className="row">
         <div className="col-md-8 offset-md-2">
-          <h1>Deine E-Mail ist erfolgreich verifiziert worden</h1>
+          <h1>privacy</h1>
           <p>...</p>
         </div>
       </div>
@@ -21,4 +21,4 @@ const VerifiedEmail = () => {
   );
 };
 
-export default VerifiedEmail;
+export default ThankYou;

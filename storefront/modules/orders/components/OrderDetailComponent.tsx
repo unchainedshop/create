@@ -15,7 +15,7 @@ const OrderDetailComponent = () => {
 
   return (
     <div>
-      <h2 className="text-center">Bestelldetails</h2>
+      <h2 className="text-center">Order details</h2>
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
@@ -41,7 +41,7 @@ const OrderDetailComponent = () => {
             <div className="text-right">
               <div className="border-top py-3 mt-0">
                 <div className="d-flex flex-wrap justify-content-between">
-                  <div className="font-weight-bolder">Lieferung</div>
+                  <div className="font-weight-bolder">delivery</div>
                   <div className="font-weight-bolder">
                     {renderPrice(order.delivery.provider.simulatedPrice.price)}
                   </div>
@@ -51,7 +51,7 @@ const OrderDetailComponent = () => {
             <div className="text-right">
               <div className="border-top py-3 mt-0">
                 <div className="d-flex flex-wrap justify-content-between">
-                  <div className="font-weight-bolder text-info">Gesamt</div>
+                  <div className="font-weight-bolder text-info">total</div>
                   <div className="font-weight-bolder font-heading text-info">
                     {renderPrice(order.total)}
                   </div>

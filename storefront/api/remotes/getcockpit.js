@@ -3,6 +3,8 @@ import {
   introspectSchema,
   transformSchema,
   FilterRootFields,
+  RenameTypes,
+  RenameRootFields,
 } from 'graphql-tools';
 import fetch from 'isomorphic-unfetch';
 import { HttpLink } from 'apollo-link-http';
@@ -58,7 +60,12 @@ export default async () => {
       new FilterRootFields((operation) => {
         return operation !== 'Mutation';
       }),
+      new RenameTypes((name) => `Cms${name}`),
+      new RenameRootFields(
+        (_, name) => `cms${name.charAt(0).toUpperCase() + name.slice(1)}`,
+      ),
     ]);
+
     return transformedSchema;
   } catch (e) {
     console.error(e); // eslint-disable-line

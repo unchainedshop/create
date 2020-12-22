@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import usePaymentRequest from '../hooks/usePaymentRequest';
 
 const WebPayment = ({ onClick, onSuccess = null }) => {
@@ -13,29 +14,28 @@ const WebPayment = ({ onClick, onSuccess = null }) => {
     return onSuccess?.(result);
   };
 
-  try {
-    if (isApplePayAvailable) {
-      return (
-        <button
-          style={{
-            '-webkit-appearance': '-apple-pay-button',
-          }}
-          onClick={handlePayment}
-        />
-      );
-    }
-    if (isGeneralPaymentAvailable) {
-      return (
-        <button
-          type="button"
-          className="button button--primary button--big text-uppercase"
-          onClick={handlePayment}
-        >
-          Payment Request API
-        </button>
-      );
-    }
-  } catch (e) {}
+  if (isApplePayAvailable) {
+    return (
+      <button
+        style={{
+          webkitAppearance: '-apple-pay-button',
+        }}
+        onClick={handlePayment}
+      />
+    );
+  }
+  if (isGeneralPaymentAvailable) {
+    return (
+      <button
+        type="button"
+        className="button button--primary button--big text-uppercase"
+        onClick={handlePayment}
+      >
+        Payment Request API
+      </button>
+    );
+  }
+
   return null;
 };
 

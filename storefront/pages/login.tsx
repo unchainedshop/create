@@ -5,14 +5,14 @@ import LoginForm from '../modules/auth/components/LoginForm';
 
 const SignIn = () => {
   const router = useRouter();
-  const onLogin = () => router.push('/kundenkonto');
+  const onLogin = () => router.push('/customer-account');
 
   return (
     <div className="container">
       <Header />
       <div className="row">
         <div className="col-md-6 m-auto">
-          <h1 className="text-center">Anmeldung</h1>
+          <h1 className="text-center">registration</h1>
           <LoginForm onLogin={onLogin} />
         </div>
       </div>

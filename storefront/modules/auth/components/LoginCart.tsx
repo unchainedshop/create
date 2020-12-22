@@ -7,12 +7,12 @@ const LoginCart = () => {
 
   return user ? (
     <div className="d-flex justify-content-end align-items-center flex-wrap">
-      <Link href="/warenkorb">
+      <Link href="/cart">
         <a className="button button--tertiary my-1">
           <span className="cart-counter">
             {user?.cart?.items.reduce((acc, item) => acc + item.quantity, 0)}
           </span>
-          Produkte im 🛒 für insgesamt
+          Products in 🛒 for a total of
           <b className="ml-1">
             CHF
             {user?.cart?.total?.amount / 100}
@@ -21,17 +21,21 @@ const LoginCart = () => {
         </a>
       </Link>
       {!user.isGuest ? (
-        <Link href="/abmelden">
-          <a className="button button--secondary ml-3 my-1">Abmelden</a>
+        <Link href="/logout">
+          <a className="button button--secondary ml-3 my-1">Sign out</a>
         </Link>
       ) : (
-        ''
+        <div className="d-flex justify-content-end flex-wrap">
+          <Link href="/login">
+            <a className="button button--secondary my-1">register</a>
+          </Link>
+        </div>
       )}
     </div>
   ) : (
     <div className="d-flex justify-content-end flex-wrap">
-      <Link href="/anmelden">
-        <a className="button button--secondary my-1">Anmelden</a>
+      <Link href="/login">
+        <a className="button button--secondary my-1">Log in</a>
       </Link>
     </div>
   );

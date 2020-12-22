@@ -1,4 +1,5 @@
-// eslint-disable-next-line
+/* eslint-disable no-undef */
+
 console.log(process.version);
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

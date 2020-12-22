@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import Footer from '../modules/layout/components/Footer';
 
-const ThankYou = () => {
+const MyAccout = () => {
   return (
     <div className="container">
       <Link href="/">
@@ -12,7 +12,7 @@ const ThankYou = () => {
       </Link>
       <div className="row">
         <div className="col-md-8 offset-md-2">
-          <h1>AGB</h1>
+          <h1>My account</h1>
           <p>...</p>
         </div>
       </div>
@@ -21,4 +21,4 @@ const ThankYou = () => {
   );
 };
 
-export default ThankYou;
+export default MyAccout;

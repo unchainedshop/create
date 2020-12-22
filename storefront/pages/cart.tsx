@@ -9,24 +9,25 @@ const Cart = () => {
   const router = useRouter();
   const { user, loading } = useUserQuery();
 
-  if (!user && !loading) router.push('/anmelden?next=warenkorb');
+  if (!user && !loading) router.push('/login?next=cart');
 
   return (
     <div className="container">
       <Header />
-      <h1>Warenkorb <span role="img" aria-label="Cart Icon">🛒</span></h1>
+      <h1>
+        shopping cart{' '}
+        <span role="img" aria-label="Cart Icon">
+          🛒
+        </span>
+      </h1>
       <ManageCart />
 
       <div className="button-group mt-5">
         <Link
-          href={
-            user?.isGuest ?? true ? '/registrieren?next=bezahlen' : '/bezahlen'
-          }
+          href={user?.isGuest ?? true ? '/register?next=payment' : '/payment'}
         >
-          <a
-            className="button button--primary button--big text-uppercase"
-          >
-            Einmalig Bestellen
+          <a className="button button--primary button--big text-uppercase">
+            Order once
           </a>
         </Link>
         <button
@@ -34,7 +35,7 @@ const Cart = () => {
           type="button"
           className="button button--primary button--big text-uppercase"
         >
-          Im Abo Bestellen bald verfügbar
+          Available soon by subscription
         </button>
       </div>
       <Footer />

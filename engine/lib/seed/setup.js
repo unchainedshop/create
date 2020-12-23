@@ -15,31 +15,17 @@ import warehousingConfiguration from './warehousing.config';
 const logger = console;
 
 export default async () => {
-  const existingUser = Users.findOne({ username: 'admin' });
-  if (existingUser) {
-    if (process.env.RESEED_AT_START) {
-      // In dev mode: Remove master data every restart to reconfigure the shop.
-      Countries.remove({});
-      Currencies.remove({});
-      Languages.remove({});
-      PaymentProviders.remove({});
-      DeliveryProviders.remove({});
-    } else {
-      return;
-    }
+  if (Users.find({ username: 'admin' }).count() > 0) {
+    return;
   }
-
-  const admin =
-    existingUser ||
-    (await Users.createUser({
-      username: 'admin',
-      roles: ['admin'],
-      emails: [{ address: 'admin@localhost', verified: true }],
-      profile: { address: {} },
-      guest: false,
-    }));
-
-  if (!existingUser) await admin.setPassword(hashPassword('password'));
+  const admin = await Users.createUser({
+    username: 'admin',
+    roles: ['admin'],
+    emails: [{ address: 'admin@unchained.local', verified: true }],
+    profile: { address: {} },
+    guest: false,
+  });
+  await admin.setPassword(hashPassword('password'));
 
   const {
     baseCountryCode,

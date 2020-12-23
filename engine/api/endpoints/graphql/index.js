@@ -14,11 +14,12 @@ export default (options = {}) => {
     typeDefs: [...typeDefs],
     resolvers: [resolvers],
     context: (req) => {
-      const remoteAddress = req.headers['x-real-ip']
-        || req.headers['x-forwarded-for']
-        || req.connection.remoteAddress
-        || req.socket.remoteAddress
-        || req.connection.socket.remoteAddress;
+      const remoteAddress =
+        req.headers['x-real-ip'] ||
+        req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
 
       if (req.headers.authorization) {
         const [type, token] = req.headers.authorization.split(' ');

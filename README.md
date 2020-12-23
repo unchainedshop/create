@@ -22,7 +22,7 @@ npm run dev
 Now you have a fully running Unchained E-Commerce environment running locally. Check it out by browsing to the following URLs:
 
 - <http://localhost:3000> to see the front-end (storefront)
-- <http://localhost:4010> to see the control panel. Login with username: admin@localhost / password: password
+- <http://localhost:4010> to see the control panel. Login with username: admin@unchained.local / password: password
 - <http://localhost:4010/graphql> to see the Unchained GraphQL Playground
 
 ### Interating with Cockpit CMS localy
@@ -171,7 +171,7 @@ generate a new access key, adjust the env variable for the cockpit token and red
 Please login as admin and change the password:
 
 ```
-User: admin@localhost
+User: admin@unchained.local
 Password: password
 ```
 

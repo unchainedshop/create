@@ -87,7 +87,7 @@ $ npm run install-all
 $ npm run dev
 
 - Open a web browser at http://localhost:3000 to see the front-end
-- Open a web browser at http://localhost:4010 to see the control panel. Login with username: admin@localhost / password: password
+- Open a web browser at http://localhost:4010 to see the control panel. Login with username: admin@unchained.local / password: password
 - Open a web browser at http://localhost:4010/graphql to see the Unchained GraphQL Playground
 
 Have fun!

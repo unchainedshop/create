@@ -1,0 +1,17 @@
+import 'meteor/unchained:core-payment/plugins/invoice';
+import 'meteor/unchained:core-payment/plugins/datatrans';
+import 'meteor/unchained:core-delivery/plugins/send-message';
+import 'meteor/unchained:core-pricing/plugins/order-items';
+import 'meteor/unchained:core-pricing/plugins/order-discount';
+import 'meteor/unchained:core-pricing/plugins/order-delivery';
+import 'meteor/unchained:core-pricing/plugins/delivery-swiss-tax';
+import 'meteor/unchained:core-pricing/plugins/product-swiss-tax';
+import 'meteor/unchained:core-pricing/plugins/product-catalog-price';
+import 'meteor/unchained:core-pricing/plugins/product-discount';
+import 'meteor/unchained:core-filters/plugins/local-search';
+import 'meteor/unchained:core-worker/plugins/external';
+import 'meteor/unchained:core-worker/plugins/heartbeat';
+import 'meteor/unchained:core-worker/plugins/email';
+import 'meteor/unchained:core-worker/plugins/http-request';
+import './author-filter';
+import './delivery-price';

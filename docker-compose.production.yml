@@ -1,0 +1,200 @@
+version: "3.6"
+
+services:
+  traefik:
+    image: traefik:v2.1
+    networks:
+      - traefik
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+      - target: 443
+        published: 443
+        protocol: tcp
+        mode: host
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik-conf:/etc/traefik
+      - traefik-acme:/acme
+    command:
+      - "--log.level=DEBUG"
+      - "--accesslog=true"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.swarmmode=true"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
+      - "--certificatesResolvers.le.acme.httpChallenge.entryPoint=web"
+      - "--certificatesResolvers.le.acme.email=hello@unchained.shop"
+      - "--certificatesResolvers.le.acme.storage=/acme/acme.json"
+    deploy:
+      mode: global
+      update_config:
+        parallelism: 1
+        delay: 30s
+        order: stop-first
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+
+  logrotate:
+    image: michaloo/logrotate
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker:/var/lib/docker
+    environment:
+      - LOGROTATE_MODE=daily
+      - LOGROTATE_ROTATE=7
+      - GOCRON_SCHEDULER=0 0 * * * *
+    labels:
+      traefik.enable: 'false'
+    deploy:
+      mode: global
+      resources:
+        limits:
+          memory: 100M
+      restart_policy:
+        condition: any
+
+  engine:
+    image: engine
+    build:
+      context: ./engine
+      dockerfile: Dockerfile
+    volumes:
+      - uploads:/unchained-uploads:rw
+    networks:
+      - traefik
+      - db
+    depends_on:
+      - mongodb
+    environment:
+      NODE_ENV: production
+      MONGO_URL: mongodb://mongodb/unchained
+      UI_ENDPOINT: $HTTP_METHOD://$WEBSITE_DOMAIN/de
+      ROOT_URL: $HTTP_METHOD://engine.$WEBSITE_DOMAIN
+      FILE_STORAGE_PATH: /unchained-uploads
+      MAIL_URL: $MAIL_URL
+      EMAIL_FROM: $EMAIL_FROM
+      EMAIL_WEBSITE_NAME: $EMAIL_WEBSITE_NAME
+      GRAPHQL_ENDPOINT: $HTTP_METHOD://engine.$WEBSITE_DOMAIN/graphql
+      ADMIN_ACCESS_SECRET: $ADMIN_ACCESS_SECRET
+      DATATRANS_SECRET: $DATATRANS_SECRET
+      DATATRANS_SIGN_KEY: $DATATRANS_SIGN_KEY
+      DATATRANS_API_ENDPOINT: $DATATRANS_API_ENDPOINT
+    healthcheck:
+      interval: 30s
+      timeout: 10s
+      retries: 10
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 30s
+        order: start-first
+      restart_policy:
+        condition: any
+      labels:
+        traefik.http.services.udf-engine.loadbalancer.server.port: '3000'
+        traefik.http.routers.udf-engine.rule: Host(`engine.$WEBSITE_DOMAIN`)
+        traefik.http.routers.udf-engine.entryPoints: websecure
+        traefik.http.routers.udf-engine.tls.certresolver: le
+        traefik.docker.network: traefik
+        traefik.enable: 'true'
+        swarmpit.service.deployment.autoredeploy: 'true'
+
+  cms:
+    image: cms
+    build:
+      context: ./cms
+      dockerfile: Dockerfile
+    volumes:
+     - cms-data:/var/www/html/storage
+    networks:
+     - traefik
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 30s
+        order: start-first
+      restart_policy:
+        condition: any
+      labels:
+        traefik.http.routers.udf-cms.tls.certresolver: le
+        traefik.http.routers.udf-cms.rule: Host(`cms.$WEBSITE_DOMAIN`)
+        traefik.http.services.udf-cms.loadbalancer.server.port: '80'
+        traefik.http.routers.udf-cms.entryPoints: websecure
+        traefik.docker.network: traefik
+        traefik.enable: 'true'
+        swarmpit.service.deployment.autoredeploy: 'true'
+
+  storefront:
+    image: storefront
+    build:
+      context: ./storefront
+      dockerfile: Dockerfile
+    environment:
+      FRONTEND_URL: $HTTP_METHOD://$WEBSITE_DOMAIN
+      GETCOCKPIT_ENDPOINT: $HTTP_METHOD://cms.$WEBSITE_DOMAIN
+      GETCOCKPIT_TOKEN: $GETCOCKPIT_TOKEN
+      GRAPHQL_ENDPOINT: $HTTP_METHOD://$WEBSITE_DOMAIN/api/graphql
+      NODE_ENV: production
+      UNCHAINED_ENDPOINT: $HTTP_METHOD://engine.$WEBSITE_DOMAIN/graphql
+    networks:
+      - traefik
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 30s
+        order: start-first
+      restart_policy:
+        condition: any
+      labels:
+        traefik.http.routers.udf-storefront.tls.certresolver: le
+        traefik.http.services.udf-storefront.loadbalancer.server.port: '3000'
+        traefik.http.routers.udf-storefront.entryPoints: websecure
+        traefik.http.routers.udf-storefront.rule: Host(`$WEBSITE_DOMAIN`)
+        traefik.docker.network: traefik
+        traefik.enable: 'true'
+        swarmpit.service.deployment.autoredeploy: 'true'
+
+  mongodb:
+    image: mongo:$MONGO_VERSION
+    hostname: mongodb
+    networks:
+      - db
+    volumes:
+      - db-data:/data/db
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 30s
+        order: stop-first
+      restart_policy:
+        condition: any
+    labels:
+      traefik.enable: 'false'
+
+volumes:
+  db-data:
+  uploads:
+  cms-data:
+  traefik-conf:
+  traefik-acme:
+
+networks:
+  db:
+    attachable: true
+  traefik:
+    name: 'traefik'
+    attachable: true

@@ -1,0 +1,66 @@
+{
+  "private": true,
+  "meteor": {
+    "mainModule": {
+      "client": false,
+      "server": "boot.js"
+    }
+  },
+  "license": "EUPL",
+  "scripts": {
+    "lint": "eslint . --cache  --fix --ext=jsx --ext=js",
+    "dev": "NODE_OPTIONS=\"-r $(pwd)/node_env.js\" meteor --exclude-archs web.browser,web.browser.legacy --no-release-check --no-lint -p 4010",
+    "build": "meteor build --server-only --directory .build",
+    "debug": "meteor debug -p 4010"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.12.5",
+    "@unchainedshop/controlpanel": "^0.49.3",
+    "apollo-server-express": "^2.19.0",
+    "bcrypt": "^5.0.0",
+    "braintree": "^2.24.0",
+    "dotenv": "^8.2.0",
+    "dotenv-extended": "^2.9.0",
+    "emoji-flags": "^1.3.0",
+    "faker": "^4.1.0",
+    "graphql": "^14.7.0",
+    "i18n-iso-countries": "^5.5.0",
+    "iconv-lite": "^0.5.2",
+    "isomorphic-unfetch": "^3.1.0",
+    "locale": "^0.1.0",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.isnumber": "^3.0.3",
+    "meteor-node-stubs": "^1.0.1",
+    "mjml": "^4.7.1",
+    "moment": "^2.29.1",
+    "moniker": "^0.1.2",
+    "mustache": "^4.0.1",
+    "node-cache": "^5.1.2",
+    "open": "^7.3.0",
+    "ramda": "^0.27.1",
+    "simpl-schema": "^1.10.2",
+    "stripe": "^8.125.0",
+    "winston": "^3.3.3",
+    "winston-transport": "^4.4.0",
+    "xml-js": "^1.6.11",
+    "yieldable-json": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.8",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/register": "^7.12.1",
+    "babel-eslint": "^10.1.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-import-resolver-meteor": "^0.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-meteor": "^7.2.2",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint": "^6.8.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.1.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7",
+    "xliff": "^5.3.1"
+  }
+}

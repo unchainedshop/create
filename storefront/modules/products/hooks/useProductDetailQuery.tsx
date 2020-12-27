@@ -1,5 +1,4 @@
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, gql } from '@apollo/client';
 
 import ProductFragment from '../fragments/ProductFragment';
 

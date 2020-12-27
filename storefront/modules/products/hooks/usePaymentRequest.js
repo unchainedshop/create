@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import { useApolloClient } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { useApolloClient, gql } from '@apollo/client';
+
 import CartFragment from '../../cart/fragments/CartFragment';
 
 const CART_QUERY = gql`

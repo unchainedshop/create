@@ -1,5 +1,4 @@
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, gql } from '@apollo/client';
 
 import OrderFragment from '../fragments/OrderFragment';
 import OrderItemFragment from '../fragments/OrderItemFragment';

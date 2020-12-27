@@ -1,9 +1,10 @@
 import { makeRemoteExecutableSchema, introspectSchema } from 'graphql-tools';
 import fetch from 'isomorphic-unfetch';
 import { createUploadLink } from 'apollo-upload-client';
-import { setContext } from 'apollo-link-context';
-import { ApolloLink } from 'apollo-link';
+import { setContext } from '@apollo/client/link/context';
+import { ApolloLink } from '@apollo/client';
 import getConfig from 'next/config';
+
 import setLoginCookie from './setLoginCookie';
 
 const {

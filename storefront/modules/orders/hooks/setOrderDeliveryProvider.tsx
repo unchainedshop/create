@@ -1,5 +1,4 @@
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, gql } from '@apollo/client';
 
 const SetOrderDeliveryProviderMutation = gql`
   mutation SetOrderDeliverProvider($orderId: ID!, $deliveryProviderId: ID!) {

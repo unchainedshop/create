@@ -1,5 +1,5 @@
-import gql from 'graphql-tag';
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { useMutation, useApolloClient, gql } from '@apollo/client';
+
 import CurrentUserFragment from '../fragments/CurrentUserFragment';
 import { UserQuery } from './useUserQuery';
 

@@ -1,5 +1,4 @@
-import gql from 'graphql-tag';
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { useMutation, useApolloClient, gql } from '@apollo/client';
 
 const LoginAsGuestMutation = gql`
   mutation LoginAsGuest {

@@ -37,11 +37,15 @@ const useCreateUserMutation = () => {
   });
 
   const createUser = async ({ email, password, profile }) => {
-    const result = await createUserMutation({
-      variables: { email, password, profile },
-    });
-    await client.resetStore();
-    return result;
+    try {
+      const result = await createUserMutation({
+        variables: { email, password, profile },
+      });
+      await client.resetStore();
+      return result;
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return {

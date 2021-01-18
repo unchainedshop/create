@@ -5,23 +5,24 @@ import useCreateUserMutation from '../hooks/useCreateUserMutation';
 const SignUpForm = () => {
   const { register, handleSubmit, errors, setError } = useForm();
   const { createUser, error } = useCreateUserMutation();
-  const onSubmit = async ({
-    username,
-    firstName,
-    lastName,
-    company,
-    addressLine,
-    addressLine2,
-    postalCode,
-    city,
-    emailAddress,
-    displayName,
-    telNumber,
-    regionCode,
-    countryCode,
-    password,
-    password2,
-  }) => {
+  const onSubmit = async (form) => {
+    const {
+      username,
+      firstName,
+      lastName,
+      company,
+      addressLine,
+      addressLine2,
+      postalCode,
+      city,
+      emailAddress,
+      displayName,
+      telNumber,
+      regionCode,
+      countryCode,
+      password,
+      password2,
+    } = form;
     if (password !== password2) {
       setError('password', 'notMatch', 'Passwörter sind nicht gleich');
       setError('password2', 'notMatch', 'Passwörter sind nicht gleich');
@@ -53,7 +54,7 @@ const SignUpForm = () => {
     await createUser(userProfile);
   };
   useEffect(() => {
-    if (error?.message?.includes('Email already exists.')) {
+    if (error?.message?.includes('Email already exists')) {
       setError(
         'emailAddress',
         'alreadyExists',
@@ -99,19 +100,9 @@ const SignUpForm = () => {
             />
           </div>
           <div
-            className={`mb-3 col-md-6 ${errors.firstName ? 'form-error' : ''}`}
-          >
-            <label className="form-label">First name</label>
-            <input
-              className="form-control"
-              name="firstName"
-              ref={register({ required: true })}
-            />
-          </div>
-          <div
             className={`mb-3 col-md-6 ${errors.lastName ? 'form-error' : ''}`}
           >
-            <label className="form-label">Surname</label>
+            <label className="form-label">Last name</label>
             <input
               className={`form-control ${errors.lastName && 'form-error'}`}
               name="lastName"
@@ -139,7 +130,7 @@ const SignUpForm = () => {
           <div
             className={`mb-3 col-md-6 ${errors.postalCode ? 'form-error' : ''}`}
           >
-            <label className="form-label">PLZ</label>
+            <label className="form-label">Postal Code</label>
             <input
               className={`form-control ${errors.postalCode && 'form-error'}`}
               name="postalCode"
@@ -147,7 +138,7 @@ const SignUpForm = () => {
             />
           </div>
           <div className={`mb-3 col-md-6 ${errors.city ? 'form-error' : ''}`}>
-            <label className="form-label">place</label>
+            <label className="form-label">City</label>
             <input
               className={`form-control ${errors.city && 'form-error'}`}
               name="city"
@@ -185,7 +176,6 @@ const SignUpForm = () => {
               className={`form-control ${errors.emailAddress && 'form-error'}`}
               name="emailAddress"
               ref={register({ required: true })}
-              // defaultValue={isDev && 'hans@exmaple.com'}
             />
           </div>
           <div
@@ -196,7 +186,6 @@ const SignUpForm = () => {
               className={`form-control ${errors.telNumber && 'form-error'}`}
               name="telNumber"
               ref={register({ required: true })}
-              // defaultValue={isDev && '0791234567'}
             />
           </div>
 
@@ -224,7 +213,11 @@ const SignUpForm = () => {
           </div>
         </div>
         <div>
-          <input type="submit" value="register" />
+          <input
+            type="submit"
+            className="button button--primary my-1"
+            value="Register"
+          />
         </div>
       </form>
     </div>

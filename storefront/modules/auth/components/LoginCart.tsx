@@ -33,7 +33,10 @@ const LoginCart = () => {
       )}
     </div>
   ) : (
-    <div className="d-flex justify-content-end flex-wrap">
+    <div className="d-flex justify-content-end  flex-wrap">
+      <Link href="/sign-up">
+        <a className="button button--secondary my-1 mr-2">Sign Up</a>
+      </Link>
       <Link href="/login">
         <a className="button button--secondary my-1">Log in</a>
       </Link>

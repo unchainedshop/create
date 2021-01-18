@@ -4,10 +4,15 @@ import CurrentUserFragment from '../fragments/CurrentUserFragment';
 import { UserQuery } from './useUserQuery';
 
 const CreateUserMutation = gql`
-  mutation CreateUser($email: String!, $password: String!) {
-    createUser(email: $email, plainPassword: $password) {
+  mutation CreateUser(
+    $email: String!
+    $password: String!
+    $profile: UserProfileInput
+  ) {
+    createUser(email: $email, plainPassword: $password, profile: $profile) {
       id
       token
+      tokenExpires
       user {
         ...CurrentUserFragment
       }
@@ -31,8 +36,10 @@ const useCreateUserMutation = () => {
     },
   });
 
-  const createUser = async ({ email, password }) => {
-    const result = await createUserMutation({ variables: { email, password } });
+  const createUser = async ({ email, password, profile }) => {
+    const result = await createUserMutation({
+      variables: { email, password, profile },
+    });
     await client.resetStore();
     return result;
   };

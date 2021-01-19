@@ -24,9 +24,14 @@ const LoginCart = () => {
         </a>
       </Link>
       {!user.isGuest ? (
-        <Link href="/logout">
-          <a className="button button--secondary ml-3 my-1">Sign out</a>
-        </Link>
+        <>
+          <Link href="/logout">
+            <a className="button button--secondary ml-3 my-1">Sign out</a>
+          </Link>
+          <Link href="/customer-account">
+            <a className="button button--secondary ml-3 my-1">Account</a>
+          </Link>
+        </>
       ) : (
         <div className="d-flex justify-content-end flex-wrap">
           <Link href="/login">

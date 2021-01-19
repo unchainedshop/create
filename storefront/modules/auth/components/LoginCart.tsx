@@ -10,14 +10,17 @@ const LoginCart = () => {
       <Link href="/cart">
         <a className="button button--tertiary my-1">
           <span className="cart-counter">
-            {user?.cart?.items.reduce((acc, item) => acc + item.quantity, 0)}
+            {user?.cart?.items.reduce((acc, item) => acc + item.quantity, 0) ||
+              0}
           </span>
-          Products in 🛒 for a total of
-          <b className="ml-1">
-            CHF
-            {user?.cart?.total?.amount / 100}
-            .-
-          </b>
+          🛒
+          {user?.cart && (
+            <b className="ml-1">
+              {user?.cart?.total?.currency}
+              {user?.cart?.total?.amount / 100}
+              .-
+            </b>
+          )}
         </a>
       </Link>
       {!user.isGuest ? (

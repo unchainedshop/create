@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import COUNTRIES from '../../common/data/countries-list';
 import useCreateUserMutation from '../hooks/useCreateUserMutation';
 
 const SignUpForm = () => {
@@ -58,7 +59,7 @@ const SignUpForm = () => {
       setError(
         'emailAddress',
         'alreadyExists',
-        '👬 Es existiert bereits ein Benutzer mit dieser E-Mail Adresse.',
+        '👬 User with the same email exists.',
       );
     }
   }, [error]);
@@ -148,7 +149,7 @@ const SignUpForm = () => {
           <div
             className={`mb-3 col-md-6 ${errors.regionCode ? 'form-error' : ''}`}
           >
-            <label className="form-label">Region</label>
+            <label className="form-label">Region (optional)</label>
             <input
               className={`form-control ${errors.regionCode && 'form-error'}`}
               name="regionCode"
@@ -160,11 +161,19 @@ const SignUpForm = () => {
             }`}
           >
             <label className="form-label">Country</label>
-            <input
-              className={`form-control ${errors.countryCode && 'form-error'}`}
+            <select
               name="countryCode"
+              defaultValue="CH"
               ref={register({ required: true })}
-            />
+              className={`form-control ${errors.countryCode && 'form-error'}`}
+            >
+              {COUNTRIES.map((c) => (
+                <option key={c.code} value={c.code}>
+                  {' '}
+                  {c.name}{' '}
+                </option>
+              ))}
+            </select>
           </div>
           <div
             className={`mb-3 col-md-6 ${
@@ -177,6 +186,9 @@ const SignUpForm = () => {
               name="emailAddress"
               ref={register({ required: true })}
             />
+            {errors.emailAddress && (
+              <span> {errors.emailAddress?.message} </span>
+            )}
           </div>
           <div
             className={`mb-3 col-md-6 ${errors.telNumber ? 'form-error' : ''}`}

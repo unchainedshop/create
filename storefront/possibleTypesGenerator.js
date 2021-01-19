@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const fetch = require('cross-fetch');
 const fs = require('fs');
 

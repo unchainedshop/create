@@ -1,13 +1,17 @@
 import Link from 'next/link';
+import useUserQuery from '../modules/auth/hooks/useUserQuery';
 
 import Footer from '../modules/layout/components/Footer';
 
-const ThankYou = () => {
+const AboutUs = () => {
+  const { user } = useUserQuery();
   return (
     <div className="container">
       <Link href="/">
         <a className="color-brand">
-          <h3 className="my-2 mr-2">Hi</h3>
+          <h3 className="my-2 mr-2">
+            Hi {user?.profile?.displayName || user?.username}
+          </h3>
         </a>
       </Link>
       <div className="row">
@@ -21,4 +25,4 @@ const ThankYou = () => {
   );
 };
 
-export default ThankYou;
+export default AboutUs;

@@ -7,6 +7,10 @@ const CurrentUserFragment = gql`
   fragment CurrentUserFragment on User {
     _id
     isGuest
+    username
+    profile {
+      displayName
+    }
     cart {
       _id
       billingAddress {

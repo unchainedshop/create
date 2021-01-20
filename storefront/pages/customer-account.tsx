@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import useSetUsername from '../modules/auth/hooks/useSetUsername';
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import COUNTRIES from '../modules/common/data/countries-list';
 import Footer from '../modules/layout/components/Footer';
@@ -5,48 +7,114 @@ import Header from '../modules/layout/components/Header';
 
 const Account = () => {
   const { user } = useUserQuery();
-  console.log(user);
+  const [updateUsername, setUpdateUserName] = useState(false);
+  const [username, setUserName] = useState('');
+  const { setUsername } = useSetUsername();
+
   return (
     <div className="container">
       <Header />
       <div className="row">
         <div className="col-md-8 offset-md-2">
           <h1>Customer account</h1>
+
           <div>
-            <ol>
-              <dt> Username </dt> <dd> {user?.username} </dd>
-              <dt> is Guest </dt> <dd> {user?.isGuest} </dd>
-              <dt> name </dt> <dd> {user?.name} </dd>
-              <dt> Email </dt>{' '}
-              <dd>
-                {' '}
-                {user?.emails?.[0]?.address} <b> Verified</b>{' '}
-                {user?.emails?.[0]?.verified}{' '}
-              </dd>
-              <dt>Number of orders </dt> <dd> {user?.order?.length || 0}</dd>
-              <dt>Display name</dt> <dd> {user?.profile?.displayName} </dd>
-              <dt>First name</dt> <dd> {user?.profile?.address?.firstName} </dd>
-              <dt>Last name</dt> <dd> {user?.profile?.address?.lastName} </dd>
-              <dt>Company</dt> <dd> {user?.profile?.address?.Company} </dd>
-              <dt>Main address</dt>{' '}
-              <dd> {user?.profile?.address?.addressLine} </dd>
-              <dt>Secondary address</dt>{' '}
-              <dd> {user?.profile?.address?.addressLine2} </dd>
-              <dt>Phone</dt> <dd> {user?.profile?.phoneMobile} </dd>
-              <dt>Postal Code</dt>{' '}
-              <dd> {user?.profile?.address?.postalCode} </dd>
-              <dt>City</dt> <dd> {user?.profile?.address?.city} </dd>
-              <dt>Region</dt> <dd> {user?.profile?.address?.regionCode} </dd>
-              <dt>Country</dt>{' '}
-              <dd>
-                {' '}
+            {!updateUsername ? (
+              <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+                <span> Username </span> <span> {user?.username} </span>
+                <button onClick={() => setUpdateUserName(!updateUsername)}>
+                  Change
+                </button>
+              </div>
+            ) : (
+              <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+                <span> Username </span>
+                <input
+                  type="text"
+                  onChange={(e) => setUserName(e.target.value)}
+                  value={username}
+                />
+                <button
+                  onClick={() => setUsername({ userId: user?._id, username })}
+                >
+                  Update
+                </button>
+                <button onClick={() => setUpdateUserName(!updateUsername)}>
+                  Cancel
+                </button>
+              </div>
+            )}
+
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>Guest </span>
+              <span> {user?.isGuest ? <b>Yes</b> : <b>No</b>}</span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span> name </span> <span> {user?.name} </span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span> Email </span>
+              <span>
+                {user?.emails?.[0]?.address}
+                {user?.emails?.[0]?.verified ? (
+                  <b> Verified</b>
+                ) : (
+                  <b> Not Verified</b>
+                )}
+              </span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>Number of orders </span>
+              <span> {user?.order?.length || 0}</span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>Display name</span>
+              <span> {user?.profile?.displayName} </span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>First name</span>
+              <span> {user?.profile?.address?.firstName} </span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>Last name</span>
+              <span> {user?.profile?.address?.lastName} </span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>Company</span>
+              <span> {user?.profile?.address?.Company} </span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>Main address</span>
+              <span> {user?.profile?.address?.addressLine} </span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>Secondary address</span>
+              <span> {user?.profile?.address?.addressLine2} </span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>Phone</span> <span> {user?.profile?.phoneMobile} </span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>Postal Code</span>
+              <span> {user?.profile?.address?.postalCode} </span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>City</span> <span> {user?.profile?.address?.city} </span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>Region</span>
+              <span> {user?.profile?.address?.regionCode} </span>
+            </div>
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span>Country</span>
+              <span>
                 {
                   COUNTRIES.filter(
                     (c) => c.code === user?.profile?.address?.countryCode,
                   )[0]?.name
-                }{' '}
-              </dd>
-            </ol>
+                }
+              </span>
+            </div>
           </div>
         </div>
       </div>

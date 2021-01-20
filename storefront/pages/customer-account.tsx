@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import useSetUsername from '../modules/auth/hooks/useSetUsername';
 import useUserQuery from '../modules/auth/hooks/useUserQuery';
 import COUNTRIES from '../modules/common/data/countries-list';
@@ -11,6 +12,11 @@ const Account = () => {
   const [username, setUserName] = useState('');
   const { setUsername } = useSetUsername();
 
+  const updateName = async (name) => {
+    await setUsername({ username: name, userId: user._id });
+    setUpdateUserName(!updateUsername);
+  };
+
   return (
     <div className="container">
       <Header />
@@ -19,31 +25,29 @@ const Account = () => {
           <h1>Customer account</h1>
 
           <div>
-            {!updateUsername ? (
-              <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                <span> Username </span> <span> {user?.username} </span>
-                <button onClick={() => setUpdateUserName(!updateUsername)}>
-                  Change
-                </button>
-              </div>
-            ) : (
-              <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                <span> Username </span>
-                <input
-                  type="text"
-                  onChange={(e) => setUserName(e.target.value)}
-                  value={username}
-                />
-                <button
-                  onClick={() => setUsername({ userId: user?._id, username })}
-                >
-                  Update
-                </button>
-                <button onClick={() => setUpdateUserName(!updateUsername)}>
-                  Cancel
-                </button>
-              </div>
-            )}
+            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+              <span> Username </span>
+              {!updateUsername ? (
+                <>
+                  <span> {user?.username} </span>
+                  <button onClick={() => setUpdateUserName(!updateUsername)}>
+                    Change
+                  </button>
+                </>
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    onChange={(e) => setUserName(e.target.value)}
+                    value={username}
+                  />
+                  <button onClick={() => updateName(username)}>Update</button>
+                  <button onClick={() => setUpdateUserName(!updateUsername)}>
+                    Cancel
+                  </button>
+                </>
+              )}
+            </div>
 
             <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
               <span>Guest </span>
@@ -52,17 +56,19 @@ const Account = () => {
             <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
               <span> name </span> <span> {user?.name} </span>
             </div>
-            <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-              <span> Email </span>
-              <span>
-                {user?.emails?.[0]?.address}
-                {user?.emails?.[0]?.verified ? (
-                  <b> Verified</b>
-                ) : (
-                  <b> Not Verified</b>
-                )}
-              </span>
-            </div>
+            {user?.emails?.map((e, i) => (
+              <div
+                key={e.address}
+                className="d-flex flex-column flex-sm-row justify-content-between mb-2"
+              >
+                <span>{i + 1}. Email </span>
+                <span>
+                  {e.address}
+                  {e.verified ? <b> Verified</b> : <b> Not Verified</b>}
+                </span>
+              </div>
+            ))}
+
             <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
               <span>Number of orders </span>
               <span> {user?.order?.length || 0}</span>

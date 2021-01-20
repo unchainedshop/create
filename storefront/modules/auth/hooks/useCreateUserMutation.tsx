@@ -5,11 +5,17 @@ import { UserQuery } from './useUserQuery';
 
 const CreateUserMutation = gql`
   mutation CreateUser(
+    $username: String
     $email: String!
     $password: String!
     $profile: UserProfileInput
   ) {
-    createUser(email: $email, plainPassword: $password, profile: $profile) {
+    createUser(
+      username: $username
+      email: $email
+      plainPassword: $password
+      profile: $profile
+    ) {
       id
       token
       tokenExpires
@@ -36,10 +42,10 @@ const useCreateUserMutation = () => {
     },
   });
 
-  const createUser = async ({ email, password, profile }) => {
+  const createUser = async ({ username, email, password, profile }) => {
     try {
       const result = await createUserMutation({
-        variables: { email, password, profile },
+        variables: { username, email, password, profile },
       });
       await client.resetStore();
       return result;

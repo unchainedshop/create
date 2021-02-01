@@ -7,6 +7,5 @@ export default {
       adapterKey: 'shop.unchained.invoice',
       type: PaymentProviderType.INVOICE,
     },
-  
   ],
 };

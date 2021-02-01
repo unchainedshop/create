@@ -10,7 +10,7 @@ import 'meteor/unchained:core-pricing/plugins/product-catalog-price';
 import 'meteor/unchained:core-pricing/plugins/product-discount';
 import 'meteor/unchained:core-filters/plugins/local-search';
 import 'meteor/unchained:core-worker/plugins/external';
-import 'meteor/unchained:core-worker/plugins/heartbeat';
+import 'meteor/unchained:core-worker/plugins/heartbeat.ts';
 import 'meteor/unchained:core-worker/plugins/email';
 import 'meteor/unchained:core-worker/plugins/http-request';
 import './author-filter';

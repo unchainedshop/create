@@ -6,7 +6,6 @@ export default {
       id: 'send-message',
       adapterKey: 'shop.unchained.delivery.send-message',
       type: DeliveryProviderType.SHIPPING,
-      
     },
   ],
 };

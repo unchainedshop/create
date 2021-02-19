@@ -1,13 +1,24 @@
-import gql from 'graphql-tag';
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { useMutation, useApolloClient, gql } from '@apollo/client';
+
 import CurrentUserFragment from '../fragments/CurrentUserFragment';
 import { UserQuery } from './useUserQuery';
 
 const CreateUserMutation = gql`
-  mutation CreateUser($email: String!, $password: String!) {
-    createUser(email: $email, plainPassword: $password) {
+  mutation CreateUser(
+    $username: String
+    $email: String!
+    $password: String!
+    $profile: UserProfileInput
+  ) {
+    createUser(
+      username: $username
+      email: $email
+      plainPassword: $password
+      profile: $profile
+    ) {
       id
       token
+      tokenExpires
       user {
         ...CurrentUserFragment
       }
@@ -31,10 +42,16 @@ const useCreateUserMutation = () => {
     },
   });
 
-  const createUser = async ({ email, password }) => {
-    const result = await createUserMutation({ variables: { email, password } });
-    await client.resetStore();
-    return result;
+  const createUser = async ({ username, email, password, profile }) => {
+    try {
+      const result = await createUserMutation({
+        variables: { username, email, password, profile },
+      });
+      await client.resetStore();
+      return result;
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return {

@@ -10,20 +10,28 @@ const LoginCart = () => {
       <Link href="/cart">
         <a className="button button--tertiary my-1">
           <span className="cart-counter">
-            {user?.cart?.items.reduce((acc, item) => acc + item.quantity, 0)}
+            {user?.cart?.items.reduce((acc, item) => acc + item.quantity, 0) ||
+              0}
           </span>
-          Products in 🛒 for a total of
-          <b className="ml-1">
-            CHF
-            {user?.cart?.total?.amount / 100}
-            .-
-          </b>
+          🛒
+          {user?.cart && (
+            <b className="ml-1">
+              {user?.cart?.total?.currency}
+              {user?.cart?.total?.amount / 100}
+              .-
+            </b>
+          )}
         </a>
       </Link>
       {!user.isGuest ? (
-        <Link href="/logout">
-          <a className="button button--secondary ml-3 my-1">Sign out</a>
-        </Link>
+        <>
+          <Link href="/logout">
+            <a className="button button--secondary ml-3 my-1">Sign out</a>
+          </Link>
+          <Link href="/customer-account">
+            <a className="button button--secondary ml-3 my-1">Account</a>
+          </Link>
+        </>
       ) : (
         <div className="d-flex justify-content-end flex-wrap">
           <Link href="/login">
@@ -33,7 +41,10 @@ const LoginCart = () => {
       )}
     </div>
   ) : (
-    <div className="d-flex justify-content-end flex-wrap">
+    <div className="d-flex justify-content-end  flex-wrap">
+      <Link href="/sign-up">
+        <a className="button button--secondary my-1 mr-2">Sign Up</a>
+      </Link>
       <Link href="/login">
         <a className="button button--secondary my-1">Log in</a>
       </Link>

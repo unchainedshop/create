@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 import AddressFragment from './AddressFragment';
 import ProductFragment from '../../products/fragments/ProductFragment';
@@ -6,7 +6,33 @@ import ProductFragment from '../../products/fragments/ProductFragment';
 const CurrentUserFragment = gql`
   fragment CurrentUserFragment on User {
     _id
+    username
     isGuest
+    name
+    emails {
+      address
+      verified
+    }
+    orders {
+      _id
+    }
+    isInitialPassword
+    lastLogin {
+      timestamp
+      countryCode
+      locale
+    }
+
+    profile {
+      displayName
+      phoneMobile
+      address {
+        ...AddressFragment
+        addressLine
+        countryCode
+        regionCode
+      }
+    }
     cart {
       _id
       billingAddress {

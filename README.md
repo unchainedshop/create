@@ -25,7 +25,7 @@ Now you have a fully running Unchained E-Commerce environment running locally. C
 - <http://localhost:4010> to see the control panel. Login with username: admin@unchained.local / password: password
 - <http://localhost:4010/graphql> to see the Unchained GraphQL Playground
 
-### Interating with Cockpit CMS localy
+### Interacting with Cockpit CMS localy
 
 If  you were able to complete the previous step with out any issue, you will have a local instance of unchained engine which you can
 use for most of your e-commerce needs. However if your business needs more flexablity you can still integrate the engine with

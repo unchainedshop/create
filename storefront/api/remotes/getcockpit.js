@@ -7,9 +7,8 @@ import {
   RenameRootFields,
 } from 'graphql-tools';
 import fetch from 'isomorphic-unfetch';
-import { HttpLink } from 'apollo-link-http';
-import { setContext } from 'apollo-link-context';
-import { ApolloLink } from 'apollo-link';
+import { HttpLink, ApolloLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import getConfig from 'next/config';
 
 const {

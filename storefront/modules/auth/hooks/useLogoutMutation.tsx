@@ -1,6 +1,4 @@
-import gql from 'graphql-tag';
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
-import { UserQuery } from './useUserQuery';
+import { useMutation, useApolloClient, gql } from '@apollo/client';
 
 const LogoutMutation = gql`
   mutation Logout {

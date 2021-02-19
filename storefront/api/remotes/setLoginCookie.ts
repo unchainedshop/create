@@ -1,4 +1,4 @@
-import { ApolloLink } from 'apollo-link';
+import { ApolloLink } from '@apollo/client';
 
 const loginMutations = [
   'loginWithPassword',

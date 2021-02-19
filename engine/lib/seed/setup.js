@@ -18,28 +18,25 @@ export default async () => {
   if (Users.find({ username: 'admin' }).count() > 0) {
     return;
   }
-  const admin = await Users.createUser({
-    username: 'admin',
-    roles: ['admin'],
-    emails: [{ address: 'admin@unchained.local', verified: true }],
-    profile: { address: {} },
-    guest: false,
-  });
-  await admin.setPassword(hashPassword('password'));
+  const admin = await Users.createUser(
+    {
+      username: 'admin',
+      password: hashPassword('password'),
+      roles: ['admin'],
+      emails: [{ address: 'admin@unchained.local', verified: true }],
+      profile: { address: {} },
+      guest: false,
+    },
+    {},
+    { skipMessaging: true },
+  );
 
-  const {
-    baseCountryCode,
-    baseLanguageCode,
-    languages,
-    currencies,
-    countries,
-  } = i18nConfiguration;
+  const { languages, currencies, countries } = i18nConfiguration;
 
   languages.forEach(({ isoCode, ...rest }) => {
     Languages.createLanguage({
       isoCode,
       isActive: true,
-      isBase: isoCode === baseLanguageCode,
       authorId: admin._id,
       ...rest,
     });
@@ -64,7 +61,6 @@ export default async () => {
   countries.forEach(({ isoCode, defaultCurrencyCode, ...rest }) => {
     Countries.createCountry({
       isoCode,
-      isBase: isoCode === baseCountryCode,
       isActive: true,
       authorId: admin._id,
       defaultCurrencyId: currencyCodeToObjectMap[defaultCurrencyCode]._id,

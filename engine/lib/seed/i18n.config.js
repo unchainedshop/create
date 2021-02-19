@@ -1,6 +1,4 @@
 export default {
-  baseCountryCode: 'CH',
-  baseLanguageCode: 'de',
   languages: [
     {
       isoCode: 'de',

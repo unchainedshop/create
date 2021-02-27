@@ -7,7 +7,6 @@ import { DeliveryProviders } from 'meteor/unchained:core-delivery';
 import { WarehousingProviders } from 'meteor/unchained:core-warehousing';
 import { hashPassword } from 'meteor/unchained:api';
 
-import i18nConfiguration from './i18n.config';
 import paymentConfiguration from './payment.config';
 import deliveryConfiguration from './delivery.config';
 import warehousingConfiguration from './warehousing.config';
@@ -15,89 +14,99 @@ import warehousingConfiguration from './warehousing.config';
 const logger = console;
 
 export default async () => {
-  if (Users.find({ username: 'admin' }).count() > 0) {
-    return;
-  }
-  const admin = await Users.createUser(
-    {
-      username: 'admin',
-      password: hashPassword('password'),
-      roles: ['admin'],
-      emails: [{ address: 'admin@unchained.local', verified: true }],
-      profile: { address: {} },
-      guest: false,
-    },
-    {},
-    { skipMessaging: true },
-  );
+  try {
+    if (Users.find({ username: 'admin' }).count() > 0) {
+      return;
+    }
+    const admin = await Users.createUser(
+      {
+        username: 'admin',
+        roles: ['admin'],
+        email: 'admin@unchained.local',
+        password: hashPassword('password'),
+        initialPassword: true,
+        profile: { address: {} },
+        guest: false,
+        lastBillingAddress: {
+          firstName: 'Caraig Jackson',
+          lastName: 'Mengistu',
+          company: 'false',
+          postalCode: '52943',
+          countryCode: 'ET',
+          city: 'Addis Ababa',
+          addressLine: '75275 Bole Mikael',
+          addressLine2: 'Bole 908',
+          regionCode: 'false',
+        },
+      },
+      {},
+      { skipMessaging: true },
+    );
 
-  const { languages, currencies, countries } = i18nConfiguration;
-
-  languages.forEach(({ isoCode, ...rest }) => {
-    Languages.createLanguage({
-      isoCode,
-      isActive: true,
-      authorId: admin._id,
-      ...rest,
-    });
-  });
-
-  const currencyCodeToObjectMap = currencies.reduce(
-    (acc, { isoCode, ...rest }) => {
-      const currencyObject = Currencies.createCurrency({
-        isoCode,
+    const languages = ['de', 'fr'].map((code) => {
+      const language = Languages.createLanguage({
+        isoCode: code,
         isActive: true,
         authorId: admin._id,
-        ...rest,
       });
-      return {
-        ...acc,
-        [isoCode]: currencyObject,
-      };
-    },
-    {},
-  );
-
-  countries.forEach(({ isoCode, defaultCurrencyCode, ...rest }) => {
-    Countries.createCountry({
-      isoCode,
-      isActive: true,
-      authorId: admin._id,
-      defaultCurrencyId: currencyCodeToObjectMap[defaultCurrencyCode]._id,
-      ...rest,
+      return language.isoCode;
     });
-  });
-
-  const { paymentProviders } = paymentConfiguration;
-  paymentProviders.forEach((paymentProvider) => {
-    PaymentProviders.insert({
-      authorId: admin._id,
-      configuration: [],
-      created: new Date(),
-      ...paymentProvider,
+    const currencies = ['EUR'].map((code) => {
+      const currency = Currencies.createCurrency({
+        isoCode: code,
+        isActive: true,
+        authorId: admin._id,
+      });
+      return currency;
     });
-  });
-
-  const { deliveryProviders } = deliveryConfiguration;
-  deliveryProviders.forEach((deliveryProvider) => {
-    DeliveryProviders.insert({
-      authorId: admin._id,
-      configuration: [],
-      created: new Date(),
-      ...deliveryProvider,
+    const countries = ['CH'].map((code, key) => {
+      const country = Countries.createCountry({
+        isoCode: code,
+        isActive: true,
+        authorId: admin._id,
+        defaultCurrencyId: currencies[key]._id,
+      });
+      return country.isoCode;
     });
-  });
-
-  const { warehousingProviders } = warehousingConfiguration;
-  warehousingProviders.forEach((warehousingProvider) => {
-    WarehousingProviders.insert({
-      authorId: admin._id,
-      configuration: [],
-      created: new Date(),
-      ...warehousingProvider,
+    logger.log(`
+      initialized database with
+      \ncountries: ${countries.join(',')}
+      \ncurrencies: ${currencies.map((c) => c.isoCode).join(',')}
+      \nlanguages: ${languages.join(',')}
+      \nuser: admin@unchained.local / password`);
+    const { paymentProviders } = paymentConfiguration;
+    paymentProviders.forEach((paymentProvider) => {
+      PaymentProviders.insert({
+        authorId: admin._id,
+        configuration: [],
+        created: new Date(),
+        ...paymentProvider,
+      });
     });
-  });
 
-  logger.log(`
+    const { deliveryProviders } = deliveryConfiguration;
+    deliveryProviders.forEach((deliveryProvider) => {
+      DeliveryProviders.insert({
+        authorId: admin._id,
+        configuration: [],
+        created: new Date(),
+        ...deliveryProvider,
+      });
+    });
+
+    const { warehousingProviders } = warehousingConfiguration;
+    warehousingProviders.forEach((warehousingProvider) => {
+      WarehousingProviders.insert({
+        authorId: admin._id,
+        configuration: [],
+        created: new Date(),
+        ...warehousingProvider,
+      });
+    });
+
+    logger.log(`
       initialized database with user: admin@unchained.local / password`);
+  } catch (e) {
+    logger.error(e);
+  }
 };

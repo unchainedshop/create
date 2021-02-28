@@ -1,11 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
+
 import COUNTRIES from '../../common/data/countries-list';
 import useCreateUserMutation from '../hooks/useCreateUserMutation';
 
 const SignUpForm = () => {
-  const { register, handleSubmit, errors, setError } = useForm();
+  const { register, handleSubmit, errors, setError, watch } = useForm();
   const { createUser, error } = useCreateUserMutation();
+  const password = useRef({});
+  password.current = watch("password", "");
+
   const onSubmit = async (form) => {
     const {
       username,
@@ -22,13 +26,7 @@ const SignUpForm = () => {
       regionCode,
       countryCode,
       password,
-      password2,
     } = form;
-    if (password !== password2) {
-      setError('password', 'notMatch', 'Passwörter sind nicht gleich');
-      setError('password2', 'notMatch', 'Passwörter sind nicht gleich');
-      return false;
-    }
 
     const userProfile = {
       username,
@@ -220,8 +218,12 @@ const SignUpForm = () => {
               className="form-control"
               name="password2"
               type="password"
-              ref={register({ required: true })}
+              ref={register({
+                validate: value =>
+                  value === password.current || "The passwords do not match"
+              })}
             />
+             {errors.password2 && <p>{errors.password2.message}</p>}
           </div>
         </div>
         <div>

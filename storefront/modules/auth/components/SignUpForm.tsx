@@ -42,7 +42,6 @@ const SignUpForm = () => {
           addressLine,
           addressLine2,
           postalCode,
-
           city,
           regionCode,
           countryCode,

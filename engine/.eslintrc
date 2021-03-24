@@ -1,18 +1,21 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["meteor", "prettier"],
-  "extends": ["airbnb-base", "plugin:meteor/recommended", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "extends": [
+    "airbnb-base",
+    "plugin:prettier/recommended"
+  ],
+  "root": true,
   "env": {
     "node": true,
     "browser": false,
-    "meteor": true,
-    "jest": true
+    "meteor": true
   },
   "settings": {
     "import/core-modules": ["meteor"],
     "import/resolver": {
       "meteor": {
-        "extensions": [".jsx", ".js", ".ts"]
+        "extensions": [".jsx", ".js"]
       }
     }
   },
@@ -27,16 +30,7 @@
         "proseWrap": "always"
       }
     ],
-    "allow-parens": [0, "as-needed"],
     "no-underscore-dangle": ["error", { "allow": ["_id"] }],
-    "import/no-unresolved": ["error", { "ignore": ["meteor/"] }],
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "ts": "never",
-        "js": "never"
-      }
-    ]
+    "import/no-unresolved": ["error", { "ignore": ["meteor/"] }]
   }
 }

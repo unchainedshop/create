@@ -1,16 +1,15 @@
 import { Meteor } from 'meteor/meteor';
+import { startPlatform } from 'meteor/unchained:platform';
 import './lib/plugins';
 import { WebApp } from 'meteor/webapp';
 import { embedControlpanelInMeteorWebApp } from '@unchainedshop/controlpanel';
-import setupAPI from './api';
-import setupDatabase from './lib/seed/setup';
+import seed from './lib/seed';
 
 Meteor.startup(async () => {
-  await setupAPI({
+  await startPlatform({
     introspection: true,
     playground: true,
-  })
-  setupDatabase();
-
+  });
+  seed();
   embedControlpanelInMeteorWebApp(WebApp);
 });

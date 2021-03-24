@@ -3,9 +3,8 @@ import { startPlatform } from 'meteor/unchained:platform';
 import typeDefs from './schema';
 import resolvers from './resolvers';
 
-export default (options = {}) => {
-  startPlatform({
-    introspection: true,
+export default async (options = {}) => {
+ await startPlatform({
     typeDefs: [...typeDefs],
     resolvers: [resolvers],
     ...options,

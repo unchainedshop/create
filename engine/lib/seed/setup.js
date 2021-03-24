@@ -15,97 +15,95 @@ const logger = console;
 
 export default async () => {
   try {
-    if (Users.find({ username: 'admin' }).count() > 0) {
-      return;
-    }
-    const admin = await Users.createUser(
-      {
-        username: 'admin',
-        roles: ['admin'],
-        email: 'admin@unchained.local',
-        password: hashPassword('password'),
-        initialPassword: true,
-        profile: { address: {} },
-        guest: false,
-        lastBillingAddress: {
-          firstName: 'Caraig Jackson',
-          lastName: 'Mengistu',
-          company: 'false',
-          postalCode: '52943',
-          countryCode: 'ET',
-          city: 'Addis Ababa',
-          addressLine: '75275 Bole Mikael',
-          addressLine2: 'Bole 908',
-          regionCode: 'false',
+      if (Users.find({ username: 'admin' }).count() > 0) {
+        return;
+      }
+      const admin = await Users.createUser(
+        {
+          username: 'admin',
+          roles: ['admin'],
+          email: 'admin@unchained.local',
+          password: hashPassword('password'),
+          initialPassword: true,
+          profile: { address: {} },
+          guest: false,
+          lastBillingAddress: {
+            firstName: 'Caraig Jackson',
+            lastName: 'Mengistu',
+            company: 'false',
+            postalCode: '52943',
+            countryCode: 'ET',
+            city: 'Addis Ababa',
+            addressLine: '75275 Bole Mikael',
+            addressLine2: 'Bole 908',
+            regionCode: 'false',
+          },
         },
-      },
-      {},
-      { skipMessaging: true },
-    );
-
-    const languages = ['de', 'fr'].map((code) => {
-      const language = Languages.createLanguage({
-        isoCode: code,
-        isActive: true,
-        authorId: admin._id,
+        {},
+        { skipMessaging: true },
+      );
+  
+      const languages = ['de', 'fr'].map((code) => {
+        const language = Languages.createLanguage({
+          isoCode: code,
+          isActive: true,
+          authorId: admin._id,
+        });
+        return language.isoCode;
       });
-      return language.isoCode;
-    });
-    const currencies = ['EUR'].map((code) => {
-      const currency = Currencies.createCurrency({
-        isoCode: code,
-        isActive: true,
-        authorId: admin._id,
+      const currencies = ['EUR'].map((code) => {
+        const currency = Currencies.createCurrency({
+          isoCode: code,
+          isActive: true,
+          authorId: admin._id,
+        });
+        return currency;
       });
-      return currency;
-    });
-    const countries = ['CH'].map((code, key) => {
-      const country = Countries.createCountry({
-        isoCode: code,
-        isActive: true,
-        authorId: admin._id,
-        defaultCurrencyId: currencies[key]._id,
+      const countries = ['CH'].map((code, key) => {
+        const country = Countries.createCountry({
+          isoCode: code,
+          isActive: true,
+          authorId: admin._id,
+          defaultCurrencyId: currencies[key]._id,
+        });
+        return country.isoCode;
       });
-      return country.isoCode;
-    });
-    logger.log(`
-      initialized database with
-      \ncountries: ${countries.join(',')}
-      \ncurrencies: ${currencies.map((c) => c.isoCode).join(',')}
-      \nlanguages: ${languages.join(',')}
-      \nuser: admin@unchained.local / password`);
-    const { paymentProviders } = paymentConfiguration;
-    paymentProviders.forEach((paymentProvider) => {
-      PaymentProviders.insert({
-        authorId: admin._id,
-        configuration: [],
-        created: new Date(),
-        ...paymentProvider,
+      logger.log(`
+        initialized database with
+        \ncountries: ${countries.join(',')}
+        \ncurrencies: ${currencies.map((c) => c.isoCode).join(',')}
+        \nlanguages: ${languages.join(',')}
+        \nuser: admin@unchained.local / password`);
+  
+        const { paymentProviders } = paymentConfiguration;
+      paymentProviders.forEach((paymentProvider) => {
+        PaymentProviders.insert({
+          authorId: admin._id,
+          configuration: [],
+          created: new Date(),
+          ...paymentProvider,
+        });
       });
-    });
-
-    const { deliveryProviders } = deliveryConfiguration;
-    deliveryProviders.forEach((deliveryProvider) => {
-      DeliveryProviders.insert({
-        authorId: admin._id,
-        configuration: [],
-        created: new Date(),
-        ...deliveryProvider,
+  
+      const { deliveryProviders } = deliveryConfiguration;
+      deliveryProviders.forEach((deliveryProvider) => {
+        DeliveryProviders.insert({
+          authorId: admin._id,
+          configuration: [],
+          created: new Date(),
+          ...deliveryProvider,
+        });
       });
-    });
-
-    const { warehousingProviders } = warehousingConfiguration;
-    warehousingProviders.forEach((warehousingProvider) => {
-      WarehousingProviders.insert({
-        authorId: admin._id,
-        configuration: [],
-        created: new Date(),
-        ...warehousingProvider,
+  
+      const { warehousingProviders } = warehousingConfiguration;
+      warehousingProviders.forEach((warehousingProvider) => {
+        WarehousingProviders.insert({
+          authorId: admin._id,
+          configuration: [],
+          created: new Date(),
+          ...warehousingProvider,
+        });
       });
-    });
-
-    logger.log(`
-      initialized database with user: admin@unchained.local / password`);
   } catch (e) {
     logger.error(e);
   }

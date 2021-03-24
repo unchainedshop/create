@@ -1,16 +1,16 @@
 import { Meteor } from 'meteor/meteor';
 import './lib/plugins';
-import setupDatabase from './lib/seed/setup';
+import { WebApp } from 'meteor/webapp';
+import { embedControlpanelInMeteorWebApp } from '@unchainedshop/controlpanel';
 import setupAPI from './api';
+import setupDatabase from './lib/seed/setup';
 
-Meteor.startup(() => {
-  process.title = 'unchained-engine';
-  const { MAIL_URL, TRACING, ADMIN_ACCESS_SECRET } = process.env;
-
-  setupAPI({
+Meteor.startup(async () => {
+  await setupAPI({
     introspection: true,
-    disableEmailInterception: !!MAIL_URL,
-    tracing: !!TRACING,
-  });
+    playground: true,
+  })
   setupDatabase();
+
+  embedControlpanelInMeteorWebApp(WebApp);
 });

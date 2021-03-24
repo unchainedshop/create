@@ -11,6 +11,7 @@ import { WarehousingProviders } from 'meteor/unchained:core-warehousing';
 import paymentConfiguration from './payment.config';
 import deliveryConfiguration from './delivery.config';
 import warehousingConfiguration from './warehousing.config';
+import seedProducts from './products';
 
 const logger = console;
 
@@ -99,6 +100,7 @@ export default async () => {
         ...warehousingProvider,
       });
     });
+    seedProducts();
     logger.log(`
       initialized database with
       \ncountries: ${countries.join(',')}

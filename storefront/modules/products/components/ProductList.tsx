@@ -18,12 +18,12 @@ const ProductList = () => {
       <div className="row">
         {products.map((product) => (
           <div
-            key={product._id}
+            key={product?._id}
             className="col-sm-6 col-lg-4 product-list-item"
           >
             <Link
               href="/products/[slug]"
-              as={`/products/${product.texts.slug}`}
+              as={`/products/${product?.texts?.slug}`}
             >
               <a className="product-list-item-overlay" />
             </Link>
@@ -33,7 +33,7 @@ const ProductList = () => {
                 <a
                   className="product-list-add-to-cart"
                   aria-label="In den Warenkorb"
-                  onClick={() => handleClick(product._id)}
+                  onClick={() => handleClick(product?._id)}
                 >
                   🛒
                 </a>

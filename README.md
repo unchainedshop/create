@@ -25,53 +25,6 @@ Now you have a fully running Unchained E-Commerce environment running locally. C
 - <http://localhost:4010> to see the control panel. Login with username: admin@unchained.local / password: password
 - <http://localhost:4010/graphql> to see the Unchained GraphQL Playground
 
-### Interacting with Cockpit CMS localy
-
-If  you were able to complete the previous step with out any issue, you will have a local instance of unchained engine which you can
-use for most of your e-commerce needs. However if your business needs more flexablity you can still integrate the engine with
-a content managment software easily.
-
-This starter kit comes with integration for (Cockpit content managment system (CMS))[https://getcockpit.com/] but feel free to use your own CMS following the same principles.
-
-before you proceed make sure you have [docker](https://www.docker.com) installed on your system
-
-Now that you have docker installed and ready, to get the CMS runing first you should build the docker images by runing the following command in the root directory.
-
-```
-npm run build-cms
-```
-
-if for some reason you are having issue runing the above command use the code bellow as an alternative
-
-```
-cd cms && docker build -t cockpit-cms . --no-cache
-```
-
-This might take some time depending on your connection speed as all the required images need to be downloaded for the first time.
-
-after the above command completes successfully, you now need to start the container by running the command bellow in the root directory.
-
-```
-npm run run-cms
-```
-
-if for some reason you are having issue runing the above command use the code bellow as an alternative
-
-```
-cd cms && docker run -d -p 4020:80 cockpit-cms
-```
-
-when this commands completes successfully you will have a [cockpit CMS](https://getcockpit.com/) running locally inside a docker container reachable at
-`http://localhost:4020`. feel free to change the port but make sure you update all the `env` variables that depend on it along with it
-if you do, mainly `GETCOCKPIT_ENDPOINT`.
-
-Once you have cockpit running you need to install it by hitting the url `http://localhost:4020/install`.
-
-Now that you have cockpit runing and installed the last thing you will need to do is generate an api acceess token you will need to access
-the enpoint. to do that go to `settings` > `API Access` then generate token. finally assigned the generated token to the `env` variable `GETCOCKPIT_TOKEN`.
-
-Thats it restart the engine and you have a a working CMS integration on your local environment
-
 Go to [docs.unchained.shop](https://docs.unchained.shop) for more further information.
 
 ## Deploy with Docker
@@ -125,19 +78,18 @@ nano -w .env
 
 | Environment variable     | Where to get and how to set?                                                                                                                                             |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `MAIL_URL`               | Use any smtp server that you have access to and correctly set it in connection url style like here: <https://nodemailer.com/smtp/>                                         |
+| `MAIL_URL`               | Use any smtp server that you have access to and correctly set it in connection url style like here: <https://nodemailer.com/smtp/>                                       |
 | `EMAIL_FROM`             | noreply@your-website.ch                                                                                                                                                  |
 | `EMAIL_WEBSITE_NAME`     | The Name of your Website                                                                                                                                                 |
-| `WEBSITE_DOMAIN`             | The Root domain of your website, like: your-website.ch                                                                                                                   |
-| `HTTP_METHOD`        | HTTP Method can be http or https                                                                                                                                         |
+| `WEBSITE_DOMAIN`         | The Root domain of your website, like: your-website.ch                                                                                                                   |
+| `HTTP_METHOD`            | HTTP Method can be http or https                                                                                                                                         |
 | `ADMIN_ACCESS_SECRET`    |  A random string, DANGER: if you don't set this env variable your whole system can be accessed via the default secret (is known by anybody who looks at the source code) |
-| `GETCOCKPIT_TOKEN`       | Token generated via the CMS UI (see Step 3), set later                                                                                                                   |
 | `DATATRANS_MERCHANT_ID`: | Datatrans Merchant ID (see Datatrans specific documentation below)                                                                                                       |
 | `DATATRANS_SECRET`       | Datatrans Secret (see Datatrans specific documentation below)                                                                                                            |
 | `DATATRANS_SIGN_KEY`     | Datatrans Sign Key (see Datatrans specific documentation below)                                                                                                          |
 | `DATATRANS_API_ENDPOINT` | If not set, this will default to the sandbox endpoint, so please set to "https://api.datatrans.com"                                                                      |
 | `MONGO_VERSION`          | The MongoDB Version, use 4.2 if you're unsure                                                                                                                            |
-| `COOKIE_DOMAIN`          | The cookie domain, set to the domain the app is running on                                                                                                 |
+| `COOKIE_DOMAIN`          | The cookie domain, set to the domain the app is running on                                                                                                               |
 
 When all the parameters are set, you can run:
 
@@ -158,22 +110,6 @@ Get the private key (password) from UPP Verwaltung -> Sicherheit -> Server-to-Se
 In UPP Verwaltung -> Sicherheit set "Wichtige Parameter werden digital unterschrieben und die Unterschrift (HMAC-SHA256) in der Zahlungsmeldung mitgeschickt" and generate a new sign, use that as ENV DATATRANS_SIGN_KEY.
 
 More information you can find on docs.datatrans.com.
-
-### Step 4: Setup Cockpit & Unchained
-
-Now you have a running UNCHAINED Stack, but data is still missing, visit the URL's:
-
-<https://cms.your-website.ch>
-Please call the install URL: <https://cms.your-website.ch/install> to generate an admin user, then
-generate a new access key, adjust the env variable for the cockpit token and redeploy the UNCHAINED stack (Step 2)
-
-<https://engine.your-website.ch>
-Please login as admin and change the password:
-
-```
-User: admin@unchained.local
-Password: password
-```
 
 Enjoy your UNCHAINED App!
 

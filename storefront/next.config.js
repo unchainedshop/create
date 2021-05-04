@@ -13,8 +13,6 @@ require('dotenv-extended').load({
 
 const {
   FRONTEND_URL,
-  GETCOCKPIT_ENDPOINT,
-  GETCOCKPIT_TOKEN,
   GRAPHQL_ENDPOINT,
   NODE_ENV,
   SKIP_INVALID_REMOTES,
@@ -23,11 +21,9 @@ const {
 
 module.exports = {
   serverRuntimeConfig: {
-    GETCOCKPIT_TOKEN,
   },
   publicRuntimeConfig: {
     FRONTEND_URL,
-    GETCOCKPIT_ENDPOINT,
     GRAPHQL_ENDPOINT,
     NODE_ENV,
     SKIP_INVALID_REMOTES: JSON.parse(SKIP_INVALID_REMOTES || 'false'),

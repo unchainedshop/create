@@ -54,7 +54,7 @@ services:
       - LOGROTATE_ROTATE=7
       - GOCRON_SCHEDULER=0 0 * * * *
     labels:
-      traefik.enable: 'false'
+      traefik.enable: "false"
     deploy:
       mode: global
       resources:
@@ -102,40 +102,13 @@ services:
       restart_policy:
         condition: any
       labels:
-        traefik.http.services.udf-engine.loadbalancer.server.port: '3000'
+        traefik.http.services.udf-engine.loadbalancer.server.port: "3000"
         traefik.http.routers.udf-engine.rule: Host(`engine.$WEBSITE_DOMAIN`)
         traefik.http.routers.udf-engine.entryPoints: websecure
         traefik.http.routers.udf-engine.tls.certresolver: le
         traefik.docker.network: traefik
-        traefik.enable: 'true'
-        swarmpit.service.deployment.autoredeploy: 'true'
-
-  cms:
-    image: cms
-    build:
-      context: ./cms
-      dockerfile: Dockerfile
-    volumes:
-     - cms-data:/var/www/html/storage
-    networks:
-     - traefik
-    deploy:
-      replicas: 1
-      update_config:
-        parallelism: 1
-        delay: 30s
-        order: start-first
-      restart_policy:
-        condition: any
-      labels:
-        traefik.http.routers.udf-cms.tls.certresolver: le
-        traefik.http.routers.udf-cms.rule: Host(`cms.$WEBSITE_DOMAIN`)
-        traefik.http.services.udf-cms.loadbalancer.server.port: '80'
-        traefik.http.routers.udf-cms.entryPoints: websecure
-        traefik.docker.network: traefik
-        traefik.enable: 'true'
-        swarmpit.service.deployment.autoredeploy: 'true'
-
+        traefik.enable: "true"
+        swarmpit.service.deployment.autoredeploy: "true"
   storefront:
     image: storefront
     build:
@@ -143,8 +116,6 @@ services:
       dockerfile: Dockerfile
     environment:
       FRONTEND_URL: $HTTP_METHOD://$WEBSITE_DOMAIN
-      GETCOCKPIT_ENDPOINT: $HTTP_METHOD://cms.$WEBSITE_DOMAIN
-      GETCOCKPIT_TOKEN: $GETCOCKPIT_TOKEN
       GRAPHQL_ENDPOINT: $HTTP_METHOD://$WEBSITE_DOMAIN/api/graphql
       NODE_ENV: production
       UNCHAINED_ENDPOINT: $HTTP_METHOD://engine.$WEBSITE_DOMAIN/graphql
@@ -160,12 +131,12 @@ services:
         condition: any
       labels:
         traefik.http.routers.udf-storefront.tls.certresolver: le
-        traefik.http.services.udf-storefront.loadbalancer.server.port: '3000'
+        traefik.http.services.udf-storefront.loadbalancer.server.port: "3000"
         traefik.http.routers.udf-storefront.entryPoints: websecure
         traefik.http.routers.udf-storefront.rule: Host(`$WEBSITE_DOMAIN`)
         traefik.docker.network: traefik
-        traefik.enable: 'true'
-        swarmpit.service.deployment.autoredeploy: 'true'
+        traefik.enable: "true"
+        swarmpit.service.deployment.autoredeploy: "true"
 
   mongodb:
     image: mongo:$MONGO_VERSION
@@ -183,12 +154,11 @@ services:
       restart_policy:
         condition: any
     labels:
-      traefik.enable: 'false'
+      traefik.enable: "false"
 
 volumes:
   db-data:
   uploads:
-  cms-data:
   traefik-conf:
   traefik-acme:
 
@@ -196,5 +166,5 @@ networks:
   db:
     attachable: true
   traefik:
-    name: 'traefik'
+    name: "traefik"
     attachable: true

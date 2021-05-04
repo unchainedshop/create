@@ -1,16 +1,17 @@
 import getConfig from 'next/config';
 import buildUnchainedSchema from './unchained';
-import buildGetCockpitSchema from './getcockpit';
 
 const {
   publicRuntimeConfig: { NODE_ENV, SKIP_INVALID_REMOTES },
 } = getConfig();
 
+const unchainedSchema =  buildUnchainedSchema();
+
+export {unchainedSchema};
 export default async () => {
   // eslint-disable-next-line no-undef
-  const [unchainedSchema, getCockpitSchema] = await Promise.all([
+  const [unchainedSchema] = await Promise.all([
     buildUnchainedSchema(),
-    buildGetCockpitSchema(),
   ]);
 
   const throwInProduction =
@@ -22,5 +23,5 @@ export default async () => {
         }
       : Boolean;
 
-  return [unchainedSchema, getCockpitSchema].filter(throwInProduction);
+  return [unchainedSchema].filter(throwInProduction);
 };

@@ -51,26 +51,3 @@
           image_name: registry.ucc.dev/boilerplate/website/storefront
           image_tag: "stable"
           registry: registry.ucc.dev
-    - name: CMS
-      type: serial
-      steps:
-        - name: Build
-          service: cms
-          type: push
-          image_name: registry.ucc.dev/boilerplate/website/cms
-          image_tag: "{{.Branch}}-latest"
-          registry: registry.ucc.dev
-        - name: Tag image as latest
-          service: cms
-          tag: develop
-          type: push
-          image_name: registry.ucc.dev/boilerplate/website/cms
-          image_tag: "next"
-          registry: registry.ucc.dev
-        - name: Tag image as stable
-          service: cms
-          tag: master
-          type: push
-          image_name: registry.ucc.dev/boilerplate/website/cms
-          image_tag: "stable"
-          registry: registry.ucc.dev

@@ -16,9 +16,3 @@ engine:
     context: ./engine
     dockerfile: Dockerfile.final
   cached: true
-
-cms:
-  build:
-    context: ./cms
-    dockerfile: Dockerfile
-  cached: true

@@ -3,11 +3,16 @@
   "private": false,
   "description": "Bootstrap your amazing e-commerce experienced based on the Unchained Engine in less than 5 minutes",
   "version": "0.0.8",
+  "license": "EUPL-1.2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unchainedshop/create.git"
+  },
   "main": "./init.js",
   "bin": {
     "create-unchainedshop": "./init.js"
   },
-  "homepage": "https://developers.unchained.shop",
+  "homepage": "https://unchained.shop",
   "scripts": {
     "dev": "run-p --race --print-label dev:*",
     "dev:engine": "cd engine && npm run dev",

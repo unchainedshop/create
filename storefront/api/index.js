@@ -6,7 +6,7 @@ import {unchainedSchema} from './remotes';
 
 const createApolloServer = async () => {
   return new ApolloServer({
-    schema: unchainedSchema,
+    schema: await unchainedSchema,
     introspection: true,
     cors: false,
     cacheControl: true,

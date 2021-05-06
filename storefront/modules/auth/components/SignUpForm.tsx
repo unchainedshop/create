@@ -8,7 +8,7 @@ const SignUpForm = () => {
   const { register, handleSubmit, errors, setError, watch } = useForm();
   const { createUser, error } = useCreateUserMutation();
   const password = useRef({});
-  password.current = watch("password", "");
+  password.current = watch('password', '');
 
   const onSubmit = async (form) => {
     const {
@@ -218,11 +218,11 @@ const SignUpForm = () => {
               name="password2"
               type="password"
               ref={register({
-                validate: value =>
-                  value === password.current || "The passwords do not match"
+                validate: (value) =>
+                  value === password.current || 'The passwords do not match',
               })}
             />
-             {errors.password2 && <p>{errors.password2.message}</p>}
+            {errors.password2 && <p>{errors.password2.message}</p>}
           </div>
         </div>
         <div>

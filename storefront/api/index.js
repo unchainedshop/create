@@ -2,7 +2,7 @@ import { ApolloServer } from 'apollo-server-micro';
 import responseCachePlugin from 'apollo-server-plugin-response-cache';
 
 import mapForwardHeaders from './mapForwardHeaders';
-import {unchainedSchema} from './remotes';
+import { unchainedSchema } from './remotes';
 
 const createApolloServer = async () => {
   return new ApolloServer({

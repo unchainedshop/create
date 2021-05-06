@@ -57,7 +57,7 @@ const Review = () => {
     return (
       <>
         <Header />
-        <div className="container mt-5"></div>
+        <div className="container mt-5" />
         <Footer />
       </>
     );
@@ -127,7 +127,7 @@ const Review = () => {
             <h4 className="mt-5">Billing Address</h4>
 
             <div className="form-check my-3">
-              <label className={`form-check-label mb-5`} htmlFor="same">
+              <label className="form-check-label mb-5" htmlFor="same">
                 <input
                   type="checkbox"
                   className="form-check-input"

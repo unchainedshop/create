@@ -153,7 +153,7 @@ const DeliveryAddressEditable = ({ user, sameForBilling = false }) => {
                 name="message"
                 ref={register}
                 placeholder="Special instructions etc."
-              ></textarea>
+              />
             ) : (
               <div>{user?.cart?.meta?.message}</div>
             )}

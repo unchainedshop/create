@@ -1,25 +1,21 @@
 {
   "root": true,
-  "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin
-    "prettier",
-    "prettier/react",
-    "prettier/@typescript-eslint",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
-    "plugin:prettier/recommended"
-  ],
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
   "parserOptions": {
     "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
     "sourceType": "module", // Allows for the use of imports
     "project": "tsconfig.json"
   },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
   "rules": {
     "react/prop-types": [0],
+    "react/jsx-props-no-spreading": [0],
+    "no-underscore-dangle": ["error", { "allow": ["_id", "__typename"] }],
     "react/react-in-jsx-scope": [0],
     "prettier/prettier": [
       "error",
@@ -31,29 +27,22 @@
         "proseWrap": "always"
       }
     ],
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ],
-    "import/no-unresolved": [2, { "ignore": [".css"] }]
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx",
-          ".css"
-        ]
-      }
-    }
+    // To be fixed
+    "jsx-a11y/label-has-associated-control": [0],
+    "import/no-unresolved": [0],
+    "import/extensions": "off",
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "jsx-a11y/alt-text": [0],
+    "react/no-array-index-key": [0],
+    "react/button-has-type": [0],
+    "jsx-a11y/anchor-is-valid": [0],
+    "react/destructuring-assignment": [0],
+    "no-shadow": [0],
+    "no-restricted-globals": [0],
+    "jsx-a11y/no-static-element-interactions": [0],
+    "no-unused-vars": [0],
+    "no-return-await": [0],
+    "jsx-a11y/click-events-have-key-events": [0]
+
   }
 }

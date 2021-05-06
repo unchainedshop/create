@@ -1,17 +1,7 @@
 {
   "name": "storefront",
   "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "build": "SUPPRESS_ENV_ERRORS=1 next build",
-    "dev:local": "UNCHAINED_ENDPOINT=http://localhost:4010/graphql next dev",
-    "dev": "next dev",
-    "format": "npm run lint -- --fix",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --quiet .",
-    "test": "npm run lint && npm run typecheck",
-    "typecheck": "tsc --noEmit",
-    "start": "next start"
-  },
+  "private": false,
   "dependencies": {
     "@apollo/client": "^3.3.6",
     "apollo-server-micro": "^2.19.0",
@@ -33,14 +23,26 @@
     "@types/react": "^16.14.2",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^2.34.0",
-    "babel-loader": "^8.2.1",
-    "eslint": "^7.14.0",
-    "eslint-config-prettier": "^6.15.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.2.0",
     "typescript": "^3.9.7"
+  },
+  "scripts": {
+    "build": "SUPPRESS_ENV_ERRORS=1 next build",
+    "dev:local": "UNCHAINED_ENDPOINT=http://localhost:4010/graphql next dev",
+    "dev": "next dev",
+    "format": "npm run lint -- --fix",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx modules pages api",
+    "test": "npm run lint && npm run typecheck",
+    "typecheck": "tsc --noEmit",
+    "start": "next start"
   }
 }

@@ -37,7 +37,7 @@ const OrderList = () => {
                 </td>
                 <td
                   className={`p-2 font-weight-bolder ${
-                    order?.payment?.status == 'PAID'
+                    order?.payment?.status === 'PAID'
                       ? 'text-success'
                       : 'text-warning'
                   }`}
@@ -51,7 +51,7 @@ const OrderList = () => {
                 </td>
                 <td
                   className={`p-2 font-weight-bolder ${
-                    order?.status == 'CONFIRMED'
+                    order?.status === 'CONFIRMED'
                       ? 'text-success'
                       : 'text-warning'
                   }`}

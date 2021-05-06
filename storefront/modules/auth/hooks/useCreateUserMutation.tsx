@@ -51,6 +51,7 @@ const useCreateUserMutation = () => {
       return result;
     } catch (e) {
       console.error(e);
+      return '';
     }
   };
 

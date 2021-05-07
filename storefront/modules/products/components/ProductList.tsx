@@ -24,8 +24,13 @@ const ProductList = () => {
             <Link
               href="/products/[slug]"
               as={`/products/${product?.texts?.slug}`}
+              aria-label="product"
+              passHref
             >
-              <a className="product-list-item-overlay" />
+              <a
+                className="product-list-item-overlay"
+                aria-label="product item"
+              />
             </Link>
             <div className="product-list-item-inner">
               <div className="product-list-header">

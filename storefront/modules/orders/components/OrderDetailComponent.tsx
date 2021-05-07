@@ -20,10 +20,10 @@ const OrderDetailComponent = () => {
         <div className="row">
           <div className="col-sm-12">
             <ListItem title="Bestellnummer" value={order.orderNumber} />
-            {order.items.map((item, i) => (
+            {order.items.map((item) => (
               <div
                 className="d-flex justify-content-between flex-wrap border-top py-2"
-                key={i}
+                key={item?._id}
               >
                 <div className="cart-img mr-2">
                   <img src={getProductMediaUrl(item.product)} />

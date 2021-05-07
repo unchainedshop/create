@@ -5,10 +5,10 @@ import useUpdateCartMutation from '../hooks/useUpdateCartMutation';
 import useUpdateOrderDeliveryShipping from '../hooks/useUpdateDeliveryShipping';
 import EditableField from '../../common/components/EditableField';
 
-const DeliveryAddressEditable = ({ user, sameForBilling = false }) => {
+const DeliveryAddressEditable = ({ user }) => {
   const [isEditing, setEditing] = useState(false);
   const { updateCart } = useUpdateCartMutation();
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const { updateOrderDeliveryAddress } = useUpdateOrderDeliveryShipping();
 
   const onSubmit = async ({

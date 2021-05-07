@@ -165,6 +165,7 @@ const Review = () => {
             <div className="">
               {user?.cart.paymentInfo.provider._id === 'wiretransfer' ? (
                 <button
+                  type="button"
                   role="link"
                   className="button button--primary button--big"
                   onClick={() => checkout()}

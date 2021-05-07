@@ -1,5 +1,4 @@
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/client';
+import { useMutation, gql } from '@apollo/client';
 
 const ForgotPasswordMutation = gql`
   mutation forgotPassword($email: String!) {

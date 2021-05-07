@@ -99,23 +99,23 @@ const createPaymentRequest = async ({ apolloClient, cart }) => {
     paymentOptions,
   );
 
-  request.onmerchantvalidation = function (event) {
+  request.onmerchantvalidation = (event) => {
     // https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api/requesting_an_apple_pay_payment_session
     // const sessionPromise = fetchPaymentSession(event.validationURL);
     event.complete(/* sessionPromise */);
   };
 
-  request.onshippingoptionchange = function (event) {
+  request.onshippingoptionchange = (event) => {
     event.updateWith(async () => {
-      const cart = await queryCart(apolloClient);
-      return buildPaymentDetailsFromCart(cart);
+      const userCart = await queryCart(apolloClient);
+      return buildPaymentDetailsFromCart(userCart);
     });
   };
 
-  request.onshippingaddresschange = function (event) {
+  request.onshippingaddresschange = (event) => {
     event.updateWith(async () => {
-      const cart = await queryCart(apolloClient);
-      return buildPaymentDetailsFromCart(cart);
+      const userCart = await queryCart(apolloClient);
+      return buildPaymentDetailsFromCart(userCart);
     });
   };
   return request;

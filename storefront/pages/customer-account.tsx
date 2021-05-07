@@ -57,6 +57,7 @@ const Account = () => {
                   <>
                     <span> {user?.username} </span>
                     <button
+                      type="button"
                       className=" button button--primary"
                       onClick={() => setUpdateUserName(!updateUsername)}
                     >
@@ -71,12 +72,14 @@ const Account = () => {
                       value={username}
                     />
                     <button
+                      type="button"
                       className="button button--primary"
                       onClick={() => updateName(username)}
                     >
                       Update
                     </button>
                     <button
+                      type="button"
                       className=" button  text-danger"
                       onClick={() => setUpdateUserName(!updateUsername)}
                     >

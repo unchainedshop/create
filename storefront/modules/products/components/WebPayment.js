@@ -17,6 +17,8 @@ const WebPayment = ({ onClick, onSuccess = null }) => {
   if (isApplePayAvailable) {
     return (
       <button
+        type="button"
+        aria-label="Pay"
         style={{
           webkitAppearance: '-apple-pay-button',
         }}

@@ -13,7 +13,7 @@ const useSetUsername = () => {
   const [setUsernameMutation, { error }] = useMutation(SetUsernameMutation);
 
   const setUsername = async ({ username, userId }) => {
-    return await setUsernameMutation({
+    return setUsernameMutation({
       variables: { username, userId },
       refetchQueries: ['UserQuery'],
     });

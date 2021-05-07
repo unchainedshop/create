@@ -30,8 +30,8 @@ const Detail = () => {
                 <small className="taxes">(VAT included.)</small>
               </h3>
               <h4 className="mb-0">{product?.texts?.subtitle}</h4>
-              {product?.texts?.description?.split('\n').map((line, i) => (
-                <p key={i}>{line}</p>
+              {product?.texts?.description?.split('\n').map((line) => (
+                <p key={line?.substring(0, 10)}>{line}</p>
               ))}
               <p>Weight:{product?.dimensions?.weight * 1000} Gramm</p>
             </div>

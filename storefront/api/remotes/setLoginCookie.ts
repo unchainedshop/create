@@ -10,7 +10,7 @@ const loginMutations = [
 const logoutMutations = ['logout'];
 
 const extractMutationFromDataObject = (
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line no-undef
   data?: object,
   mutations: string[] = [],
 ) => {

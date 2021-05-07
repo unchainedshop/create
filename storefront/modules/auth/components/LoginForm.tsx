@@ -70,9 +70,9 @@ const LoginForm = ({ onLogin }) => {
         </div>
       </div>
       {hasErrors
-        ? Object.values(errors).map((error) => (
-            <div key={error.message} className="form-error">
-              {error.message}
+        ? Object.values(errors).map((err) => (
+            <div key={err.message} className="form-error">
+              {err.message}
             </div>
           ))
         : ''}

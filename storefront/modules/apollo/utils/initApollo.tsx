@@ -12,7 +12,7 @@ let apolloClient = null;
 
 // Polyfill fetch() on the server (used by apollo-client)
 if (!process.browser) {
-  (global as any).fetch = fetch;
+  global.fetch = fetch;
 }
 
 function create(initialState) {

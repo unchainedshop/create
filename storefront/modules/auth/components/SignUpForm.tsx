@@ -25,13 +25,13 @@ const SignUpForm = () => {
       telNumber,
       regionCode,
       countryCode,
-      password,
+      password: userPassword,
     } = form;
 
     const userProfile = {
       username,
       email: emailAddress,
-      password,
+      password: userPassword,
       profile: {
         displayName,
         phoneMobile: telNumber,

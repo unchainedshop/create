@@ -76,6 +76,7 @@ const SignUp = () => {
     });
 
     router.push('/payment');
+    return true;
   };
 
   const onLogin = () => router.push('/payment');

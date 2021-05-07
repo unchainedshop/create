@@ -22,7 +22,7 @@ const UpdateProfileForm = ({ user, onSuccess }) => {
       countryCode,
     } = form;
 
-    const profile = {
+    const userProfile = {
       displayName,
       phoneMobile: telNumber,
       address: {
@@ -38,7 +38,7 @@ const UpdateProfileForm = ({ user, onSuccess }) => {
       },
     };
 
-    await updateUserProfile({ profile, userId: user._id });
+    await updateUserProfile({ profile: userProfile, userId: user._id });
     onSuccess(true);
   };
 

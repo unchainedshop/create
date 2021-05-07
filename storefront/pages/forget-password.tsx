@@ -9,7 +9,7 @@ const PasswordForget = () => {
 
   const onSubmit = async ({ email }) => {
     const { success } = await forgotPassword({ email });
-    if (success) confirm('A confirmation email is sent');
+    if (success) alert('A confirmation email is sent');
   };
 
   return (

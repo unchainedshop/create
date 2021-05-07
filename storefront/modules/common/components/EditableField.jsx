@@ -17,8 +17,8 @@ const EditableField = ({
         ref={register({ required })}
       >
         <option value="">Please Select...</option>
-        {COUNTRIES.map((c, i) => (
-          <option value={c.code} key={i}>
+        {COUNTRIES.map((c) => (
+          <option value={c.code} key={c.code}>
             {c.name}
           </option>
         ))}

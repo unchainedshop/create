@@ -1,0 +1,19 @@
+{
+  "injectStyles": [
+    "https://fonts.googleapis.com/css2?family=Barlow:wght@900&display=swap",
+    "body { background-color: white; }"
+  ],
+  "icons": {
+    "180x180": "/static/img/apple-touch-icon.png",
+    "32x32": "/static/img/favicon-32x32.png",
+    "16x16": "/static/img/favicon-16x16.png"
+  },
+  "rootProperties": {
+    "color-brand": "#03aa87",
+    "color-brand-lightest": "#f3f7ee",
+    "color-brand-darker": "#088a69",
+    "color-dark": "#232323",
+    "color-grey-lightest": "#e7e7e7",
+    "color-danger": "#dc3545"
+  }
+}

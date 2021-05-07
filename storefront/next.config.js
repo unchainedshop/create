@@ -3,13 +3,7 @@
 console.log(process.version);
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require('dotenv-extended').load({
-  silent: process.env.SUPPRESS_ENV_ERRORS,
-  errorOnMissing: !process.env.SUPPRESS_ENV_ERRORS,
-  errorOnRegex: !process.env.SUPPRESS_ENV_ERRORS,
-  errorOnExtra: !process.env.SUPPRESS_ENV_ERRORS,
-  includeProcessEnv: true,
-});
+require('./node_env');
 
 const {
   FRONTEND_URL,
@@ -17,16 +11,17 @@ const {
   NODE_ENV,
   SKIP_INVALID_REMOTES,
   UNCHAINED_ENDPOINT,
+  UNCHAINED_CREATE_THEME,
 } = process.env;
 
 module.exports = {
-  serverRuntimeConfig: {
-  },
+  serverRuntimeConfig: {},
   publicRuntimeConfig: {
     FRONTEND_URL,
     GRAPHQL_ENDPOINT,
     NODE_ENV,
     SKIP_INVALID_REMOTES: JSON.parse(SKIP_INVALID_REMOTES || 'false'),
     UNCHAINED_ENDPOINT,
+    theme: JSON.parse(UNCHAINED_CREATE_THEME),
   },
 };

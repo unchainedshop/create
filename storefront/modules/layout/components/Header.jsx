@@ -1,11 +1,36 @@
 import Link from 'next/link';
+import Head from 'next/head';
+import getConfig from 'next/config';
 
 import LoginCart from '../../auth/components/LoginCart';
 import OrderButton from '../../orders/components/UserOrderButton';
 
+const {
+  publicRuntimeConfig: { theme },
+} = getConfig();
+
 const Header = () => {
   return (
     <header className="header sticky-top">
+      <Head>
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href={theme.icons['180x180']}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href={theme.icons['32x32']}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href={theme.icons['16x16']}
+        />
+      </Head>
       <div className="container d-flex justify-content-between align-items-center flex-wrap">
         <Link href="/">
           <a className="color-brand">

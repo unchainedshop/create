@@ -4,7 +4,7 @@ import AssortmentThreeLevelLinksFragment from '../fragments/assortmentThreeLevel
 
 export const AssortmentLinksQuery = gql`
   query AssortmentLinksQuery($includeLeaves: Boolean = true) {
-    assortment(includeLeaves: $includeLeaves) {
+    assortments(includeLeaves: $includeLeaves) {
       ...AssortmentFragment
       linkedAssortments {
         ...AssortmentThreeLevelLinksFragment

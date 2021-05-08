@@ -4,7 +4,7 @@ import AssortmentThreeLevelLinksFragment from '../fragments/assortmentThreeLevel
 
 export const AssortmentsLinksQuery = gql`
   query AssortmentsLinksQuery($includeLeaves: Boolean = true) {
-    assortment(includeLeaves: $includeLeaves) {
+    assortments(includeLeaves: $includeLeaves) {
       ...AssortmentFragment
       linkedAssortments {
         ...AssortmentThreeLevelLinksFragment
@@ -15,8 +15,12 @@ export const AssortmentsLinksQuery = gql`
   ${AssortmentThreeLevelLinksFragment}
 `;
 
-const useAssortmentsLinks = () => {
-  const { data, loading, error } = useQuery(AssortmentsLinksQuery);
+const useAssortmentsLinks = ({ includeLeaves = true }) => {
+  const { data, loading, error } = useQuery(AssortmentsLinksQuery, {
+    variables: {
+      includeLeaves,
+    },
+  });
 
   return {
     loading,

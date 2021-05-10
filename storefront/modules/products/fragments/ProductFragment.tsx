@@ -10,6 +10,14 @@ const ProductFragment = gql`
       description
       slug
     }
+    media {
+      _id
+      file {
+        _id
+        name
+        url
+      }
+    }
     ... on SimpleProduct {
       dimensions {
         weight

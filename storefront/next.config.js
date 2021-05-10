@@ -24,4 +24,8 @@ module.exports = {
     UNCHAINED_ENDPOINT,
     theme: JSON.parse(UNCHAINED_CREATE_THEME),
   },
+  images: {
+    domains: ['localhost'],
+    sizes: [320, 480, 820, 1200, 1600],
+  },
 };

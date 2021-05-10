@@ -52,10 +52,16 @@ const useAssortmentsProducts = ({ includeLeaves = true, slugs = [] } = {}) => {
     },
   });
 
+  const products =
+    (data?.assortments || []).map(
+      (assortment) => assortment.productAssignments,
+    )?.[0] || [];
+
   return {
     loading,
     error,
     assortments: data?.assortments,
+    products,
   };
 };
 

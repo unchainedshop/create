@@ -30,6 +30,7 @@ export const AssortmentPathsQuery = gql`
 `;
 
 const useAssortmentPaths = ({ assortmentId }) => {
+  console.log('hello');
   const { data, loading, error } = useQuery(AssortmentPathsQuery, {
     variables: {
       assortmentId,

@@ -34,6 +34,11 @@ export const AssortmentsProductsQuery = gql`
           }
         }
       }
+      searchProducts {
+        products {
+          ...ProductFragment
+        }
+      }
       productAssignments {
         product {
           ...ProductFragment
@@ -52,10 +57,14 @@ const useAssortmentsProducts = ({ includeLeaves = true, slugs = [] } = {}) => {
     },
   });
 
+  /* const products =
+    (data?.assortments || [])
+      .map((assortment) => assortment.productAssignments)
+      ?.flat() || []; */
   const products =
-    (data?.assortments || []).map(
-      (assortment) => assortment.productAssignments,
-    )?.[0] || [];
+    (data?.assortments || [])
+      .map((assortment) => assortment.searchProducts)
+      ?.flat()[0]?.products || [];
 
   return {
     loading,

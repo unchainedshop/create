@@ -16,10 +16,8 @@ const OrderFragment = gql`
         _id
         type
         simulatedPrice {
-          price {
-            amount
-            currency
-          }
+          amount
+          currency
         }
       }
       status
@@ -41,10 +39,8 @@ const OrderFragment = gql`
       _id
       type
       simulatedPrice {
-        price {
-          amount
-          currency
-        }
+        amount
+        currency
       }
     }
 

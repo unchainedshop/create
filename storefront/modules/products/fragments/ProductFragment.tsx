@@ -19,14 +19,18 @@ const ProductFragment = gql`
       }
     }
     ... on SimpleProduct {
-      dimensions {
-        weight
-      }
       simulatedPrice {
-        price {
-          amount
-          currency
-        }
+        _id
+        isTaxable
+        isNetPrice
+        amount
+        currency
+      }
+      dimensions {
+        width
+        height
+        length
+        weight
       }
     }
   }

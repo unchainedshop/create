@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import getCatagoriesHierarchy from '../utils/getCatagoriesHierarchy';
 
-const CatagoriesList = ({ assortments }) => {
+const CatagoriesList = ({ assortments, currentPath = '' }) => {
   const routes = getCatagoriesHierarchy(assortments);
 
   return (
@@ -17,7 +17,7 @@ const CatagoriesList = ({ assortments }) => {
                 <div className="mb-3 bold">{c.texts.title}</div>
                 {c.children.map((a) => (
                   <div key={a.texts._id} className="catagory-item">
-                    <Link href={`${a.texts.slug}`}>
+                    <Link href={`${currentPath}/${a.texts.slug}`}>
                       <a className="catagory-item-label">{a.texts.title}</a>
                     </Link>
                   </div>

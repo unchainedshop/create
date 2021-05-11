@@ -8,12 +8,15 @@ import ProductList from '../../modules/products/components/ProductList';
 
 const CatagoryDetail = () => {
   const router = useRouter();
+  const { slug: slugs } = router.query;
+  const slug: string | string[] = slugs[slugs.length - 1];
+
   const { assortments } = useAssortmentsLinks({
-    slugs: [router.query.slug],
+    slugs: slug,
     includeLeaves: true,
   });
   const { products } = useAssortmentsProducts({
-    slugs: [router.query.slug],
+    slugs: slug,
     includeLeaves: true,
   });
   return (
@@ -22,7 +25,10 @@ const CatagoryDetail = () => {
       <div className="container">
         <div className="row">
           <div className="col-6">
-            <CatagoriesList assortments={assortments} />
+            <CatagoriesList
+              assortments={assortments}
+              currentPath={slugs.join('/')}
+            />
           </div>
           <div className="col-6">
             <ProductList products={products} />

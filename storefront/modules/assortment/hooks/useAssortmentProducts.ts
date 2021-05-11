@@ -50,7 +50,15 @@ export const AssortmentsProductsQuery = gql`
   ${ProductFragment}
 `;
 
-const useAssortmentsProducts = ({ includeLeaves = true, slugs = [] } = {}) => {
+const useAssortmentsProducts = (
+  {
+    includeLeaves,
+    slugs,
+  }: { includeLeaves: boolean; slugs: string[] | string } = {
+    includeLeaves: true,
+    slugs: [],
+  },
+) => {
   const { data, loading, error } = useQuery(AssortmentsProductsQuery, {
     variables: {
       includeLeaves,

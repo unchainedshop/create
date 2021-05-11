@@ -18,7 +18,15 @@ export const AssortmentsLinksQuery = gql`
   ${AssortmentThreeLevelLinksFragment}
 `;
 
-const useAssortmentsLinks = ({ includeLeaves = false, slugs = [] }) => {
+const useAssortmentsLinks = (
+  {
+    includeLeaves,
+    slugs,
+  }: { includeLeaves: boolean; slugs: string[] | string } = {
+    includeLeaves: false,
+    slugs: [],
+  },
+) => {
   const { data, loading, error } = useQuery(AssortmentsLinksQuery, {
     variables: {
       includeLeaves,

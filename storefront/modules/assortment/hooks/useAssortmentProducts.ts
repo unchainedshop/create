@@ -66,11 +66,6 @@ const useAssortmentsProducts = (
     },
   });
 
-  /* const products =
-    (data?.assortments || [])
-      .map((assortment) => assortment.productAssignments)
-      ?.flat() || []; */
-  console.log(data?.assortments);
   const products =
     (data?.assortments || [])
       .map((assortment) => assortment.searchProducts)

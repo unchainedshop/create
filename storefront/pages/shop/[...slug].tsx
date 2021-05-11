@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import CatagoriesList from '../../modules/assortment/components/CatagoriesList';
 import useAssortmentsProducts from '../../modules/assortment/hooks/useAssortmentProducts';
 import useAssortmentsLinks from '../../modules/assortment/hooks/useAssortmentsLinks';
+import getAssortmentText from '../../modules/assortment/utils/getAssortmentText';
 import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
 import ProductList from '../../modules/products/components/ProductList';
@@ -15,10 +16,12 @@ const CatagoryDetail = () => {
     slugs: slug,
     includeLeaves: true,
   });
+
   const { products } = useAssortmentsProducts({
     slugs: slug,
     includeLeaves: true,
   });
+  const texts = getAssortmentText(assortments);
   return (
     <>
       <Header />
@@ -31,6 +34,11 @@ const CatagoryDetail = () => {
             />
           </div>
           <div className="col-6">
+            <div>
+              <h2>{texts.title}</h2>
+              <span>{texts.subtitle}</span>
+              <p>{texts.description}</p>
+            </div>
             <ProductList products={products} />
           </div>
         </div>

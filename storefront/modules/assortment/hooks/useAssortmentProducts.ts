@@ -65,7 +65,10 @@ const useAssortmentsProducts = (
       slugs,
     },
   });
-
+  const paths =
+    (data?.assortments || [])
+      .map((assortment) => assortment.assortmentPaths[0])
+      .flat()[0]?.links || [];
   const products =
     (data?.assortments || [])
       .map((assortment) => assortment.searchProducts)
@@ -76,6 +79,7 @@ const useAssortmentsProducts = (
     error,
     assortments: data?.assortments,
     products,
+    paths,
   };
 };
 

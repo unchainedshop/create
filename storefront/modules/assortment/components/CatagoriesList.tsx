@@ -1,29 +1,33 @@
+import Link from 'next/link';
+
 import getCatagoriesHierarchy from '../utils/getCatagoriesHierarchy';
 
 const CatagoriesList = ({ assortments }) => {
   const routes = getCatagoriesHierarchy(assortments);
+
   return (
-    <ul>
+    <div className="assortment-filter">
       {routes.map((r) => {
         return (
-          <li key={r._id}>
-            {r.texts.title}
-            <ul>
-              {r.children.map((c) => (
-                <li key={c.texts._id}>
-                  {c.texts.title}
-                  <ul>
-                    {c.children.map((a) => (
-                      <li key={a.texts._id}> {a.texts.title}</li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </li>
+          <div className="catagory-box mb-2">
+            <div className="mb-3 bold ">{r.texts.title}</div>
+
+            {r.children.map((c) => (
+              <>
+                <div className="mb-3 bold">{c.texts.title}</div>
+                {c.children.map((a) => (
+                  <div key={a.texts._id} className="catagory-item">
+                    <Link href={`${a.texts.slug}`}>
+                      <a className="catagory-item-label">{a.texts.title}</a>
+                    </Link>
+                  </div>
+                ))}
+              </>
+            ))}
+          </div>
         );
       })}
-    </ul>
+    </div>
   );
 };
 

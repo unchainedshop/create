@@ -35,6 +35,7 @@ export const AssortmentsProductsQuery = gql`
         }
       }
       searchProducts {
+        productsCount
         products {
           ...ProductFragment
         }
@@ -61,6 +62,7 @@ const useAssortmentsProducts = ({ includeLeaves = true, slugs = [] } = {}) => {
     (data?.assortments || [])
       .map((assortment) => assortment.productAssignments)
       ?.flat() || []; */
+  console.log(data?.assortments);
   const products =
     (data?.assortments || [])
       .map((assortment) => assortment.searchProducts)

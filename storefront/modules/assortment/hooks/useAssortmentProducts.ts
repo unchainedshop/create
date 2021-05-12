@@ -3,11 +3,8 @@ import { useQuery, gql } from '@apollo/client';
 import ProductFragment from '../../products/fragments/ProductFragment';
 
 export const AssortmentsProductsQuery = gql`
-  query AssortmentsProductsQuery(
-    $includeLeaves: Boolean = true
-    $slugs: [String!]
-  ) {
-    assortments(includeLeaves: $includeLeaves, slugs: $slugs) {
+  query AssortmentsProductsQuery($slugs: String!) {
+    assortment(slug: $slugs) {
       _id
       texts {
         _id
@@ -21,13 +18,7 @@ export const AssortmentsProductsQuery = gql`
               _id
               texts {
                 _id
-                title
-              }
-            }
-            child {
-              _id
-              texts {
-                _id
+                slug
                 title
               }
             }
@@ -50,7 +41,7 @@ export const AssortmentsProductsQuery = gql`
   ${ProductFragment}
 `;
 
-const useAssortmentsProducts = (
+const useAssortmentProducts = (
   {
     includeLeaves,
     slugs,
@@ -65,22 +56,16 @@ const useAssortmentsProducts = (
       slugs,
     },
   });
-  const paths =
-    (data?.assortments || [])
-      .map((assortment) => assortment.assortmentPaths[0])
-      .flat()[0]?.links || [];
-  const products =
-    (data?.assortments || [])
-      .map((assortment) => assortment.searchProducts)
-      ?.flat()[0]?.products || [];
+  const paths = (data?.assortment.assortmentPaths || []).flat().pop()?.links;
+  const products = data?.assortment?.searchProducts.products || [];
 
   return {
     loading,
     error,
-    assortments: data?.assortments,
+    assortment: data?.assortment,
     products,
     paths,
   };
 };
 
-export default useAssortmentsProducts;
+export default useAssortmentProducts;

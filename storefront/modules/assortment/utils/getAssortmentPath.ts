@@ -1,9 +1,16 @@
+const extractText = ({ texts }) => {
+  return {
+    id: texts._id,
+    slug: texts.slug,
+    title: texts.title,
+  };
+};
+
 const getAssortmentPath = (paths = []) => {
   const pathArr = [];
-  paths.forEach((p, index) => {
+  paths.forEach((p) => {
     const { link } = p;
-    pathArr.push(link.parent.texts.title);
-    if (index === paths.length - 1) pathArr.push(link.child.texts.title);
+    pathArr.push(extractText(link.parent));
   });
   return pathArr;
 };

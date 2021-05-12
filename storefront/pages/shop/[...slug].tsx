@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router';
+
 import CatagoriesList from '../../modules/assortment/components/CatagoriesList';
-import useAssortmentsProducts from '../../modules/assortment/hooks/useAssortmentProducts';
+import useAssortmentProducts from '../../modules/assortment/hooks/useAssortmentProducts';
 import useAssortmentsLinks from '../../modules/assortment/hooks/useAssortmentsLinks';
 import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';
+import AssortmetBreadcrumbs from '../../modules/assortment/components/AssortmetBreadcrumbs';
 import getAssortmentText from '../../modules/assortment/utils/getAssortmentText';
 import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
@@ -18,12 +20,13 @@ const CatagoryDetail = () => {
     includeLeaves: true,
   });
 
-  const { products, paths } = useAssortmentsProducts({
+  const { products, paths } = useAssortmentProducts({
     slugs: slug,
     includeLeaves: true,
   });
   const texts = getAssortmentText(assortments);
-  const pathArr = getAssortmentPath(paths);
+  const assortmentPaths = getAssortmentPath(paths);
+
   return (
     <>
       <Header />
@@ -36,7 +39,12 @@ const CatagoryDetail = () => {
             />
           </div>
           <div className="col-6">
-            <div>{pathArr.join('/')}</div>
+            <div>
+              <AssortmetBreadcrumbs
+                paths={assortmentPaths}
+                currentAssortment={texts}
+              />
+            </div>
             <div>
               <h2>{texts.title}</h2>
               <span>{texts.subtitle}</span>

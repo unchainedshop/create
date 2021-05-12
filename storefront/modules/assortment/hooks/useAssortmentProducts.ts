@@ -12,6 +12,7 @@ export const AssortmentsProductsQuery = gql`
       }
       assortmentPaths {
         links {
+          assortmentId
           link {
             _id
             parent {

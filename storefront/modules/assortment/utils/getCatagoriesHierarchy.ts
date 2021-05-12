@@ -1,27 +1,26 @@
 const getCatagoriesHierarchy = (rootAssortments = []) => {
   const routes = [];
-  let firstLevelIndex = 0;
-  let secondLevelIndex = 0;
-  rootAssortments.forEach(({ texts, linkedAssortments = [] }, index) => {
-    firstLevelIndex = index;
+  rootAssortments.forEach(({ texts, linkedAssortments = [] }) => {
     routes.push({
       texts,
       children: [],
     });
-    linkedAssortments.forEach(({ child }, secondIndex) => {
-      secondLevelIndex = secondIndex;
-      if (routes[firstLevelIndex].texts._id === child.texts._id) return;
-      routes[firstLevelIndex].children.push({
+    linkedAssortments.forEach(({ child }) => {
+      if (routes[routes.length - 1].texts._id === child.texts._id) return;
+      routes[routes.length - 1].children.push({
         texts: child.texts,
         children: [],
       });
       child.linkedAssortments.forEach(({ child: thridChild }) => {
         if (
-          routes[firstLevelIndex].children[secondLevelIndex].texts._id ===
-          thridChild.texts._id
+          routes[routes.length - 1].children[
+            routes[routes.length - 1].children.length - 1
+          ].texts._id === thridChild.texts._id
         )
           return;
-        routes[firstLevelIndex].children[secondLevelIndex].children.push({
+        routes[routes.length - 1].children[
+          routes[routes.length - 1].children.length - 1
+        ].children.push({
           texts: thridChild.texts,
           children: [],
         });

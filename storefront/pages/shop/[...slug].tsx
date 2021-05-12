@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import CatagoriesList from '../../modules/assortment/components/CatagoriesList';
 import useAssortmentProducts from '../../modules/assortment/hooks/useAssortmentProducts';
-import useAssortmentsLinks from '../../modules/assortment/hooks/useAssortmentsLinks';
+import useAssortmentLinks from '../../modules/assortment/hooks/useAssortmentLinks';
 import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';
 import AssortmetBreadcrumbs from '../../modules/assortment/components/AssortmetBreadcrumbs';
 import getAssortmentText from '../../modules/assortment/utils/getAssortmentText';
@@ -15,16 +15,15 @@ const CatagoryDetail = () => {
   const { slug: slugs } = router.query;
   const slug: string | string[] = slugs[slugs.length - 1];
 
-  const { assortments } = useAssortmentsLinks({
-    slugs: slug,
-    includeLeaves: true,
+  const { assortment } = useAssortmentLinks({
+    slug,
   });
 
   const { products, paths } = useAssortmentProducts({
     slugs: slug,
     includeLeaves: true,
   });
-  const texts = getAssortmentText(assortments);
+  const texts = getAssortmentText(assortment);
   const assortmentPaths = getAssortmentPath(paths);
 
   return (
@@ -34,7 +33,7 @@ const CatagoryDetail = () => {
         <div className="row">
           <div className="col-6">
             <CatagoriesList
-              assortments={assortments}
+              assortment={assortment}
               currentPath={slugs.join('/')}
             />
           </div>

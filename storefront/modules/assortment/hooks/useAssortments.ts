@@ -2,7 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import AssortmentFragment from '../fragments/assortment';
 
 export const AssortmentsQuery = gql`
-  query AssortmentsQuery($includeLeaves: Boolean = true) {
+  query AssortmentsQuery($includeLeaves: Boolean = false) {
     assortments(includeLeaves: $includeLeaves) {
       ...AssortmentFragment
     }

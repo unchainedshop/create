@@ -2,26 +2,23 @@ import Link from 'next/link';
 
 import getCatagoriesHierarchy from '../utils/getCatagoriesHierarchy';
 
-const CatagoriesList = ({ assortments, currentPath = '' }) => {
-  const routes = getCatagoriesHierarchy(assortments);
+const CatagoriesList = ({ assortment, currentPath = '' }) => {
+  const routes = getCatagoriesHierarchy(assortment);
 
   return (
     <div className="assortment-filter">
-      {routes.map((r) => {
+      {routes.map((top) => {
         return (
           <div className="catagory-box mb-2">
-            <div className="mb-3 bold ">{r.texts.title}</div>
+            <div className="mb-3 bold ">{top.texts.title}</div>
 
-            {r.children.map((c) => (
+            {top.children.map((child) => (
               <>
-                <div className="mb-3 bold">{c.texts.title}</div>
-                {c.children.map((a) => (
-                  <div key={a.texts._id} className="catagory-item">
-                    <Link href={`${currentPath}/${a.texts.slug}`}>
-                      <a className="catagory-item-label">{a.texts.title}</a>
-                    </Link>
-                  </div>
-                ))}
+                <div key={child.texts._id} className="catagory-item">
+                  <Link href={`${currentPath}/${child.texts.slug}`}>
+                    <a className="catagory-item-label">{child.texts.title}</a>
+                  </Link>
+                </div>
               </>
             ))}
           </div>

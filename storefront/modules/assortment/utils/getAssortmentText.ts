@@ -1,12 +1,10 @@
 const getAssortmentText = (
-  assortment: [
-    {
-      texts: { title: string; subtitle: string; description: string };
-    },
-  ] = [{ texts: { title: '', subtitle: '', description: '' } }],
+  assortment: {
+    texts: { title: string; subtitle: string; description: string };
+  } = { texts: { title: '', subtitle: '', description: '' } },
 ) => {
   return {
-    ...assortment[0].texts,
+    ...assortment.texts,
   };
 };
 

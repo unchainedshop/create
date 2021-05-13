@@ -14,7 +14,7 @@ import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutati
 
 const titleForProvider = (_id) => {
   return {
-    wiretransfer: 'Wire Transfer',
+    yvrAYXtzeGdrWqgy3: 'Wire Transfer',
   }[_id];
 };
 
@@ -99,6 +99,7 @@ const Review = () => {
     }
   };
 
+  console.log(user);
   return (
     <>
       <Header />
@@ -163,7 +164,7 @@ const Review = () => {
               ))}
             </section>
             <div className="">
-              {user?.cart.paymentInfo.provider._id === 'wiretransfer' ? (
+              {user?.cart.paymentInfo.provider._id === 'yvrAYXtzeGdrWqgy3' ? (
                 <button
                   type="button"
                   role="link"

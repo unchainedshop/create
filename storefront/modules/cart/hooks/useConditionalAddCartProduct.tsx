@@ -8,9 +8,8 @@ const useConditionalAddCartProduct = () => {
   const { user } = useUserQuery();
 
   const conditionalAddCartProduct = async ({ productId }) => {
-    console.log(user?._id);
     if (!user?._id) {
-      loginAsGuest();
+      await loginAsGuest();
     }
     return addCartProduct({ productId });
   };

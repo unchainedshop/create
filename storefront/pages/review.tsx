@@ -14,10 +14,7 @@ import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutati
 
 const titleForProvider = (_id) => {
   return {
-    wiretransfer: 'Wire Transfer',
-    'stripe-payment-provider': 'Credit Card',
-    'bity-payment-provider': 'Bitcoin through Bity.com',
-    'stripe-alipay-payment-provider': 'AliPay',
+    yvrAYXtzeGdrWqgy3: 'Wire Transfer',
   }[_id];
 };
 
@@ -140,7 +137,7 @@ const Review = () => {
                       className="form-check-input"
                       name="paymentmethods"
                       value={_id}
-                      checked={_id === user?.cart.paymentInfo.provider._id}
+                      checked={_id === user?.cart?.paymentInfo?.provider?._id}
                       onChange={(e) => {
                         e.preventDefault();
                         selectPayment(_id);
@@ -153,7 +150,8 @@ const Review = () => {
             </section>
 
             <div className="">
-              {user?.cart?.paymentInfo?.provider?._id === 'wiretransfer' ? (
+              {user?.cart?.paymentInfo?.provider?._id ===
+              'yvrAYXtzeGdrWqgy3' ? (
                 <button
                   type="button"
                   role="link"

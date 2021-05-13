@@ -14,7 +14,7 @@ const SideCart = ({ isOpen }) => {
 
   const checkOut = () => {
     context.toggleCart(false);
-    const path = user?.isGuest ?? true ? '/checkout?next=review' : '/review';
+    const path = user?.isGuest ?? true ? '/checkout?next=review' : '/checkout';
     router.push(path);
   };
 

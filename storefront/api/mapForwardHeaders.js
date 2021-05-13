@@ -22,6 +22,7 @@ const mapForwardHeaders = ({ headers = {}, ...req } = {}) => {
   delete forwardHeaders.origin;
   delete forwardHeaders.referer;
   delete forwardHeaders['content-length'];
+
   return forwardHeaders;
 };
 

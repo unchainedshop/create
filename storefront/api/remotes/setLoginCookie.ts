@@ -64,9 +64,10 @@ export default ({ cookieDomain = '' }) =>
           );
         }
         const formattedExpires = new Date(tokenExpires).toUTCString();
+
         responseContext.res.setHeader(
           'Set-Cookie',
-          `meteor_login_token=${token}; Path=/; HttpOnly; Expires=${formattedExpires}; ${cookieDomain}`,
+          `meteor_login_token=${token}; Path=/; HttpOnly; Expires=${formattedExpires};`,
         );
         response.data[__mutationName] = {
           token: '',
@@ -76,7 +77,7 @@ export default ({ cookieDomain = '' }) =>
       } else if (logoutMethodResponse) {
         responseContext.res.setHeader(
           'Set-Cookie',
-          `meteor_login_token=; Path=/; HttpOnly; Expires=-1; ${cookieDomain}`,
+          `meteor_login_token=; Path=/; HttpOnly; Expires=-1; `,
         );
       }
       return response;

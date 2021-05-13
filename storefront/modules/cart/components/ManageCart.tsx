@@ -50,12 +50,12 @@ const ManageCart = () => {
         </div>
       </div>
       <div className="text-right">
-        <h3 className="border-top border-bottom py-3 mt-0">
+        <h4 className="border-top border-bottom py-3 mt-0">
           <div className="d-flex flex-wrap justify-content-between">
             <div>Total amount</div>
             <div>{renderPrice(user?.cart?.total)}</div>
           </div>
-        </h3>
+        </h4>
       </div>
     </div>
   );

@@ -69,14 +69,6 @@ const CurrentUserFragment = gql`
         amount
         currency
       }
-      delivery: total(category: DELIVERY) {
-        amount
-        currency
-      }
-      payment: total(category: PAYMENT) {
-        amount
-        currency
-      }
       deliveryInfo: delivery {
         _id
         meta

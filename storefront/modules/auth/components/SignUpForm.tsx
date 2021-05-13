@@ -2,11 +2,11 @@ import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import COUNTRIES from '../../common/data/countries-list';
-import useCreateUserMutation from '../hooks/useCreateUserMutation';
+import useCreateUser from '../hooks/useCreateUser';
 
 const SignUpForm = () => {
   const { register, handleSubmit, errors, setError, watch } = useForm();
-  const { createUser, error } = useCreateUserMutation();
+  const { createUser, error } = useCreateUser();
   const password = useRef({});
   password.current = watch('password', '');
 

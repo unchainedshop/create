@@ -14,13 +14,8 @@ const SideCart = ({ isOpen }) => {
 
   const checkOut = () => {
     context.toggleCart(false);
-    const path = user?.isGuest ?? true ? '/checkout?next=review' : '/review';
+    const path = user?.isGuest ?? true ? '/checkout?next=review' : '/checkout';
     router.push(path);
-  };
-  const liveAssistance = () => {
-    window.fcWidget.open();
-    window.fcWidget.show();
-    context.toggleCart();
   };
 
   const subtotal = (user?.cart?.items || []).reduce(
@@ -100,19 +95,19 @@ const SideCart = ({ isOpen }) => {
                   </svg>
                 </button>
               </div>
-              <h1 className="p-3 m-0 h4 text-center d-block">In Your Cart</h1>
+              <h3 className="p-3 m-0 h4 text-center d-block">In Your Cart</h3>
             </div>
             <div className="px-2 cart-item-container">
               {user?.cart?.items.length === 0 ? (
                 <p>
                   There are no products in your Cart. browse our{' '}
-                  <Link href="/artworks">
+                  <Link href="/shop">
                     <a
                       onClick={() => context.toggleCart(false)}
                       className="link color-brand"
                       href="#"
                     >
-                      Artworks
+                      Product
                     </a>
                   </Link>
                 </p>
@@ -137,7 +132,7 @@ const SideCart = ({ isOpen }) => {
               >
                 Check out now
               </a>
-              <Link href="/artworks">
+              <Link href="/shop">
                 <a
                   className="button button--secondary text-uppercase w-75 mb-3"
                   onClick={() => context.toggleCart(false)}
@@ -145,46 +140,7 @@ const SideCart = ({ isOpen }) => {
                   Continue shopping
                 </a>
               </Link>
-              <button
-                type="button"
-                className="button button--secondary w-75"
-                onClick={() => liveAssistance()}
-              >
-                Live Assistance
-              </button>
             </div>
-            <small className="p-2">
-              <div className="mt-2 mb-4 d-flex align-items-center">
-                <img
-                  className="payment-provider-logo"
-                  src="/static/img/visa.svg"
-                  alt="visa"
-                />
-                <img
-                  className="payment-provider-logo"
-                  src="/static/img/mastercard.svg"
-                  alt="mastercard"
-                />
-                <img
-                  className="payment-provider-logo"
-                  src="/static/img/amex.svg"
-                  alt="american express"
-                />
-                <img
-                  className="payment-provider-logo"
-                  src="/static/img/bitcoin.png"
-                  alt="bitcoin"
-                />
-              </div>
-              <h5 className="mb-0 mt-2">Please note</h5>
-              <ul className="pl-2 ml-1">
-                <li>Editions are shipped unframed, within 5 business days</li>
-                <li className="mt-1">
-                  International customers are responsible for applicable duties
-                  and taxes
-                </li>
-              </ul>
-            </small>
           </div>
         </>
       )}

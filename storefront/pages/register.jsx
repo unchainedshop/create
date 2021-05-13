@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 
-import useCreateUserMutation from '../modules/auth/hooks/useCreateUserMutation';
+import useCreateUser from '../modules/auth/hooks/useCreateUser';
 import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
 import Header from '../modules/layout/components/Header';
 import LoginForm from '../modules/auth/components/LoginForm';
@@ -26,7 +26,7 @@ const SignUp = () => {
   const router = useRouter();
   const { register, handleSubmit, watch, errors, setError } = useForm();
   const { updateCart } = useUpdateCartMutation();
-  const { createUser, error } = useCreateUserMutation();
+  const { createUser, error } = useCreateUser();
   const hasErrors = Object.keys(errors).length;
 
   useEffect(() => {

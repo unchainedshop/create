@@ -133,7 +133,7 @@ const resolveIsApplePayAvailable = () => {
   }
 };
 
-export default () => {
+const usePaymentRequest = () => {
   const isApplePayAvailable = resolveIsApplePayAvailable();
   const apolloClient = useApolloClient();
 
@@ -208,3 +208,5 @@ export default () => {
     isGeneralPaymentAvailable: false,
   };
 };
+
+export default usePaymentRequest;

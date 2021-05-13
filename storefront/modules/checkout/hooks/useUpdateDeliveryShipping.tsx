@@ -20,7 +20,7 @@ const useUpdateOrderDeliveryShipping = () => {
   const [updateOrderDeliveryShipping] = useMutation(
     UpdateOrderDeliveryShippingMutation,
     {
-      refetchQueries: ['UserQuery'],
+      refetchQueries: ['user'],
     },
   );
 

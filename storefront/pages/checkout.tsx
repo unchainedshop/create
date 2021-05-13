@@ -30,13 +30,6 @@ const Cart = () => {
             Order once
           </a>
         </Link>
-        <button
-          disabled
-          type="button"
-          className="button button--primary button--big text-uppercase"
-        >
-          Available soon by subscription
-        </button>
       </div>
       <Footer />
     </div>

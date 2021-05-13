@@ -4,7 +4,7 @@ import CurrentUserFragment from '../fragments/CurrentUserFragment';
 import { UserQuery } from './useUser';
 
 const CreateUserMutation = gql`
-  mutation CreateUser(
+  mutation createUser(
     $username: String
     $email: String!
     $password: String!
@@ -27,7 +27,7 @@ const CreateUserMutation = gql`
   ${CurrentUserFragment}
 `;
 
-const useCreateUserMutation = () => {
+const useCreateUser = () => {
   const client = useApolloClient();
   const [createUserMutation, { error }] = useMutation(CreateUserMutation, {
     update(cache, result) {
@@ -60,4 +60,4 @@ const useCreateUserMutation = () => {
   };
 };
 
-export default useCreateUserMutation;
+export default useCreateUser;

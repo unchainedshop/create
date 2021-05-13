@@ -19,7 +19,7 @@ const AddCartProductMutation = gql`
 
 const useAddCartProduct = () => {
   const [addCartProductMutation] = useMutation(AddCartProductMutation, {
-    refetchQueries: ['UserQuery', 'cart'],
+    refetchQueries: ['user', 'cart'],
   });
 
   const addCartProduct = async ({ productId }) => {

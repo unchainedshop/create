@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+
 import CartFragment from '../fragments/CartFragment';
 
 const AddCartProductMutation = gql`
@@ -16,7 +17,7 @@ const AddCartProductMutation = gql`
   ${CartFragment}
 `;
 
-const useAddCartProductMutation = () => {
+const useAddCartProduct = () => {
   const [addCartProductMutation] = useMutation(AddCartProductMutation, {
     refetchQueries: ['UserQuery', 'cart'],
   });
@@ -30,4 +31,4 @@ const useAddCartProductMutation = () => {
   };
 };
 
-export default useAddCartProductMutation;
+export default useAddCartProduct;

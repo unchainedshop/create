@@ -1,7 +1,7 @@
 import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
 import renderPrice from '../../common/utils/renderPrice';
-import useRemoveCartItemMutation from '../hooks/useRemoveCartItemMutation';
-import useUserQuery from '../../auth/hooks/useUserQuery';
+import useRemoveCartItemMutation from '../hooks/useRemoveCartItem';
+import useUserQuery from '../../auth/hooks/useUser';
 
 const ManageCart = () => {
   const { user } = useUserQuery();

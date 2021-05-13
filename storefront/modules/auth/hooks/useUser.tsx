@@ -3,7 +3,7 @@ import { useQuery, gql } from '@apollo/client';
 import CurrentUserFragment from '../fragments/CurrentUserFragment';
 
 export const UserQuery = gql`
-  query UserQuery {
+  query user {
     me {
       ...CurrentUserFragment
     }
@@ -11,7 +11,7 @@ export const UserQuery = gql`
   ${CurrentUserFragment}
 `;
 
-const useUserQuery = () => {
+const useUser = () => {
   const { data, loading, error } = useQuery(UserQuery);
 
   return {
@@ -21,4 +21,4 @@ const useUserQuery = () => {
   };
 };
 
-export default useUserQuery;
+export default useUser;

@@ -10,7 +10,7 @@ const LoginAsGuestMutation = gql`
   }
 `;
 
-const useLoginAsGuestMutation = () => {
+const useLoginAsGuest = () => {
   const client = useApolloClient();
   const [loginAsGuestMutation] = useMutation(LoginAsGuestMutation);
 
@@ -25,4 +25,4 @@ const useLoginAsGuestMutation = () => {
   };
 };
 
-export default useLoginAsGuestMutation;
+export default useLoginAsGuest;

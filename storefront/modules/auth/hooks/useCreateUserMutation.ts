@@ -1,7 +1,7 @@
 import { useMutation, useApolloClient, gql } from '@apollo/client';
 
 import CurrentUserFragment from '../fragments/CurrentUserFragment';
-import { UserQuery } from './useUserQuery';
+import { UserQuery } from './useUser';
 
 const CreateUserMutation = gql`
   mutation CreateUser(
@@ -50,7 +50,6 @@ const useCreateUserMutation = () => {
       await client.resetStore();
       return result;
     } catch (e) {
-      console.error(e);
       return '';
     }
   };

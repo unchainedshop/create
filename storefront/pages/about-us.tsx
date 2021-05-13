@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import useUserQuery from '../modules/auth/hooks/useUserQuery';
+import useUserQuery from '../modules/auth/hooks/useUser';
 
 import Footer from '../modules/layout/components/Footer';
 

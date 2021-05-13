@@ -2,7 +2,7 @@ import { useState } from 'react';
 import UpdateProfileForm from '../modules/auth/components/UpdateProfileForm';
 
 import useSetUsername from '../modules/auth/hooks/useSetUsername';
-import useUserQuery from '../modules/auth/hooks/useUserQuery';
+import useUserQuery from '../modules/auth/hooks/useUser';
 import COUNTRIES from '../modules/common/data/countries-list';
 import Footer from '../modules/layout/components/Footer';
 import Header from '../modules/layout/components/Header';

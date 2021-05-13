@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import useUserQuery from '../modules/auth/hooks/useUserQuery';
+import useUserQuery from '../modules/auth/hooks/useUser';
 import useSetOrderPaymentProviderMutation from '../modules/orders/hooks/setPaymentOrderProvider';
 import useCheckOutCart from '../modules/cart/hooks/useCheckOutCart';
 

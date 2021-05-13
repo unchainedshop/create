@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import useProductDetailQuery from '../../modules/products/hooks/useProductDetailQuery';
 import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
-import useConditionalAddCartProductMutation from '../../modules/cart/hooks/useConditionalAddCartProductMutation';
+import useConditionalAddCartProductMutation from '../../modules/cart/hooks/useConditionalAddCartProduct';
 import Header from '../../modules/layout/components/Header';
 import Footer from '../../modules/layout/components/Footer';
 import WebPayment from '../../modules/products/components/WebPayment';

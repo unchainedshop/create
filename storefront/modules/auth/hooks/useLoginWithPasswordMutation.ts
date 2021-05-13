@@ -1,7 +1,7 @@
 import { useMutation, useApolloClient, gql } from '@apollo/client';
 
 import CurrentUserFragment from '../fragments/CurrentUserFragment';
-import { UserQuery } from './useUserQuery';
+import { UserQuery } from './useUser';
 
 const LoginWithPasswordMutation = gql`
   mutation LoginWithPassword($email: String!, $password: String!) {

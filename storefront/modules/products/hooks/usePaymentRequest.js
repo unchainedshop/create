@@ -197,6 +197,7 @@ const usePaymentRequest = () => {
       // const status = null; // processResponse(response);
       response.complete('success');
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(e);
       response.complete('fail');
     }

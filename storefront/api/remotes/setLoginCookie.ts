@@ -25,7 +25,7 @@ const extractMutationFromDataObject = (
   }, null);
 };
 
-export default ({ cookieDomain = '' }) =>
+export default () =>
   new ApolloLink((operation, forward) => {
     // Middleware: This block does actually nothing, it just forwards the operation,
     // thus hands over to the http link.

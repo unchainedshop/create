@@ -18,6 +18,7 @@ const useUser = () => {
     loading,
     error,
     user: data?.me,
+    cart: data?.me?.cart,
   };
 };
 

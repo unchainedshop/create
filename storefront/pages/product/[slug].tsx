@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import useProductDetailQuery from '../../modules/products/hooks/useProductDetailQuery';
 import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
@@ -16,7 +17,18 @@ const Detail = () => {
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6">
-            <img src={getProductMediaUrl(product)} />
+            <Image
+              src={`${
+                getProductMediaUrl(product) ||
+                '/static/img/sun-glass-placeholder.jpeg'
+              }`}
+              alt={product?.texts?.title}
+              layout="responsive"
+              objectFit="contain"
+              quality={100}
+              width="700px"
+              height="700px"
+            />
           </div>
           <div className="col-md-6">
             <h2 className="px-2 mt-md-0">{product?.texts?.title}</h2>

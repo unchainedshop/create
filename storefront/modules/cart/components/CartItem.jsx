@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 
+import Image from 'next/image';
 import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
 import renderPrice from '../../common/utils/renderPrice';
 import useRemoveCartItemMutation from '../hooks/useRemoveCartItem';
@@ -39,7 +40,18 @@ const CartItem = ({ item }) => {
     >
       <div className="d-flex justify-content-between align-items-start flex-grow-1">
         <span className="cart-img mr-2">
-          <img src={getProductMediaUrl(item.product)} />
+          <Image
+            src={`${
+              getProductMediaUrl(item.product) ||
+              '/static/img/sun-glass-placeholder.jpeg'
+            }`}
+            alt={item.product.texts.title}
+            layout="responsive"
+            objectFit="contain"
+            quality={100}
+            width="300px"
+            height="300px"
+          />
         </span>
         <span className="w-100">
           <small>

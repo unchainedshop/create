@@ -10,6 +10,8 @@ const AssortmentFragment = gql`
       subtitle
       description
     }
+    isBase
+    isRoot
   }
 `;
 

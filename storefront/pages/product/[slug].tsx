@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-import useProductDetailQuery from '../../modules/products/hooks/useProductDetailQuery';
+import useProductDetail from '../../modules/products/hooks/useProductDetail';
 import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
 import Header from '../../modules/layout/components/Header';
 import Footer from '../../modules/layout/components/Footer';
@@ -10,7 +10,7 @@ import renderPrice from '../../modules/common/utils/renderPrice';
 
 const Detail = () => {
   const router = useRouter();
-  const { product } = useProductDetailQuery({ slug: router.query.slug });
+  const { product } = useProductDetail({ slug: router.query.slug });
   return (
     <div>
       <Header />

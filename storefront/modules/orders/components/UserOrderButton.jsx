@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
-import useUserOrderOrderListQuery from '../hooks/useUserOrderListQuery';
+import useUserOrderOrderList from '../hooks/useUserOrderList';
 
 const OrderButton = () => {
-  const { orders } = useUserOrderOrderListQuery();
+  const { orders } = useUserOrderOrderList();
   if (orders.length === 0) return null;
 
   return (

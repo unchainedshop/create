@@ -10,7 +10,7 @@ import ManageCart from '../modules/cart/components/ManageCart';
 import DeliveryAddressEditable from '../modules/checkout/components/DeliveryAddressEditable';
 import BillingAddressEditable from '../modules/checkout/components/BillingAddressEditable';
 import useUpdateOrderDeliveryShipping from '../modules/checkout/hooks/useUpdateDeliveryShipping';
-import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
+import useUpdateCart from '../modules/checkout/hooks/useUpdateCart';
 
 const titleForProvider = (_id) => {
   return {
@@ -24,7 +24,7 @@ const Review = () => {
   const { checkOutCart } = useCheckOutCart();
   const { setOrderPaymentProvider } = useSetOrderPaymentProvider();
   const { updateOrderDeliveryAddress } = useUpdateOrderDeliveryShipping();
-  const { updateCart } = useUpdateCartMutation();
+  const { updateCart } = useUpdateCart();
 
   const setBillingSameAsDelivery = () => {
     updateCart({

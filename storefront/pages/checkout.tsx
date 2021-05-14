@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useUserQuery from '../modules/auth/hooks/useUser';
+
+import useUser from '../modules/auth/hooks/useUser';
 import ManageCart from '../modules/cart/components/ManageCart';
 import Header from '../modules/layout/components/Header';
 import Footer from '../modules/layout/components/Footer';
 
 const Cart = () => {
   const router = useRouter();
-  const { user, loading } = useUserQuery();
+  const { user, loading } = useUser();
 
   if (!user && !loading) router.push('/login?next=cart');
 

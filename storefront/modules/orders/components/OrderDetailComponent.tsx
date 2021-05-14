@@ -1,15 +1,16 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+
 import renderPrice from '../../common/utils/renderPrice';
 import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
 import ListItem from '../../common/components/ListItem';
 import formatDate from '../../common/utils/formatDate';
-import useOrderDetailQuery from '../hooks/useOrderDetailQuery';
+import useOrderDetail from '../hooks/useOrderDetail';
 
 const OrderDetailComponent = () => {
   const router = useRouter();
 
-  const { order, loading } = useOrderDetailQuery({
+  const { order, loading } = useOrderDetail({
     orderId: router.query.id,
   });
   if (loading) return <p>loading .... </p>;

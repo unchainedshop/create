@@ -2,13 +2,13 @@ import { useState } from 'react';
 import UpdateProfileForm from '../modules/auth/components/UpdateProfileForm';
 
 import useSetUsername from '../modules/auth/hooks/useSetUsername';
-import useUserQuery from '../modules/auth/hooks/useUser';
+import useUser from '../modules/auth/hooks/useUser';
 import COUNTRIES from '../modules/common/data/countries-list';
 import Footer from '../modules/layout/components/Footer';
 import Header from '../modules/layout/components/Header';
 
 const Account = () => {
-  const { user } = useUserQuery();
+  const { user } = useUser();
   const [updateUsername, setUpdateUserName] = useState(false);
   const [username, setUserName] = useState('');
   const { setUsername } = useSetUsername();

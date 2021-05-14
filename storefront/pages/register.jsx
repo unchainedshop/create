@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 
 import useCreateUser from '../modules/auth/hooks/useCreateUser';
-import useUpdateCartMutation from '../modules/checkout/hooks/useUpdateCartMutation';
+import useUpdateCart from '../modules/checkout/hooks/useUpdateCart';
 import Header from '../modules/layout/components/Header';
 import LoginForm from '../modules/auth/components/LoginForm';
 import Footer from '../modules/layout/components/Footer';
@@ -25,7 +25,7 @@ const ErrorDisplay = ({ error }) => {
 const SignUp = () => {
   const router = useRouter();
   const { register, handleSubmit, watch, errors, setError } = useForm();
-  const { updateCart } = useUpdateCartMutation();
+  const { updateCart } = useUpdateCart();
   const { createUser, error } = useCreateUser();
   const hasErrors = Object.keys(errors).length;
 

@@ -1,11 +1,12 @@
 import Image from 'next/image';
+
 import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
 import renderPrice from '../../common/utils/renderPrice';
 import useRemoveCartItemMutation from '../hooks/useRemoveCartItem';
-import useUserQuery from '../../auth/hooks/useUser';
+import useUser from '../../auth/hooks/useUser';
 
 const ManageCart = () => {
-  const { user } = useUserQuery();
+  const { user } = useUser();
   const { removeCartItem } = useRemoveCartItemMutation();
   const handleRemoveClick = (itemId) => () => removeCartItem({ itemId });
 

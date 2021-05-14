@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import useUserQuery from '../modules/auth/hooks/useUser';
+
+import useUser from '../modules/auth/hooks/useUser';
 
 import Footer from '../modules/layout/components/Footer';
 
 const AboutUs = () => {
-  const { user } = useUserQuery();
+  const { user } = useUser();
   return (
     <div className="container">
       <Link href="/">

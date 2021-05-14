@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import useLoginWithPasswordMutation from '../hooks/useLoginWithPasswordMutation';
+import useLoginWithPassword from '../hooks/useLoginWithPassword';
 
 const LoginForm = ({ onLogin }) => {
   const { register, handleSubmit, errors, setError } = useForm();
-  const { loginWithPassword, error } = useLoginWithPasswordMutation();
+  const { loginWithPassword, error } = useLoginWithPassword();
   const hasErrors = Object.keys(errors).length > 0;
 
   useEffect(() => {

@@ -2,10 +2,10 @@ import Link from 'next/link';
 
 import formatDate from '../../common/utils/formatDate';
 import renderPrice from '../../common/utils/renderPrice';
-import useOrderListQuery from '../hooks/useUserOrderListQuery';
+import useOrderList from '../hooks/useUserOrderList';
 
 const OrderList = () => {
-  const { orders, loading } = useOrderListQuery();
+  const { orders, loading } = useOrderList();
 
   if (loading) return <p> loading .... </p>;
 

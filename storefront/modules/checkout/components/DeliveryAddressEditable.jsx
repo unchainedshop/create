@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import useUpdateCartMutation from '../hooks/useUpdateCartMutation';
+import useUpdateCart from '../hooks/useUpdateCart';
 import useUpdateOrderDeliveryShipping from '../hooks/useUpdateDeliveryShipping';
 import EditableField from '../../common/components/EditableField';
 
 const DeliveryAddressEditable = ({ user }) => {
   const [isEditing, setEditing] = useState(false);
-  const { updateCart } = useUpdateCartMutation();
+  const { updateCart } = useUpdateCart();
   const { register, handleSubmit } = useForm();
   const { updateOrderDeliveryAddress } = useUpdateOrderDeliveryShipping();
 

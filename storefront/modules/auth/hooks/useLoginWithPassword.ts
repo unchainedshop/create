@@ -17,7 +17,7 @@ const LoginWithPasswordMutation = gql`
   ${CurrentUserFragment}
 `;
 
-const useLoginWithPasswordMutation = () => {
+const useLoginWithPassword = () => {
   const client = useApolloClient();
   const [loginWithPasswordMutation, { error }] = useMutation(
     LoginWithPasswordMutation,
@@ -49,4 +49,4 @@ const useLoginWithPasswordMutation = () => {
   };
 };
 
-export default useLoginWithPasswordMutation;
+export default useLoginWithPassword;

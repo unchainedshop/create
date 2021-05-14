@@ -3,12 +3,12 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import renderPrice from '../../common/utils/renderPrice';
-import useUserQuery from '../../auth/hooks/useUser';
+import useUser from '../../auth/hooks/useUser';
 import { CartContext } from '../CartContext';
 import CartItem from './CartItem';
 
 const SideCart = ({ isOpen }) => {
-  const { user } = useUserQuery();
+  const { user } = useUser();
   const context = useContext(CartContext);
   const router = useRouter();
 

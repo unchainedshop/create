@@ -27,7 +27,7 @@ const Cart = () => {
           href={user?.isGuest ?? true ? '/register?next=payment' : '/review'}
         >
           <a className="button button--primary button--big text-uppercase">
-            Order once
+            Complete Order
           </a>
         </Link>
       </div>

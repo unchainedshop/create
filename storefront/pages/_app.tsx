@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import App from 'next/app';
+import { ToastContainer } from 'react-toastify';
 
 import { CartContext } from '../modules/cart/CartContext';
 import '../public/static/css/all.css';
@@ -21,6 +22,7 @@ const UnchainedApp = ({ Component, pageProps }) => {
 
   return (
     <CartContext.Provider value={cartContext}>
+      <ToastContainer position="top-center" autoClose={3000} newestOnTop />
       <Component {...pageProps} />
     </CartContext.Provider>
   );

@@ -24,7 +24,7 @@ const Cart = () => {
 
       <div className="button-group mt-5">
         <Link
-          href={user?.isGuest ?? true ? '/register?next=payment' : '/review'}
+          href={user?.isGuest ?? true ? '/register?next=review' : '/review'}
         >
           <a className="button button--primary button--big text-uppercase">
             Complete Order

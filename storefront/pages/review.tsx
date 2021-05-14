@@ -26,11 +26,26 @@ const Review = () => {
   const { updateOrderDeliveryAddress } = useUpdateOrderDeliveryShipping();
   const { updateCart } = useUpdateCartMutation();
 
+  const setBillingSameAsDelivery = () => {
+    updateCart({
+      billingAddress: {
+        firstName: user?.cart?.deliveryInfo?.address?.firstName,
+        lastName: user?.cart?.deliveryInfo?.address?.lastName,
+        company: user?.cart?.deliveryInfo?.address?.company,
+        addressLine: user?.cart?.deliveryInfo?.address?.addressLine,
+        postalCode: user?.cart?.deliveryInfo?.address?.postalCode,
+        city: user?.cart?.deliveryInfo?.address?.city,
+        countryCode: user?.cart?.deliveryInfo?.address?.countryCode,
+      },
+    });
+  };
+
   const checkout = async ({
     paymentContext = undefined,
     deliveryContext = undefined,
     orderContext = undefined,
   } = {}) => {
+    if (user?.cart?.deliveryInfo?.address === null) setBillingSameAsDelivery();
     await checkOutCart({
       orderId: user.cart._id,
       orderContext,
@@ -62,20 +77,11 @@ const Review = () => {
       </>
     );
   }
+
   const sameAsDeliveryChange = (event) => {
     if (event.target.checked) {
       if (user?.cart?.deliveryInfo?.address) {
-        updateCart({
-          billingAddress: {
-            firstName: user?.cart?.deliveryInfo?.address?.firstName,
-            lastName: user?.cart?.deliveryInfo?.address?.lastName,
-            company: user?.cart?.deliveryInfo?.address?.company,
-            addressLine: user?.cart?.deliveryInfo?.address?.addressLine,
-            postalCode: user?.cart?.deliveryInfo?.address?.postalCode,
-            city: user?.cart?.deliveryInfo?.address?.city,
-            countryCode: user?.cart?.deliveryInfo?.address?.countryCode,
-          },
-        });
+        setBillingSameAsDelivery();
       }
       updateOrderDeliveryAddress({
         orderDeliveryId: user?.cart?.deliveryInfo?._id,

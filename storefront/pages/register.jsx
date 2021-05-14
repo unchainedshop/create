@@ -75,11 +75,11 @@ const SignUp = () => {
       },
     });
 
-    router.push('/payment');
+    router.push('/review');
     return true;
   };
 
-  const onLogin = () => router.push('/payment');
+  const onLogin = () => router.push('/review');
 
   return (
     <div className="container">

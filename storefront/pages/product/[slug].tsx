@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
@@ -37,9 +38,11 @@ const Detail = () => {
                 {renderPrice(product?.simulatedPrice?.price)}
               </h3>
               <h4 className="mb-0">{product?.texts?.subtitle}</h4>
-              {product?.texts?.description?.split('\n').map((line) => (
-                <p key={line?.substring(0, 10)}>{line}</p>
-              ))}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: product?.texts?.description,
+                }}
+              />
             </div>
             <AddToCartButton productId={product?._id} />
           </div>

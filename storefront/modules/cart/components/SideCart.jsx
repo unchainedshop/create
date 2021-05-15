@@ -22,7 +22,7 @@ const SideCart = ({ isOpen }) => {
     (acc, item) => {
       return {
         ...acc,
-        amount: acc.amount + item?.total?.amount,
+        amount: acc.amount + (item?.total?.amount || 0),
       };
     },
     {

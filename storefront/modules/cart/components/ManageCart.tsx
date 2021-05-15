@@ -1,50 +1,14 @@
-import Image from 'next/image';
-
-import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
 import renderPrice from '../../common/utils/renderPrice';
-import useRemoveCartItemMutation from '../hooks/useRemoveCartItem';
 import useUser from '../../auth/hooks/useUser';
+import CartItem from './CartItem';
 
 const ManageCart = () => {
   const { user } = useUser();
-  const { removeCartItem } = useRemoveCartItemMutation();
-  const handleRemoveClick = (itemId) => () => removeCartItem({ itemId });
 
   return (
     <div>
       {(user?.cart?.items || []).map((item) => (
-        <div
-          className="d-flex justify-content-between flex-wrap border-top py-2"
-          key={item._id}
-        >
-          <div className="cart-img mr-2">
-            <Image
-              src={`${
-                getProductMediaUrl(item.product) ||
-                '/static/img/sun-glass-placeholder.jpeg'
-              }`}
-              alt={item.product.texts.title}
-              layout="responsive"
-              objectFit="contain"
-              quality={100}
-              width="100px"
-              height="100px"
-            />
-          </div>
-          <div className="w-50 mr-2">
-            <div>
-              {item.quantity} x{item.product.texts.title}
-            </div>
-          </div>
-          <div className="align-self-start">{renderPrice(item.total)}</div>
-          <button
-            className="no-button align-self-start ml-2"
-            type="button"
-            onClick={handleRemoveClick(item._id)}
-          >
-            🗑️
-          </button>
-        </div>
+        <CartItem key={item._id} {...item} />
       ))}
       <div className="text-right">
         <div className="border-top py-3 mt-0">

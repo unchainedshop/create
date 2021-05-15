@@ -37,8 +37,8 @@ const OrderDetailComponent = () => {
                     layout="responsive"
                     objectFit="contain"
                     quality={100}
-                    width="100px"
-                    height="100px"
+                    width="350px"
+                    height="350px"
                   />
                 </div>
                 <div className="w-50 mr-2">

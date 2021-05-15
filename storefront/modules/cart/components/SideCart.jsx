@@ -113,7 +113,7 @@ const SideCart = ({ isOpen }) => {
                 </p>
               ) : (
                 (user?.cart?.items || []).map((item) => (
-                  <CartItem key={item._id} item={item} />
+                  <CartItem key={item._id} {...item} />
                 ))
               )}
             </div>

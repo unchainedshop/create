@@ -60,7 +60,22 @@ const SignUp = () => {
         setError('password2', 'notMatch', 'Passwörter sind nicht gleich');
         return false;
       }
-      await createUser({ email: emailAddress, password });
+      await createUser({
+        email: emailAddress,
+        password,
+        profile: {
+          displayName: lastName,
+          phoneMobile: telNumber,
+          address: {
+            firstName,
+            lastName,
+            company,
+            addressLine,
+            postalCode,
+            city,
+          },
+        },
+      });
     }
 
     await updateCart({
@@ -124,7 +139,7 @@ const SignUp = () => {
                   errors.lastName ? 'form-error' : ''
                 }`}
               >
-                <label className="form-label">Surname</label>
+                <label className="form-label">Last name</label>
                 <input
                   className={`form-control ${errors.lastName && 'form-error'}`}
                   name="lastName"
@@ -160,7 +175,7 @@ const SignUp = () => {
                   errors.postalCode ? 'form-error' : ''
                 }`}
               >
-                <label className="form-label">PLZ</label>
+                <label className="form-label">Postal code</label>
                 <input
                   className={`form-control ${
                     errors.postalCode && 'form-error'
@@ -173,7 +188,7 @@ const SignUp = () => {
               <div
                 className={`mb-3 col-md-6 ${errors.city ? 'form-error' : ''}`}
               >
-                <label className="form-label">place</label>
+                <label className="form-label">city</label>
                 <input
                   className={`form-control ${errors.city && 'form-error'}`}
                   name="city"

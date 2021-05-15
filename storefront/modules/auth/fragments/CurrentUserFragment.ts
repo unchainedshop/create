@@ -28,9 +28,6 @@ const CurrentUserFragment = gql`
       phoneMobile
       address {
         ...AddressFragment
-        addressLine
-        countryCode
-        regionCode
       }
     }
     cart {

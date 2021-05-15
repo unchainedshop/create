@@ -8,6 +8,9 @@ const AddressFragment = gql`
     addressLine
     postalCode
     city
+    addressLine
+    countryCode
+    regionCode
   }
 `;
 

@@ -1,10 +1,12 @@
+import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import COUNTRIES from '../../common/data/countries-list';
 import useCreateUser from '../hooks/useCreateUser';
 
-const SignUpForm = () => {
+const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
+  const router = useRouter();
   const { register, handleSubmit, errors, setError, watch } = useForm();
   const { createUser, error } = useCreateUser();
   const password = useRef({});
@@ -50,6 +52,7 @@ const SignUpForm = () => {
     };
 
     await createUser(userProfile);
+    router.push(onSuccessGoTo);
   };
   useEffect(() => {
     if (error?.message?.includes('Email already exists')) {

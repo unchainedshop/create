@@ -1,14 +1,16 @@
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+
 import renderPrice from '../../common/utils/renderPrice';
 import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
 import ListItem from '../../common/components/ListItem';
 import formatDate from '../../common/utils/formatDate';
-import useOrderDetailQuery from '../hooks/useOrderDetailQuery';
+import useOrderDetail from '../hooks/useOrderDetail';
 
 const OrderDetailComponent = () => {
   const router = useRouter();
 
-  const { order, loading } = useOrderDetailQuery({
+  const { order, loading } = useOrderDetail({
     orderId: router.query.id,
   });
   if (loading) return <p>loading .... </p>;
@@ -26,7 +28,18 @@ const OrderDetailComponent = () => {
                 key={item?._id}
               >
                 <div className="cart-img mr-2">
-                  <img src={getProductMediaUrl(item.product)} />
+                  <Image
+                    src={`${
+                      getProductMediaUrl(item.product) ||
+                      '/static/img/sun-glass-placeholder.jpeg'
+                    }`}
+                    alt={item.product.texts.title}
+                    layout="responsive"
+                    objectFit="contain"
+                    quality={100}
+                    width="100px"
+                    height="100px"
+                  />
                 </div>
                 <div className="w-50 mr-2">
                   <div>

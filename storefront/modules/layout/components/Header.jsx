@@ -2,16 +2,21 @@ import Link from 'next/link';
 import Head from 'next/head';
 import getConfig from 'next/config';
 
+import { useContext } from 'react';
 import LoginCart from '../../auth/components/LoginCart';
 import OrderButton from '../../orders/components/UserOrderButton';
+import SideCart from '../../cart/components/SideCart';
+import { CartContext } from '../../cart/CartContext';
 
 const {
   publicRuntimeConfig: { theme },
 } = getConfig();
 
 const Header = () => {
+  const context = useContext(CartContext);
   return (
     <header className="header sticky-top">
+      <SideCart isOpen={context.isCartOpen} />
       <Head>
         <link
           rel="apple-touch-icon"

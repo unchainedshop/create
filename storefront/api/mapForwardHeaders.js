@@ -11,11 +11,18 @@ const mapForwardHeaders = ({ headers = {}, ...req } = {}) => {
   const forwardHeaders = {
     ...headers,
     'accept-language': headers['accept-language'],
-    authorization: headers.authorization,
     'x-real-ip': ip,
     'x-shop-country': headers['x-shop-country'] || lookup(ip),
     'user-agent': headers['user-agent'],
   };
+  delete forwardHeaders['sec-fetch-site'];
+  delete forwardHeaders['sec-fetch-mode'];
+  delete forwardHeaders['sec-fetch-dest'];
+  delete forwardHeaders.host;
+  delete forwardHeaders.origin;
+  delete forwardHeaders.referer;
+  delete forwardHeaders['content-length'];
+
   return forwardHeaders;
 };
 

@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useUserQuery from '../modules/auth/hooks/useUserQuery';
+
+import useUser from '../modules/auth/hooks/useUser';
 import ManageCart from '../modules/cart/components/ManageCart';
 import Header from '../modules/layout/components/Header';
 import Footer from '../modules/layout/components/Footer';
 
 const Cart = () => {
   const router = useRouter();
-  const { user, loading } = useUserQuery();
+  const { user, loading } = useUser();
 
   if (!user && !loading) router.push('/login?next=cart');
 
@@ -24,19 +25,12 @@ const Cart = () => {
 
       <div className="button-group mt-5">
         <Link
-          href={user?.isGuest ?? true ? '/register?next=payment' : '/payment'}
+          href={user?.isGuest ?? true ? '/register?next=review' : '/review'}
         >
           <a className="button button--primary button--big text-uppercase">
-            Order once
+            Complete Order
           </a>
         </Link>
-        <button
-          disabled
-          type="button"
-          className="button button--primary button--big text-uppercase"
-        >
-          Available soon by subscription
-        </button>
       </div>
       <Footer />
     </div>

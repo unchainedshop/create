@@ -14,7 +14,7 @@ const UserOrderListQuery = gql`
   ${OrderFragment}
 `;
 
-const useOrderListQuery = () => {
+const useOrderList = () => {
   const { data, loading, error } = useQuery(UserOrderListQuery);
 
   return {
@@ -24,4 +24,4 @@ const useOrderListQuery = () => {
   };
 };
 
-export default useOrderListQuery;
+export default useOrderList;

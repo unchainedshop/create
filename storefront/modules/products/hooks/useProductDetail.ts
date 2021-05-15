@@ -11,7 +11,7 @@ const ProductDetailQuery = gql`
   ${ProductFragment}
 `;
 
-const useProductDetailQuery = ({ slug }) => {
+const useProductDetail = ({ slug }) => {
   const { data, loading, error } = useQuery(ProductDetailQuery, {
     variables: { slug },
   });
@@ -23,4 +23,4 @@ const useProductDetailQuery = ({ slug }) => {
   };
 };
 
-export default useProductDetailQuery;
+export default useProductDetail;

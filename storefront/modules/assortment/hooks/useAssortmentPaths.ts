@@ -1,32 +1,19 @@
 import { useQuery, gql } from '@apollo/client';
 
+import AssortmentFragment from '../fragments/assortment';
+import AssortmentPathFragment from '../fragments/AssortmentPath';
+
 export const AssortmentPathsQuery = gql`
   query AssortmentPathsQuery($assortmentId: ID!) {
     assortment(assortmentId: $assortmentId) {
-      _id
-      texts {
-        _id
-        title
-        slug
-      }
-      isBase
-      isRoot
+      ...AssortmentFragment
       assortmentPaths {
-        links {
-          link {
-            parent {
-              _id
-              texts {
-                _id
-                title
-                slug
-              }
-            }
-          }
-        }
+        ...AssortmentPathFragment
       }
     }
   }
+  ${AssortmentFragment}
+  ${AssortmentPathFragment}
 `;
 
 const useAssortmentPaths = ({ assortmentId }) => {

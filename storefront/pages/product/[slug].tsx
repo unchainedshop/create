@@ -1,48 +1,50 @@
+/* eslint-disable react/no-danger */
 import { useRouter } from 'next/router';
-import useProductDetailQuery from '../../modules/products/hooks/useProductDetailQuery';
+import Image from 'next/image';
+
+import useProductDetail from '../../modules/products/hooks/useProductDetail';
 import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
-import useConditionalAddCartProductMutation from '../../modules/cart/hooks/useConditionalAddCartProductMutation';
 import Header from '../../modules/layout/components/Header';
 import Footer from '../../modules/layout/components/Footer';
-import WebPayment from '../../modules/products/components/WebPayment';
+import AddToCartButton from '../../modules/cart/components/AddToCartButton';
+import renderPrice from '../../modules/common/utils/renderPrice';
 
 const Detail = () => {
   const router = useRouter();
-  const { product } = useProductDetailQuery({ slug: router.query.slug });
-  const { conditionalAddCartProduct } = useConditionalAddCartProductMutation();
-  const handleClick = async () => {
-    conditionalAddCartProduct({ productId: product._id });
-  };
-
+  const { product } = useProductDetail({ slug: router.query.slug });
   return (
     <div>
       <Header />
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6">
-            <img src={getProductMediaUrl(product)} />
+            <Image
+              src={`${
+                getProductMediaUrl(product) ||
+                '/static/img/sun-glass-placeholder.jpeg'
+              }`}
+              alt={product?.texts?.title}
+              layout="responsive"
+              objectFit="contain"
+              quality={100}
+              width="700px"
+              height="700px"
+            />
           </div>
           <div className="col-md-6">
             <h2 className="px-2 mt-md-0">{product?.texts?.title}</h2>
             <div className="p-2">
               <h3 className="my-0">
-                CHF {product?.simulatedPrice?.price?.amount / 100}{' '}
-                <small className="taxes">(VAT included.)</small>
+                {renderPrice(product?.simulatedPrice?.price)}
               </h3>
               <h4 className="mb-0">{product?.texts?.subtitle}</h4>
-              {product?.texts?.description?.split('\n').map((line) => (
-                <p key={line?.substring(0, 10)}>{line}</p>
-              ))}
-              <p>Weight:{product?.dimensions?.weight * 1000} Gramm</p>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: product?.texts?.description,
+                }}
+              />
             </div>
-            <button
-              type="button"
-              className="button button--primary button--big mb-5 text-uppercase"
-              onClick={handleClick}
-            >
-              Add to cart
-            </button>
-            <WebPayment onClick={handleClick} />
+            <AddToCartButton productId={product?._id} />
           </div>
         </div>
       </div>

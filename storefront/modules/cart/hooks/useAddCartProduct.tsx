@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+
 import CartFragment from '../fragments/CartFragment';
 
 const AddCartProductMutation = gql`
@@ -16,9 +17,9 @@ const AddCartProductMutation = gql`
   ${CartFragment}
 `;
 
-const useAddCartProductMutation = () => {
+const useAddCartProduct = () => {
   const [addCartProductMutation] = useMutation(AddCartProductMutation, {
-    refetchQueries: ['UserQuery', 'cart'],
+    refetchQueries: ['user', 'cart'],
   });
 
   const addCartProduct = async ({ productId }) => {
@@ -30,4 +31,4 @@ const useAddCartProductMutation = () => {
   };
 };
 
-export default useAddCartProductMutation;
+export default useAddCartProduct;

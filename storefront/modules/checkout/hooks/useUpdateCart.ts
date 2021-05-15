@@ -8,9 +8,9 @@ const UpdateCartMutation = gql`
   }
 `;
 
-const useUpdateCartMutation = () => {
+const useUpdateCart = () => {
   const [updateCartMutation] = useMutation(UpdateCartMutation, {
-    refetchQueries: ['UserQuery', 'cart'],
+    refetchQueries: ['user', 'cart'],
   });
 
   const updateCart = async ({
@@ -25,4 +25,4 @@ const useUpdateCartMutation = () => {
   };
 };
 
-export default useUpdateCartMutation;
+export default useUpdateCart;

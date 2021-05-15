@@ -16,7 +16,7 @@ const useUpdateUserProfile = () => {
   const updateUserProfile = async ({ profile, userId }) => {
     return updateUserProfileMutation({
       variables: { userId, profile },
-      refetchQueries: ['UserQuery'],
+      refetchQueries: ['user'],
     });
   };
 

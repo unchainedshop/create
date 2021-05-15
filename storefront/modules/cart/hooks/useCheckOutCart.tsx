@@ -20,7 +20,7 @@ const CheckOutCartMutation = gql`
 
 const useCheckOutCartMutation = () => {
   const [checkOutCartMutation] = useMutation(CheckOutCartMutation, {
-    refetchQueries: ['UserQuery'],
+    refetchQueries: ['user'],
   });
 
   const checkOutCart = async ({

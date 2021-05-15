@@ -1,16 +1,16 @@
 import { useMutation, gql } from '@apollo/client';
 
 const RemoveCartItemMutation = gql`
-  mutation RemoveCartItem($itemId: ID!) {
+  mutation removeCartItem($itemId: ID!) {
     removeCartItem(itemId: $itemId) {
       _id
     }
   }
 `;
 
-const useRemoveCartItemMutation = () => {
+const useRemoveCartItem = () => {
   const [removeCartItemMutation] = useMutation(RemoveCartItemMutation, {
-    refetchQueries: ['UserQuery', 'cart'],
+    refetchQueries: ['user', 'cart'],
   });
 
   const removeCartItem = async ({ itemId }) => {
@@ -22,4 +22,4 @@ const useRemoveCartItemMutation = () => {
   };
 };
 
-export default useRemoveCartItemMutation;
+export default useRemoveCartItem;

@@ -16,7 +16,7 @@ const OrderDetailQuery = gql`
   ${OrderItemFragment}
 `;
 
-const useOrderDetailQuery = ({ orderId }) => {
+const useOrderDetail = ({ orderId }) => {
   const { data, loading, error } = useQuery(OrderDetailQuery, {
     variables: { orderId },
   });
@@ -28,4 +28,4 @@ const useOrderDetailQuery = ({ orderId }) => {
   };
 };
 
-export default useOrderDetailQuery;
+export default useOrderDetail;

@@ -1,30 +1,15 @@
 import { useQuery, gql } from '@apollo/client';
 
 import ProductFragment from '../../products/fragments/ProductFragment';
+import AssortmentFragment from '../fragments/assortment';
+import AssortmentPathFragment from '../fragments/AssortmentPath';
 
 export const AssortmentsProductsQuery = gql`
   query AssortmentsProductsQuery($slugs: String!) {
     assortment(slug: $slugs) {
-      _id
-      texts {
-        _id
-        slug
-      }
+      ...AssortmentFragment
       assortmentPaths {
-        links {
-          assortmentId
-          link {
-            _id
-            parent {
-              _id
-              texts {
-                _id
-                slug
-                title
-              }
-            }
-          }
-        }
+        ...AssortmentPathFragment
       }
       searchProducts {
         productsCount
@@ -39,7 +24,9 @@ export const AssortmentsProductsQuery = gql`
       }
     }
   }
+  ${AssortmentFragment}
   ${ProductFragment}
+  ${AssortmentPathFragment}
 `;
 
 const useAssortmentProducts = (

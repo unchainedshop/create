@@ -1,10 +1,12 @@
+import Image from 'next/image';
+
 import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
 import renderPrice from '../../common/utils/renderPrice';
-import useRemoveCartItemMutation from '../hooks/useRemoveCartItemMutation';
-import useUserQuery from '../../auth/hooks/useUserQuery';
+import useRemoveCartItemMutation from '../hooks/useRemoveCartItem';
+import useUser from '../../auth/hooks/useUser';
 
 const ManageCart = () => {
-  const { user } = useUserQuery();
+  const { user } = useUser();
   const { removeCartItem } = useRemoveCartItemMutation();
   const handleRemoveClick = (itemId) => () => removeCartItem({ itemId });
 
@@ -16,7 +18,18 @@ const ManageCart = () => {
           key={item._id}
         >
           <div className="cart-img mr-2">
-            <img src={getProductMediaUrl(item.product)} />
+            <Image
+              src={`${
+                getProductMediaUrl(item.product) ||
+                '/static/img/sun-glass-placeholder.jpeg'
+              }`}
+              alt={item.product.texts.title}
+              layout="responsive"
+              objectFit="contain"
+              quality={100}
+              width="100px"
+              height="100px"
+            />
           </div>
           <div className="w-50 mr-2">
             <div>
@@ -50,12 +63,12 @@ const ManageCart = () => {
         </div>
       </div>
       <div className="text-right">
-        <h3 className="border-top border-bottom py-3 mt-0">
+        <h4 className="border-top border-bottom py-3 mt-0">
           <div className="d-flex flex-wrap justify-content-between">
             <div>Total amount</div>
             <div>{renderPrice(user?.cart?.total)}</div>
           </div>
-        </h3>
+        </h4>
       </div>
     </div>
   );

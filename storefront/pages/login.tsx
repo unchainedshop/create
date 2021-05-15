@@ -5,7 +5,7 @@ import LoginForm from '../modules/auth/components/LoginForm';
 
 const SignIn = () => {
   const router = useRouter();
-  const onLogin = () => router.push('/customer-account');
+  const onLogin = () => router.push('/account');
 
   return (
     <div className="container">

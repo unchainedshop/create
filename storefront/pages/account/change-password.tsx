@@ -1,19 +1,17 @@
-import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import useResetPassword from '../modules/auth/hooks/useResetPassword';
-import Header from '../modules/layout/components/Header';
 
-const PasswordReset = () => {
-  const router = useRouter();
-  const { token } = router.query;
+import useChangePassword from '../../modules/auth/hooks/useChangePassword';
+import Header from '../../modules/layout/components/Header';
+
+const ChangePassword = () => {
   const { register, handleSubmit, errors, watch } = useForm();
   const password = useRef({});
   password.current = watch('newPassword', '');
-  const { resetPassword } = useResetPassword();
+  const { changePassword } = useChangePassword();
 
-  const onSubmit = async ({ newPassword }) => {
-    await resetPassword({ newPassword, token });
+  const onSubmit = async ({ newPassword, oldPassword }) => {
+    await changePassword({ newPassword, oldPassword });
   };
 
   return (
@@ -21,8 +19,21 @@ const PasswordReset = () => {
       <Header />
       <div className="row">
         <div className="col-md-8 offset-md-2">
-          <h1>reset Password</h1>
+          <h1>Change Password</h1>
           <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            <div
+              className={`mb-3 col-md-6 ${
+                errors.password2 ? 'form-error' : ''
+              }`}
+            >
+              <label className="form-label">Enter current password</label>
+              <input
+                className="form-control"
+                name="oldPassword"
+                type="password"
+                ref={register({ required: true })}
+              />
+            </div>
             <div
               className={`mb-3 col-md-6 ${
                 errors.password2 ? 'form-error' : ''
@@ -66,4 +77,4 @@ const PasswordReset = () => {
   );
 };
 
-export default PasswordReset;
+export default ChangePassword;

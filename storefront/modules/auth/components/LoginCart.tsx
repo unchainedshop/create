@@ -35,7 +35,7 @@ const LoginCart = () => {
           <Link href="/logout">
             <a className="button button--secondary ml-3 my-1">Sign out</a>
           </Link>
-          <Link href="/customer-account">
+          <Link href="/account">
             <a className="button button--secondary ml-3 my-1">Account</a>
           </Link>
         </>

@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
-import useResetPassword from '../../modules/auth/hooks/useResetPassword';
-import Header from '../../modules/layout/components/Header';
+import useResetPassword from '../modules/auth/hooks/useResetPassword';
+import Header from '../modules/layout/components/Header';
 
 const PasswordReset = () => {
   const router = useRouter();

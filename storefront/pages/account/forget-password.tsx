@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
-import useForgotPassword from '../modules/auth/hooks/useForgotPassword';
-import Header from '../modules/layout/components/Header';
+import useForgotPassword from '../../modules/auth/hooks/useForgotPassword';
+import Header from '../../modules/layout/components/Header';
 
 const PasswordForget = () => {
   const { register, handleSubmit } = useForm();
@@ -9,7 +10,7 @@ const PasswordForget = () => {
 
   const onSubmit = async ({ email }) => {
     const { success } = await forgotPassword({ email });
-    if (success) alert('A confirmation email is sent');
+    if (success) toast.success('A confirmation email is sent');
   };
 
   return (
@@ -30,7 +31,7 @@ const PasswordForget = () => {
               className="button button--primary button--big mt-3"
               type="submit"
             >
-              request new password
+              Request new password
             </button>
           </form>
         </div>

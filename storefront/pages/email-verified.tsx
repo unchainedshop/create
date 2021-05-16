@@ -1,9 +1,11 @@
+import MetaTags from '../modules/common/components/MetaTags';
 import Footer from '../modules/layout/components/Footer';
 import Header from '../modules/layout/components/Header';
 
 const VerifiedEmail = () => {
   return (
     <>
+      <MetaTags title="Email successfuly verified" />
       <Header />
       <div className="container">
         <div className="row">

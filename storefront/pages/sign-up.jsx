@@ -1,10 +1,12 @@
 import SignUpForm from '../modules/auth/components/SignUpForm';
+import MetaTags from '../modules/common/components/MetaTags';
 import Footer from '../modules/layout/components/Footer';
 import Header from '../modules/layout/components/Header';
 
 const SignUp = () => {
   return (
     <>
+      <MetaTags title="Sign up" />
       <Header />
       <SignUpForm />
       <Footer />

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Header from '../modules/layout/components/Header';
 import LoginForm from '../modules/auth/components/LoginForm';
 import Footer from '../modules/layout/components/Footer';
+import MetaTags from '../modules/common/components/MetaTags';
 
 const LogIn = () => {
   const router = useRouter();
@@ -10,6 +11,7 @@ const LogIn = () => {
 
   return (
     <>
+      <MetaTags title="Log in" />
       <Header />
       <div className="container">
         <div className="row">

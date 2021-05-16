@@ -1,15 +1,13 @@
-import Head from 'next/head';
 import Link from 'next/link';
 
 import Header from '../modules/layout/components/Header';
 import Footer from '../modules/layout/components/Footer';
+import MetaTags from '../modules/common/components/MetaTags';
 
 const Home = () => {
   return (
-    <div>
-      <Head>
-        <title>Your Webshop</title>
-      </Head>
+    <>
+      <MetaTags title="Your Webshop" />
       <Header />
       <div className="color-bg-brand-lightest">
         <div className="container">
@@ -29,7 +27,7 @@ const Home = () => {
       </div>
 
       <Footer />
-    </div>
+    </>
   );
 };
 

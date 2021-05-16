@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 
 import useOrderDetail from '../modules/orders/hooks/useOrderDetail';
-
 import Header from '../modules/layout/components/Header';
 import Footer from '../modules/layout/components/Footer';
 import formatDate from '../modules/common/utils/formatDate';
+import MetaTags from '../modules/common/components/MetaTags';
 
 const ThankYou = () => {
   const router = useRouter();
@@ -15,6 +15,7 @@ const ThankYou = () => {
 
   return (
     <>
+      <MetaTags title="Thank you" description="Thank you for your order" />
       <Header />
       <div className="container">
         <div className="row">

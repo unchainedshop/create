@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 import useProductDetail from '../../modules/products/hooks/useProductDetail';
 import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
@@ -9,12 +10,25 @@ import Footer from '../../modules/layout/components/Footer';
 import AddToCartButton from '../../modules/cart/components/AddToCartButton';
 import renderPrice from '../../modules/common/utils/renderPrice';
 import LoadingItem from '../../modules/common/components/LoadingItem';
+import MetaTags from '../../modules/common/components/MetaTags';
 
 const Detail = () => {
   const router = useRouter();
+  const [currentUrl, setcurrentUrl] = useState('');
   const { product, loading } = useProductDetail({ slug: router.query.slug });
+
+  useEffect(() => {
+    setcurrentUrl(window.location.href);
+  }, []);
+
   return (
     <>
+      <MetaTags
+        title={product?.texts?.title}
+        imageUrl={getProductMediaUrl(product)}
+        url={currentUrl}
+        description={product?.texts?.description}
+      />
       <Header />
       {loading ? (
         <LoadingItem />

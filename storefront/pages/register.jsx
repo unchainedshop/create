@@ -7,6 +7,7 @@ import useUpdateCart from '../modules/checkout/hooks/useUpdateCart';
 import Header from '../modules/layout/components/Header';
 import LoginForm from '../modules/auth/components/LoginForm';
 import Footer from '../modules/layout/components/Footer';
+import MetaTags from '../modules/common/components/MetaTags';
 
 const ErrorDisplay = ({ error }) => {
   if (!error) return '';
@@ -98,6 +99,7 @@ const SignUp = () => {
 
   return (
     <>
+      <MetaTags title="Register" />
       <Header />
       <div className="container">
         <div className="row">
@@ -131,7 +133,6 @@ const SignUp = () => {
                   <input
                     className="form-control"
                     name="firstName"
-                    // defaultValue={isDev && 'Hans'}
                     ref={register({ required: true })}
                   />
                 </div>
@@ -146,7 +147,6 @@ const SignUp = () => {
                       errors.lastName && 'form-error'
                     }`}
                     name="lastName"
-                    // defaultValue={isDev && 'Muster'}
                     ref={register({ required: true })}
                   />
                 </div>
@@ -174,7 +174,6 @@ const SignUp = () => {
                     }`}
                     name="addressLine"
                     ref={register({ required: true })}
-                    // defaultValue={isDev && 'Teststrasse 1'}
                   />
                 </div>
                 <div
@@ -189,7 +188,6 @@ const SignUp = () => {
                     }`}
                     name="postalCode"
                     ref={register({ required: true })}
-                    // defaultValue={isDev && '8001'}
                   />
                 </div>
                 <div
@@ -200,7 +198,6 @@ const SignUp = () => {
                     className={`form-control ${errors.city && 'form-error'}`}
                     name="city"
                     ref={register({ required: true })}
-                    // defaultValue={isDev && 'Zürich'}
                   />
                 </div>
                 <div
@@ -215,7 +212,6 @@ const SignUp = () => {
                     }`}
                     name="emailAddress"
                     ref={register({ required: true })}
-                    // defaultValue={isDev && 'hans@exmaple.com'}
                   />
                 </div>
                 <div
@@ -230,7 +226,6 @@ const SignUp = () => {
                     }`}
                     name="telNumber"
                     ref={register({ required: true })}
-                    // defaultValue={isDev && '0791234567'}
                   />
                 </div>
                 {createAccount ? (
@@ -246,7 +241,6 @@ const SignUp = () => {
                         name="password"
                         type="password"
                         ref={register({ required: true })}
-                        // defaultValue={isDev && 'asdf'}
                       />
                     </div>
                     <div
@@ -260,7 +254,6 @@ const SignUp = () => {
                         name="password2"
                         type="password"
                         ref={register({ required: true })}
-                        // defaultValue={isDev && 'asdf'}
                       />
                     </div>
                   </>

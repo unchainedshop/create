@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import useResetPassword from '../modules/auth/hooks/useResetPassword';
+import MetaTags from '../modules/common/components/MetaTags';
 import Footer from '../modules/layout/components/Footer';
 import Header from '../modules/layout/components/Header';
 
@@ -11,6 +12,7 @@ const PasswordReset = () => {
   const { token } = router.query;
   const { register, handleSubmit, errors, watch } = useForm();
   const password = useRef({});
+
   password.current = watch('newPassword', '');
   const { resetPassword } = useResetPassword();
 
@@ -20,6 +22,7 @@ const PasswordReset = () => {
 
   return (
     <>
+      <MetaTags title="Reset password" />
       <Header />
       <div className="container">
         <div className="row">

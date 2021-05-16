@@ -10,6 +10,7 @@ import DeliveryAddressEditable from '../modules/checkout/components/DeliveryAddr
 import BillingAddressEditable from '../modules/checkout/components/BillingAddressEditable';
 import useUpdateOrderDeliveryShipping from '../modules/checkout/hooks/useUpdateDeliveryShipping';
 import useUpdateCart from '../modules/checkout/hooks/useUpdateCart';
+import MetaTags from '../modules/common/components/MetaTags';
 
 const titleForProvider = (_id) => {
   return {
@@ -20,6 +21,7 @@ const titleForProvider = (_id) => {
 const Review = () => {
   const router = useRouter();
   const { user } = useUser();
+
   const { checkOutCart } = useCheckOutCart();
   const { setOrderPaymentProvider } = useSetOrderPaymentProvider();
   const { updateOrderDeliveryAddress } = useUpdateOrderDeliveryShipping();
@@ -106,6 +108,7 @@ const Review = () => {
 
   return (
     <>
+      <MetaTags title="Review order" />
       <Header />
 
       <div className="container mt-5">

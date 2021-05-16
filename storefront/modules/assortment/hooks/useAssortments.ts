@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+
 import AssortmentFragment from '../fragments/assortment';
 
 export const AssortmentsQuery = gql`

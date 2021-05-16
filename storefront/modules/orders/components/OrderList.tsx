@@ -2,13 +2,8 @@ import Link from 'next/link';
 
 import formatDate from '../../common/utils/formatDate';
 import renderPrice from '../../common/utils/renderPrice';
-import useOrderList from '../hooks/useUserOrderList';
 
-const OrderList = () => {
-  const { orders, loading } = useOrderList();
-
-  if (loading) return <p> loading .... </p>;
-
+const OrderList = ({ orders }) => {
   return (
     <div className="table-responsive container mt-5">
       <table className="table table-bordered table-hover text-center table-striped">

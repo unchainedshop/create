@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import useUser from '../modules/auth/hooks/useUser';
-
 import Footer from '../modules/layout/components/Footer';
 
 const AboutUs = () => {

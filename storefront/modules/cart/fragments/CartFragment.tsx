@@ -1,5 +1,7 @@
 import { gql } from '@apollo/client';
 
+import AddressFragment from '../../common/fragments/AddressFragment';
+
 const CartFragment = gql`
   fragment CartFragment on Order {
     _id
@@ -42,15 +44,7 @@ const CartFragment = gql`
       }
     }
     billingAddress {
-      firstName
-      lastName
-      company
-      addressLine
-      addressLine2
-      postalCode
-      countryCode
-      regionCode
-      city
+      ...AddressFragment
     }
     delivery {
       _id
@@ -60,19 +54,12 @@ const CartFragment = gql`
       }
       ... on OrderDeliveryShipping {
         address {
-          firstName
-          lastName
-          company
-          addressLine
-          addressLine2
-          postalCode
-          countryCode
-          regionCode
-          city
+          ...AddressFragment
         }
       }
     }
   }
+  ${AddressFragment}
 `;
 
 export default CartFragment;

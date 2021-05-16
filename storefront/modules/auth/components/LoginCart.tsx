@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useContext } from 'react';
-import { CartContext } from '../../cart/CartContext';
 
+import { CartContext } from '../../cart/CartContext';
 import useUser from '../hooks/useUser';
 
 const LoginCart = () => {

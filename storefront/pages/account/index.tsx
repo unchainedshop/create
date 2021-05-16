@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import UpdateProfileForm from '../../modules/auth/components/UpdateProfileForm';
 
+import UpdateProfileForm from '../../modules/auth/components/UpdateProfileForm';
 import useSetUsername from '../../modules/auth/hooks/useSetUsername';
 import useUser from '../../modules/auth/hooks/useUser';
 import COUNTRIES from '../../modules/common/data/countries-list';

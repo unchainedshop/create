@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-import AddressFragment from './AddressFragment';
+import AddressFragment from '../../common/fragments/AddressFragment';
 import ProductFragment from '../../products/fragments/ProductFragment';
 
 const CurrentUserFragment = gql`
@@ -63,6 +63,14 @@ const CurrentUserFragment = gql`
         }
       }
       taxes: total(category: TAXES) {
+        amount
+        currency
+      }
+      delivery: total(category: DELIVERY) {
+        amount
+        currency
+      }
+      payment: total(category: PAYMENT) {
         amount
         currency
       }

@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import Footer from '../modules/layout/components/Footer';
 
-const ThankYou = () => {
+const Privacy = () => {
   return (
     <div className="container">
       <Link href="/">
@@ -21,4 +21,4 @@ const ThankYou = () => {
   );
 };
 
-export default ThankYou;
+export default Privacy;

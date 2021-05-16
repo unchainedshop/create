@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+
 import renderPrice from '../../common/utils/renderPrice';
 import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
-
 import useRemoveCartItem from '../hooks/useRemoveCartItem';
 import useUpdateCartItemMutation from '../hooks/useUpdateCartItem';
 

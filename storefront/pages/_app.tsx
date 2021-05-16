@@ -3,9 +3,9 @@ import App from 'next/app';
 import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import '../public/static/css/all.css';
 
 import { CartContext } from '../modules/cart/CartContext';
-import '../public/static/css/all.css';
 import withApollo from '../modules/apollo/utils/withApollo';
 
 const UnchainedApp = ({ Component, pageProps }) => {

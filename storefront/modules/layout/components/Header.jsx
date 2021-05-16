@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import getConfig from 'next/config';
-
 import { useContext } from 'react';
+
 import LoginCart from '../../auth/components/LoginCart';
 import OrderButton from '../../orders/components/UserOrderButton';
 import SideCart from '../../cart/components/SideCart';

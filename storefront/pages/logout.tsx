@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import useLogoutMutation from '../modules/auth/hooks/useLogout';
+import Footer from '../modules/layout/components/Footer';
+import Header from '../modules/layout/components/Header';
 
 const Logout = () => {
   const { logout } = useLogoutMutation();
@@ -14,7 +16,13 @@ const Logout = () => {
     })();
   }, []);
 
-  return <div className="text-center m-5">🙏 You will be logged out</div>;
+  return (
+    <>
+      <Header />
+      <div className="container text-center m-5">🙏 You will be logged out</div>
+      <Footer />
+    </>
+  );
 };
 
 export default Logout;

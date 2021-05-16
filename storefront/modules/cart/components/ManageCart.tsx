@@ -1,10 +1,7 @@
 import renderPrice from '../../common/utils/renderPrice';
-import useUser from '../../auth/hooks/useUser';
 import CartItem from './CartItem';
 
-const ManageCart = () => {
-  const { user } = useUser();
-
+const ManageCart = ({ user }) => {
   return (
     <div>
       {(user?.cart?.items || []).map((item) => (

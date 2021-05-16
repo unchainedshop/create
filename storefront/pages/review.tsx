@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import useUser from '../modules/auth/hooks/useUser';
 import useSetOrderPaymentProvider from '../modules/orders/hooks/setPaymentOrderProvider';
 import useCheckOutCart from '../modules/cart/hooks/useCheckOutCart';
-
 import Header from '../modules/layout/components/Header';
 import Footer from '../modules/layout/components/Footer';
 import ManageCart from '../modules/cart/components/ManageCart';
@@ -173,7 +172,7 @@ const Review = () => {
           </div>
           <div className="col-lg-4">
             <h4 className="mt-0 mb-5">Order Summary</h4>
-            <ManageCart />
+            <ManageCart user={user} />
           </div>
         </div>
       </div>

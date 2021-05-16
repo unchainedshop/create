@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import LoadingItem from '../../modules/common/components/LoadingItem';
 
 import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
@@ -10,11 +11,10 @@ const OrderDetail = () => {
   const { order, loading } = useOrderDetail({
     orderId: router.query?.id,
   });
-  if (loading) return <p>loading .... </p>;
   return (
     <>
       <Header />
-      <OrderDetailComponent order={order} />
+      {loading ? <LoadingItem /> : <OrderDetailComponent order={order} />}
       <Footer />
     </>
   );

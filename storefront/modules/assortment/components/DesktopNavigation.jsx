@@ -12,27 +12,20 @@ import MegaDropdown from './MegaDropdown';
 import useAssortmentsLinks from '../hooks/useAssortmentsLinks';
 import getCatagoriesHierarchies from '../utils/getCatagoriesHierarchies';
 
-const arrayEqual = (a, b) =>
-  a.length === b.length &&
-  a.reduce((acc, curr, index) => acc && curr === b[index], true);
-
 const DesktopNavigation = () => {
   const router = useRouter();
   const [hoverPath, setHoverPath] = useState([]);
-  // Helper function to detect touch interaction and change behaviour
   const [isTouching, setTouching] = useState(false);
   const navigatedPath = router.asPath.split('/').filter(Boolean);
 
   const { assortments } = useAssortmentsLinks();
 
   const routes = getCatagoriesHierarchies(assortments);
-  console.log(routes);
 
-  const handleClick = (node) => (event) => {
+  const handleClick = () => () => {
     setHoverPath([]);
   };
 
-  // Trick to detect touch devices
   const handleTouchStart = () => {
     setTouching(true);
   };
@@ -40,7 +33,6 @@ const DesktopNavigation = () => {
   const handleTouchEnd = () => {
     setTimeout(() => setTouching(false), 300);
   };
-  console.log(routes);
 
   return (
     <DesktopNavigationContext.Provider
@@ -60,11 +52,11 @@ const DesktopNavigation = () => {
           <Link href="/shop">
             <a
               className="nav--main__item"
-              data-in-navigation-path={navigatedPath.includes('shop')}
-              data-in-hover-path={hoverPath.includes('shop')}
+              data-in-navigation-path={navigatedPath.includes('/shop')}
+              data-in-hover-path={hoverPath.includes('/shop')}
               onMouseEnter={() => {
                 if (!isTouching) {
-                  setHoverPath(['shop', 'shop']);
+                  setHoverPath('/shop');
                 }
               }}
               onMouseOut={() => {
@@ -73,14 +65,13 @@ const DesktopNavigation = () => {
               onBlur={() => {
                 if (!isTouching) setHoverPath([]);
               }}
-              onClick={handleClick('shop')}
+              onClick={handleClick()}
             >
               shop
             </a>
           </Link>
-          {routes.map(({ ...rest }, index) => (
-            <MegaDropdown {...rest} />
-          ))}
+          {hoverPath.includes('/shop') &&
+            routes.map(({ ...rest }) => <MegaDropdown {...rest} />)}
         </div>
       </nav>
     </DesktopNavigationContext.Provider>

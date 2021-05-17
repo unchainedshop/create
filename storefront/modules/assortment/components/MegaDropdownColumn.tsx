@@ -9,34 +9,30 @@ const MegaDropdownItem = ({
 }: {
   type: 'default' | 'show_all';
 }) => {
-  console.log(rest);
-
   const {
     setHoverPath,
     navigatedPath,
     hoverPath,
     isTouching,
   } = useDesktopNavigationContext();
-
   const handleClick = (event) => {
     if (type === 'default' && isTouching && rest?.children) {
-      event.preventDefault();
-      setHoverPath(rest?.texts?.slug);
+      setHoverPath(rest?.path);
     } else {
       setHoverPath([]);
     }
   };
 
   const handleMouseEnter = () => {
-    setHoverPath(rest?.texts?.slug);
+    setHoverPath(rest?.path);
   };
 
   const handleTouchStart = () => {
-    setHoverPath(rest?.texts?.slug);
+    setHoverPath(rest?.path);
   };
 
   return (
-    <Link href={rest?.texts?.slug || 'something'}>
+    <Link href={rest?.path.join('/') || 'something'}>
       <a
         className={`mega-link ${
           type === 'default' && rest?.children ? 'has-arrow' : ''
@@ -75,10 +71,9 @@ const MegaDropdownColumn = ({ ...rest }) => {
     <div className="mega-col">
       <MegaDropdownItem {...rest} type="show_all" />
 
-      {rest?.children &&
-        rest?.children.map((subnode, i) => (
-          <MegaDropdownItem key={i} {...subnode} type="default" />
-        ))}
+      {rest?.children.map((subnode, i) => (
+        <MegaDropdownItem form="child" {...subnode} type="default" />
+      ))}
     </div>
   );
 };

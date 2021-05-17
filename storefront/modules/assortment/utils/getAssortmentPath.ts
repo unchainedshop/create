@@ -1,42 +1,20 @@
-const getCatagoriesHierarchys = (
-  rootAssortment: [{ texts: any; linkedAssortments: any[] }] = [
-    {
-      texts: {},
-      linkedAssortments: [],
-    },
-  ],
-) => {
-  const routes = [];
+const getAssortmentPath = (assortmentPaths = [], pathFromRoot = 'shop') => {
+  const pathArr = [];
 
-  rootAssortment.forEach(({ texts, linkedAssortments }) => {
-    routes.push({
-      texts,
-      children: [],
-    });
+  const recuresive = (paths = assortmentPaths, rootPath = pathFromRoot) => {
+    if (paths.length === 0) return;
 
-    linkedAssortments.forEach(({ child }) => {
-      if (routes[routes.length - 1].texts._id === child.texts._id) return;
-      routes[routes.length - 1].children.push({
-        texts: child.texts,
-        children: [],
-      });
-      child.linkedAssortments.forEach(({ child: secondChild }) => {
-        if (
-          routes[routes.length - 1].children[
-            routes[routes.length - 1].children.length - 1
-          ].texts._id === secondChild.texts._id
-        )
-          return;
-        routes[routes.length - 1].children[
-          routes[routes.length - 1].children.length - 1
-        ].children.push({
-          texts: secondChild.texts,
-          children: [],
-        });
-      });
+    const [currentLink, ...nextLink] = paths;
+
+    pathArr.push({
+      id: currentLink.assortmentId,
+      title: currentLink.link.parent.texts.title,
+      slug: `${rootPath}/${currentLink.link.parent.texts.slug}`,
     });
-  });
-  return routes;
+    recuresive(nextLink, `${rootPath}/${currentLink.link.parent.texts.slug}`);
+  };
+  recuresive(assortmentPaths, pathFromRoot);
+  return pathArr;
 };
 
-export default getCatagoriesHierarchys;
+export default getAssortmentPath;

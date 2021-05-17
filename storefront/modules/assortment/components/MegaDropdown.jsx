@@ -7,7 +7,7 @@ const findChildBySlug = (node, slug) => {
   return (
     node.children &&
     Object.entries(node.children).find(
-      ([, childNode]) => childNode.texts.slug === slug,
+      ([, childNode]) => childNode.slug === slug,
     )
   );
 };
@@ -16,10 +16,10 @@ const getColumn = (node, hoverPath, navigatedPath, columnIndex) => {
   if (hoverPath.length <= columnIndex || !node) {
     return [null, null];
   }
-  if (hoverPath.includes(node.texts.slug)) {
+  if (hoverPath.includes(node.slug)) {
     return findChildBySlug(node, hoverPath[columnIndex]) || [null, null];
   }
-  if (navigatedPath.includes(node.texts.slug)) {
+  if (navigatedPath.includes(node.slug)) {
     return findChildBySlug(node, navigatedPath[columnIndex]) || [null, null];
   }
   return [null, null];

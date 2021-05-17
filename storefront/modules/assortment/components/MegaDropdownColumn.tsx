@@ -15,6 +15,7 @@ const MegaDropdownItem = ({
     hoverPath,
     isTouching,
   } = useDesktopNavigationContext();
+
   const handleClick = (event) => {
     if (type === 'default' && isTouching && rest?.children) {
       setHoverPath(rest?.path);
@@ -32,7 +33,7 @@ const MegaDropdownItem = ({
   };
 
   return (
-    <Link href={rest?.path.join('/') || 'something'}>
+    <Link href={`/${rest?.path.join('/')}`}>
       <a
         className={`mega-link ${
           type === 'default' && rest?.children ? 'has-arrow' : ''
@@ -41,17 +42,17 @@ const MegaDropdownItem = ({
         onClick={handleClick}
         onTouchStart={handleTouchStart}
         data-in-hover-path={
-          type === 'default' && hoverPath.includes(rest?.texts?.slug)
+          type === 'default' && hoverPath.includes(rest?.slug)
         }
         data-in-navigation-path={
-          type === 'default' && navigatedPath.includes(rest?.texts?.slug)
+          type === 'default' && navigatedPath.includes(rest?.slug)
         }
       >
         {type === 'default' ? (
-          rest?.texts?.title
+          rest?.navigationTitle
         ) : (
           <b>
-            {rest?.texts?.title}
+            {rest?.navigationTitle}
             &nbsp;
           </b>
         )}
@@ -71,9 +72,14 @@ const MegaDropdownColumn = ({ ...rest }) => {
     <div className="mega-col">
       <MegaDropdownItem {...rest} type="show_all" />
 
-      {rest?.children.map((subnode, i) => (
-        <MegaDropdownItem form="child" {...subnode} type="default" />
-      ))}
+      {rest.children &&
+        Object.entries(rest.children)
+          .sort(([, aNode], [, bNode]) => {
+            return aNode.index - bNode.index;
+          })
+          .map(([subPageId, subnode]) => (
+            <MegaDropdownItem {...subnode} type="default" />
+          ))}
     </div>
   );
 };

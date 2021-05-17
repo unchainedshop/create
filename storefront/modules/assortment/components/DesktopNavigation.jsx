@@ -9,8 +9,7 @@ import Link from 'next/link';
 
 import DesktopNavigationContext from './DesktopNavigationContext';
 import MegaDropdown from './MegaDropdown';
-import useAssortmentsLinks from '../hooks/useAssortmentsLinks';
-import getCatagoriesHierarchies from '../utils/getCatagoriesHierarchies';
+import useCatagoriesTree from '../hooks/useCatagoriesTree';
 
 const DesktopNavigation = () => {
   const router = useRouter();
@@ -18,9 +17,7 @@ const DesktopNavigation = () => {
   const [isTouching, setTouching] = useState(false);
   const navigatedPath = router.asPath.split('/').filter(Boolean);
 
-  const { assortments } = useAssortmentsLinks();
-
-  const routes = getCatagoriesHierarchies(assortments);
+  const { assortmentTree } = useCatagoriesTree({ root: 'shop' });
 
   const handleClick = () => () => {
     setHoverPath([]);
@@ -49,14 +46,16 @@ const DesktopNavigation = () => {
         onTouchEnd={handleTouchEnd}
       >
         <div key="shop" className="d-inline-block font-size-0">
-          <Link href="/shop">
+          <Link href="shop">
             <a
               className="nav--main__item"
-              data-in-navigation-path={navigatedPath.includes('/shop')}
-              data-in-hover-path={hoverPath.includes('/shop')}
+              data-in-navigation-path={navigatedPath.includes(
+                assortmentTree.slug,
+              )}
+              data-in-hover-path={hoverPath.includes(assortmentTree.slug)}
               onMouseEnter={() => {
                 if (!isTouching) {
-                  setHoverPath('/shop');
+                  setHoverPath(assortmentTree.slug);
                 }
               }}
               onMouseOut={() => {
@@ -70,8 +69,9 @@ const DesktopNavigation = () => {
               shop
             </a>
           </Link>
-          {hoverPath.includes('/shop') &&
-            routes.map(({ ...rest }) => <MegaDropdown {...rest} />)}
+          {hoverPath.includes(assortmentTree.slug) && (
+            <MegaDropdown {...assortmentTree} />
+          )}
         </div>
       </nav>
     </DesktopNavigationContext.Provider>

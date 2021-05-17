@@ -1,5 +1,5 @@
-const getCatagoriesHierarchys = (
-  rootAssortment: [{ texts: any; linkedAssortments: any[] }] = [
+const getCatagoriesHierarchies = (
+  rootAssortments: [{ texts: any; linkedAssortments: any[] }] = [
     {
       texts: {},
       linkedAssortments: [],
@@ -8,7 +8,7 @@ const getCatagoriesHierarchys = (
 ) => {
   const routes = [];
 
-  rootAssortment.forEach(({ texts, linkedAssortments }) => {
+  rootAssortments.forEach(({ texts, linkedAssortments }) => {
     routes.push({
       texts,
       children: [],
@@ -39,4 +39,4 @@ const getCatagoriesHierarchys = (
   return routes;
 };
 
-export default getCatagoriesHierarchys;
+export default getCatagoriesHierarchies;

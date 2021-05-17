@@ -16,6 +16,20 @@ const getCatagoriesHierarchy = (
       texts: child.texts,
       children: [],
     });
+    child.linkedAssortments.forEach(({ child: secondChild }) => {
+      if (
+        routes[routes.length - 1].children[
+          routes[routes.length - 1].children.length - 1
+        ].texts._id === secondChild.texts._id
+      )
+        return;
+      routes[routes.length - 1].children[
+        routes[routes.length - 1].children.length - 1
+      ].children.push({
+        texts: secondChild.texts,
+        children: [],
+      });
+    });
   });
 
   return routes;

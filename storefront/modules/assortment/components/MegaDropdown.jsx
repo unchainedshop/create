@@ -12,33 +12,25 @@ const findChildBySlug = (node, slug) => {
   );
 };
 
-const getColumn = (node, hoverPath, navigatedPath, columnIndex) => {
+const getColumn = (node, hoverPath, columnIndex) => {
   if (hoverPath.length <= columnIndex || !node) {
     return [null, null];
   }
   if (hoverPath.includes(node.slug)) {
     return findChildBySlug(node, hoverPath[columnIndex]) || [null, null];
   }
-  if (navigatedPath.includes(node.slug)) {
-    return findChildBySlug(node, navigatedPath[columnIndex]) || [null, null];
-  }
   return [null, null];
 };
 
 const MegaDropdown = ({ ...rest }) => {
-  const {
-    setHoverPath,
-    isTouching,
-    hoverPath,
-    navigatedPath,
-  } = useDesktopNavigationContext();
+  const { setHoverPath, isTouching, hoverPath } = useDesktopNavigationContext();
 
-  const [, secondColumnNode] = getColumn(rest, hoverPath, navigatedPath, 1);
+  const [, secondColumnNode] = getColumn(rest, hoverPath, 1);
 
   const [, thirdColumnNode] = getColumn(
     secondColumnNode,
     hoverPath,
-    navigatedPath,
+
     2,
   );
 
@@ -65,7 +57,7 @@ const MegaDropdown = ({ ...rest }) => {
         <div className="mega-col" />
       )}
       {thirdColumnNode?.children ? (
-        <MegaDropdownColumn {...thirdColumnNode} key="mega-dropdown-column-2" />
+        <MegaDropdownColumn {...thirdColumnNode} key="mega-dropdown-column-3" />
       ) : (
         <div className="mega-col" />
       )}

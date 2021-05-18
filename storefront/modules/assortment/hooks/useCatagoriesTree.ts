@@ -1,52 +1,37 @@
 import { gql, useQuery } from '@apollo/client';
+import AssortmentFragment from '../fragments/assortment';
+import childrenArrayToNavigationIdObject from '../utils/childrenArrayToNavigationIdObject';
 
 const AssortmentTreeQuery = gql`
-  query assortmentTree {
-    assortments {
-      _id
-      texts {
-        _id
-        title
-        slug
-      }
+  query assortmentTree($slugs: [String!], $includeLeaves: Boolean) {
+    assortments(slugs: $slugs, includeLeaves: $includeLeaves) {
+      ...AssortmentFragment
       children {
-        _id
-
-        texts {
-          _id
-          title
-          slug
-        }
+        ...AssortmentFragment
         children {
-          _id
-          texts {
-            _id
-            title
-            slug
-          }
+          ...AssortmentFragment
         }
       }
     }
   }
+  ${AssortmentFragment}
 `;
 
-const childrenArrayToNavigationIdObject = (children, path = ['shop']) =>
-  children.reduce(
-    (acc, curr, index) => ({
-      ...acc,
-      [curr._id]: {
-        ...curr,
-        path: [...path, curr.texts.slug],
-        slug: curr.texts.slug,
-        navigationTitle: curr.texts.title,
-        index,
-      },
-    }),
-    {},
-  );
-
-const useCatagoriesTree = ({ root }) => {
-  const { loading, error, data } = useQuery(AssortmentTreeQuery);
+const useCatagoriesTree = ({
+  slugs = [],
+  includeLeaves = false,
+  root = '',
+}: {
+  slugs?: string | string[];
+  includeLeaves?: boolean;
+  root?: string;
+}) => {
+  const { loading, error, data } = useQuery(AssortmentTreeQuery, {
+    variables: {
+      includeLeaves,
+      slugs,
+    },
+  });
 
   // TODO REFACTOR: This would be nicer with `walk`
   const assortments = childrenArrayToNavigationIdObject(
@@ -65,7 +50,6 @@ const useCatagoriesTree = ({ root }) => {
       ),
     })),
   );
-
   const assortmentTree = {
     navigationTitle: root,
     slug: root,

@@ -1,26 +1,35 @@
-// TODO: Fix a11y stuff
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-
 import Link from 'next/link';
 
 import DesktopNavigationContext from './DesktopNavigationContext';
 import MegaDropdown from './MegaDropdown';
 import useCatagoriesTree from '../hooks/useCatagoriesTree';
 
+const arrayEqual = (a, b) =>
+  a.length === b.length &&
+  a.reduce((acc, curr, index) => acc && curr === b[index], true);
+
 const DesktopNavigation = () => {
-  const router = useRouter();
   const [hoverPath, setHoverPath] = useState([]);
   const [isTouching, setTouching] = useState(false);
-  const navigatedPath = router.asPath.split('/').filter(Boolean);
 
   const { assortmentTree } = useCatagoriesTree({ root: 'shop' });
 
-  const handleClick = () => () => {
-    setHoverPath([]);
+  const handleClick = (node) => (event) => {
+    if (isTouching && node.children) {
+      // Special behaviour for touch devices: A tab opens the dropdown and the click (=navigation) is prevented
+      event.preventDefault();
+      if (hoverPath.length > 0 && arrayEqual(node.path, hoverPath)) {
+        // This is the second tab on a top-navigation title: It closes the dropdown
+        setHoverPath([]);
+      } else {
+        // This is the first tab on a top-navigation title: It opens the dropdown
+        setHoverPath(node.path);
+      }
+    } else {
+      // Default: Hover path is resetted and the user navigates because it was a click on a link
+      setHoverPath([]);
+    }
   };
 
   const handleTouchStart = () => {
@@ -35,7 +44,6 @@ const DesktopNavigation = () => {
     <DesktopNavigationContext.Provider
       value={{
         setHoverPath,
-        navigatedPath,
         hoverPath,
         isTouching,
       }}
@@ -49,9 +57,6 @@ const DesktopNavigation = () => {
           <Link href="shop">
             <a
               className="nav--main__item"
-              data-in-navigation-path={navigatedPath.includes(
-                assortmentTree.slug,
-              )}
               data-in-hover-path={hoverPath.includes(assortmentTree.slug)}
               onMouseEnter={() => {
                 if (!isTouching) {
@@ -64,7 +69,7 @@ const DesktopNavigation = () => {
               onBlur={() => {
                 if (!isTouching) setHoverPath([]);
               }}
-              onClick={handleClick()}
+              onClick={handleClick(assortmentTree)}
             >
               shop
             </a>

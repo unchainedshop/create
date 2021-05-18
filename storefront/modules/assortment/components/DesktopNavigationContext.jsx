@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 
 const DesktopNavigationContext = React.createContext({
   setHoverPath: (i) => i,
-  navigatedPath: [],
   hoverPath: [],
   isTouching: false,
 });

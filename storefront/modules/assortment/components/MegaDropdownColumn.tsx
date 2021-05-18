@@ -1,58 +1,57 @@
 import React from 'react';
-
 import Link from 'next/link';
+
 import { useDesktopNavigationContext } from './DesktopNavigationContext';
 
-const MegaDropdownItem = ({
-  type,
-  ...rest
-}: {
+export type Node = {
+  slug: string;
+  children: any[];
+  path: string[];
+  navigationTitle: string;
   type: 'default' | 'show_all';
-}) => {
-  const {
-    setHoverPath,
-    navigatedPath,
-    hoverPath,
-    isTouching,
-  } = useDesktopNavigationContext();
+};
 
-  const handleClick = (event) => {
-    if (type === 'default' && isTouching && rest?.children) {
-      setHoverPath(rest?.path);
+const MegaDropdownItem = ({
+  slug,
+  children,
+  navigationTitle,
+  type,
+  path,
+}: Node) => {
+  const { setHoverPath, hoverPath, isTouching } = useDesktopNavigationContext();
+
+  const handleClick = () => {
+    if (type === 'default' && isTouching && children) {
+      setHoverPath(path);
     } else {
       setHoverPath([]);
     }
   };
 
   const handleMouseEnter = () => {
-    setHoverPath(rest?.path);
+    setHoverPath(path);
   };
 
   const handleTouchStart = () => {
-    setHoverPath(rest?.path);
+    setHoverPath(path);
   };
 
   return (
-    <Link href={`/${rest?.path.join('/')}`}>
+    <Link href={`/${path.join('/')}`}>
       <a
         className={`mega-link ${
-          type === 'default' && rest?.children ? 'has-arrow' : ''
+          type === 'default' && children ? 'has-arrow' : ''
         }`}
         onMouseEnter={handleMouseEnter}
         onClick={handleClick}
         onTouchStart={handleTouchStart}
-        data-in-hover-path={
-          type === 'default' && hoverPath.includes(rest?.slug)
-        }
-        data-in-navigation-path={
-          type === 'default' && navigatedPath.includes(rest?.slug)
-        }
+        data-in-hover-path={type === 'default' && hoverPath.includes(slug)}
       >
         {type === 'default' ? (
-          rest?.navigationTitle
+          navigationTitle
         ) : (
           <b>
-            {rest?.navigationTitle}
+            {navigationTitle}
             &nbsp;
           </b>
         )}
@@ -67,7 +66,7 @@ const MegaDropdownItem = ({
   );
 };
 
-const MegaDropdownColumn = ({ ...rest }) => {
+const MegaDropdownColumn = ({ ...rest }: Node) => {
   return (
     <div className="mega-col">
       <MegaDropdownItem {...rest} type="show_all" />
@@ -77,8 +76,8 @@ const MegaDropdownColumn = ({ ...rest }) => {
           .sort(([, aNode], [, bNode]) => {
             return aNode.index - bNode.index;
           })
-          .map(([subPageId, subnode]) => (
-            <MegaDropdownItem {...subnode} type="default" />
+          .map(([, subnode]) => (
+            <MegaDropdownItem key={subnode._id} {...subnode} type="default" />
           ))}
     </div>
   );

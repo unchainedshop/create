@@ -22,6 +22,7 @@ const Products = () => {
         <div className="row">
           {assortments.map((catagory) => (
             <CategoryListItem
+              key={catagory._id}
               category={catagory}
               className="col-md-6 col-lg-4"
             />

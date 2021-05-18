@@ -3,14 +3,13 @@ import { useEffect, useState } from 'react';
 
 import CatagoriesList from '../../modules/assortment/components/CatagoriesList';
 import useAssortmentProducts from '../../modules/assortment/hooks/useAssortmentProducts';
-import useAssortmentLinks from '../../modules/assortment/hooks/useAssortmentLinks';
 import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';
 import AssortmetBreadcrumbs from '../../modules/assortment/components/AssortmetBreadcrumbs';
-import getAssortmentText from '../../modules/assortment/utils/getAssortmentText';
 import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
 import ProductList from '../../modules/products/components/ProductList';
 import MetaTags from '../../modules/common/components/MetaTags';
+import useCatagoriesTree from '../../modules/assortment/hooks/useCatagoriesTree';
 
 const CatagoryDetail = () => {
   const router = useRouter();
@@ -18,15 +17,18 @@ const CatagoryDetail = () => {
   const slug: string | string[] = slugs[slugs.length - 1];
   const [currentUrl, setcurrentUrl] = useState('');
 
-  const { assortment } = useAssortmentLinks({
-    slug,
-  });
-
-  const { products, paths } = useAssortmentProducts({
+  const { assortmentTree } = useCatagoriesTree({
     slugs: slug,
     includeLeaves: true,
   });
-  const texts = getAssortmentText(assortment);
+
+  const { assortment: { texts } = {}, products, paths } = useAssortmentProducts(
+    {
+      slugs: slug,
+      includeLeaves: true,
+    },
+  );
+
   const assortmentPaths = getAssortmentPath(paths);
 
   useEffect(() => {
@@ -36,8 +38,8 @@ const CatagoryDetail = () => {
   return (
     <>
       <MetaTags
-        title={texts.title}
-        description={texts.description}
+        title={texts?.title}
+        description={texts?.description}
         url={currentUrl}
       />
       <Header />
@@ -45,7 +47,7 @@ const CatagoryDetail = () => {
         <div className="row">
           <div className="col-6">
             <CatagoriesList
-              assortment={assortment}
+              assortment={assortmentTree.children}
               currentPath={slugs.join('/')}
             />
           </div>
@@ -57,9 +59,9 @@ const CatagoryDetail = () => {
               />
             </div>
             <div>
-              <h2>{texts.title}</h2>
-              <span>{texts.subtitle}</span>
-              <p>{texts.description}</p>
+              <h2>{texts?.title}</h2>
+              <span>{texts?.subtitle}</span>
+              <p>{texts?.description}</p>
             </div>
             <ProductList products={products} />
           </div>

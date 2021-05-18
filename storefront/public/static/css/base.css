@@ -91,3 +91,55 @@ table {
 td {
   padding: 1em;
 }
+
+.wrap {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrap--with-nav-side {
+  justify-content: left;
+  padding-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .wrap--with-nav-side {
+    display: flex;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .wrap--with-nav-side {
+    padding-top: 40px;
+  }
+  .wrap--with-nav-side .content {
+    width: 100%;
+    padding: 0;
+  }
+  .wrap--shorter .content {
+    max-width: 500px;
+    margin-left: 150px;
+    margin-right: 0px;
+  }
+  .content {
+    max-width: 726px;
+  }
+}
+
+.wrap--portal {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width: 1024px) {
+  .wrap--portal {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .wrap--with-nav-side {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .wrap {
+    max-width: 960px;
+  }
+}

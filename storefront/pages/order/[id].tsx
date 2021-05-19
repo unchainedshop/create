@@ -16,7 +16,7 @@ const OrderDetail = () => {
 
   return (
     <>
-      <MetaTags title={`Order: ${order.orderNumber}`} />
+      <MetaTags title={`Order: ${order?.orderNumber}`} />
       <Header />
       {loading ? <LoadingItem /> : <OrderDetailComponent order={order} />}
       <Footer />

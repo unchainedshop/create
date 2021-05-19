@@ -10,7 +10,7 @@ const AssortmetBreadcrumbs = ({ paths = [], currentAssortment }) => {
         <a>Shop</a>
       </Link>
       {paths?.map(({ id, slug, title }) => (
-        <Link href={slug} as={slug} key={id}>
+        <Link href={`/${slug}`} as={`/${slug}`} key={id}>
           <a>{title}</a>
         </Link>
       ))}

@@ -15,7 +15,7 @@ const ProductListItem = ({ product }) => {
               '/static/img/sun-glass-placeholder.jpeg'
             }`}
             alt={product?.texts?.title}
-            width="300"
+            width="500"
             height="300"
             quality={100}
             layout="responsive"

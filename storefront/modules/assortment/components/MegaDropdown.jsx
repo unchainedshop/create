@@ -59,7 +59,7 @@ const MegaDropdown = ({ ...rest }) => {
       {thirdColumnNode?.children ? (
         <MegaDropdownColumn {...thirdColumnNode} key="mega-dropdown-column-3" />
       ) : (
-        <div className="mega-col" />
+        ''
       )}
     </div>
   );

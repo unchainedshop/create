@@ -125,10 +125,3 @@
   border-right: 1px solid #d9e2e5;
 }
 
-.mega-col-last {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  border: 0;
-}

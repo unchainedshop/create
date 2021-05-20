@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import CategoryListItem from '../../modules/assortment/components/CatagoryListItem';
+import CatagoryListItem from '../../modules/assortment/components/CatagoryListItem';
 import useAssortments from '../../modules/assortment/hooks/useAssortments';
 import MetaTags from '../../modules/common/components/MetaTags';
 import Footer from '../../modules/layout/components/Footer';
@@ -21,7 +21,7 @@ const Products = () => {
       <div className="container">
         <div className="row">
           {assortments.map((catagory) => (
-            <CategoryListItem
+            <CatagoryListItem
               key={catagory._id}
               category={catagory}
               className="col-md-6 col-lg-4"

@@ -15,10 +15,8 @@
   "homepage": "https://unchained.shop",
   "scripts": {
     "dev": "run-p --race --print-label dev:*",
-    "dev:engine": "cd engine && npm run dev",
     "dev:storefront": "cd storefront && npm run dev:local",
     "install-all": "npm install && run-p --print-label install:*",
-    "install:engine": "cd engine && npm install",
     "install:storefront": "cd storefront && npm install"
   },
   "devDependencies": {

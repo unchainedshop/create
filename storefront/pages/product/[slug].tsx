@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Slide } from 'react-slideshow-image';
+import ImageGallery from 'react-image-gallery';
 
 import useProductDetail from '../../modules/products/hooks/useProductDetail';
 import Header from '../../modules/layout/components/Header';
@@ -11,6 +11,7 @@ import renderPrice from '../../modules/common/utils/renderPrice';
 import LoadingItem from '../../modules/common/components/LoadingItem';
 import MetaTags from '../../modules/common/components/MetaTags';
 import getProductMediaUrls from '../../modules/products/utils/getProductMediaUrls';
+import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
 
 const Detail = () => {
   const router = useRouter();
@@ -25,7 +26,7 @@ const Detail = () => {
     <>
       <MetaTags
         title={product?.texts?.title}
-        imageUrl={getProductMediaUrls(product)[0] || ''}
+        imageUrl={getProductMediaUrl(product)}
         url={currentUrl}
         description={product?.texts?.description}
       />
@@ -36,23 +37,16 @@ const Detail = () => {
         <div className="container mt-5">
           <div className="row">
             <div className="col-md-6">
-              <div className="slide-container">
-                <Slide>
-                  {getProductMediaUrls(product).map((image) => (
-                    <div className="each-slide">
-                      <div
-                        style={{
-                          backgroundImage: `url(${image})`,
-                          width: '500px',
-                          height: '300px',
-                        }}
-                      >
-                        <span>Slide 1</span>
-                      </div>
-                    </div>
-                  ))}
-                </Slide>
-              </div>
+              <ImageGallery
+                lazyLoad
+                autoPlay
+                onErrorImageURL="/static/img/sun-glass-placeholder.jpeg"
+                useBrowserFullscreen={false}
+                items={getProductMediaUrls(product).map((image) => ({
+                  original: image,
+                  thumbnail: image,
+                }))}
+              />
             </div>
             <div className="col-md-6">
               <h2 className="px-2 mt-md-0">{product?.texts?.title}</h2>

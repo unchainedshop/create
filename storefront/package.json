@@ -18,7 +18,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-hook-form": "^5.7.2",
-    "react-slideshow-image": "^3.4.6",
+    "react-image-gallery": "^1.0.9",
     "react-toastify": "^7.0.4"
   },
   "devDependencies": {

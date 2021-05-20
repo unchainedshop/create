@@ -59,7 +59,7 @@ const CatagoryDetail = () => {
               />
             </div>
             <div>
-              <h2>{texts?.title}</h2>
+              <h3>{texts?.title}</h3>
               <span>{texts?.subtitle}</span>
               <p>{texts?.description}</p>
             </div>

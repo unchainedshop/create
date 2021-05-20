@@ -1,7 +1,7 @@
 {
   "name": "@unchainedshop/create",
   "private": false,
-  "description": "Bootstrap your amazing e-commerce experienced based on the Unchained Engine in less than 5 minutes",
+  "description": "Starter storefront kit to start working with unchained engine with no initial configuration",
   "version": "0.0.8",
   "license": "EUPL-1.2",
   "repository": {

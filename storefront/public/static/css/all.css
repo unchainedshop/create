@@ -22,7 +22,7 @@
 @import 'components/product-list.css';
 @import 'components/cart.css';
 @import 'components/nav-main.css';
-
+@import "react-slideshow-image/dist/styles.css";
 @import 'print.css';
 
 .catagory-item {

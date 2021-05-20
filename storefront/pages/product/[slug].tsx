@@ -1,16 +1,16 @@
 /* eslint-disable react/no-danger */
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { Slide } from 'react-slideshow-image';
 
 import useProductDetail from '../../modules/products/hooks/useProductDetail';
-import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
 import Header from '../../modules/layout/components/Header';
 import Footer from '../../modules/layout/components/Footer';
 import AddToCartButton from '../../modules/cart/components/AddToCartButton';
 import renderPrice from '../../modules/common/utils/renderPrice';
 import LoadingItem from '../../modules/common/components/LoadingItem';
 import MetaTags from '../../modules/common/components/MetaTags';
+import getProductMediaUrls from '../../modules/products/utils/getProductMediaUrls';
 
 const Detail = () => {
   const router = useRouter();
@@ -25,7 +25,7 @@ const Detail = () => {
     <>
       <MetaTags
         title={product?.texts?.title}
-        imageUrl={getProductMediaUrl(product)}
+        imageUrl={getProductMediaUrls(product)[0] || ''}
         url={currentUrl}
         description={product?.texts?.description}
       />
@@ -36,18 +36,23 @@ const Detail = () => {
         <div className="container mt-5">
           <div className="row">
             <div className="col-md-6">
-              <Image
-                src={`${
-                  getProductMediaUrl(product) ||
-                  '/static/img/sun-glass-placeholder.jpeg'
-                }`}
-                alt={product?.texts?.title}
-                layout="responsive"
-                objectFit="contain"
-                quality={100}
-                width="700px"
-                height="700px"
-              />
+              <div className="slide-container">
+                <Slide>
+                  {getProductMediaUrls(product).map((image) => (
+                    <div className="each-slide">
+                      <div
+                        style={{
+                          backgroundImage: `url(${image})`,
+                          width: '500px',
+                          height: '300px',
+                        }}
+                      >
+                        <span>Slide 1</span>
+                      </div>
+                    </div>
+                  ))}
+                </Slide>
+              </div>
             </div>
             <div className="col-md-6">
               <h2 className="px-2 mt-md-0">{product?.texts?.title}</h2>

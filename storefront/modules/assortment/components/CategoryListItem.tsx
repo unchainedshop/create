@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const CatagoryListItem = ({ category, className = '' }) => {
+const CategoryListItem = ({ category, className = '' }) => {
   return (
     <div className={className}>
       <Link href={`shop/${category.texts.slug}`}>
@@ -27,4 +27,4 @@ const CatagoryListItem = ({ category, className = '' }) => {
   );
 };
 
-export default CatagoryListItem;
+export default CategoryListItem;

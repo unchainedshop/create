@@ -17,7 +17,7 @@ const AssortmentTreeQuery = gql`
   ${AssortmentFragment}
 `;
 
-const useCatagoriesTree = ({
+const usecategoriesTree = ({
   slugs = [],
   includeLeaves = false,
   root = '',
@@ -60,4 +60,4 @@ const useCatagoriesTree = ({
   return { loading, error, assortmentTree };
 };
 
-export default useCatagoriesTree;
+export default usecategoriesTree;

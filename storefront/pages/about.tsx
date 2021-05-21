@@ -18,7 +18,7 @@ const AboutUs = () => {
         <div className="row">
           <div className="col-md-8 offset-md-2">
             <h1>About</h1>
-            <p>Does the Pope shit in the woods? What in God’s holy name are you blathering about? I see you rolled your way into the semis. Dios mio, man. Seamus and me, we’re gonna fuck you up. Wal, I lost m’chain of thought here. But—aw hell, I done innerduced him enough. A dick, man! And let me tell you something: I dig your work. Playing one side against the other —in bed with everybody— fabulous stuff, man.</p>
+            <p>Dynoptic ist das Schweizer Qualitätslabel für Brillen und Kontaktlinsen. Unsere über 100 Dynoptic Partner freuen sich auf Ihren Besuch: online oder vor Ort.</p>
           </div>
         </div>
       </div>

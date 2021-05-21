@@ -25,12 +25,12 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 @import 'print.css';
 
-.catagory-item {
+.category-item {
     margin-bottom: 8px;
     margin-left: 8px;
   }
-  
-  .catagory-box {
+
+  .category-box {
     padding: 0.875em;
     background-color: rgba(0, 58, 79, 0.05);
     transition: opacity 0.2s ease, visibility 0.2s ease;
@@ -41,7 +41,7 @@
     font-weight: 700;
   }
 
-  .catagory-item-label {
+  .category-item-label {
     color: #003a4f;
     margin: 0 8px 0 0;
   }

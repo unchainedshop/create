@@ -16,40 +16,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.color-bg-brand-lightest {
-  background-color: var(--color-brand-lightest);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.font-heading {
-  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-}
-
-@media (min-width: 768px) {
-  h1 {
-    font-size: 3.8rem;
-  }
-  h2 {
-    font-size: 2.5rem;
-  }
-}
-
-h3 {
-  font-size: 1.75rem;
-}
-
 img {
   max-width: 100%;
-}
-
-p {
-  line-height: 1.66;
 }
 
 a {
@@ -79,10 +47,6 @@ hr {
   box-sizing: border-box;
 }
 
-.color-brand {
-  color: var(--color-brand);
-}
-
 table {
   width: 100%;
   border-collapse: collapse;
@@ -92,54 +56,10 @@ td {
   padding: 1em;
 }
 
-.wrap {
-  margin-left: auto;
-  margin-right: auto;
+.color-brand {
+  color: var(--color-brand);
 }
 
-.wrap--with-nav-side {
-  justify-content: left;
-  padding-top: 20px;
-}
-
-@media (min-width: 768px) {
-  .wrap--with-nav-side {
-    display: flex;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  .wrap--with-nav-side {
-    padding-top: 40px;
-  }
-  .wrap--with-nav-side .content {
-    width: 100%;
-    padding: 0;
-  }
-  .wrap--shorter .content {
-    max-width: 500px;
-    margin-left: 150px;
-    margin-right: 0px;
-  }
-  .content {
-    max-width: 726px;
-  }
-}
-
-.wrap--portal {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-@media (min-width: 1024px) {
-  .wrap--portal {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .wrap--with-nav-side {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .wrap {
-    max-width: 960px;
-  }
+.color-bg-brand-lightest {
+  background-color: var(--color-brand-lightest);
 }

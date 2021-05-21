@@ -24,24 +24,3 @@
 @import 'components/nav-main.css';
 @import "~react-image-gallery/styles/css/image-gallery.css";
 @import 'print.css';
-
-.category-item {
-    margin-bottom: 8px;
-    margin-left: 8px;
-  }
-
-  .category-box {
-    padding: 0.875em;
-    background-color: rgba(0, 58, 79, 0.05);
-    transition: opacity 0.2s ease, visibility 0.2s ease;
-  }
-
-  .bold {
-    font-family: ff-dax-pro;
-    font-weight: 700;
-  }
-
-  .category-item-label {
-    color: #003a4f;
-    margin: 0 8px 0 0;
-  }

@@ -26,6 +26,10 @@ a {
   cursor: pointer;
 }
 
+.bold {
+  font-weight: 700;
+}
+
 .link {
   color: var(--color-brand);
 }

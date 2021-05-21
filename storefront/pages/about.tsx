@@ -4,7 +4,7 @@ import MetaTags from '../modules/common/components/MetaTags';
 import Footer from '../modules/layout/components/Footer';
 import Header from '../modules/layout/components/Header';
 
-const Privacy = () => {
+const AboutUs = () => {
   const [currentUrl, setcurrentUrl] = useState('');
   useEffect(() => {
     setcurrentUrl(window.location.href);
@@ -12,12 +12,12 @@ const Privacy = () => {
 
   return (
     <>
-      <MetaTags title="Privacy" url={currentUrl} />
+      <MetaTags title="About us" url={currentUrl} />
       <Header />
       <div className="container">
         <div className="row">
           <div className="col-md-8 offset-md-2">
-            <h1>Privacy page</h1>
+            <h1>About Page</h1>
             <p>...</p>
           </div>
         </div>
@@ -27,4 +27,4 @@ const Privacy = () => {
   );
 };
 
-export default Privacy;
+export default AboutUs;

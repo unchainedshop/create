@@ -10,11 +10,11 @@ const Footer = () => {
         <Link href="privacy">
           <a className="link m-4">Privacy</a>
         </Link>
-        <Link href="impressum">
-          <a className="link m-4">Impressum</a>
+        <Link href="imprint">
+          <a className="link m-4">Imprint</a>
         </Link>
-        <Link href="about-us">
-          <a className="link m-4">About us</a>
+        <Link href="about">
+          <a className="link m-4">About</a>
         </Link>
       </div>
     </footer>

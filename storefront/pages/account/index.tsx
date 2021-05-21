@@ -31,7 +31,7 @@ const Account = () => {
       <Header />
       <div className="container">
         <div className="row">
-          <div className="col-md-8 offset-md-2">
+          <div className="col-12">
             <div className="d-flex justify-content-between mb-5">
               <b>Profile</b>
               {updateProfile ? (

@@ -41,7 +41,7 @@ const Header = () => {
         <div className="container d-flex justify-content-between align-items-center flex-wrap">
           <Link href="/">
             <a className="color-brand">
-              <h3 className="my-2 mr-2">Unchained</h3>
+              <h3 className="my-2 mr-2">Shop Logo</h3>
             </a>
           </Link>
           <OrderButton />

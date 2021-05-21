@@ -19,7 +19,7 @@ const generateCSS = async (theme) => {
     )
   ).join('\n');
 
-  return `/* Generated though Unchained Create Theming */
+  return `/* Generated through Unchained Create Theming */
 :root {
 ${propDefinitions}
 }

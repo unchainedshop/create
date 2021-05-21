@@ -18,7 +18,7 @@ const Conditions = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-8 offset-md-2">
-            <h1>Conditions</h1>
+            <h1>Conditions Page</h1>
             <p>...</p>
           </div>
         </div>

@@ -5,7 +5,7 @@ import MetaTags from '../modules/common/components/MetaTags';
 const Home = () => {
   return (
     <>
-      <MetaTags title="Your Webshop" />
+      <MetaTags title="Meta title" />
       <Header />
 
       <div className="color-bg-brand-lightest">
@@ -14,7 +14,7 @@ const Home = () => {
 
           <div className="text-center py-5">
             <div className="row d-flex align-items-center">
-              <div className="col-lg-8">
+              <div className="col-12">
                 <h1 className="color-brand mt-2">Unchained Shop</h1>
               </div>
             </div>

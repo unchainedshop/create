@@ -4,7 +4,7 @@ import MetaTags from '../modules/common/components/MetaTags';
 import Footer from '../modules/layout/components/Footer';
 import Header from '../modules/layout/components/Header';
 
-const AboutUs = () => {
+const Imprint = () => {
   const [currentUrl, setcurrentUrl] = useState('');
   useEffect(() => {
     setcurrentUrl(window.location.href);
@@ -12,12 +12,12 @@ const AboutUs = () => {
 
   return (
     <>
-      <MetaTags title="About us" url={currentUrl} />
+      <MetaTags title="Imprint" url={currentUrl} />
       <Header />
       <div className="container">
         <div className="row">
           <div className="col-md-8 offset-md-2">
-            <h1>about us</h1>
+            <h1>Imprint</h1>
             <p>...</p>
           </div>
         </div>
@@ -27,4 +27,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default Imprint;

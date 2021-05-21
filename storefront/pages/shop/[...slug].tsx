@@ -51,15 +51,15 @@ const CategoryDetail = () => {
               currentAssortment={texts}
             />
           </div>
-          <div className="col-6">
+          <div className="col-md-4 col-lg-3">
             <CategoriesList
               assortment={assortmentTree.children}
               currentPath={slugs.join('/')}
             />
           </div>
-          <div className="col-6">
+          <div className="col-md-8 col-lg-9">
             <div>
-              <h3>{texts?.title}</h3>
+              <h3 className="mt-0">{texts?.title}</h3>
               <span>{texts?.subtitle}</span>
               <p>{texts?.description}</p>
             </div>

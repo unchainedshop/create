@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const AssortmentBreadcrumbs = ({ paths = [], currentAssortment }) => {
   return (
-    <nav className="mt-2 mb-4">
+    <nav className="mt-2 mb-4 border-bottom pb-3">
       <Link href="/">
         <a className="mr-2 breadcrumb-link">Home</a>
       </Link>

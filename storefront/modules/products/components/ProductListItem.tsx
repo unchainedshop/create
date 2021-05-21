@@ -21,7 +21,7 @@ const ProductListItem = ({ product }) => {
             layout="responsive"
             objectFit="contain"
           />
-          <div>{product?.texts?.title}</div>
+          <div className="p-3">{product?.texts?.title}</div>
         </div>
       </a>
     </Link>

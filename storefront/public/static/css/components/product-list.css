@@ -1,11 +1,10 @@
 .product-list-item {
-  transition: background-color 0.18s ease-in-out;
+  transition: border-color 0.18s ease-in-out;
   border: 1px solid transparent;
-  position:relative;
+  position: relative;
 }
 
 .product-list-item:hover,
 .product-list-item:focus {
-  background-color: var(--color-brand-lightest);
-  border-color: var(--color-brand);
+  border-color: var(--color-brand-lightest);
 }

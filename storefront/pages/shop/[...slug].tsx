@@ -45,6 +45,12 @@ const CategoryDetail = () => {
       <Header />
       <div className="container">
         <div className="row">
+          <div className="col-12">
+            <AssortmentBreadcrumbs
+              paths={assortmentPaths}
+              currentAssortment={texts}
+            />
+          </div>
           <div className="col-6">
             <CategoriesList
               assortment={assortmentTree.children}
@@ -52,12 +58,6 @@ const CategoryDetail = () => {
             />
           </div>
           <div className="col-6">
-            <div>
-              <AssortmentBreadcrumbs
-                paths={assortmentPaths}
-                currentAssortment={texts}
-              />
-            </div>
             <div>
               <h3>{texts?.title}</h3>
               <span>{texts?.subtitle}</span>

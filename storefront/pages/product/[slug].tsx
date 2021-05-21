@@ -54,8 +54,9 @@ const Detail = () => {
                 <h3 className="my-0">
                   {renderPrice(product?.simulatedPrice?.price)}
                 </h3>
-                <h4 className="mb-0">{product?.texts?.subtitle}</h4>
+                <h4 className="mb-3">{product?.texts?.subtitle}</h4>
                 <div
+                  className="mb-3"
                   dangerouslySetInnerHTML={{
                     __html: product?.texts?.description,
                   }}

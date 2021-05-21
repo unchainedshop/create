@@ -17,16 +17,17 @@ const AssortmentBreadcrumbs = ({ paths = [], currentAssortment }) => {
       <a>
         <b>{currentAssortment?.title}</b>
       </a>
-      <style jsx>{`
-        .breadcrumb-link::after {
-          content: "〉";
-          font-size: 12px;
-          display: inline-block;
-          width: 10px;
-          height: 10px;
-          margin-left: 1em;
-         }
-      `}
+      <style jsx>
+        {`
+          .breadcrumb-link::after {
+            content: '〉';
+            font-size: 12px;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-left: 1em;
+          }
+        `}
       </style>
     </nav>
   );

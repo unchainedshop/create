@@ -18,7 +18,11 @@ const AboutUs = () => {
         <div className="row">
           <div className="col-md-8 offset-md-2">
             <h1>About</h1>
-            <p>Dynoptic ist das Schweizer Qualitätslabel für Brillen und Kontaktlinsen. Unsere über 100 Dynoptic Partner freuen sich auf Ihren Besuch: online oder vor Ort.</p>
+            <p>
+              Dynoptic ist das Schweizer Qualitätslabel für Brillen und
+              Kontaktlinsen. Unsere über 100 Dynoptic Partner freuen sich auf
+              Ihren Besuch: online oder vor Ort.
+            </p>
           </div>
         </div>
       </div>

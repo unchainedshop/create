@@ -17,7 +17,7 @@ const Privacy = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-8 offset-md-2">
-            <h1>Privacy page</h1>
+            <h1>Privacy</h1>
             <p>...</p>
           </div>
         </div>

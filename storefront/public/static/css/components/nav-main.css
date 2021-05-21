@@ -31,10 +31,10 @@
     bottom: -1px;
     width: calc(100% - 1em);
     height: 4px;
-    background-color: #e7efb2;
+    background-color: var(--color-grey-lightest);
   }
 
-  
+
 }
 
 .nav--main__mega {
@@ -112,7 +112,7 @@
 .mega-link:hover,
 .mega-link[data-in-hover-path='true'],
 .mega-link:focus {
-  background-color: #e7efb2;
+  background-color: var(--color-grey-lightest);
 }
 
 .mega-link:hover.has-arrow::after {
@@ -122,6 +122,6 @@
 .mega-col {
   width: 33%;
   display: inline-block;
-  border-right: 1px solid #d9e2e5;
+  border-right: 1px solid var(--color-grey-lightest);
 }
 

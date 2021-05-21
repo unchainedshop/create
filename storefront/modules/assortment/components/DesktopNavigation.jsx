@@ -71,7 +71,7 @@ const DesktopNavigation = () => {
               }}
               onClick={handleClick(assortmentTree)}
             >
-              shop
+              Shop
             </a>
           </Link>
           {hoverPath.includes(assortmentTree.slug) && (

@@ -47,7 +47,9 @@ const Header = () => {
           <OrderButton />
           <LoginCart />
         </div>
-        <DesktopNavigation />
+        <div className="container">
+          <DesktopNavigation />
+        </div>
       </header>
     </>
   );

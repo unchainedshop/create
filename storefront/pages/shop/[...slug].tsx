@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import CategoriesList from '../../modules/assortment/components/CategoriesList';
 import useAssortmentProducts from '../../modules/assortment/hooks/useAssortmentProducts';
 import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';
-import AssortmetBreadcrumbs from '../../modules/assortment/components/AssortmetBreadcrumbs';
+import AssortmentBreadcrumbs from '../../modules/assortment/components/AssortmentBreadcrumbs';
 import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
 import ProductList from '../../modules/products/components/ProductList';
@@ -53,7 +53,7 @@ const CategoryDetail = () => {
           </div>
           <div className="col-6">
             <div>
-              <AssortmetBreadcrumbs
+              <AssortmentBreadcrumbs
                 paths={assortmentPaths}
                 currentAssortment={texts}
               />

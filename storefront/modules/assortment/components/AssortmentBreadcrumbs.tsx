@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const AssortmetBreadcrumbs = ({ paths = [], currentAssortment }) => {
+const AssortmentBreadcrumbs = ({ paths = [], currentAssortment }) => {
   return (
     <nav className="breadcrumb">
       <Link href="/">
@@ -21,4 +21,4 @@ const AssortmetBreadcrumbs = ({ paths = [], currentAssortment }) => {
   );
 };
 
-export default AssortmetBreadcrumbs;
+export default AssortmentBreadcrumbs;

@@ -54,7 +54,7 @@ const DesktopNavigation = () => {
         onTouchEnd={handleTouchEnd}
       >
         <div key="shop" className="d-inline-block font-size-0">
-          <Link href="shop">
+          <Link href="/shop">
             <a
               className="nav--main__item"
               data-in-hover-path={hoverPath.includes(assortmentTree.slug)}

@@ -5,7 +5,7 @@ import MetaTags from '../modules/common/components/MetaTags';
 const Home = () => {
   return (
     <>
-      <MetaTags title="Meta title" />
+      <MetaTags title="Home" />
       <Header />
 
       <div className="color-bg-brand-lightest">

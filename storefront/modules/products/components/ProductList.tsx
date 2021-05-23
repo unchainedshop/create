@@ -8,7 +8,7 @@ const ProductList = ({ products }) => {
           <>
             <div key={product._id} className="col-sm-6">
               <div className="product-list-item d-flex flex-column h-100">
-                <ProductListItem key={product._id} product={product} />
+                <ProductListItem product={product} />
               </div>
             </div>
           </>

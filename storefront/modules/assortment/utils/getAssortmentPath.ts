@@ -1,6 +1,5 @@
 const getAssortmentPath = (assortmentPaths = [], pathFromRoot = 'shop') => {
   const pathArr = [];
-
   const recuresive = (paths = assortmentPaths, rootPath = pathFromRoot) => {
     if (paths.length === 0) return;
 

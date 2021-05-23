@@ -12,12 +12,17 @@ import LoadingItem from '../../modules/common/components/LoadingItem';
 import MetaTags from '../../modules/common/components/MetaTags';
 import getProductMediaUrls from '../../modules/products/utils/getProductMediaUrls';
 import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
+import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';
+import AssortmentBreadcrumbs from '../../modules/assortment/components/AssortmentBreadcrumbs';
 
 const Detail = () => {
   const router = useRouter();
   const [currentUrl, setcurrentUrl] = useState('');
-  const { product, loading } = useProductDetail({ slug: router.query.slug });
+  const { product, paths, loading } = useProductDetail({
+    slug: router.query.slug,
+  });
 
+  const productPath = getAssortmentPath(paths);
   useEffect(() => {
     setcurrentUrl(window.location.href);
   }, []);
@@ -36,6 +41,12 @@ const Detail = () => {
       ) : (
         <div className="container mt-5">
           <div className="row">
+            <div className="col-12">
+              <AssortmentBreadcrumbs
+                paths={productPath}
+                currentAssortment={product?.texts}
+              />
+            </div>
             <div className="col-md-6">
               <ImageGallery
                 lazyLoad

@@ -18,4 +18,22 @@ const AssortmentPathFragment = gql`
   }
 `;
 
+export const ProductAssortmentPathFragment = gql`
+  fragment ProductAssortmentPathFragment on ProductAssortmentPath {
+    links {
+      assortmentId
+      link {
+        parent {
+          _id
+          texts {
+            _id
+            title
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
+
 export default AssortmentPathFragment;

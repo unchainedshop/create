@@ -11,19 +11,11 @@ const LoginForm = ({ onLogin }) => {
 
   useEffect(() => {
     if (error?.message?.includes('User not found')) {
-      setError(
-        'email',
-        'doesNotExists',
-        '🤷‍♀️ Kein Benutzer mit dieser E-mail vorhanden.',
-      );
+      setError('email', 'doesNotExists', '🤷‍♀️ E-mail address already exists.');
     } else if (error?.message?.includes('Incorrect password')) {
       setError('password', 'incorrect', 'Falsches Passwort.');
     } else if (error) {
-      setError(
-        'email',
-        'unknownError',
-        '👷‍♀️ Es ist ein unbekannter Fehler aufgetreten.',
-      );
+      setError('email', 'unknownError', '👷‍♀️ Invalid E-mail or Password');
     }
   }, [error]);
 

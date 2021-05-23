@@ -17,6 +17,7 @@
   width: 300px;
   z-index: 2000;
   position: fixed;
+  top: 0;
   height: 100%;
   transition: right .3s ease-in-out;
   right: -350px;

@@ -59,7 +59,7 @@ const Review = () => {
         pathname: '/thank-you',
         query: { orderId: user.cart._id },
       });
-    }, 1000);
+    }, 2000);
   };
 
   const selectPayment = async (providerId) => {

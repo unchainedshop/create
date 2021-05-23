@@ -39,7 +39,7 @@ const Detail = () => {
       {loading ? (
         <LoadingItem />
       ) : (
-        <div className="container mt-5">
+        <div className="container mt-1">
           <div className="row">
             <div className="col-12">
               <AssortmentBreadcrumbs

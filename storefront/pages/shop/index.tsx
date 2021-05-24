@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import CategoryListItem from '../../modules/assortment/components/CategoryListItem';
+import CatagoryListItem from '../../modules/assortment/components/CatagoryListItem';
 import useAssortments from '../../modules/assortment/hooks/useAssortments';
 import LoadingItem from '../../modules/common/components/LoadingItem';
 import MetaTags from '../../modules/common/components/MetaTags';
@@ -17,17 +17,17 @@ const Products = () => {
 
   return (
     <>
-      <MetaTags title="Product Categories" url={currentUrl} />
+      <MetaTags title="Product Catagories" url={currentUrl} />
       <Header />
       <div className="container">
         {loading ? (
           <LoadingItem />
         ) : (
           <div className="row">
-            {assortments.map((category) => (
-              <CategoryListItem
-                key={category._id}
-                category={category}
+            {assortments.map((catagory) => (
+              <CatagoryListItem
+                key={catagory._id}
+                catagory={catagory}
                 className="col-md-6 col-lg-4"
               />
             ))}

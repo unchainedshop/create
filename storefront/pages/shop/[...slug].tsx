@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import CategoriesList from '../../modules/assortment/components/CategoriesList';
+import CatagoriesList from '../../modules/assortment/components/CatagoriesList';
 import useAssortmentProducts from '../../modules/assortment/hooks/useAssortmentProducts';
 import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';
 import AssortmentBreadcrumbs from '../../modules/assortment/components/AssortmentBreadcrumbs';
@@ -9,16 +9,16 @@ import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
 import ProductList from '../../modules/products/components/ProductList';
 import MetaTags from '../../modules/common/components/MetaTags';
-import useCategoriesTree from '../../modules/assortment/hooks/useCategoriesTree';
+import useCatagoriesTree from '../../modules/assortment/hooks/useCatagoriesTree';
 import LoadingItem from '../../modules/common/components/LoadingItem';
 
-const CategoryDetail = () => {
+const CatagoryDetail = () => {
   const router = useRouter();
   const { slug: slugs } = router.query;
   const slug: string | string[] = slugs[slugs.length - 1];
   const [currentUrl, setcurrentUrl] = useState('');
 
-  const { assortmentTree, loading: catagoryTreeLoading } = useCategoriesTree({
+  const { assortmentTree, loading: catagoryTreeLoading } = useCatagoriesTree({
     slugs: slug,
     includeLeaves: true,
   });
@@ -59,7 +59,7 @@ const CategoryDetail = () => {
             {catagoryTreeLoading ? (
               <LoadingItem />
             ) : (
-              <CategoriesList
+              <CatagoriesList
                 assortment={assortmentTree.children}
                 currentPath={slugs.join('/')}
               />
@@ -84,4 +84,4 @@ const CategoryDetail = () => {
   );
 };
 
-export default CategoryDetail;
+export default CatagoryDetail;

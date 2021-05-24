@@ -4,7 +4,7 @@ import Link from 'next/link';
 import DesktopNavigationContext from './DesktopNavigationContext';
 import OrderButton from '../../orders/components/UserOrderButton';
 import MegaDropdown from './MegaDropdown';
-import useCategoriesTree from '../hooks/useCategoriesTree';
+import useCatagoriesTree from '../hooks/useCatagoriesTree';
 
 const arrayEqual = (a, b) =>
   a.length === b.length &&
@@ -14,7 +14,7 @@ const DesktopNavigation = () => {
   const [hoverPath, setHoverPath] = useState([]);
   const [isTouching, setTouching] = useState(false);
 
-  const { assortmentTree } = useCategoriesTree({ root: 'shop' });
+  const { assortmentTree } = useCatagoriesTree({ root: 'shop' });
 
   const handleClick = (node) => (event) => {
     if (isTouching && node.children) {

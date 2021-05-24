@@ -3,7 +3,9 @@ import { gql } from '@apollo/client';
 const OrderItemFragment = gql`
   fragment OrderItemFragment on OrderItem {
     product {
+      _id
       media {
+        _id
         file {
           name
           url
@@ -11,6 +13,7 @@ const OrderItemFragment = gql`
         }
       }
       texts {
+        _id
         title
         subtitle
         description

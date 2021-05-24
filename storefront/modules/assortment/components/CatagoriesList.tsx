@@ -1,18 +1,18 @@
 import Link from 'next/link';
 
-type categoryItem = {
+type catagoryItem = {
   navigationTitle: string;
   children: [{ texts: any; _id: string }];
 };
 
-const categoriesList = ({
+const catagoriesList = ({
   assortment,
   currentPath = '',
 }: {
-  assortment: categoryItem[];
+  assortment: catagoryItem[];
   currentPath: string;
 }) => {
-  const [tree]: categoryItem[] =
+  const [tree]: catagoryItem[] =
     Object.entries(assortment).map(([, assort]) => assort) || [];
   return (
     <div className="mb-5">
@@ -30,4 +30,4 @@ const categoriesList = ({
   );
 };
 
-export default categoriesList;
+export default catagoriesList;

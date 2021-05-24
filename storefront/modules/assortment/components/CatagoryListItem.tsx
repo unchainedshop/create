@@ -1,16 +1,17 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import getAssortmentMediaUrl from '../utils/getAssortmentMediaUrl';
 
-const CategoryListItem = ({ category, className = '' }) => {
+const CatagoryListItem = ({ catagory, className = '' }) => {
   return (
     <div className={className}>
-      <Link href={`shop/${category.texts.slug}`}>
+      <Link href={`shop/${catagory.texts.slug}`}>
         <a>
           <div>
             <Image
-              src="/static/img/sun-glass-placeholder.jpeg"
-              alt={category?.texts.title}
+              src={getAssortmentMediaUrl(catagory)}
+              alt={catagory?.texts.title}
               layout="responsive"
               objectFit="contain"
               quality={100}
@@ -19,7 +20,7 @@ const CategoryListItem = ({ category, className = '' }) => {
             />
           </div>
           <div>
-            <h4>{category.texts?.title}</h4>
+            <h4>{catagory.texts?.title}</h4>
           </div>
         </a>
       </Link>
@@ -27,4 +28,4 @@ const CategoryListItem = ({ category, className = '' }) => {
   );
 };
 
-export default CategoryListItem;
+export default CatagoryListItem;

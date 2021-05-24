@@ -11,7 +11,10 @@ const CatagoryListItem = ({ catagory, className = '' }) => {
         <a>
           <div>
             <Image
-              src={getMediaUrl(catagory)}
+              src={
+                getMediaUrl(catagory) ||
+                '/static/img/sun-glass-placeholder.jpeg'
+              }
               alt={catagory?.texts.title}
               layout="responsive"
               objectFit="contain"

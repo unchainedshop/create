@@ -1,5 +1,5 @@
 const getMediaUrl = ({ media } = { media: [] }) => {
-  const firstMedia = media[0];
+  const firstMedia = media?.[0] || {};
   return firstMedia?.file?.url;
 };
 

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
+import Image from 'next/image';
 import CatagoriesList from '../../modules/assortment/components/CatagoriesList';
 import useAssortmentProducts from '../../modules/assortment/hooks/useAssortmentProducts';
 import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';
@@ -11,6 +12,7 @@ import ProductList from '../../modules/products/components/ProductList';
 import MetaTags from '../../modules/common/components/MetaTags';
 import useCatagoriesTree from '../../modules/assortment/hooks/useCatagoriesTree';
 import LoadingItem from '../../modules/common/components/LoadingItem';
+import getMediaUrl from '../../modules/common/utils/getMediaUrl';
 
 const CatagoryDetail = () => {
   const router = useRouter();
@@ -24,7 +26,7 @@ const CatagoryDetail = () => {
   });
 
   const {
-    assortment: { texts } = {},
+    assortment: { texts, media } = {},
     products,
     paths,
     loading: productsLoading,
@@ -45,6 +47,7 @@ const CatagoryDetail = () => {
         title={texts?.title}
         description={texts?.description}
         url={currentUrl}
+        imageUrl={getMediaUrl({ media })}
       />
       <Header />
       <div className="container">
@@ -69,6 +72,18 @@ const CatagoryDetail = () => {
             <div>
               <h3 className="mt-0">{texts?.title}</h3>
               <span>{texts?.subtitle}</span>
+              {getMediaUrl({ media }) && (
+                <Image
+                  src={getMediaUrl({ media })}
+                  alt={texts?.title}
+                  layout="responsive"
+                  objectFit="contain"
+                  quality={100}
+                  width="200px"
+                  height="200px"
+                />
+              )}
+
               <p>{texts?.description}</p>
             </div>
             {productsLoading ? (

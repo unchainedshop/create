@@ -1,9 +1,9 @@
 import Image from 'next/image';
 
 import renderPrice from '../../common/utils/renderPrice';
-import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
 import ListItem from '../../common/components/ListItem';
 import formatDate from '../../common/utils/formatDate';
+import getMediaUrl from '../../common/utils/getMediaUrl';
 
 const OrderDetailComponent = ({ order }) => {
   return (
@@ -21,7 +21,7 @@ const OrderDetailComponent = ({ order }) => {
                 <div className="cart-img mr-2">
                   <Image
                     src={`${
-                      getProductMediaUrl(item.product) ||
+                      getMediaUrl(item.product) ||
                       '/static/img/sun-glass-placeholder.jpeg'
                     }`}
                     alt={item.product.texts.title}

@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
-import getProductMediaUrl from '../utils/getProductMediaUrl';
+import getMediaUrl from '../../common/utils/getMediaUrl';
 
 const ProductListItem = ({ product }) => {
   return (
@@ -11,8 +10,7 @@ const ProductListItem = ({ product }) => {
           <Image
             loading="lazy"
             src={`${
-              getProductMediaUrl(product) ||
-              '/static/img/sun-glass-placeholder.jpeg'
+              getMediaUrl(product) || '/static/img/sun-glass-placeholder.jpeg'
             }`}
             alt={product?.texts?.title}
             width="500"

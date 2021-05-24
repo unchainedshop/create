@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import getAssortmentMediaUrl from '../utils/getAssortmentMediaUrl';
+
+import getMediaUrl from '../../common/utils/getMediaUrl';
 
 const CatagoryListItem = ({ catagory, className = '' }) => {
   return (
@@ -10,7 +11,7 @@ const CatagoryListItem = ({ catagory, className = '' }) => {
         <a>
           <div>
             <Image
-              src={getAssortmentMediaUrl(catagory)}
+              src={getMediaUrl(catagory)}
               alt={catagory?.texts.title}
               layout="responsive"
               objectFit="contain"

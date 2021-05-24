@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import getMediaUrl from '../../common/utils/getMediaUrl';
 
 import renderPrice from '../../common/utils/renderPrice';
-import getProductMediaUrl from '../../products/utils/getProductMediaUrl';
 import useRemoveCartItem from '../hooks/useRemoveCartItem';
 import useUpdateCartItemMutation from '../hooks/useUpdateCartItem';
 
@@ -51,8 +51,7 @@ const CartItem = ({ _id, quantity, product, total }) => {
       <div className="item-img">
         <Image
           src={`${
-            getProductMediaUrl(product) ||
-            '/static/img/sun-glass-placeholder.jpeg'
+            getMediaUrl(product) || '/static/img/sun-glass-placeholder.jpeg'
           }`}
           alt={product?.texts?.title}
           layout="responsive"

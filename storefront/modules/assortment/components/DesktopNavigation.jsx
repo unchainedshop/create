@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 import DesktopNavigationContext from './DesktopNavigationContext';
+import OrderButton from '../../orders/components/UserOrderButton';
 import MegaDropdown from './MegaDropdown';
 import useCategoriesTree from '../hooks/useCategoriesTree';
 
@@ -78,6 +79,8 @@ const DesktopNavigation = () => {
             <MegaDropdown {...assortmentTree} />
           )}
         </div>
+        <OrderButton />
+
       </nav>
     </DesktopNavigationContext.Provider>
   );

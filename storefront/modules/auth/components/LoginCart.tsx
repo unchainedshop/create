@@ -11,7 +11,7 @@ const LoginCart = () => {
   return user ? (
     <div className="d-flex justify-content-end align-items-center flex-wrap">
       <a
-        className="button button--secondary button--small ml-md-3"
+        className="button button--secondary py-1 ml-md-3"
         onClick={() => context.toggleCart(!context.isCartOpen)}
       >
         <svg
@@ -40,15 +40,15 @@ const LoginCart = () => {
           </Link>
         </>
       ) : (
-        <div className="d-flex justify-content-end flex-wrap">
+        <div className="d-flex justify-content-end flex-wrap ml-2">
           <Link href="/register">
-            <a className="button button--secondary my-1">register</a>
+            <a className="button button--secondary my-1">Register</a>
           </Link>
         </div>
       )}
     </div>
   ) : (
-    <div className="d-flex justify-content-end  flex-wrap">
+    <div className="d-flex justify-content-end flex-wrap">
       <Link href="/sign-up">
         <a className="button button--secondary my-1 mr-2">Sign Up</a>
       </Link>

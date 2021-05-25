@@ -1,8 +1,6 @@
 .form-row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -5px;
-  margin-left: -5px;
 }
 
 .form-row > [class*='col-'] {

@@ -47,7 +47,7 @@ const ChangePassword = () => {
                     errors.password2 ? 'form-error' : ''
                   }`}
                 >
-                  <label className="form-label">Enter a new password</label>
+                  <label className="form-label">Enter a new Password</label>
                   <input
                     className="form-control"
                     name="newPassword"
@@ -60,7 +60,7 @@ const ChangePassword = () => {
                     errors.password2 ? 'form-error' : ''
                   }`}
                 >
-                  <label className="form-label">Repeat password</label>
+                  <label className="form-label">Repeat Password</label>
                   <input
                     className="form-control"
                     name="password2"

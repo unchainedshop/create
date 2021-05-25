@@ -2,22 +2,23 @@
   width: 100%;
   margin-bottom: 1rem;
   color: #212529;
+  text-align: left;
 }
 
 .table th,
 .table td {
   padding: 0.75rem;
   vertical-align: top;
-  border-top: 1px solid #dee2e6;
+  border-top: 0;
 }
 
 .table thead th {
   vertical-align: bottom;
-  border-bottom: 2px solid #dee2e6;
+  border-bottom: 0;
 }
 
 .table tbody + tbody {
-  border-top: 2px solid #dee2e6;
+  border-top: 0;
 }
 
 .table-sm th,
@@ -26,12 +27,12 @@
 }
 
 .table-bordered {
-  border: 1px solid #dee2e6;
+  border: 0;
 }
 
 .table-bordered th,
 .table-bordered td {
-  border: 1px solid #dee2e6;
+  border: 0;
 }
 
 .table-bordered thead th,
@@ -197,7 +198,7 @@
 .table-light td,
 .table-light thead th,
 .table-light tbody + tbody {
-  border-color: #fbfcfc;
+  border-color: none;
 }
 
 .table-hover .table-light:hover {
@@ -212,14 +213,14 @@
 .table-dark,
 .table-dark > th,
 .table-dark > td {
-  background-color: #c6c8ca;
+  background-color: none;
 }
 
 .table-dark th,
 .table-dark td,
 .table-dark thead th,
 .table-dark tbody + tbody {
-  border-color: #95999c;
+  border-color: none
 }
 
 .table-hover .table-dark:hover {
@@ -274,12 +275,12 @@
 }
 
 .table-dark.table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--color-grey-lightest);
 }
 
 .table-dark.table-hover tbody tr:hover {
   color: #fff;
-  background-color: rgba(255, 255, 255, 0.075);
+  background-color: var(--color-grey-light);
 }
 
 @media (max-width: 575.98px) {

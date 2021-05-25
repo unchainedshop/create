@@ -47,7 +47,7 @@ const Detail = () => {
                 currentAssortment={product?.texts}
               />
             </div>
-            <div className="col-md-6">
+            <div className="col-md-8">
               <ImageGallery
                 lazyLoad
                 autoPlay
@@ -59,7 +59,7 @@ const Detail = () => {
                 }))}
               />
             </div>
-            <div className="col-md-6">
+            <div className="col-md-4">
               <h2 className="px-2 mt-md-0">{product?.texts?.title}</h2>
               <div className="p-2">
                 <h3 className="my-0">

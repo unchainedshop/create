@@ -157,7 +157,7 @@ const Review = () => {
               ))}
             </section>
 
-            <div className="">
+            <div className="mt-5">
               {user?.cart?.paymentInfo?.provider?._id ===
               'tLnLqEfzzLetvmqgd' ? (
                 <button

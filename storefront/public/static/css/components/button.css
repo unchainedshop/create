@@ -23,7 +23,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5em 1em;
+  padding: 0.4875em 1em;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.23s ease-in-out, border-color 0.23s ease-in-out,
@@ -168,9 +168,9 @@
 @media (min-width: 768px) {
   .button--big {
     padding-top: 0.875em;
-    padding-right: 2.25em;
+    padding-right: 1.25em;
     padding-bottom: 0.875em;
-    padding-left: 2.25em;
+    padding-left: 1.25em;
   }
 }
 

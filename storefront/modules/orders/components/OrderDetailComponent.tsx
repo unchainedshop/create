@@ -57,8 +57,8 @@ const OrderDetailComponent = ({ order }) => {
             <div className="text-right">
               <div className="border-top py-3 mt-0">
                 <div className="d-flex flex-wrap justify-content-between">
-                  <div className="font-weight-bolder text-info">total</div>
-                  <div className="font-weight-bolder font-heading text-info">
+                  <div className="font-weight-bolder">Total</div>
+                  <div className="font-weight-bolder font-heading">
                     {renderPrice(order?.total)}
                   </div>
                 </div>

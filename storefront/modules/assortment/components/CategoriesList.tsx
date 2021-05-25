@@ -15,7 +15,7 @@ const categoriesList = ({
   const [tree]: categoryItem[] =
     Object.entries(assortment).map(([, assort]) => assort) || [];
   return (
-    <div className="mb-2">
+    <div className="mb-5">
       <div className="mb-3 bold">{tree?.navigationTitle}</div>
 
       {tree?.children &&

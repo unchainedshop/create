@@ -21,10 +21,7 @@ const Cart = () => {
       <Header />
       <div className="container">
         <h1>
-          shopping cart{' '}
-          <span role="img" aria-label="Cart Icon">
-            🛒
-          </span>
+          Shopping cart
         </h1>
         {loading ? (
           <LoadingItem />

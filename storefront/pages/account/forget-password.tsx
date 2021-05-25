@@ -39,7 +39,7 @@ const PasswordForget = () => {
                   className="button button--primary button--big mt-3"
                   type="submit"
                 >
-                  Request new password
+                  Request new Password
                 </button>
               </form>
             </div>

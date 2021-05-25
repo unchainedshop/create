@@ -204,7 +204,7 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
           <div
             className={`mb-3 col-md-6 ${errors.password ? 'form-error' : ''}`}
           >
-            <label className="form-label">password</label>
+            <label className="form-label">Password</label>
             <input
               className="form-control"
               name="password"
@@ -215,7 +215,7 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
           <div
             className={`mb-3 col-md-6 ${errors.password2 ? 'form-error' : ''}`}
           >
-            <label className="form-label">Repeat password</label>
+            <label className="form-label">Repeat Password</label>
             <input
               className="form-control"
               name="password2"

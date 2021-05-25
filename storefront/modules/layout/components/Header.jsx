@@ -4,7 +4,6 @@ import getConfig from 'next/config';
 import { useContext } from 'react';
 
 import LoginCart from '../../auth/components/LoginCart';
-import OrderButton from '../../orders/components/UserOrderButton';
 import SideCart from '../../cart/components/SideCart';
 import { CartContext } from '../../cart/CartContext';
 import DesktopNavigation from '../../assortment/components/DesktopNavigation';
@@ -44,7 +43,6 @@ const Header = () => {
               <h3 className="my-2 mr-2">Shop Logo</h3>
             </a>
           </Link>
-          <OrderButton />
           <LoginCart />
         </div>
         <div className="container">

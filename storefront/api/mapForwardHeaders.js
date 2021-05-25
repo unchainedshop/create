@@ -15,6 +15,7 @@ const mapForwardHeaders = ({ headers = {}, ...req } = {}) => {
     'x-shop-country': headers['x-shop-country'] || lookup(ip),
     'user-agent': headers['user-agent'],
   };
+
   delete forwardHeaders['sec-fetch-site'];
   delete forwardHeaders['sec-fetch-mode'];
   delete forwardHeaders['sec-fetch-dest'];
@@ -22,7 +23,6 @@ const mapForwardHeaders = ({ headers = {}, ...req } = {}) => {
   delete forwardHeaders.origin;
   delete forwardHeaders.referer;
   delete forwardHeaders['content-length'];
-
   return forwardHeaders;
 };
 

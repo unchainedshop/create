@@ -67,7 +67,7 @@ export default () =>
 
         responseContext.res.setHeader(
           'Set-Cookie',
-          `meteor_login_token=${token};  HttpOnly; Expires=${formattedExpires};`,
+          `token=${token};  HttpOnly; Expires=${formattedExpires};`,
         );
         response.data[__mutationName] = {
           token: '',
@@ -77,7 +77,7 @@ export default () =>
       } else if (logoutMethodResponse) {
         responseContext.res.setHeader(
           'Set-Cookie',
-          `meteor_login_token=; HttpOnly; Expires=-1; `,
+          `token=; HttpOnly; Expires=-1; `,
         );
       }
       return response;

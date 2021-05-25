@@ -15,30 +15,31 @@ if (!process.browser) {
   global.fetch = fetch;
 }
 
-function create(initialState) {
+function create(initialState, ctx) {
+  const remoteAddress = ctx?.req?.connection.remoteAddress;
   const httpLink = new HttpLink({
     uri: GRAPHQL_ENDPOINT,
     credentials: 'same-origin',
+    headers: remoteAddress ? { 'x-real-ip': remoteAddress } : undefined,
   });
 
   return new ApolloClient({
     connectToDevTools: process.browser,
-    ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: httpLink,
     cache: new InMemoryCache({ possibleTypes }).restore(initialState || {}),
   });
 }
 
-export default function initApollo({ initialState }) {
+export default function initApollo({ initialState, ctx }) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!process.browser) {
-    return create(initialState);
+    apolloClient = create(initialState, ctx);
   }
 
   // Reuse client on the client-side
   if (!apolloClient) {
-    apolloClient = create(initialState);
+    apolloClient = create(initialState, ctx);
   }
 
   return apolloClient;

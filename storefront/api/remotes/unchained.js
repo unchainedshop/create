@@ -8,7 +8,7 @@ import getConfig from 'next/config';
 import setLoginCookie from './setLoginCookie';
 
 const {
-  publicRuntimeConfig: { UNCHAINED_ENDPOINT, COOKIE_DOMAIN },
+  publicRuntimeConfig: { UNCHAINED_ENDPOINT },
 } = getConfig();
 
 console.log(`Connecting to Unchained API at: ${UNCHAINED_ENDPOINT}`); // eslint-disable-line
@@ -20,9 +20,7 @@ const httpLink = createUploadLink({
   credentials: 'same-origin',
 });
 
-const setCookieLink = setLoginCookie({
-  cookieDomain: COOKIE_DOMAIN ? `Domain=${COOKIE_DOMAIN};` : '',
-});
+const setCookieLink = setLoginCookie();
 
 const errorFix = new ApolloLink((operation, forward) =>
   forward(operation).map((data) => {

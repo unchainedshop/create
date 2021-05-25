@@ -16,15 +16,15 @@ const CartFragment = gql`
       amount
       currency
     }
-    deliveryTotal: total(category: DELIVERY) {
+    deliveryTotal: total(catagory: DELIVERY) {
       amount
       currency
     }
-    paymentTotal: total(category: PAYMENT) {
+    paymentTotal: total(catagory: PAYMENT) {
       amount
       currency
     }
-    taxesTotal: total(category: TAXES) {
+    taxesTotal: total(catagory: TAXES) {
       amount
       currency
     }

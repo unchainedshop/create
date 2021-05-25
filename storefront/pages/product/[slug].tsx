@@ -10,10 +10,10 @@ import AddToCartButton from '../../modules/cart/components/AddToCartButton';
 import renderPrice from '../../modules/common/utils/renderPrice';
 import LoadingItem from '../../modules/common/components/LoadingItem';
 import MetaTags from '../../modules/common/components/MetaTags';
-import getProductMediaUrls from '../../modules/products/utils/getProductMediaUrls';
-import getProductMediaUrl from '../../modules/products/utils/getProductMediaUrl';
 import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';
 import AssortmentBreadcrumbs from '../../modules/assortment/components/AssortmentBreadcrumbs';
+import getMediaUrl from '../../modules/common/utils/getMediaUrl';
+import getMediaUrls from '../../modules/common/utils/getMediaUrls';
 
 const Detail = () => {
   const router = useRouter();
@@ -31,7 +31,7 @@ const Detail = () => {
     <>
       <MetaTags
         title={product?.texts?.title}
-        imageUrl={getProductMediaUrl(product)}
+        imageUrl={getMediaUrl(product)}
         url={currentUrl}
         description={product?.texts?.description}
       />
@@ -53,7 +53,7 @@ const Detail = () => {
                 autoPlay
                 onErrorImageURL="/static/img/sun-glass-placeholder.jpeg"
                 useBrowserFullscreen={false}
-                items={getProductMediaUrls(product).map((image) => ({
+                items={getMediaUrls(product).map((image) => ({
                   original: image,
                   thumbnail: image,
                 }))}

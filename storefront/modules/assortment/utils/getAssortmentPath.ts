@@ -4,7 +4,7 @@ const getAssortmentPath = (assortmentPaths = [], pathFromRoot = 'shop') => {
     if (paths.length === 0) return;
 
     const [currentLink, ...nextLink] = paths;
-
+    if (!currentLink?.link) return;
     pathArr.push({
       id: currentLink.assortmentId,
       title: currentLink.link.parent.texts.title,

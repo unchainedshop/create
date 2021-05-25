@@ -62,15 +62,15 @@ const CurrentUserFragment = gql`
           sign
         }
       }
-      taxes: total(category: TAXES) {
+      taxes: total(catagory: TAXES) {
         amount
         currency
       }
-      delivery: total(category: DELIVERY) {
+      delivery: total(catagory: DELIVERY) {
         amount
         currency
       }
-      payment: total(category: PAYMENT) {
+      payment: total(catagory: PAYMENT) {
         amount
         currency
       }

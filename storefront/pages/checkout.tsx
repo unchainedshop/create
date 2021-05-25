@@ -20,9 +20,7 @@ const Cart = () => {
       <MetaTags title="Checkout order" />
       <Header />
       <div className="container">
-        <h1>
-          Shopping cart
-        </h1>
+        <h1>Shopping cart</h1>
         {loading ? (
           <LoadingItem />
         ) : (

@@ -8,9 +8,7 @@ const OrderButton = () => {
 
   return (
     <Link href="/order">
-      <a className="d-inline-block nav--main__item">
-        My Orders
-      </a>
+      <a className="d-inline-block nav--main__item">My Orders</a>
     </Link>
   );
 };

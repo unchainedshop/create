@@ -80,7 +80,6 @@ const DesktopNavigation = () => {
           )}
         </div>
         <OrderButton />
-
       </nav>
     </DesktopNavigationContext.Provider>
   );

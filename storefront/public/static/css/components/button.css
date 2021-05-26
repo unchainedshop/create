@@ -31,7 +31,7 @@
   text-align: center;
   -webkit-appearance: none;
   appearance: none;
-  border-radius: 2px;
+  border-radius: var(--border-radius);
   border: 0;
 }
 

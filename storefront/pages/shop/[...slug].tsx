@@ -70,8 +70,8 @@ const CatagoryDetail = () => {
           </div>
           <div className="col-md-8 col-lg-9">
             <div>
-              <h3 className="mt-0">{texts?.title}</h3>
-              <span>{texts?.subtitle}</span>
+              <h1 className="mt-0">{texts?.title}</h1>
+              <h2>{texts?.subtitle}</h2>
               {getMediaUrl({ media }) && (
                 <Image
                   src={getMediaUrl({ media })}
@@ -79,8 +79,8 @@ const CatagoryDetail = () => {
                   layout="responsive"
                   objectFit="contain"
                   quality={100}
-                  width="200px"
-                  height="200px"
+                  width="706px"
+                  height="235px"
                 />
               )}
 

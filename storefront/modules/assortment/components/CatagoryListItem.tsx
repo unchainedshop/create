@@ -19,12 +19,12 @@ const CatagoryListItem = ({ catagory, className = '' }) => {
               layout="responsive"
               objectFit="contain"
               quality={100}
-              width="300px"
-              height="300px"
+              width="706px"
+              height="235px"
             />
           </div>
           <div>
-            <h4>{catagory.texts?.title}</h4>
+            <div className="bold mt-2">{catagory.texts?.title}</div>
           </div>
         </a>
       </Link>

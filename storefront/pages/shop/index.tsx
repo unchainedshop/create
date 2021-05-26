@@ -19,7 +19,7 @@ const Products = () => {
     <>
       <MetaTags title="Product Catagories" url={currentUrl} />
       <Header />
-      <div className="container">
+      <div className="container mt-3">
         {loading ? (
           <LoadingItem />
         ) : (

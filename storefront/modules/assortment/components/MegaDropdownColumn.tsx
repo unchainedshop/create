@@ -37,12 +37,11 @@ const MegaDropdownItem = ({
   const handleTouchStart = () => {
     setHoverPath(path);
   };
-
   return (
     <Link href={`/${path.join('/')}`}>
       <a
         className={`mega-link ${
-          type === 'default' && children ? 'has-arrow' : ''
+          type === 'default' && Object.keys(children).length ? 'has-arrow' : ''
         }`}
         onMouseEnter={handleMouseEnter}
         onClick={handleClick}

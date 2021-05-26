@@ -83,9 +83,16 @@ const Header = () => {
 
             <Link href="/">
               <a className="color-brand">
-                <h3 className="my-2 mr-2">Shop Logo</h3>
+                <img
+                  className="my-2 mr-2"
+                  height="50px"
+                  width="100px"
+                  src={theme.assets.logo}
+                  alt="Shop Logo"
+                />
               </a>
             </Link>
+
             <LoginCart />
           </div>
 

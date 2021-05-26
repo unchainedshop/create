@@ -64,6 +64,7 @@ const Subtree = ({ pageId, children = {}, navigationTitle, path }) => {
 };
 
 const MobileNavigation = ({ doClose, isNavOpen }) => {
+  console.log(isNavOpen);
   const { assortmentTree } = usecatagoriesTree({ root: 'shop' });
 
   return (

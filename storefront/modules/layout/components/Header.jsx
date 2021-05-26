@@ -1,13 +1,15 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import getConfig from 'next/config';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
+import { useRouter } from 'next/router';
 import LoginCart from '../../auth/components/LoginCart';
 import SideCart from '../../cart/components/SideCart';
 import { CartContext } from '../../cart/CartContext';
 import DesktopNavigation from '../../assortment/components/DesktopNavigation';
 import MobileNavigation from '../../assortment/components/MobileNavigation';
+import RoutesContext from '../RoutesContext';
 
 const {
   publicRuntimeConfig: { theme },
@@ -15,6 +17,17 @@ const {
 
 const Header = () => {
   const context = useContext(CartContext);
+  const router = useRouter();
+  const [isNavOpen, setNavOpenState] = useState(false);
+  const { setBodyOverflowHidden } = useContext(RoutesContext);
+
+  const setNavOpen = (isOpen) => {
+    setNavOpenState(isOpen);
+    setBodyOverflowHidden(isOpen);
+  };
+  if (router?.events) {
+    router.events.on('routeChangeStart', () => setNavOpen(false));
+  }
   return (
     <>
       <header className="header sticky-top">
@@ -47,7 +60,30 @@ const Header = () => {
           <LoginCart />
         </div>
         <div className="container">
-          <MobileNavigation />
+          <div className="mobile-header hide-on-not-mobile d-flex justify-content-start align-items-center">
+            <button
+              type="button"
+              aria-label="menu"
+              className="no-button mr-3 d-flex align-items-center py-1"
+              onClick={() => setNavOpen(true)}
+            >
+              menu
+            </button>
+
+            <MobileNavigation
+              isNavOpen={isNavOpen}
+              doClose={() => setNavOpen(false)}
+            />
+
+            <Link href="/">
+              <a title="Publicare" rel="home">
+                <div className="header-mobile-logomark mr-3">Shop Logo</div>
+              </a>
+            </Link>
+
+            {/* mobile search */}
+          </div>
+
           <DesktopNavigation />
         </div>
       </header>

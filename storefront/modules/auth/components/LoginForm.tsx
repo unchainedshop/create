@@ -32,7 +32,7 @@ const LoginForm = ({ onLogin }) => {
             errors.email ? 'form-error' : ''
           }`}
         >
-          <label className="form-label">E-mail address</label>
+          <label className="form-label">E-mail</label>
           <input
             className="form-control"
             name="email"

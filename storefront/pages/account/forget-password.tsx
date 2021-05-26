@@ -25,10 +25,10 @@ const PasswordForget = () => {
           <LoadingItem />
         ) : (
           <div className="row">
-            <div className="col-md-8 offset-md-2">
+            <div className="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
               <h1>Forgot Password?</h1>
               <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                <label className="form-label">Your e-mail address</label>
+                <label className="form-label">Your E-mail</label>
                 <input
                   className="form-control"
                   name="email"

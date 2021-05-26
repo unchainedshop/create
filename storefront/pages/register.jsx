@@ -99,13 +99,13 @@ const SignUp = () => {
 
   return (
     <>
-      <MetaTags title="Register" />
+      <MetaTags title="Login & Signup" />
       <Header />
       <div className="container">
         <div className="row">
           <div className="col-lg-6">
-            <h2> Register </h2>
-            <p> Do you already have an account? Then register here: </p>
+            <h2>Login</h2>
+            <p>Do you already have an account? Then log in here: </p>
             <LoginForm onLogin={onLogin} />
           </div>
           <div className="col-lg-6">

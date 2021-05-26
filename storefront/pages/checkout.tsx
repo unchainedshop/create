@@ -20,25 +20,29 @@ const Cart = () => {
       <MetaTags title="Checkout order" />
       <Header />
       <div className="container">
-        <h1>Shopping cart</h1>
-        {loading ? (
-          <LoadingItem />
-        ) : (
-          <>
-            <ManageCart user={user} />
-            <div className="button-group mt-5">
-              <Link
-                href={
-                  user?.isGuest ?? true ? '/register?next=review' : '/review'
-                }
-              >
-                <a className="button button--primary button--big text-uppercase">
-                  Complete Order
-                </a>
-              </Link>
-            </div>
-          </>
-        )}
+        <div className="row">
+          <div className="col-md-8 col-lg-6 mx-auto">
+            <h1>Shopping cart</h1>
+            {loading ? (
+              <LoadingItem />
+            ) : (
+              <>
+                <ManageCart user={user} />
+                <div className="button-group mt-5">
+                  <Link
+                    href={
+                      user?.isGuest ?? true ? '/register?next=review' : '/review'
+                    }
+                  >
+                    <a className="button button--primary button--big text-uppercase">
+                      Complete Order
+                    </a>
+                  </Link>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
       </div>
       <Footer />
     </>

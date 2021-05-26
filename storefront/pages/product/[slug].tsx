@@ -50,9 +50,8 @@ const Detail = () => {
             <div className="col-md-8">
               <ImageGallery
                 lazyLoad
-                autoPlay
                 onErrorImageURL="/static/img/sun-glass-placeholder.jpeg"
-                useBrowserFullscreen={false}
+                useBrowserFullscreen
                 items={getMediaUrls(product).map((image) => ({
                   original: image,
                   thumbnail: image,

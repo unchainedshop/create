@@ -1,12 +1,10 @@
 {
-  "injectStyles": [
-    "",
-    "body { background-color: white; }"
-  ],
-  "icons": {
-    "180x180": "/static/img/apple-touch-icon.png",
-    "32x32": "/static/img/favicon-32x32.png",
-    "16x16": "/static/img/favicon-16x16.png"
+  "injectStyles": ["", "body { background-color: white; }"],
+  "assets": {
+    "logo": "https://www.dynoptic.ch/img/logo/dynoptic-logo.svg",
+    "icon-180x180": "/static/img/apple-touch-icon.png",
+    "icon-32x32": "/static/img/favicon-32x32.png",
+    "icon-16x16": "/static/img/favicon-16x16.png"
   },
   "rootProperties": {
     "color-brand": "#232323",

@@ -22,25 +22,31 @@ const Header = () => {
           <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href={theme.icons['180x180']}
+            href={theme.assets['icon-180x180']}
           />
           <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href={theme.icons['32x32']}
+            href={theme.assets['icon-32x32']}
           />
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href={theme.icons['16x16']}
+            href={theme.assets['icon-16x16']}
           />
         </Head>
         <div className="container d-flex justify-content-between align-items-center flex-wrap">
           <Link href="/">
             <a className="color-brand">
-              <h3 className="my-2 mr-2">Shop Logo</h3>
+              <img
+                className="my-2 mr-2"
+                height="50px"
+                width="100px"
+                src={theme.assets.logo}
+                alt="Shop Logo"
+              />
             </a>
           </Link>
           <LoginCart />

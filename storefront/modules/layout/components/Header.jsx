@@ -64,6 +64,7 @@ const Header = () => {
               />
             </a>
           </Link>
+          <LoginCart />
         </div>
         <div className="container">
           <div className="mobile-header hide-on-not-mobile d-flex justify-content-start align-items-center">

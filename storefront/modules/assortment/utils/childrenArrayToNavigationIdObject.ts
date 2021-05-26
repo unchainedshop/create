@@ -1,3 +1,5 @@
+import getMediaUrl from '../../common/utils/getMediaUrl';
+
 const childrenArrayToNavigationIdObject = (children, path = ['shop']) =>
   children.reduce(
     (acc, curr, index) => ({
@@ -9,6 +11,7 @@ const childrenArrayToNavigationIdObject = (children, path = ['shop']) =>
         texts: curr.texts,
         navigationTitle: curr.texts.title,
         index,
+        imageUrl: getMediaUrl(curr),
       },
     }),
     {},

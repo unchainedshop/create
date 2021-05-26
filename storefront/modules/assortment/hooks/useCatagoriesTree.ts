@@ -1,20 +1,32 @@
 import { gql, useQuery } from '@apollo/client';
+
 import AssortmentFragment from '../fragments/assortment';
+import AssortmentMediaFragment from '../fragments/AssortmentMedia';
 import childrenArrayToNavigationIdObject from '../utils/childrenArrayToNavigationIdObject';
 
 const AssortmentTreeQuery = gql`
   query assortmentTree($slugs: [String!], $includeLeaves: Boolean) {
     assortments(slugs: $slugs, includeLeaves: $includeLeaves) {
       ...AssortmentFragment
+      media {
+        ...AssortmentMediaFragment
+      }
       children {
         ...AssortmentFragment
+        media {
+          ...AssortmentMediaFragment
+        }
         children {
           ...AssortmentFragment
+          media {
+            ...AssortmentMediaFragment
+          }
         }
       }
     }
   }
   ${AssortmentFragment}
+  ${AssortmentMediaFragment}
 `;
 
 const usecatagoriesTree = ({

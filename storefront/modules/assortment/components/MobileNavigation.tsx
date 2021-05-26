@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
-
 import Link from 'next/link';
+
 import usecatagoriesTree from '../hooks/useCatagoriesTree';
 import Icon from '../../common/components/Icon';
 import OrderButton from '../../orders/components/UserOrderButton';
+import Thumbnail from '../../common/components/thumbnail';
 
 const createPathFromArray = (path = []) => {
-  return (path || []).join('/');
+  return `/${(path || []).join('/')}`;
 };
 
-const Subtree = ({ pageId, children = {}, navigationTitle, path, subtree }) => {
+const Subtree = ({
+  pageId,
+  children = {},
+  navigationTitle,
+  path,
+  subtree,
+  media = [],
+}) => {
   const [showSubtree, setShowSubtree] = useState(false);
 
   const level = path.length - 2;
@@ -28,7 +36,10 @@ const Subtree = ({ pageId, children = {}, navigationTitle, path, subtree }) => {
         className="no-button w-100 d-flex justify-content-between align-items-center"
         onClick={() => setShowSubtree(!showSubtree)}
       >
-        <div className={levelClassMap[level]}>{navigationTitle}</div>
+        <div className={levelClassMap[level]}>
+          <Thumbnail media={media} />
+          {navigationTitle}
+        </div>
         <Icon
           icon={showSubtree ? 'arrow-button-up' : 'arrow-button-down'}
           className="icon--xs mr-3"
@@ -40,7 +51,7 @@ const Subtree = ({ pageId, children = {}, navigationTitle, path, subtree }) => {
             <a
               className={`border-top d-block link ${levelClassMap[level + 1]}`}
             >
-              show all
+              Show all
             </a>
           </Link>
 
@@ -66,6 +77,7 @@ const Subtree = ({ pageId, children = {}, navigationTitle, path, subtree }) => {
   ) : (
     <Link href={createPathFromArray(path)}>
       <a className={`border-top d-block ${levelClassMap[level]}`}>
+        <Thumbnail media={media} />
         {navigationTitle}
       </a>
     </Link>

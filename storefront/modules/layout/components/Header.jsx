@@ -10,6 +10,7 @@ import { CartContext } from '../../cart/CartContext';
 import DesktopNavigation from '../../assortment/components/DesktopNavigation';
 import MobileNavigation from '../../assortment/components/MobileNavigation';
 import RoutesContext from '../RoutesContext';
+import Icon from '../../common/components/Icon';
 
 const {
   publicRuntimeConfig: { theme },
@@ -51,13 +52,12 @@ const Header = () => {
             href={theme.icons['16x16']}
           />
         </Head>
-        <div className="container d-flex justify-content-between align-items-center flex-wrap">
+        <div className="container d-flex justify-content-between align-items-center flex-wrap hide-on-mobile">
           <Link href="/">
             <a className="color-brand">
               <h3 className="my-2 mr-2">Shop Logo</h3>
             </a>
           </Link>
-          <LoginCart />
         </div>
         <div className="container">
           <div className="mobile-header hide-on-not-mobile d-flex justify-content-start align-items-center">
@@ -67,7 +67,7 @@ const Header = () => {
               className="no-button mr-3 d-flex align-items-center py-1"
               onClick={() => setNavOpen(true)}
             >
-              menu
+              <Icon icon="navigation-menu" className="icon--medium mr-2" />
             </button>
 
             <MobileNavigation
@@ -76,12 +76,11 @@ const Header = () => {
             />
 
             <Link href="/">
-              <a title="Publicare" rel="home">
-                <div className="header-mobile-logomark mr-3">Shop Logo</div>
+              <a className="color-brand">
+                <h3 className="my-2 mr-2">Shop Logo</h3>
               </a>
             </Link>
-
-            {/* mobile search */}
+            <LoginCart />
           </div>
 
           <DesktopNavigation />

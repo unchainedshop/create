@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 
 import Link from 'next/link';
 import usecatagoriesTree from '../hooks/useCatagoriesTree';
+import Icon from '../../common/components/Icon';
+import OrderButton from '../../orders/components/UserOrderButton';
 
-const Subtree = ({ pageId, children = {}, navigationTitle, path }) => {
+const createPathFromArray = (path = []) => {
+  return (path || []).join('/');
+};
+
+const Subtree = ({ pageId, children = {}, navigationTitle, path, subtree }) => {
   const [showSubtree, setShowSubtree] = useState(false);
 
   const level = path.length - 2;
@@ -14,7 +20,6 @@ const Subtree = ({ pageId, children = {}, navigationTitle, path }) => {
     'pl-4 h5 py-3',
     'pl-5 h5 py-3',
   ];
-
   return Object.keys(children).length ? (
     <div key={pageId} className="border-top">
       <button
@@ -24,10 +29,14 @@ const Subtree = ({ pageId, children = {}, navigationTitle, path }) => {
         onClick={() => setShowSubtree(!showSubtree)}
       >
         <div className={levelClassMap[level]}>{navigationTitle}</div>
+        <Icon
+          icon={showSubtree ? 'arrow-button-up' : 'arrow-button-down'}
+          className="icon--xs mr-3"
+        />
       </button>
       {showSubtree ? (
         <div>
-          <Link href="something">
+          <Link href={createPathFromArray(path)}>
             <a
               className={`border-top d-block link ${levelClassMap[level + 1]}`}
             >
@@ -41,9 +50,9 @@ const Subtree = ({ pageId, children = {}, navigationTitle, path }) => {
             })
             .map(([subPageId, node]) => (
               <Subtree
-                path="asdasd"
-                navigationTitle="jjs"
-                subtree={[]}
+                path={node?.path}
+                navigationTitle={node?.navigationTitle}
+                subtree={subtree}
                 key={subPageId}
                 pageId={subPageId}
                 {...node}
@@ -55,16 +64,15 @@ const Subtree = ({ pageId, children = {}, navigationTitle, path }) => {
       )}
     </div>
   ) : (
-    <Link href="/nav">
+    <Link href={createPathFromArray(path)}>
       <a className={`border-top d-block ${levelClassMap[level]}`}>
-        Navigation title
+        {navigationTitle}
       </a>
     </Link>
   );
 };
 
 const MobileNavigation = ({ doClose, isNavOpen }) => {
-  console.log(isNavOpen);
   const { assortmentTree } = usecatagoriesTree({ root: 'shop' });
 
   return (
@@ -85,14 +93,15 @@ const MobileNavigation = ({ doClose, isNavOpen }) => {
             className="no-button w-100 text-left p-3 d-flex align-items-center"
             onClick={doClose}
           >
-            x<small className="ml-2">close</small>
+            <Icon className="icon--small" icon="close" />
+            <small className="ml-2">close</small>
           </button>
 
           {Object.entries(assortmentTree.children).map(([pageId, node]) => (
             <Subtree
-              path="asdasd"
-              navigationTitle="jjs"
-              subtree={[]}
+              path={node?.path}
+              navigationTitle={node?.navigationTitle}
+              subtree={node?.children}
               key={pageId}
               pageId={pageId}
               {...node}
@@ -101,19 +110,7 @@ const MobileNavigation = ({ doClose, isNavOpen }) => {
         </div>
 
         <div className="border-top pt-4 pl-3">
-          <Link href="/contact">
-            <a className="d-block mb-3">Contact</a>
-          </Link>
-
-          <div className="my-3 float-right mr-4">
-            <button
-              aria-label="deutsch"
-              type="button"
-              className="no-button d-block mb-3"
-            >
-              deutsch
-            </button>
-          </div>
+          <OrderButton />
         </div>
       </nav>
     </div>

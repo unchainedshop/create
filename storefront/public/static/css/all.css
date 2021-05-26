@@ -25,5 +25,6 @@
 @import 'components/mobile-menu.css';
 @import "~react-image-gallery/styles/css/image-gallery.css";
 @import 'helpers.css';
+@import 'icon.css';
 @import 'print.css';
 @import 'shame.css';

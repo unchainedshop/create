@@ -234,10 +234,15 @@
 
 .item-img {
   width: 44px;
-  margin-right: 16px;
+  margin-right: 1em;
   float: left;
 }
 
+@media (min-width: 1024px) {
+  .item-img {
+    width: 88px;
+  }
+}
 
 
 .item-quantity {

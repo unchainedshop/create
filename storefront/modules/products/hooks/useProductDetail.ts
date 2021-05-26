@@ -21,7 +21,7 @@ const useProductDetail = ({ slug }) => {
     variables: { slug },
   });
 
-  const paths = (data?.product.assortmentPaths || []).flat().pop()?.links;
+  const paths = (data?.product?.assortmentPaths || []).flat().pop()?.links;
 
   return {
     product: data?.product,

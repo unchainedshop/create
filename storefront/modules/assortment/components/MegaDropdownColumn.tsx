@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import getMediaUrl from '../../common/utils/getMediaUrl';
 
 import { useDesktopNavigationContext } from './DesktopNavigationContext';
@@ -52,7 +51,11 @@ const MegaDropdownItem = ({
         <div className="d-flex align-items-center">
           {type === 'default' ? (
             <>
-              <img className="mr-2" width="32px" src="/static/img/category-image.jpg" />
+              <img
+                className="mr-2"
+                width="32px"
+                src="/static/img/category-image.jpg"
+              />
               {navigationTitle}
             </>
           ) : (

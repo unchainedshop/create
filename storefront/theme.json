@@ -12,6 +12,7 @@
     "color-brand-darker": "#121212",
     "color-dark": "#232323",
     "color-grey-lightest": "#ececec",
-    "color-danger": "#dc3545"
+    "color-danger": "#dc3545",
+    "border-radius": "0"
   }
 }

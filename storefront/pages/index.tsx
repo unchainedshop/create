@@ -8,15 +8,14 @@ const Home = () => {
       <MetaTags title="Home" />
       <Header />
 
-      <div className="color-bg-brand-lightest">
-        <div className="container">
-          <div className="header__bottom" />
+      <div className="container">
+        <div className="header__bottom" />
 
-          <div className="text-center py-5">
-            <div className="row d-flex align-items-center">
-              <div className="col-12">
-                <h1 className="color-brand mt-2">Title</h1>
-              </div>
+        <div className="text-center py-5">
+          <div className="row d-flex align-items-center">
+            <div className="col-12">
+              <h1 className="color-brand mt-2">Shop Startseite</h1>
+
             </div>
           </div>
         </div>

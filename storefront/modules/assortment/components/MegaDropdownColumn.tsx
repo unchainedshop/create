@@ -49,20 +49,25 @@ const MegaDropdownItem = ({
         onTouchStart={handleTouchStart}
         data-in-hover-path={type === 'default' && hoverPath.includes(slug)}
       >
-        {type === 'default' ? (
-          navigationTitle
-        ) : (
-          <b>
-            {navigationTitle}
-            &nbsp;
-          </b>
-        )}
+        <div className="d-flex align-items-center">
+          {type === 'default' ? (
+            <>
+              <img className="mr-2" width="32px" src="/static/img/category-image.jpg" />
+              {navigationTitle}
+            </>
+          ) : (
+            <b>
+              {navigationTitle}
+              &nbsp;
+            </b>
+          )}
 
-        {type === 'show_all' ? (
-          <small className="ml-2 font-pt-sans">Show all</small>
-        ) : (
-          ''
-        )}
+          {type === 'show_all' ? (
+            <small className="ml-2 font-pt-sans">Show all</small>
+          ) : (
+            ''
+          )}
+        </div>
       </a>
     </Link>
   );

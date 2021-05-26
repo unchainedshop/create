@@ -7,6 +7,7 @@ import LoginCart from '../../auth/components/LoginCart';
 import SideCart from '../../cart/components/SideCart';
 import { CartContext } from '../../cart/CartContext';
 import DesktopNavigation from '../../assortment/components/DesktopNavigation';
+import MobileNavigation from '../../assortment/components/MobileNavigation';
 
 const {
   publicRuntimeConfig: { theme },
@@ -46,6 +47,7 @@ const Header = () => {
           <LoginCart />
         </div>
         <div className="container">
+          <MobileNavigation />
           <DesktopNavigation />
         </div>
       </header>

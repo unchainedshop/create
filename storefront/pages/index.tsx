@@ -15,7 +15,6 @@ const Home = () => {
           <div className="row d-flex align-items-center">
             <div className="col-12">
               <h1 className="color-brand mt-2">Shop Startseite</h1>
-
             </div>
           </div>
         </div>

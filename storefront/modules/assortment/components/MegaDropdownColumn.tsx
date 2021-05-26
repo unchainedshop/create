@@ -1,9 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import getMediaUrl from '../../common/utils/getMediaUrl';
 
 import { useDesktopNavigationContext } from './DesktopNavigationContext';
+import Thumbnail from '../../common/components/thumbnail';
 
 export type Node = {
   slug: string;
@@ -11,6 +10,7 @@ export type Node = {
   path: string[];
   navigationTitle: string;
   type: 'default' | 'show_all';
+  media: any[];
 };
 
 const MegaDropdownItem = ({
@@ -19,9 +19,9 @@ const MegaDropdownItem = ({
   navigationTitle,
   type,
   path,
+  media = [],
 }: Node) => {
   const { setHoverPath, hoverPath, isTouching } = useDesktopNavigationContext();
-
   const handleClick = () => {
     if (type === 'default' && isTouching && children) {
       setHoverPath(path);
@@ -52,7 +52,7 @@ const MegaDropdownItem = ({
         <div className="d-flex align-items-center">
           {type === 'default' ? (
             <>
-              <img className="mr-2" width="32px" src="/static/img/category-image.jpg" />
+              <Thumbnail media={media} />
               {navigationTitle}
             </>
           ) : (

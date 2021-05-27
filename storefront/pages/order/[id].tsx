@@ -15,7 +15,7 @@ const OrderDetail = () => {
     orderId: router.query?.id,
   });
 
-  if (!order && !loading) return <NotFound action="Order" />;
+  if (!order && !loading) return <NotFound page="Order" />;
   return (
     <>
       <MetaTags title={`Order: ${order?.orderNumber}`} />

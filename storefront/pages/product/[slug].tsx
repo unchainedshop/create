@@ -28,7 +28,7 @@ const Detail = () => {
     setcurrentUrl(window.location.href);
   }, []);
 
-  if (!product && !loading) return <NotFound action="Product" />;
+  if (!product && !loading) return <NotFound page="Product" />;
   return (
     <>
       <MetaTags

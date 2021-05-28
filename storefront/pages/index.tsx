@@ -30,6 +30,7 @@ const Home = () => {
             src={theme.assets.hero}
             alt="Hero image"
           />
+
         {loading ? (
           <LoadingItem />
         ) : (
@@ -38,11 +39,29 @@ const Home = () => {
               <CatagoryListItem
                 key={catagory._id}
                 catagory={catagory}
-                className="mt-3 col-md-6"
+                className="mt-3 col-md-6 mx-auto"
               />
             ))}
           </div>
         )}
+
+        <div className="row">
+          <div className="col-md-6">
+            <img
+              className="my-2 mr-2"
+              src={theme.assets.glassesAnimation}
+              alt=""
+            />
+          </div>
+          <div className="col-md-6">
+            <img
+              className="my-2 mr-2"
+              src={theme.assets.sunglassesAnimation}
+              alt=""
+            />
+          </div>
+        </div>
+
       </div>
       <Footer />
     </>

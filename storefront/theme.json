@@ -5,7 +5,9 @@
     "icon-180x180": "/static/img/apple-touch-icon.png",
     "icon-32x32": "/static/img/favicon-32x32.png",
     "icon-16x16": "/static/img/favicon-16x16.png",
-    "hero": "/static/img/hero.png"
+    "hero": "/static/img/hero.png",
+    "glassesAnimation": "/static/img/brille-animation.gif",
+    "sunglassesAnimation": "/static/img/sonnenbrille-animation.gif"
   },
   "rootProperties": {
     "color-brand": "#232323",

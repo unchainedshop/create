@@ -6,6 +6,7 @@ import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
 import OrderDetailComponent from '../../modules/orders/components/OrderDetailComponent';
 import useOrderDetail from '../../modules/orders/hooks/useOrderDetail';
+import NotFound from '../404';
 
 const OrderDetail = () => {
   const router = useRouter();
@@ -14,6 +15,7 @@ const OrderDetail = () => {
     orderId: router.query?.id,
   });
 
+  if (!order && !loading) return <NotFound page="Order" />;
   return (
     <>
       <MetaTags title={`Order: ${order?.orderNumber}`} />

@@ -14,6 +14,7 @@ import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath'
 import AssortmentBreadcrumbs from '../../modules/assortment/components/AssortmentBreadcrumbs';
 import getMediaUrl from '../../modules/common/utils/getMediaUrl';
 import getMediaUrls from '../../modules/common/utils/getMediaUrls';
+import NotFound from '../404';
 
 const Detail = () => {
   const router = useRouter();
@@ -27,6 +28,7 @@ const Detail = () => {
     setcurrentUrl(window.location.href);
   }, []);
 
+  if (!product && !loading) return <NotFound page="Product" />;
   return (
     <>
       <MetaTags

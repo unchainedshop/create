@@ -2,14 +2,13 @@ import Link from 'next/link';
 import Head from 'next/head';
 import getConfig from 'next/config';
 import { useContext, useState } from 'react';
-
 import { useRouter } from 'next/router';
+
 import LoginCart from '../../auth/components/LoginCart';
 import SideCart from '../../cart/components/SideCart';
 import { CartContext } from '../../cart/CartContext';
 import DesktopNavigation from '../../assortment/components/DesktopNavigation';
 import MobileNavigation from '../../assortment/components/MobileNavigation';
-import RoutesContext from '../RoutesContext';
 import Icon from '../../common/components/Icon';
 
 const {
@@ -20,11 +19,9 @@ const Header = () => {
   const context = useContext(CartContext);
   const router = useRouter();
   const [isNavOpen, setNavOpenState] = useState(false);
-  const { setBodyOverflowHidden } = useContext(RoutesContext);
 
   const setNavOpen = (isOpen) => {
     setNavOpenState(isOpen);
-    setBodyOverflowHidden(isOpen);
   };
   if (router?.events) {
     router.events.on('routeChangeStart', () => setNavOpen(false));

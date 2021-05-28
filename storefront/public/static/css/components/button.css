@@ -59,7 +59,7 @@
 
 .button--secondary {
   color: var(--color-brand);
-  background-color: #ffffff;
+  background-color: transparent;
   border: 1px solid var(--color-brand);
 }
 

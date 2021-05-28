@@ -62,7 +62,7 @@ const MegaDropdownItem = ({
           )}
 
           {type === 'show_all' ? (
-            <small className="ml-2 font-pt-sans">Show all</small>
+            <small className="ml-2">Show all</small>
           ) : (
             ''
           )}

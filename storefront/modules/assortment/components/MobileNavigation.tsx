@@ -23,7 +23,7 @@ const Subtree = ({
   const level = path.length - 2;
 
   const levelClassMap = [
-    'font-dax-ot h3 p-3',
+    'h3 p-3',
     'pl-3 h5 py-3',
     'pl-4 h5 py-3',
     'pl-5 h5 py-3',

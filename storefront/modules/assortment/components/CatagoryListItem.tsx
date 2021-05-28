@@ -24,7 +24,7 @@ const CatagoryListItem = ({ catagory, className = '' }) => {
             />
           </div>
           <div>
-            <div className="bold mt-2">{catagory.texts?.title}</div>
+            <div className="bold mt-2 mb-3">{catagory.texts?.title}</div>
           </div>
         </a>
       </Link>

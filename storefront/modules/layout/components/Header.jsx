@@ -67,7 +67,7 @@ const Header = () => {
           <LoginCart />
         </div>
         <div className="container">
-          <div className="mobile-header hide-on-not-mobile d-flex justify-content-start align-items-center">
+          <div className="mobile-header hide-on-not-mobile d-flex justify-content-between align-items-center">
             <button
               type="button"
               aria-label="menu"

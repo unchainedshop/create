@@ -97,20 +97,6 @@
   border-bottom: 3px solid #003a4f;
 }
 
-.font-pt-sans {
-  font-family: "PT Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-}
-
-.font-dax-ot-regular {
-  font-family: ff-dax-pro;
-  font-weight: 400;
-}
-
-.font-dax-ot {
-  font-family: ff-dax-pro;
-}
-
 .overflow-hidden {
   overflow: hidden;
 }
@@ -242,7 +228,6 @@
 }
 
 .bold {
-  font-family: ff-dax-pro;
   font-weight: 700;
 }
 

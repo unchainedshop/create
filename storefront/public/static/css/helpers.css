@@ -94,7 +94,7 @@
 }
 
 .border-bottom-active {
-  border-bottom: 3px solid #003a4f;
+  border-bottom: 3px solid var(--color-grey-lightest);
 }
 
 .overflow-hidden {
@@ -126,59 +126,10 @@
   width: calc(100% + 2em) !important;
 }
 
-.color-neon-green {
-  color: #c6e400;
-}
-
-.color-blue {
-  color: #003a4f;
-}
-
-.color-bg-green {
-  background-color: #c6e400 !important;
-}
-
-.color-bg-green-light {
-  background-color: rgba(100, 145, 83, 0.24) !important;
-}
-
-.color-bg-blue {
-  background-color: #003a4f !important;
-}
-
-.color-bg-blue-90 {
-  background-color: rgba(0, 58, 79, 0.9) !important;
-}
-
-.color-bg-blue-light {
-  background-color: rgba(0, 58, 79, 0.06) !important;
-}
-
-.color-bg-blue-lighter {
-  background-color: rgba(0, 58, 79, 0.02) !important;
-}
-
-.color-white {
-  color: #ffffff;
-}
-
-.color-bg-white {
-  background-color: white;
-}
-
-.color-bg-orange {
-  background-color: #ffc107;
-}
-
-.color-bg-red {
-  background-color: #da4220;
-}
-
 .link {
   font-weight: 400;
-  color: #003a4f;
+  color: var(--color-dark);
   cursor: pointer;
-  text-decoration: underline;
 }
 
 .link + .link {

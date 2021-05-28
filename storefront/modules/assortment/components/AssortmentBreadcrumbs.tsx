@@ -14,11 +14,14 @@ const AssortmentBreadcrumbs = ({ paths = [], currentAssortment }) => {
           <a className="mr-2 breadcrumb-link">{title}</a>
         </Link>
       ))}
-      <a>
+      <a className="breadcrumb-link">
         <b>{currentAssortment?.title}</b>
       </a>
       <style jsx>
         {`
+          .breadcrumb-link {
+            font-size: .875rem;
+          }
           .breadcrumb-link::after {
             content: '〉';
             font-size: 12px;
@@ -26,6 +29,9 @@ const AssortmentBreadcrumbs = ({ paths = [], currentAssortment }) => {
             width: 10px;
             height: 10px;
             margin-left: 1em;
+          }
+          .breadcrumb-link:last-of-type::after {
+            content: '';
           }
         `}
       </style>

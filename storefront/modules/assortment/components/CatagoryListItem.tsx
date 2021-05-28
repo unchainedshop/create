@@ -23,8 +23,8 @@ const CatagoryListItem = ({ catagory, className = '' }) => {
               height="235px"
             />
           </div>
-          <div>
-            <div className="bold mt-2 mb-3">{catagory.texts?.title}</div>
+          <div className="text-center">
+            <h2 className="mt-2 mb-3">{catagory.texts?.title}</h2>
           </div>
         </a>
       </Link>

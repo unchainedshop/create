@@ -33,6 +33,9 @@
   appearance: none;
   border-radius: var(--border-radius);
   border: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 .button[disabled],
@@ -62,8 +65,9 @@
 
 .button--secondary:hover,
 .button--secondary:focus {
-  color: var(--color-brand-darker);
-  border-color: var(--color-brand-darker);
+  color: #ffffff;
+  border-color: var(--color-dark);
+  background-color: var(--color-dark);
 }
 
 .button--tertiary {

@@ -6,7 +6,7 @@ const ProductListItem = ({ product }) => {
   return (
     <Link href={`/product/${product?.texts?.slug}`}>
       <a>
-        <div>
+        <div className="text-center">
           <Image
             loading="lazy"
             src={`${
@@ -19,7 +19,7 @@ const ProductListItem = ({ product }) => {
             layout="responsive"
             objectFit="contain"
           />
-          <div className="p-3">{product?.texts?.title}</div>
+          <h3 className="p-3">{product?.texts?.title}</h3>
         </div>
       </a>
     </Link>

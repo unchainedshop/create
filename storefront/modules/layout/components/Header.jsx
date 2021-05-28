@@ -50,10 +50,11 @@ const Header = () => {
           />
         </Head>
         <div className="container d-flex justify-content-between align-items-center flex-wrap hide-on-mobile">
+          <DesktopNavigation />
           <Link href="/">
-            <a className="color-brand">
+            <a>
               <img
-                className="my-2 mr-2"
+                className="my-2"
                 height="50px"
                 width="100px"
                 src={theme.assets.logo}
@@ -65,13 +66,14 @@ const Header = () => {
         </div>
         <div className="container">
           <div className="mobile-header hide-on-not-mobile d-flex justify-content-between align-items-center">
+            <div className="d-flex align-items-center">
             <button
               type="button"
               aria-label="menu"
-              className="no-button mr-3 d-flex align-items-center py-1"
+              className="no-button d-flex align-items-center py-1 mr-3"
               onClick={() => setNavOpen(true)}
             >
-              <Icon icon="navigation-menu" className="icon--medium mr-2" />
+              <Icon icon="navigation-menu" className="icon--medium" />
             </button>
 
             <MobileNavigation
@@ -80,9 +82,9 @@ const Header = () => {
             />
 
             <Link href="/">
-              <a className="color-brand">
+              <a>
                 <img
-                  className="my-2 mr-2"
+                  className="my-2"
                   height="50px"
                   width="100px"
                   src={theme.assets.logo}
@@ -90,11 +92,10 @@ const Header = () => {
                 />
               </a>
             </Link>
-
+            </div>
             <LoginCart />
           </div>
 
-          <DesktopNavigation />
         </div>
       </header>
     </>

@@ -3,6 +3,7 @@
 }
 
 .cart-counter {
+  display: inline-block;
   background-color: var(--color-brand);
   color: white;
   font-weight: bold;
@@ -11,6 +12,7 @@
   height: 1.625em;
   line-height: 1.625;
   margin-right: 0.25em;
+  text-align: center;
 }
 
 .side-cart-container {

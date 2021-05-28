@@ -5,36 +5,15 @@
 @media (min-width: 768px) {
   .nav--main {
     display: block;
-    padding-bottom: 13px;
-    margin-left: -0.75em;
   }
 
   .nav--main__item {
-    padding-right: 0.5em;
-    padding-bottom: 12px;
-    padding-left: 0.5em;
     position: relative;
-    font-size: 18px;
   }
 
   .nav--main__item[data-in-hover-path='true'] {
     position: relative;
   }
-
-  .nav--main__item:hover::after,
-  .nav--main__item[data-in-hover-path='true']::after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0.5em;
-    right: 0;
-    bottom: -1px;
-    width: calc(100% - 1em);
-    height: 4px;
-    background-color: var(--color-grey-lightest);
-  }
-
-
 }
 
 .nav--main__mega {
@@ -42,7 +21,7 @@
   position: absolute;
   left: -1.5em;
   right: -1.5em;
-  top: 33px;
+  top: 53px;
   width: calc(100% + 3em);
   visibility: hidden;
   opacity: 0;
@@ -56,21 +35,6 @@
   opacity: 1;
   overflow: visible;
   background-color: white;
-}
-
-@media (min-width: 1024px) {
-  .nav--main__item {
-    padding-left: 0.625em;
-    padding-right: 0.75em;
-    padding-bottom: 15px;
-  }
-
-  .nav--main__item:hover::after,
-  .nav--main__item[data-in-hover-path='true']::after {
-    width: calc(100% - 1.375em);
-    left: 0.625em;
-    bottom: 2px;
-  }
 }
 
 .mega-link {

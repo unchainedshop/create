@@ -50,14 +50,14 @@ const DesktopNavigation = () => {
       }}
     >
       <nav
-        className="nav nav--main"
+        className="nav nav--main d-flex align-items-center"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
         <div key="shop" className="d-inline-block font-size-0">
           <Link href="/shop">
             <a
-              className="nav--main__item"
+              className="nav--main__item button button--secondary"
               data-in-hover-path={hoverPath.includes(assortmentTree.slug)}
               onMouseEnter={() => {
                 if (!isTouching) {
@@ -72,7 +72,7 @@ const DesktopNavigation = () => {
               }}
               onClick={handleClick(assortmentTree)}
             >
-              Shop Menu
+              Menu
             </a>
           </Link>
           {hoverPath.includes(assortmentTree.slug) && (

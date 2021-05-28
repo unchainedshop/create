@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import getConfig from 'next/config';
+import Link from 'next/link';
 
 import CatagoryListItem from '../modules/assortment/components/CatagoryListItem';
 import useAssortments from '../modules/assortment/hooks/useAssortments';
@@ -24,9 +25,9 @@ const Home = () => {
     <>
       <MetaTags title="Product Catagories" url={currentUrl} />
       <Header />
-      <div className="container mt-3">
+      <div className="container">
         <img
-            className="my-2 mr-2"
+            className="mb-2"
             src={theme.assets.hero}
             alt="Hero image"
           />
@@ -45,13 +46,23 @@ const Home = () => {
           </div>
         )}
 
-        <div className="row">
+        <div className="row text-center border-top mt-5">
           <div className="col-md-6">
             <img
               className="my-2 mr-2"
               src={theme.assets.glassesAnimation}
               alt=""
             />
+            <Link href="/shop">
+              <a>
+                <button className="button button--secondary button--big mr-3">Damen</button>
+              </a>
+            </Link>
+            <Link href="/shop">
+              <a>
+                <button className="button button--secondary button--big">Herren</button>
+              </a>
+            </Link>
           </div>
           <div className="col-md-6">
             <img
@@ -59,6 +70,38 @@ const Home = () => {
               src={theme.assets.sunglassesAnimation}
               alt=""
             />
+            <Link href="/shop">
+              <a>
+                <button className="button button--secondary button--big mr-3">Damen</button>
+              </a>
+            </Link>
+            <Link href="/shop">
+              <a>
+                <button className="button button--secondary button--big">Herren</button>
+              </a>
+            </Link>
+          </div>
+          <div className="col-12 mt-5 border-top pt-5">
+            <div className="text-center">
+              <h2 className="mt-0">Neue Modelle</h2>
+            </div>
+            <div className="row text-center">
+              <div className="col-md-4">
+                <img src="/static/img/category-image.jpg" />
+                <h3 className="mb-1">newest Product</h3>
+                <p className="mt-0">havanna shiny</p>
+              </div>
+              <div className="col-md-4">
+                <img src="/static/img/category-image.jpg" />
+                <h3 className="mb-1">newest Product</h3>
+                <p className="mt-0">grey matt</p>
+              </div>
+              <div className="col-md-4">
+                <img src="/static/img/category-image.jpg" />
+                <h3 className="mb-1">newest Product</h3>
+                <p className="mt-0">black matt</p>
+              </div>
+            </div>
           </div>
         </div>
 

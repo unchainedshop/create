@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { useIntl } from 'react-intl';
 
 import ProductFragment from '../../products/fragments/ProductFragment';
 import AssortmentFragment from '../fragments/assortment';
@@ -6,7 +7,7 @@ import AssortmentMediaFragment from '../fragments/AssortmentMedia';
 import AssortmentPathFragment from '../fragments/AssortmentPath';
 
 export const AssortmentsProductsQuery = gql`
-  query AssortmentsProductsQuery($slugs: String!) {
+  query AssortmentsProductsQuery($slugs: String!, $forceLocale: String) {
     assortment(slug: $slugs) {
       ...AssortmentFragment
       assortmentPaths {
@@ -43,10 +44,12 @@ const useAssortmentProducts = (
     slugs: [],
   },
 ) => {
+  const intl = useIntl();
   const { data, loading, error } = useQuery(AssortmentsProductsQuery, {
     variables: {
       includeLeaves,
       slugs,
+      forceLocale: intl.locale,
     },
   });
   const paths = (data?.assortment.assortmentPaths || []).flat().pop()?.links;

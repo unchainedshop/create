@@ -103,7 +103,9 @@ const Home = () => {
           </div>
           <div className="col-12 mt-5 border-top pt-5">
             <div className="text-center">
-              <h2 className="mt-0">Neue Modelle</h2>
+              <h2 className="mt-0">
+                {intl.formatMessage({ id: 'new_models' })}
+              </h2>
             </div>
             <div className="row text-center">
               <div className="col-md-4">

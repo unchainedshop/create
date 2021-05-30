@@ -1,11 +1,16 @@
 import { gql, useQuery } from '@apollo/client';
+import { useIntl } from 'react-intl';
 
 import AssortmentFragment from '../fragments/assortment';
 import AssortmentMediaFragment from '../fragments/AssortmentMedia';
 import childrenArrayToNavigationIdObject from '../utils/childrenArrayToNavigationIdObject';
 
 const AssortmentTreeQuery = gql`
-  query assortmentTree($slugs: [String!], $includeLeaves: Boolean) {
+  query assortmentTree(
+    $slugs: [String!]
+    $includeLeaves: Boolean
+    $forceLocale: String
+  ) {
     assortments(slugs: $slugs, includeLeaves: $includeLeaves) {
       ...AssortmentFragment
       media {
@@ -38,10 +43,12 @@ const usecatagoriesTree = ({
   includeLeaves?: boolean;
   root?: string;
 }) => {
+  const intl = useIntl();
   const { loading, error, data } = useQuery(AssortmentTreeQuery, {
     variables: {
       includeLeaves,
       slugs,
+      forceLocale: intl.locale,
     },
   });
 

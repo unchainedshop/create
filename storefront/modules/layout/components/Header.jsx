@@ -10,6 +10,7 @@ import { CartContext } from '../../cart/CartContext';
 import DesktopNavigation from '../../assortment/components/DesktopNavigation';
 import MobileNavigation from '../../assortment/components/MobileNavigation';
 import Icon from '../../common/components/Icon';
+import LanguageSwitch from '../../common/components/LanguageSwitch';
 
 const {
   publicRuntimeConfig: { theme },
@@ -62,7 +63,10 @@ const Header = () => {
               />
             </a>
           </Link>
-          <LoginCart />
+          <div>
+            <LoginCart />
+            <LanguageSwitch />
+          </div>
         </div>
         <div className="container">
           <div className="mobile-header hide-on-not-mobile d-flex justify-content-between align-items-center">

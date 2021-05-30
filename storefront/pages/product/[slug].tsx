@@ -73,7 +73,12 @@ const Detail = () => {
                 />
               </div>
               <AddToCartButton productId={product?._id} />
-              <a href="/" className="button button--secondary button--big w-100">Termin resevieren</a>
+              <a
+                href="/"
+                className="button button--secondary button--big w-100"
+              >
+                Termin resevieren
+              </a>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { useMutation, useApolloClient, gql } from '@apollo/client';
+import { useIntl } from 'react-intl';
 
 import CurrentUserFragment from '../fragments/CurrentUserFragment';
 import { UserQuery } from './useUser';
@@ -9,6 +10,7 @@ const CreateUserMutation = gql`
     $email: String!
     $password: String!
     $profile: UserProfileInput
+    $forceLocale: String
   ) {
     createUser(
       username: $username
@@ -28,6 +30,7 @@ const CreateUserMutation = gql`
 `;
 
 const useCreateUser = () => {
+  const intl = useIntl();
   const client = useApolloClient();
   const [createUserMutation, { error }] = useMutation(CreateUserMutation, {
     update(cache, result) {
@@ -45,7 +48,13 @@ const useCreateUser = () => {
   const createUser = async ({ username, email, password, profile }) => {
     try {
       const result = await createUserMutation({
-        variables: { username, email, password, profile },
+        variables: {
+          username,
+          email,
+          password,
+          profile,
+          forceLocale: intl.locale,
+        },
       });
       await client.resetStore();
       return result;

@@ -1,10 +1,15 @@
 import { useMutation, useApolloClient, gql } from '@apollo/client';
+import { useIntl } from 'react-intl';
 
 import CurrentUserFragment from '../fragments/CurrentUserFragment';
 import { UserQuery } from './useUser';
 
 const LoginWithPasswordMutation = gql`
-  mutation LoginWithPassword($email: String!, $password: String!) {
+  mutation LoginWithPassword(
+    $email: String!
+    $password: String!
+    $forceLocale: String
+  ) {
     loginWithPassword(email: $email, plainPassword: $password) {
       id
       token
@@ -19,6 +24,7 @@ const LoginWithPasswordMutation = gql`
 
 const useLoginWithPassword = () => {
   const client = useApolloClient();
+  const intl = useIntl();
   const [loginWithPasswordMutation, { error }] = useMutation(
     LoginWithPasswordMutation,
     {
@@ -37,7 +43,7 @@ const useLoginWithPassword = () => {
 
   const loginWithPassword = async ({ email, password }) => {
     const result = await loginWithPasswordMutation({
-      variables: { email, password },
+      variables: { email, password, forceLocale: intl.locale },
     });
     await client.resetStore();
     return result;

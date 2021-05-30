@@ -9,7 +9,6 @@ import MetaTags from '../modules/common/components/MetaTags';
 import Footer from '../modules/layout/components/Footer';
 import Header from '../modules/layout/components/Header';
 
-
 const Home = () => {
   const { assortments, loading } = useAssortments();
   const [currentUrl, setcurrentUrl] = useState('');
@@ -26,11 +25,7 @@ const Home = () => {
       <MetaTags title="Product Catagories" url={currentUrl} />
       <Header />
       <div className="container">
-        <img
-            className="mb-2"
-            src={theme.assets.hero}
-            alt="Hero image"
-          />
+        <img className="mb-2" src={theme.assets.hero} alt="Hero" />
 
         {loading ? (
           <LoadingItem />
@@ -55,12 +50,22 @@ const Home = () => {
             />
             <Link href="/shop">
               <a>
-                <button className="button button--secondary button--big mr-3">Damen</button>
+                <button
+                  type="button"
+                  className="button button--secondary button--big mr-3"
+                >
+                  Damen
+                </button>
               </a>
             </Link>
             <Link href="/shop">
               <a>
-                <button className="button button--secondary button--big">Herren</button>
+                <button
+                  type="button"
+                  className="button button--secondary button--big"
+                >
+                  Herren
+                </button>
               </a>
             </Link>
           </div>
@@ -72,12 +77,22 @@ const Home = () => {
             />
             <Link href="/shop">
               <a>
-                <button className="button button--secondary button--big mr-3">Damen</button>
+                <button
+                  type="button"
+                  className="button button--secondary button--big mr-3"
+                >
+                  Damen
+                </button>
               </a>
             </Link>
             <Link href="/shop">
               <a>
-                <button className="button button--secondary button--big">Herren</button>
+                <button
+                  type="button"
+                  className="button button--secondary button--big"
+                >
+                  Herren
+                </button>
               </a>
             </Link>
           </div>
@@ -104,7 +119,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-
       </div>
       <Footer />
     </>

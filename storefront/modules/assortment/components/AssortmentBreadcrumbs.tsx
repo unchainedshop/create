@@ -20,7 +20,7 @@ const AssortmentBreadcrumbs = ({ paths = [], currentAssortment }) => {
       <style jsx>
         {`
           .breadcrumb-link {
-            font-size: .875rem;
+            font-size: 0.875rem;
           }
           .breadcrumb-link::after {
             content: '〉';

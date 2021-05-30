@@ -25,7 +25,11 @@ module.exports = {
     theme: JSON.parse(UNCHAINED_CREATE_THEME),
   },
   images: {
-    domains: ['localhost',"dynoptic-template.unchained.wtf"],
+    domains: ['localhost', 'dynoptic-template.unchained.wtf'],
     sizes: [320, 480, 820, 1200, 1600],
+  },
+  i18n: {
+    locales: ['en', 'de'],
+    defaultLocale: 'de',
   },
 };

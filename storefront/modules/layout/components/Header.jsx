@@ -67,35 +67,34 @@ const Header = () => {
         <div className="container">
           <div className="mobile-header hide-on-not-mobile d-flex justify-content-between align-items-center">
             <div className="d-flex align-items-center">
-            <button
-              type="button"
-              aria-label="menu"
-              className="no-button d-flex align-items-center py-1 mr-3"
-              onClick={() => setNavOpen(true)}
-            >
-              <Icon icon="navigation-menu" className="icon--medium" />
-            </button>
+              <button
+                type="button"
+                aria-label="menu"
+                className="no-button d-flex align-items-center py-1 mr-3"
+                onClick={() => setNavOpen(true)}
+              >
+                <Icon icon="navigation-menu" className="icon--medium" />
+              </button>
 
-            <MobileNavigation
-              isNavOpen={isNavOpen}
-              doClose={() => setNavOpen(false)}
-            />
+              <MobileNavigation
+                isNavOpen={isNavOpen}
+                doClose={() => setNavOpen(false)}
+              />
 
-            <Link href="/">
-              <a>
-                <img
-                  className="my-2"
-                  height="50px"
-                  width="100px"
-                  src={theme.assets.logo}
-                  alt="Shop Logo"
-                />
-              </a>
-            </Link>
+              <Link href="/">
+                <a>
+                  <img
+                    className="my-2"
+                    height="50px"
+                    width="100px"
+                    src={theme.assets.logo}
+                    alt="Shop Logo"
+                  />
+                </a>
+              </Link>
             </div>
             <LoginCart />
           </div>
-
         </div>
       </header>
     </>

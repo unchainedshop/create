@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useIntl } from 'react-intl';
 
 import useLogoutMutation from '../modules/auth/hooks/useLogout';
 import Footer from '../modules/layout/components/Footer';
@@ -8,6 +9,7 @@ import MetaTags from '../modules/common/components/MetaTags';
 
 const Logout = () => {
   const { logout } = useLogoutMutation();
+  const intl = useIntl();
   const router = useRouter();
 
   useEffect(() => {
@@ -21,7 +23,9 @@ const Logout = () => {
     <>
       <MetaTags title="Log out" />
       <Header />
-      <div className="container text-center m-5">🙏 You will be logged out</div>
+      <div className="container text-center m-5">
+        🙏 {intl.formatMessage({ id: 'logged_out' })}
+      </div>
       <Footer />
     </>
   );

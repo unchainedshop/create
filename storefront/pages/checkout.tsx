@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { useIntl } from 'react-intl';
 import useUser from '../modules/auth/hooks/useUser';
 import ManageCart from '../modules/cart/components/ManageCart';
 import Header from '../modules/layout/components/Header';
@@ -10,7 +11,7 @@ import MetaTags from '../modules/common/components/MetaTags';
 
 const Cart = () => {
   const router = useRouter();
-
+  const intl = useIntl();
   const { user, loading } = useUser();
 
   if (!user && !loading) router.push('/login?next=cart');
@@ -22,7 +23,7 @@ const Cart = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-8 col-lg-6 mx-auto">
-            <h1>Shopping cart</h1>
+            <h1>{intl.formatMessage({ id: 'shopping_cart' })}</h1>
             {loading ? (
               <LoadingItem />
             ) : (
@@ -37,7 +38,7 @@ const Cart = () => {
                     }
                   >
                     <a className="button button--primary button--big text-uppercase">
-                      Complete Order
+                      {intl.formatMessage({ id: 'complete_order' })}
                     </a>
                   </Link>
                 </div>

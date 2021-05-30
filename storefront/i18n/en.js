@@ -1,1 +1,4 @@
-export default {};
+export default {
+  ladies: 'Ladies',
+  mens: "Men's",
+};

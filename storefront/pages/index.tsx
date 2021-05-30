@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import getConfig from 'next/config';
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 
 import CatagoryListItem from '../modules/assortment/components/CatagoryListItem';
 import useAssortments from '../modules/assortment/hooks/useAssortments';
@@ -9,12 +10,14 @@ import MetaTags from '../modules/common/components/MetaTags';
 import Footer from '../modules/layout/components/Footer';
 import Header from '../modules/layout/components/Header';
 
+const {
+  publicRuntimeConfig: { theme },
+} = getConfig();
+
 const Home = () => {
   const { assortments, loading } = useAssortments();
   const [currentUrl, setcurrentUrl] = useState('');
-  const {
-    publicRuntimeConfig: { theme },
-  } = getConfig();
+  const intl = useIntl();
 
   useEffect(() => {
     setcurrentUrl(window.location.href);
@@ -22,7 +25,7 @@ const Home = () => {
 
   return (
     <>
-      <MetaTags title="Product Catagories" url={currentUrl} />
+      <MetaTags title="Home" url={currentUrl} />
       <Header />
       <div className="container">
         <img className="mb-2" src={theme.assets.hero} alt="Hero" />
@@ -51,20 +54,22 @@ const Home = () => {
             <Link href="/shop">
               <a>
                 <button
+                  aria-label={intl.formatMessage({ id: 'ladies' })}
                   type="button"
                   className="button button--secondary button--big mr-3"
                 >
-                  Damen
+                  {intl.formatMessage({ id: 'ladies' })}
                 </button>
               </a>
             </Link>
             <Link href="/shop">
               <a>
                 <button
+                  aria-label={intl.formatMessage({ id: 'mens' })}
                   type="button"
                   className="button button--secondary button--big"
                 >
-                  Herren
+                  {intl.formatMessage({ id: 'mens' })}
                 </button>
               </a>
             </Link>
@@ -81,7 +86,7 @@ const Home = () => {
                   type="button"
                   className="button button--secondary button--big mr-3"
                 >
-                  Damen
+                  {intl.formatMessage({ id: 'ladies' })}
                 </button>
               </a>
             </Link>
@@ -91,7 +96,7 @@ const Home = () => {
                   type="button"
                   className="button button--secondary button--big"
                 >
-                  Herren
+                  {intl.formatMessage({ id: 'mens' })}
                 </button>
               </a>
             </Link>

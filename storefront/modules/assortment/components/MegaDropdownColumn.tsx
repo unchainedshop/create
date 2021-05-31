@@ -48,7 +48,7 @@ const MegaDropdownItem = ({
         onTouchStart={handleTouchStart}
         data-in-hover-path={type === 'default' && hoverPath.includes(slug)}
       >
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items-baseline">
           {type === 'default' ? (
             <>
               <Thumbnail media={media} />

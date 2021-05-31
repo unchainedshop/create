@@ -46,6 +46,7 @@
   cursor: pointer;
   font-size: 1rem;
   margin-bottom: .25em;
+  text-transform: uppercase;
 }
 
 .mega-link.has-arrow {
@@ -77,11 +78,20 @@
 .mega-link:hover,
 .mega-link[data-in-hover-path='true'],
 .mega-link:focus {
-  background-color: var(--color-grey-lightest);
+  text-decoration: underline;
 }
 
 .mega-link:hover.has-arrow::after {
   opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  .mega-link {
+    font-size: 1.125rem;
+    letter-spacing: 0.75px;
+    line-height: 1.5;
+    font-weight: 500;
+  }
 }
 
 .mega-col {

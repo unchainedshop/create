@@ -103,6 +103,28 @@ const Home = () => {
               </div>
             </div>
           </div>
+          <div className="col-12 mt-5 border-top pt-5">
+            <div className="text-center">
+              <h2 className="mt-0">Bestseller</h2>
+            </div>
+            <div className="row text-center">
+              <div className="col-md-4">
+                <img src="/static/img/category-image.jpg" />
+                <h3 className="mb-1">Bestseller Product</h3>
+                <p className="mt-0">havanna shiny</p>
+              </div>
+              <div className="col-md-4">
+                <img src="/static/img/category-image.jpg" />
+                <h3 className="mb-1">Bestseller Product</h3>
+                <p className="mt-0">grey matt</p>
+              </div>
+              <div className="col-md-4">
+                <img src="/static/img/category-image.jpg" />
+                <h3 className="mb-1">Bestseller Product</h3>
+                <p className="mt-0">black matt</p>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>

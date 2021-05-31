@@ -33,7 +33,7 @@ const Subtree = ({
       <button
         aria-label="Expand"
         type="button"
-        className="no-button w-100 d-flex justify-content-between align-items-center"
+        className="no-button w-100 d-flex justify-content-between align-items-center text-uppercase"
         onClick={() => setShowSubtree(!showSubtree)}
       >
         <div className={levelClassMap[level]}>
@@ -49,7 +49,7 @@ const Subtree = ({
         <div>
           <Link href={createPathFromArray(path)}>
             <a
-              className={`border-top d-block link ${levelClassMap[level + 1]}`}
+              className={`border-top d-block text-uppercase link ${levelClassMap[level + 1]}`}
             >
               Show all
             </a>
@@ -76,7 +76,7 @@ const Subtree = ({
     </div>
   ) : (
     <Link href={createPathFromArray(path)}>
-      <a className={`border-top d-block ${levelClassMap[level]}`}>
+      <a className={`border-top d-block text-uppercase ${levelClassMap[level]}`}>
         <Thumbnail media={media} />
         {navigationTitle}
       </a>

@@ -17,8 +17,8 @@ const LanguageSwitch = () => {
         onChange={(e) => changeLanguage(e.target.value)}
         id="language-switcher"
       >
-        <option value="de">DE</option>
-        <option value="en">EN</option>
+        <option value="de">Deutsch</option>
+        <option value="en">English</option>
       </select>
     </div>
   );

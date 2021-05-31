@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import LanguageSwitch from '../../common/components/LanguageSwitch';
 
 const Footer = () => {
   return (
@@ -16,6 +17,9 @@ const Footer = () => {
         <Link href="/about">
           <a className="link m-4">About</a>
         </Link>
+      </div>
+      <div className="d-flex justify-content-around mt-3">
+        <LanguageSwitch />
       </div>
     </footer>
   );

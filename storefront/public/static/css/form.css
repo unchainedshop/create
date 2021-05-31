@@ -73,7 +73,7 @@
   border: 0;
   background: none;
   padding: 0 0.75em;
-  margin-left: 0.75em;
+  appearance: none;
 }
 
 .language-select::after {
@@ -87,8 +87,8 @@
 
 .select-wrap::after {
   position: absolute;
-  right: 14px;
-  top: 14px;
+  right: 0;
+  top: 25%;
   content: '';
   display: block;
   width: 9px;

@@ -125,7 +125,7 @@ const MobileNavigation = ({ doClose, isNavOpen }) => {
         <div className="border-top pt-4 pl-3">
           <OrderButton />
         </div>
-        <div className="my-3 float-right mr-4">
+        <div className="my-3 ml-3">
           <button
             aria-label="Deutsch"
             type="button"

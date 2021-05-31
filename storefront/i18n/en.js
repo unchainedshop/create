@@ -1,6 +1,6 @@
 export default {
   ladies: 'Ladies',
-  mens: "Men's",
+  mens: "Men",
   new_models: 'New models',
   shopping_cart: 'Shopping cart',
   complete_order: 'Complete order',

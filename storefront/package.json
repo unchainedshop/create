@@ -4,6 +4,10 @@
   "private": false,
   "dependencies": {
     "@apollo/client": "^3.3.6",
+    "@formatjs/intl-datetimeformat": "^4.1.2",
+    "@formatjs/intl-numberformat": "^7.1.2",
+    "@formatjs/intl-pluralrules": "^4.0.22",
+    "@formatjs/intl-relativetimeformat": "^9.1.2",
     "apollo-server-micro": "^2.19.0",
     "apollo-server-plugin-response-cache": "^0.5.6",
     "apollo-upload-client": "^13.0.0",
@@ -12,13 +16,16 @@
     "geoip-country": "^4.0.43",
     "graphql": "^14.7.0",
     "graphql-tools": "^4.0.8",
+    "i": "^0.3.6",
     "isomorphic-unfetch": "^3.1.0",
     "next": "^10.0.3",
     "next-with-apollo": "^5.1.0",
+    "npm": "^7.15.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-hook-form": "^5.7.2",
     "react-image-gallery": "^1.0.9",
+    "react-intl": "^5.18.1",
     "react-toastify": "^7.0.4"
   },
   "devDependencies": {

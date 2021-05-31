@@ -5,6 +5,7 @@ import usecatagoriesTree from '../hooks/useCatagoriesTree';
 import Icon from '../../common/components/Icon';
 import OrderButton from '../../orders/components/UserOrderButton';
 import Thumbnail from '../../common/components/thumbnail';
+import changeLanguage from '../../common/utils/changeLanguage';
 
 const createPathFromArray = (path = []) => {
   return `/${(path || []).join('/')}`;
@@ -57,7 +58,7 @@ const Subtree = ({
 
           {Object.entries(children)
             .sort(([, aNode], [, bNode]) => {
-              return aNode.index - bNode.index;
+              return aNode?.index - bNode.index;
             })
             .map(([subPageId, node]) => (
               <Subtree
@@ -123,6 +124,24 @@ const MobileNavigation = ({ doClose, isNavOpen }) => {
 
         <div className="border-top pt-4 pl-3">
           <OrderButton />
+        </div>
+        <div className="my-3 float-right mr-4">
+          <button
+            aria-label="Deutsch"
+            type="button"
+            className="no-button d-block mb-3"
+            onClick={() => changeLanguage('de')}
+          >
+            Deutsch
+          </button>
+          <button
+            aria-label="English"
+            type="button"
+            className="no-button d-block mb-3"
+            onClick={() => changeLanguage('en')}
+          >
+            English
+          </button>
         </div>
       </nav>
     </div>

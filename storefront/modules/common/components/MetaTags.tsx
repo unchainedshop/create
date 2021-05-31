@@ -1,5 +1,9 @@
 import Head from 'next/head';
 import getConfig from 'next/config';
+import { useRouter } from 'next/router';
+
+import supportedLanguages from '../../i18n/utils/supportedLanguages';
+import getCurrentDomain from '../utils/getCurrentDomain';
 
 const {
   publicRuntimeConfig: { FRONTEND_URL },
@@ -11,9 +15,18 @@ const MetaTags = ({
   title,
   description = '',
 }) => {
+  const { asPath } = useRouter();
   return (
     <Head>
       <title>{title || ' '}</title>
+      {supportedLanguages()?.map((lang) => (
+        <link
+          key={`${lang}${asPath}`}
+          rel="alternate"
+          hrefLang={lang}
+          href={`${getCurrentDomain()}/${lang}${asPath}`}
+        />
+      ))}
       <meta
         name="keywords"
         content="Unchained, Commerce, e-commerce, headless, unchained, shop, marketplace"

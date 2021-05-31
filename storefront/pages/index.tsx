@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import getConfig from 'next/config';
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 
 import CatagoryListItem from '../modules/assortment/components/CatagoryListItem';
 import useAssortments from '../modules/assortment/hooks/useAssortments';
@@ -9,13 +10,14 @@ import MetaTags from '../modules/common/components/MetaTags';
 import Footer from '../modules/layout/components/Footer';
 import Header from '../modules/layout/components/Header';
 
+const {
+  publicRuntimeConfig: { theme },
+} = getConfig();
 
 const Home = () => {
   const { assortments, loading } = useAssortments();
   const [currentUrl, setcurrentUrl] = useState('');
-  const {
-    publicRuntimeConfig: { theme },
-  } = getConfig();
+  const intl = useIntl();
 
   useEffect(() => {
     setcurrentUrl(window.location.href);
@@ -23,14 +25,10 @@ const Home = () => {
 
   return (
     <>
-      <MetaTags title="Product Catagories" url={currentUrl} />
+      <MetaTags title={intl.formatMessage({ id: 'home' })} url={currentUrl} />
       <Header />
       <div className="container">
-        <img
-            className="mb-2"
-            src={theme.assets.hero}
-            alt="Hero image"
-          />
+        <img className="mb-2" src={theme.assets.hero} alt="Hero" />
 
         {loading ? (
           <LoadingItem />
@@ -55,12 +53,24 @@ const Home = () => {
             />
             <Link href="/shop">
               <a>
-                <button className="button button--secondary button--big mr-3">Damen</button>
+                <button
+                  aria-label={intl.formatMessage({ id: 'ladies' })}
+                  type="button"
+                  className="button button--secondary button--big mr-3"
+                >
+                  {intl.formatMessage({ id: 'ladies' })}
+                </button>
               </a>
             </Link>
             <Link href="/shop">
               <a>
-                <button className="button button--secondary button--big">Herren</button>
+                <button
+                  aria-label={intl.formatMessage({ id: 'mens' })}
+                  type="button"
+                  className="button button--secondary button--big"
+                >
+                  {intl.formatMessage({ id: 'mens' })}
+                </button>
               </a>
             </Link>
           </div>
@@ -72,18 +82,30 @@ const Home = () => {
             />
             <Link href="/shop">
               <a>
-                <button className="button button--secondary button--big mr-3">Damen</button>
+                <button
+                  type="button"
+                  className="button button--secondary button--big mr-3"
+                >
+                  {intl.formatMessage({ id: 'ladies' })}
+                </button>
               </a>
             </Link>
             <Link href="/shop">
               <a>
-                <button className="button button--secondary button--big">Herren</button>
+                <button
+                  type="button"
+                  className="button button--secondary button--big"
+                >
+                  {intl.formatMessage({ id: 'mens' })}
+                </button>
               </a>
             </Link>
           </div>
           <div className="col-12 mt-5 border-top pt-5">
             <div className="text-center">
-              <h2 className="mt-0">Neue Modelle</h2>
+              <h2 className="mt-0">
+                {intl.formatMessage({ id: 'new_models' })}
+              </h2>
             </div>
             <div className="row text-center">
               <div className="col-md-4">
@@ -126,7 +148,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-
       </div>
       <Footer />
     </>

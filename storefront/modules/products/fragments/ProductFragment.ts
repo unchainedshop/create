@@ -3,13 +3,6 @@ import { gql } from '@apollo/client';
 const ProductFragment = gql`
   fragment ProductFragment on Product {
     _id
-    texts {
-      _id
-      title
-      subtitle
-      description
-      slug
-    }
     media {
       _id
       file {
@@ -31,6 +24,40 @@ const ProductFragment = gql`
         height
         length
         weight
+      }
+      texts(forceLocale: $forceLocale) {
+        _id
+        title
+        subtitle
+        description
+        slug
+      }
+    }
+    ... on PlanProduct {
+      texts(forceLocale: $forceLocale) {
+        _id
+        title
+        subtitle
+        description
+        slug
+      }
+    }
+    ... on BundleProduct {
+      texts(forceLocale: $forceLocale) {
+        _id
+        title
+        subtitle
+        description
+        slug
+      }
+    }
+    ... on ConfigurableProduct {
+      texts(forceLocale: $forceLocale) {
+        _id
+        title
+        subtitle
+        description
+        slug
       }
     }
   }

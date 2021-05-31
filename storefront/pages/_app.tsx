@@ -5,10 +5,13 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../public/static/css/all.css';
 
+import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 import { CartContext } from '../modules/cart/CartContext';
 import withApollo from '../modules/apollo/utils/withApollo';
+import getMessages from '../modules/i18n/utils/getMessages';
 
-const UnchainedApp = ({ Component, pageProps }) => {
+const UnchainedApp = ({ Component, pageProps, router }) => {
+  const messages = getMessages(router.locale);
   const toggleCart = (val) => {
     // eslint-disable-next-line no-use-before-define
     setCartContext({
@@ -23,16 +26,21 @@ const UnchainedApp = ({ Component, pageProps }) => {
   });
 
   return (
-    <CartContext.Provider value={cartContext}>
-      <ToastContainer position="top-center" autoClose={3000} newestOnTop />
-      <Component {...pageProps} />
-    </CartContext.Provider>
+    <IntlWrapper locale={router.locale} messages={messages} key="intl-provider">
+      <CartContext.Provider value={cartContext}>
+        <ToastContainer position="top-center" autoClose={3000} newestOnTop />
+        <Component {...pageProps} />
+      </CartContext.Provider>
+    </IntlWrapper>
   );
 };
 
 UnchainedApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext);
-  return { ...appProps };
+
+  return {
+    ...appProps,
+  };
 };
 
 export default withApollo(UnchainedApp);

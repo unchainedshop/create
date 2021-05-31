@@ -61,11 +61,7 @@ const MegaDropdownItem = ({
             </b>
           )}
 
-          {type === 'show_all' ? (
-            <small className="ml-2">Show all</small>
-          ) : (
-            ''
-          )}
+          {type === 'show_all' ? <small className="ml-2">Show all</small> : ''}
         </div>
       </a>
     </Link>

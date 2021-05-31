@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import UpdateProfileForm from '../../modules/auth/components/UpdateProfileForm';
 import useSetUsername from '../../modules/auth/hooks/useSetUsername';
@@ -12,6 +13,7 @@ import Header from '../../modules/layout/components/Header';
 const Account = () => {
   const { user } = useUser();
   const [updateUsername, setUpdateUserName] = useState(false);
+  const intl = useIntl();
   const [username, setUserName] = useState('');
   const { setUsername } = useSetUsername();
   const [updateProfile, setUpdateProfile] = useState(false);
@@ -27,20 +29,22 @@ const Account = () => {
 
   return (
     <>
-      <MetaTags title={user?.username || 'Account'} />
+      <MetaTags
+        title={user?.username || intl.formatMessage({ id: 'account' })}
+      />
       <Header />
       <div className="container">
         <div className="row">
           <div className="col-12">
             <div className="d-flex justify-content-between mb-5">
-              <b>Profile</b>
+              <b>{intl.formatMessage({ id: 'profile' })}</b>
               {updateProfile ? (
                 <button
                   type="button"
                   className="button text-danger"
                   onClick={() => setUpdateProfile(false)}
                 >
-                  Cancel
+                  {intl.formatMessage({ id: 'cancel' })}
                 </button>
               ) : (
                 <button
@@ -48,12 +52,12 @@ const Account = () => {
                   className="button button--primary"
                   onClick={() => setUpdateProfile(true)}
                 >
-                  Update Profile
+                  {intl.formatMessage({ id: 'update_profile' })}
                 </button>
               )}
               <Link href="account/change-password">
                 <a className="link" type="button">
-                  Change Password
+                  {intl.formatMessage({ id: 'change_password' })}
                 </a>
               </Link>
             </div>
@@ -65,7 +69,7 @@ const Account = () => {
             ) : (
               <div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span> Username </span>
+                  <span> {intl.formatMessage({ id: 'username' })} </span>
                   {!updateUsername ? (
                     <>
                       <span> {user?.username} </span>
@@ -74,7 +78,7 @@ const Account = () => {
                         className=" button button--primary"
                         onClick={() => setUpdateUserName(!updateUsername)}
                       >
-                        Change
+                        {intl.formatMessage({ id: 'change' })}
                       </button>
                     </>
                   ) : (
@@ -89,84 +93,99 @@ const Account = () => {
                         className="button button--primary"
                         onClick={() => updateName(username)}
                       >
-                        Update
+                        {intl.formatMessage({ id: 'update' })}
                       </button>
                       <button
                         type="button"
                         className=" button  text-danger"
                         onClick={() => setUpdateUserName(!updateUsername)}
                       >
-                        Cancel
+                        {intl.formatMessage({ id: 'cancel' })}
                       </button>
                     </>
                   )}
                 </div>
 
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>Guest </span>
-                  <span> {user?.isGuest ? <b>Yes</b> : <b>No</b>}</span>
+                  <span>{intl.formatMessage({ id: 'guest' })}</span>
+                  <span>
+                    {' '}
+                    {user?.isGuest ? (
+                      <b>{intl.formatMessage({ id: 'yes' })}</b>
+                    ) : (
+                      <b>{intl.formatMessage({ id: 'no' })}</b>
+                    )}
+                  </span>
                 </div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span> name </span> <span> {user?.name} </span>
+                  <span> {intl.formatMessage({ id: 'username' })} </span>{' '}
+                  <span> {user?.name} </span>
                 </div>
                 {user?.emails?.map((e, i) => (
                   <div
                     key={e.address}
                     className="d-flex flex-column flex-sm-row justify-content-between mb-2"
                   >
-                    <span>{i + 1}. Email </span>
+                    <span>
+                      {i + 1}. {intl.formatMessage({ id: 'email' })}{' '}
+                    </span>
                     <span>
                       {e.address}
-                      {e.verified ? <b> Verified</b> : <b> Not Verified</b>}
+                      {e.verified ? (
+                        <b> {intl.formatMessage({ id: 'verified' })}</b>
+                      ) : (
+                        <b> {intl.formatMessage({ id: 'not_verified' })}</b>
+                      )}
                     </span>
                   </div>
                 ))}
 
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>Number of orders </span>
+                  <span>{intl.formatMessage({ id: 'number_of_orders' })}</span>
                   <span> {user?.order?.length || 0}</span>
                 </div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>Display name</span>
+                  <span>{intl.formatMessage({ id: 'displayname' })}</span>
                   <span> {user?.profile?.displayName} </span>
                 </div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>First name</span>
+                  <span>{intl.formatMessage({ id: 'first_name' })}</span>
                   <span> {user?.profile?.address?.firstName} </span>
                 </div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>Last name</span>
+                  <span>{intl.formatMessage({ id: 'last_name' })}</span>
                   <span> {user?.profile?.address?.lastName} </span>
                 </div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>Company</span>
+                  <span>{intl.formatMessage({ id: 'company' })}</span>
                   <span> {user?.profile?.address?.Company} </span>
                 </div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>Main address</span>
+                  <span>{intl.formatMessage({ id: 'address' })}</span>
                   <span> {user?.profile?.address?.addressLine} </span>
                 </div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>Secondary address</span>
+                  <span>{intl.formatMessage({ id: 'secondary_message' })}</span>
                   <span> {user?.profile?.address?.addressLine2} </span>
                 </div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>Phone</span> <span> {user?.profile?.phoneMobile} </span>
+                  <span>{intl.formatMessage({ id: 'telephone' })}</span>{' '}
+                  <span> {user?.profile?.phoneMobile} </span>
                 </div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>Postal Code</span>
+                  <span>{intl.formatMessage({ id: 'postal_code' })}</span>
                   <span> {user?.profile?.address?.postalCode} </span>
                 </div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>City</span>{' '}
+                  <span>{intl.formatMessage({ id: 'city' })}</span>{' '}
                   <span> {user?.profile?.address?.city} </span>
                 </div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>Region</span>
+                  <span>{intl.formatMessage({ id: 'region' })}</span>
                   <span> {user?.profile?.address?.regionCode} </span>
                 </div>
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span>Country</span>
+                  <span>{intl.formatMessage({ id: 'country' })}</span>
                   <span>
                     {
                       COUNTRIES.filter(

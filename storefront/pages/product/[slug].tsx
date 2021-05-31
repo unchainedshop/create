@@ -2,6 +2,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import ImageGallery from 'react-image-gallery';
+import { useIntl } from 'react-intl';
 
 import useProductDetail from '../../modules/products/hooks/useProductDetail';
 import Header from '../../modules/layout/components/Header';
@@ -18,6 +19,7 @@ import NotFound from '../404';
 
 const Detail = () => {
   const router = useRouter();
+  const intl = useIntl();
   const [currentUrl, setcurrentUrl] = useState('');
   const { product, paths, loading } = useProductDetail({
     slug: router.query.slug,
@@ -28,7 +30,8 @@ const Detail = () => {
     setcurrentUrl(window.location.href);
   }, []);
 
-  if (!product && !loading) return <NotFound page="Product" />;
+  if (!product && !loading)
+    return <NotFound page={intl.formatMessage({ id: 'products' })} />;
   return (
     <>
       <MetaTags
@@ -77,7 +80,7 @@ const Detail = () => {
                 href="/"
                 className="button button--secondary button--big w-100"
               >
-                Termin resevieren
+                {intl.formatMessage({ id: 'make_reservation' })}
               </a>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-
 import Image from 'next/image';
+
 import CatagoriesList from '../../modules/assortment/components/CatagoriesList';
 import useAssortmentProducts from '../../modules/assortment/hooks/useAssortmentProducts';
 import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';

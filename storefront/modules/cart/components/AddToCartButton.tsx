@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
+import { useIntl } from 'react-intl';
 
 import useConditionalAddCartProduct from '../hooks/useConditionalAddCartProduct';
 import useUser from '../../auth/hooks/useUser';
@@ -8,6 +9,7 @@ import useRemoveCartItem from '../hooks/useRemoveCartItem';
 
 const AddToCartButton = ({ productId }) => {
   const { register, setValue } = useForm();
+  const intl = useIntl();
   const { cart } = useUser();
   const { conditionalAddCartProduct } = useConditionalAddCartProduct();
   const { updateCartItem } = useUpdateCartItem();
@@ -119,7 +121,7 @@ const AddToCartButton = ({ productId }) => {
       aria-label="In Cart"
       onClick={addToCart}
     >
-      <span>Add to cart</span>
+      <span>{intl.formatMessage({ id: 'add_to_cart' })}</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

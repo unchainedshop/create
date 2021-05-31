@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl';
 import COUNTRIES from '../data/countries-list';
 
 const EditableField = ({
@@ -8,6 +9,7 @@ const EditableField = ({
   type = 'text',
   required = false,
 }) => {
+  const intl = useIntl();
   if (type === 'country') {
     return isEditing ? (
       <select
@@ -16,7 +18,7 @@ const EditableField = ({
         defaultValue={value}
         ref={register({ required })}
       >
-        <option value="">Please Select...</option>
+        <option value="">{intl.formatMessage({ id: 'please_select' })}</option>
         {COUNTRIES.map((c) => (
           <option value={c.code} key={c.code}>
             {c.name}

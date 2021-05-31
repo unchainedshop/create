@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 
+import { useIntl } from 'react-intl';
 import useUser from '../modules/auth/hooks/useUser';
 import useSetOrderPaymentProvider from '../modules/orders/hooks/setPaymentOrderProvider';
 import useCheckOutCart from '../modules/cart/hooks/useCheckOutCart';
@@ -21,6 +22,7 @@ const titleForProvider = (_id) => {
 const Review = () => {
   const router = useRouter();
   const { user } = useUser();
+  const intl = useIntl();
 
   const { checkOutCart } = useCheckOutCart();
   const { setOrderPaymentProvider } = useSetOrderPaymentProvider();
@@ -108,17 +110,23 @@ const Review = () => {
 
   return (
     <>
-      <MetaTags title="Review order" />
+      <MetaTags title={intl.formatMessage({ id: 'order_review' })} />
       <Header />
 
       <div className="container mt-5">
         <div className="row">
           <div className="col-lg-8 mb-5">
-            <h2 className="h4 mt-0 mb-5">Checkout - Order Review</h2>
-            <h4>Delivery Address</h4>
+            <h2 className="h4 mt-0 mb-5">
+              {`${intl.formatMessage({
+                id: 'checkout',
+              })} - ${intl.formatMessage({ id: 'order_review' })}`}
+            </h2>
+            <h4>{intl.formatMessage({ id: 'delivery_address' })}</h4>
             <DeliveryAddressEditable user={user} />
 
-            <h4 className="mt-5">Billing Address</h4>
+            <h4 className="mt-5">
+              {intl.formatMessage({ id: 'billing_address' })}
+            </h4>
 
             <div className="form-check my-3">
               <label className="form-check-label mb-5" htmlFor="same">
@@ -130,12 +138,16 @@ const Review = () => {
                   name="same"
                   onChange={(e) => sameAsDeliveryChange(e)}
                 />
-                <span className="ml-3">Same as delivery address</span>
+                <span className="ml-3">
+                  {intl.formatMessage({ id: 'same_as_delivery' })}
+                </span>
               </label>
             </div>
             <BillingAddressEditable user={user} />
 
-            <h4 className="mt-5">Payment Method</h4>
+            <h4 className="mt-5">
+              {intl.formatMessage({ id: 'payment_method' })}
+            </h4>
             <section className="">
               {user?.cart?.supportedPaymentProviders.map(({ _id }) => (
                 <div key={_id} className="form-check my-2 my-lg-1">
@@ -166,7 +178,7 @@ const Review = () => {
                   className="button button--primary button--big"
                   onClick={() => checkout()}
                 >
-                  Confirm Purchase
+                  {intl.formatMessage({ id: 'confirm_purchase' })}
                 </button>
               ) : (
                 ''
@@ -174,7 +186,9 @@ const Review = () => {
             </div>
           </div>
           <div className="col-lg-4">
-            <h4 className="mt-0 mb-5">Order Summary</h4>
+            <h4 className="mt-0 mb-5">
+              {intl.formatMessage({ id: 'order_summary' })}
+            </h4>
             <ManageCart user={user} />
           </div>
         </div>

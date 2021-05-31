@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import { useIntl } from 'react-intl';
 
 import useChangePassword from '../../modules/auth/hooks/useChangePassword';
 import LoadingItem from '../../modules/common/components/LoadingItem';
@@ -9,6 +10,7 @@ import Header from '../../modules/layout/components/Header';
 
 const ChangePassword = () => {
   const { register, handleSubmit, errors, watch } = useForm();
+  const intl = useIntl();
   const password = useRef({});
   password.current = watch('newPassword', '');
   const { changePassword, loading } = useChangePassword();
@@ -27,14 +29,16 @@ const ChangePassword = () => {
         ) : (
           <div className="row">
             <div className="col-md-8 offset-md-2">
-              <h1>Change Password</h1>
+              <h1>{intl.formatMessage({ id: 'change_password' })}</h1>
               <form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <div
                   className={`mb-3 col-md-6 ${
                     errors.password2 ? 'form-error' : ''
                   }`}
                 >
-                  <label className="form-label">Enter current password</label>
+                  <label className="form-label">
+                    {intl.formatMessage({ id: 'current_password' })}
+                  </label>
                   <input
                     className="form-control"
                     name="oldPassword"
@@ -47,7 +51,9 @@ const ChangePassword = () => {
                     errors.password2 ? 'form-error' : ''
                   }`}
                 >
-                  <label className="form-label">Enter a new Password</label>
+                  <label className="form-label">
+                    {intl.formatMessage({ id: 'new_password' })}
+                  </label>
                   <input
                     className="form-control"
                     name="newPassword"
@@ -60,7 +66,9 @@ const ChangePassword = () => {
                     errors.password2 ? 'form-error' : ''
                   }`}
                 >
-                  <label className="form-label">Repeat Password</label>
+                  <label className="form-label">
+                    {intl.formatMessage({ id: 'repeat_password' })}
+                  </label>
                   <input
                     className="form-control"
                     name="password2"
@@ -68,7 +76,7 @@ const ChangePassword = () => {
                     ref={register({
                       validate: (value) =>
                         value === password.current ||
-                        'The passwords do not match',
+                        intl.formatMessage({ id: 'password_not_match' }),
                     })}
                   />
                   {errors.password2 && <p>{errors.password2.message}</p>}
@@ -77,7 +85,7 @@ const ChangePassword = () => {
                   className="button button--primary button--big mt-3"
                   type="submit"
                 >
-                  Reset Password
+                  {intl.formatMessage({ id: 'reset_password' })}
                 </button>
               </form>
             </div>

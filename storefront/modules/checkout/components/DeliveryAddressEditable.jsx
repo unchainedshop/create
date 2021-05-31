@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useIntl } from 'react-intl';
 
 import useUpdateCart from '../hooks/useUpdateCart';
 import useUpdateOrderDeliveryShipping from '../hooks/useUpdateDeliveryShipping';
@@ -7,6 +8,7 @@ import EditableField from '../../common/components/EditableField';
 
 const DeliveryAddressEditable = ({ user }) => {
   const [isEditing, setEditing] = useState(false);
+  const intl = useIntl();
   const { updateCart } = useUpdateCart();
   const { register, handleSubmit } = useForm();
   const { updateOrderDeliveryAddress } = useUpdateOrderDeliveryShipping();
@@ -66,51 +68,58 @@ const DeliveryAddressEditable = ({ user }) => {
   const addressFields = [
     {
       name: 'firstName',
-      translation: 'First name',
+      translation: intl.formatMessage({ id: 'first_name' }),
       type: 'text',
       required: true,
     },
     {
       name: 'lastName',
-      translation: 'Last name',
+      translation: intl.formatMessage({ id: 'last_name' }),
       type: 'text',
       required: true,
     },
     {
       name: 'company',
-      translation: 'Company (optional)',
+      translation: `${intl.formatMessage({
+        id: 'company',
+      })} ${intl.formatMessage({ id: 'optional' })}`,
       type: 'text',
       required: false,
     },
     {
       name: 'addressLine',
-      translation: 'Address',
+      translation: intl.formatMessage({ id: 'address' }),
       type: 'text',
       required: true,
     },
     {
       name: 'postalCode',
-      translation: 'Postal code',
+      translation: intl.formatMessage({ id: 'postal_code' }),
       type: 'text',
       required: true,
     },
-    { name: 'city', translation: 'City', type: 'text', required: true },
+    {
+      name: 'city',
+      translation: intl.formatMessage({ id: 'city' }),
+      type: 'text',
+      required: true,
+    },
     {
       name: 'countryCode',
-      translation: 'Country',
+      translation: intl.formatMessage({ id: 'country' }),
       type: 'country',
       required: true,
     },
 
     {
       name: 'emailAddress',
-      translation: 'Email',
+      translation: intl.formatMessage({ id: 'email' }),
       type: 'email',
       required: true,
     },
     {
       name: 'telNumber',
-      translation: 'Telephone',
+      translation: intl.formatMessage({ id: 'telephone' }),
       type: 'text',
       required: true,
     },
@@ -161,7 +170,9 @@ const DeliveryAddressEditable = ({ user }) => {
         </div>
       </div>
       <button className="button button--secondary mt-3" type="submit">
-        {isEditing ? 'Save' : 'Change'}
+        {isEditing
+          ? intl.formatMessage({ id: 'save' })
+          : intl.formatMessage({ id: 'change' })}
       </button>
     </form>
   );

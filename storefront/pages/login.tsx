@@ -13,7 +13,7 @@ const LogIn = () => {
 
   return (
     <>
-      <MetaTags title="Log in" />
+      <MetaTags title={intl.formatMessage({ id: 'log_in' })} />
       <Header />
       <div className="container">
         <div className="row">

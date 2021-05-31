@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useIntl } from 'react-intl';
 
 import LoadingItem from '../../modules/common/components/LoadingItem';
 import MetaTags from '../../modules/common/components/MetaTags';
@@ -10,15 +11,18 @@ import NotFound from '../404';
 
 const OrderDetail = () => {
   const router = useRouter();
-
+  const intl = useIntl();
   const { order, loading } = useOrderDetail({
     orderId: router.query?.id,
   });
 
-  if (!order && !loading) return <NotFound page="Order" />;
+  if (!order && !loading)
+    return <NotFound page={intl.formatMessage({ id: 'order' })} />;
   return (
     <>
-      <MetaTags title={`Order: ${order?.orderNumber}`} />
+      <MetaTags
+        title={`${intl.formatMessage({ id: 'order' })}: ${order?.orderNumber}`}
+      />
       <Header />
       {loading ? <LoadingItem /> : <OrderDetailComponent order={order} />}
       <Footer />

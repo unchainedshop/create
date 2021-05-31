@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import { useContext } from 'react';
+import { useIntl } from 'react-intl';
 
 import { CartContext } from '../../cart/CartContext';
 import useUser from '../hooks/useUser';
 
 const LoginCart = () => {
   const { user } = useUser();
+  const intl = useIntl();
   const context = useContext(CartContext);
 
   return user ? (
@@ -33,10 +35,14 @@ const LoginCart = () => {
       {!user.isGuest ? (
         <>
           <Link href="/logout">
-            <a className="button button--secondary ml-3 my-1">Sign out</a>
+            <a className="button button--secondary ml-3 my-1">
+              {intl.formatMessage({ id: 'sign_out' })}
+            </a>
           </Link>
           <Link href="/account">
-            <a className="button button--secondary ml-3 my-1">Account</a>
+            <a className="button button--secondary ml-3 my-1">
+              {intl.formatMessage({ id: 'account' })}
+            </a>
           </Link>
         </>
       ) : (
@@ -46,10 +52,14 @@ const LoginCart = () => {
   ) : (
     <div className="d-flex justify-content-end flex-wrap">
       <Link href="/sign-up">
-        <a className="button button--secondary my-1 mr-2">Sign Up</a>
+        <a className="button button--secondary my-1 mr-2">
+          {intl.formatMessage({ id: 'sign_up' })}
+        </a>
       </Link>
       <Link href="/login">
-        <a className="button button--secondary my-1">Log in</a>
+        <a className="button button--secondary my-1">
+          {intl.formatMessage({ id: 'log_in' })}
+        </a>
       </Link>
     </div>
   );

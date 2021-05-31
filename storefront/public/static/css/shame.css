@@ -1,3 +1,8 @@
+.image-gallery,
+.image-gallery-content.fullscreen {
+  background-color: #ffffff;
+}
+
 .image-gallery-icon {
   color: var(--color-dark);
   filter: none;
@@ -17,6 +22,14 @@
 
 .image-gallery-right-nav {
   right: -1em;
+}
+
+.image-gallery-content.fullscreen .image-gallery-left-nav {
+  left: 0;
+}
+
+.image-gallery-content.fullscreen .image-gallery-right-nav {
+  right: 0;
 }
 
 .image-gallery-left-nav .image-gallery-svg, .image-gallery-right-nav .image-gallery-svg {

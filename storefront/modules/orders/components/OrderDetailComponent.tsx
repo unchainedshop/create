@@ -9,7 +9,7 @@ import getMediaUrl from '../../common/utils/getMediaUrl';
 const OrderDetailComponent = ({ order }) => {
   const intl = useIntl();
   return (
-    <div>
+    <div className="mt-5">
       <h2 className="text-center">
         {intl.formatMessage({ id: 'order_details' })}
       </h2>
@@ -36,12 +36,12 @@ const OrderDetailComponent = ({ order }) => {
                     height="350px"
                   />
                 </div>
-                <div className="w-50 mr-2">
+                <div className="w-50 m-2">
                   <div>
-                    {item.quantity} x{item.product.texts.title}
+                    {item.quantity} x {item.product.texts.title}
                   </div>
                 </div>
-                <div className="font-weight-bold">
+                <div className="font-weight-bold my-2">
                   {renderPrice(item.total)}
                 </div>
               </div>
@@ -72,7 +72,7 @@ const OrderDetailComponent = ({ order }) => {
                 </div>
               </div>
             </div>
-            <div className="d-flex justify-content-between flex-wrap">
+            <div className="d-flex justify-content-between flex-wrap mt-5">
               <div className="w-100-for-mobile w-50">
                 <ListItem title="Status" value={order?.status} />
                 <ListItem

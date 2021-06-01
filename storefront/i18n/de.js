@@ -73,7 +73,7 @@ export default {
   payment_method: 'Versandart',
   payment_status: 'Zahlungsstatus',
   status: 'Status',
-  my_order: 'Meine Bestellungen',
+  my_orders: 'Meine Bestellungen',
   change_password: 'Change password',
   current_password: 'Jetziges Passwort',
   new_password: 'Neues Kennwort',

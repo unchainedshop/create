@@ -70,7 +70,7 @@ export default {
   payment_method: 'Payment method',
   payment_status: 'Payment status',
   status: 'Status',
-  my_order: 'My orders',
+  my_orders: 'My orders',
   change_password: 'Change password',
   current_password: 'Current password',
   new_password: 'New password',

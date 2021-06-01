@@ -90,7 +90,7 @@ export default {
   profile: 'Profil',
   guest: 'Gast',
   make_reservation: 'Termin resevieren',
-  product_catagories: 'Produktkategorien',
+  product_categories: 'Produktkategorien',
   '404_sorry': 'Entschuldigung, die gesuchte Seite wurde nicht gefunden!',
   back_to_home: 'Zurück nach Hause',
   '505_sorry':
@@ -111,4 +111,5 @@ export default {
   register: 'Registrieren',
   email_verified_success: 'Ihre E-Mail wurde erfolgreich überprüft',
   confirmation_sent: 'Eine Bestätigungs-E-Mail wird gesendet',
+  my_orders: 'Meine Bestellungen',
 };

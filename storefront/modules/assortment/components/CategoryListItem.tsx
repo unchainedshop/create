@@ -4,18 +4,18 @@ import Link from 'next/link';
 
 import getMediaUrl from '../../common/utils/getMediaUrl';
 
-const CatagoryListItem = ({ catagory, className = '' }) => {
+const CategoryListItem = ({ category, className = '' }) => {
   return (
     <div className={className}>
-      <Link href={`shop/${catagory.texts.slug}`}>
+      <Link href={`shop/${category.texts.slug}`}>
         <a>
           <div>
             <Image
               src={
-                getMediaUrl(catagory) ||
+                getMediaUrl(category) ||
                 '/static/img/sun-glass-placeholder.jpeg'
               }
-              alt={catagory?.texts.title}
+              alt={category?.texts.title}
               layout="responsive"
               objectFit="contain"
               quality={100}
@@ -24,7 +24,7 @@ const CatagoryListItem = ({ catagory, className = '' }) => {
             />
           </div>
           <div className="text-center">
-            <h2 className="mt-2 mb-3">{catagory.texts?.title}</h2>
+            <h2 className="mt-2 mb-3">{category.texts?.title}</h2>
           </div>
         </a>
       </Link>
@@ -32,4 +32,4 @@ const CatagoryListItem = ({ catagory, className = '' }) => {
   );
 };
 
-export default CatagoryListItem;
+export default CategoryListItem;

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import CatagoriesList from '../../modules/assortment/components/CatagoriesList';
+import CategoriesList from '../../modules/assortment/components/CategoriesList';
 import useAssortmentProducts from '../../modules/assortment/hooks/useAssortmentProducts';
 import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';
 import AssortmentBreadcrumbs from '../../modules/assortment/components/AssortmentBreadcrumbs';
@@ -10,17 +10,17 @@ import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
 import ProductList from '../../modules/products/components/ProductList';
 import MetaTags from '../../modules/common/components/MetaTags';
-import useCatagoriesTree from '../../modules/assortment/hooks/useCatagoriesTree';
+import useCategoriesTree from '../../modules/assortment/hooks/useCategoriesTree';
 import LoadingItem from '../../modules/common/components/LoadingItem';
 import getMediaUrl from '../../modules/common/utils/getMediaUrl';
 
-const CatagoryDetail = () => {
+const CategoryDetail = () => {
   const router = useRouter();
   const { slug: slugs } = router.query;
   const slug: string | string[] = slugs[slugs.length - 1];
   const [currentUrl, setcurrentUrl] = useState('');
 
-  const { assortmentTree, loading: catagoryTreeLoading } = useCatagoriesTree({
+  const { assortmentTree, loading: categoryTreeLoading } = useCategoriesTree({
     slugs: slug,
     includeLeaves: true,
   });
@@ -59,10 +59,10 @@ const CatagoryDetail = () => {
             />
           </div>
           <div className="col-md-4 col-lg-3">
-            {catagoryTreeLoading ? (
+            {categoryTreeLoading ? (
               <LoadingItem />
             ) : (
-              <CatagoriesList
+              <CategoriesList
                 assortment={assortmentTree.children}
                 currentPath={slugs.join('/')}
               />
@@ -99,4 +99,4 @@ const CatagoryDetail = () => {
   );
 };
 
-export default CatagoryDetail;
+export default CategoryDetail;

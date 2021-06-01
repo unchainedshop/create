@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 import { useIntl } from 'react-intl';
-import usecatagoriesTree from '../hooks/useCatagoriesTree';
+import useCategoriesTree from '../hooks/useCategoriesTree';
 import Icon from '../../common/components/Icon';
 import OrderButton from '../../orders/components/UserOrderButton';
 import Thumbnail from '../../common/components/thumbnail';
@@ -93,7 +93,7 @@ const Subtree = ({
 
 const MobileNavigation = ({ doClose, isNavOpen }) => {
   const intl = useIntl();
-  const { assortmentTree } = usecatagoriesTree({ root: 'shop' });
+  const { assortmentTree } = useCategoriesTree({ root: 'shop' });
 
   return (
     <div className="mobile-menu-holder" data-is-open={isNavOpen}>

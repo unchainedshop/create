@@ -87,7 +87,7 @@ export default {
   profile: 'Profile',
   guest: 'Guest',
   make_reservation: 'Make a reservation',
-  product_catagories: 'Product catagories',
+  product_categories: 'Product categories',
   '404_sorry': 'Sorry, the page you were looking for was not found! ',
   back_to_home: 'Back to home',
   '505_sorry':
@@ -107,4 +107,5 @@ export default {
   register: 'Register',
   email_verified_success: 'Your email has been successfully verified',
   confirmation_sent: 'A confirmation email is sent',
+  my_orders: 'My Orders',
 };

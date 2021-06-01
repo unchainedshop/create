@@ -3,7 +3,7 @@ import getConfig from 'next/config';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
-import CatagoryListItem from '../modules/assortment/components/CatagoryListItem';
+import CategoryListItem from '../modules/assortment/components/CategoryListItem';
 import useAssortments from '../modules/assortment/hooks/useAssortments';
 import LoadingItem from '../modules/common/components/LoadingItem';
 import MetaTags from '../modules/common/components/MetaTags';
@@ -34,10 +34,10 @@ const Home = () => {
           <LoadingItem />
         ) : (
           <div className="row">
-            {assortments.map((catagory) => (
-              <CatagoryListItem
-                key={catagory._id}
-                catagory={catagory}
+            {assortments.map((category) => (
+              <CategoryListItem
+                key={category._id}
+                category={category}
                 className="mt-3 col-md-6 mx-auto"
               />
             ))}
@@ -46,11 +46,7 @@ const Home = () => {
 
         <div className="row text-center border-top mt-5">
           <div className="col-md-6">
-            <img
-              className="my-2 mr-2"
-              src={theme.assets.teaserTwo}
-              alt=""
-            />
+            <img className="my-2 mr-2" src={theme.assets.teaserTwo} alt="" />
             <Link href="/shop">
               <a>
                 <button
@@ -75,11 +71,7 @@ const Home = () => {
             </Link>
           </div>
           <div className="col-md-6">
-            <img
-              className="my-2 mr-2"
-              src={theme.assets.teaserOne}
-              alt=""
-            />
+            <img className="my-2 mr-2" src={theme.assets.teaserOne} alt="" />
             <Link href="/shop">
               <a>
                 <button

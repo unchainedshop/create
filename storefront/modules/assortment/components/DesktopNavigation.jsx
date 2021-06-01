@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 import DesktopNavigationContext from './DesktopNavigationContext';
 import OrderButton from '../../orders/components/UserOrderButton';
 import MegaDropdown from './MegaDropdown';
-import useCatagoriesTree from '../hooks/useCatagoriesTree';
+import useCategoriesTree from '../hooks/useCategoriesTree';
 
 const arrayEqual = (a, b) =>
   a.length === b.length &&
@@ -16,7 +16,7 @@ const DesktopNavigation = () => {
   const [hoverPath, setHoverPath] = useState([]);
   const [isTouching, setTouching] = useState(false);
 
-  const { assortmentTree } = useCatagoriesTree({ root: 'shop' });
+  const { assortmentTree } = useCategoriesTree({ root: 'shop' });
 
   const handleClick = (node) => (event) => {
     if (isTouching && node.children) {

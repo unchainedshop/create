@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import CatagoryListItem from '../../modules/assortment/components/CatagoryListItem';
+import CategoryListItem from '../../modules/assortment/components/CategoryListItem';
 import useAssortments from '../../modules/assortment/hooks/useAssortments';
 import LoadingItem from '../../modules/common/components/LoadingItem';
 import MetaTags from '../../modules/common/components/MetaTags';
@@ -19,7 +19,7 @@ const Products = () => {
   return (
     <>
       <MetaTags
-        title={intl.formatMessage({ id: 'product_catagories' })}
+        title={intl.formatMessage({ id: 'product_categories' })}
         url={currentUrl}
       />
       <Header />
@@ -28,10 +28,10 @@ const Products = () => {
           <LoadingItem />
         ) : (
           <div className="row">
-            {assortments.map((catagory) => (
-              <CatagoryListItem
-                key={catagory._id}
-                catagory={catagory}
+            {assortments.map((category) => (
+              <CategoryListItem
+                key={category._id}
+                category={category}
                 className="col-md-6 col-lg-4"
               />
             ))}

@@ -32,7 +32,7 @@ export default {
   total: 'Gesamt',
   total_amount: 'Gesamtmenge',
   add_to_cart: 'In den Warenkorb legen',
-  menu: 'Speisekarte',
+  menu: 'Menü',
   shop: 'Geschäft',
   show_all: 'Zeige alles',
   account: 'Konto',

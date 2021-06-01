@@ -28,13 +28,20 @@ const Header = () => {
   if (router?.events) {
     router.events.on('routeChangeStart', () => setNavOpen(false));
   }
+
+  const topNavigationText = intl.formatMessage({ id: 'top_notification' });
+  const showTopNav = !topNavigationText || topNavigationText !== "top_notification";
+
   return (
     <>
-      <div className="color-bg-dark">
+      {showTopNav && (
+        <div className="color-bg-dark">
         <div className="container color-white py-1 text-center font-weight-bold">
-          <p>{intl.formatMessage({ id: 'top_notification' })}</p>
+          <p>{topNavigationText}</p>
         </div>
       </div>
+      )}
+
       <header className="header sticky-top">
         <SideCart isOpen={context.isCartOpen} />
         <Head>

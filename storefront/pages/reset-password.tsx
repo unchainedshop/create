@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import { useIntl } from 'react-intl';
 
 import useResetPassword from '../modules/auth/hooks/useResetPassword';
 import MetaTags from '../modules/common/components/MetaTags';
@@ -9,6 +10,7 @@ import Header from '../modules/layout/components/Header';
 
 const PasswordReset = () => {
   const router = useRouter();
+  const intl = useIntl();
   const { token } = router.query;
   const { register, handleSubmit, errors, watch } = useForm();
   const password = useRef({});
@@ -22,7 +24,7 @@ const PasswordReset = () => {
 
   return (
     <>
-      <MetaTags title="Reset password" />
+      <MetaTags title={intl.formatMessage({ id: 'reset_password' })} />
       <Header />
       <div className="container">
         <div className="row">
@@ -34,7 +36,9 @@ const PasswordReset = () => {
                   errors.password2 ? 'form-error' : ''
                 }`}
               >
-                <label className="form-label">Enter a new Password</label>
+                <label className="form-label">
+                  {intl.formatMessage({ id: 'new_password' })}
+                </label>
                 <input
                   className="form-control"
                   name="newPassword"
@@ -47,7 +51,9 @@ const PasswordReset = () => {
                   errors.password2 ? 'form-error' : ''
                 }`}
               >
-                <label className="form-label">Repeat Password</label>
+                <label className="form-label">
+                  {intl.formatMessage({ id: 'repeat_password' })}
+                </label>
                 <input
                   className="form-control"
                   name="password2"
@@ -64,7 +70,7 @@ const PasswordReset = () => {
                 className="button button--primary button--big mt-3"
                 type="submit"
               >
-                Reset Password
+                {intl.formatMessage({ id: 'reset_password' })}
               </button>
             </form>
           </div>

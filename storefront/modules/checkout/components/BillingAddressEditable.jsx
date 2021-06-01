@@ -1,11 +1,13 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import useUpdateCart from '../hooks/useUpdateCart';
 import EditableField from '../../common/components/EditableField';
 
 const BillingAddressEditable = ({ user }) => {
   const [isEditing, setEditing] = useState(false);
+  const intl = useIntl();
   const { updateCart } = useUpdateCart();
   const { register, handleSubmit } = useForm();
 
@@ -40,38 +42,45 @@ const BillingAddressEditable = ({ user }) => {
   const addressFields = [
     {
       name: 'firstName',
-      translation: 'First Name',
+      translation: intl.formatMessage({ id: 'first_name' }),
       type: 'text',
       required: true,
     },
     {
       name: 'lastName',
-      translation: 'Last Name',
+      translation: intl.formatMessage({ id: 'last_name' }),
       type: 'text',
       required: true,
     },
     {
       name: 'company',
-      translation: 'Company (optional)',
+      translation: `${intl.formatMessage({
+        id: 'company',
+      })} ${intl.formatMessage({ id: 'optional' })} `,
       type: 'text',
       required: false,
     },
     {
       name: 'addressLine',
-      translation: 'Address',
+      translation: intl.formatMessage({ id: 'address' }),
       type: 'text',
       required: true,
     },
     {
       name: 'postalCode',
-      translation: 'Postal code',
+      translation: intl.formatMessage({ id: 'postal_code' }),
       type: 'text',
       required: true,
     },
-    { name: 'city', translation: 'City', type: 'text', required: true },
+    {
+      name: 'city',
+      translation: intl.formatMessage({ id: 'city' }),
+      type: 'text',
+      required: true,
+    },
     {
       name: 'countryCode',
-      translation: 'Country',
+      translation: intl.formatMessage({ id: 'country' }),
       type: 'country',
       required: true,
     },
@@ -110,7 +119,9 @@ const BillingAddressEditable = ({ user }) => {
             ))}
           </div>
           <button className="button button--secondary mt-3 mb-5" type="submit">
-            {isEditing ? 'Save' : 'Change'}
+            {isEditing
+              ? intl.formatMessage({ id: 'save' })
+              : intl.formatMessage({ id: 'change' })}
           </button>
         </form>
       )}

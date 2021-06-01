@@ -1,11 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 
 import Header from '../modules/layout/components/Header';
 import Footer from '../modules/layout/components/Footer';
 import MetaTags from '../modules/common/components/MetaTags';
 
 const ServerError = () => {
+  const intl = useIntl();
   return (
     <>
       <MetaTags title="500: oops, something went wrong" />
@@ -17,12 +19,11 @@ const ServerError = () => {
           </h1>
           <div className="mb-5">
             <div className="text-center">
-              <p>
-                oops, Something went wrong when performing your request, please
-                try again later!
-              </p>
+              <p>{intl.formatMessage({ id: '505_sorry' })}</p>
               <Link href="/">
-                <a className="button button--primary">Back to home</a>
+                <a className="button button--primary">
+                  {intl.formatMessage({ id: 'back_to_home' })}
+                </a>
               </Link>
             </div>
           </div>

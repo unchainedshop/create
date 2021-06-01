@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 
 import DesktopNavigationContext from './DesktopNavigationContext';
 import OrderButton from '../../orders/components/UserOrderButton';
@@ -11,6 +12,7 @@ const arrayEqual = (a, b) =>
   a.reduce((acc, curr, index) => acc && curr === b[index], true);
 
 const DesktopNavigation = () => {
+  const intl = useIntl();
   const [hoverPath, setHoverPath] = useState([]);
   const [isTouching, setTouching] = useState(false);
 
@@ -72,7 +74,7 @@ const DesktopNavigation = () => {
               }}
               onClick={handleClick(assortmentTree)}
             >
-              Menu
+              {intl.formatMessage({ id: 'menu' })}
             </a>
           </Link>
           {hoverPath.includes(assortmentTree.slug) && (

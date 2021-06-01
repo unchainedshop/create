@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
+import { useIntl } from 'react-intl';
 import usecatagoriesTree from '../hooks/useCatagoriesTree';
 import Icon from '../../common/components/Icon';
 import OrderButton from '../../orders/components/UserOrderButton';
@@ -19,6 +20,7 @@ const Subtree = ({
   subtree,
   media = [],
 }) => {
+  const intl = useIntl();
   const [showSubtree, setShowSubtree] = useState(false);
 
   const level = path.length - 2;
@@ -50,9 +52,11 @@ const Subtree = ({
         <div>
           <Link href={createPathFromArray(path)}>
             <a
-              className={`border-top d-block text-uppercase link ${levelClassMap[level + 1]}`}
+              className={`border-top d-block text-uppercase link ${
+                levelClassMap[level + 1]
+              }`}
             >
-              Show all
+              {intl.formatMessage({ id: 'show_all' })}
             </a>
           </Link>
 
@@ -77,7 +81,9 @@ const Subtree = ({
     </div>
   ) : (
     <Link href={createPathFromArray(path)}>
-      <a className={`border-top d-block text-uppercase ${levelClassMap[level]}`}>
+      <a
+        className={`border-top d-block text-uppercase ${levelClassMap[level]}`}
+      >
         <Thumbnail media={media} />
         {navigationTitle}
       </a>
@@ -86,6 +92,7 @@ const Subtree = ({
 };
 
 const MobileNavigation = ({ doClose, isNavOpen }) => {
+  const intl = useIntl();
   const { assortmentTree } = usecatagoriesTree({ root: 'shop' });
 
   return (
@@ -96,7 +103,7 @@ const MobileNavigation = ({ doClose, isNavOpen }) => {
         className="no-button mobile-menu-close"
         onClick={doClose}
       >
-        <span className="d-none">close</span>
+        <span className="d-none">{intl.formatMessage({ id: 'close' })}</span>
       </button>
       <nav id="menu" className="mobile-menu">
         <div>
@@ -107,7 +114,9 @@ const MobileNavigation = ({ doClose, isNavOpen }) => {
             onClick={doClose}
           >
             <Icon className="icon--small" icon="close" />
-            <small className="ml-2">close</small>
+            <small className="ml-2">
+              {intl.formatMessage({ id: 'close' })}
+            </small>
           </button>
 
           {Object.entries(assortmentTree.children).map(([pageId, node]) => (
@@ -117,6 +126,7 @@ const MobileNavigation = ({ doClose, isNavOpen }) => {
               subtree={node?.children}
               key={pageId}
               pageId={pageId}
+              intl
               {...node}
             />
           ))}

@@ -1,22 +1,24 @@
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 
 import formatDate from '../../common/utils/formatDate';
 import renderPrice from '../../common/utils/renderPrice';
 
 const OrderList = ({ orders }) => {
+  const intl = useIntl();
   return (
     <div className="table-responsive container mt-5">
       <table className="table table-bordered table-hover text-center table-striped">
         <thead>
           <tr>
-            <th>Order number</th>
-            <th>Created</th>
-            <th>Delivery method</th>
-            <th>Payment method</th>
-            <th>Payment status</th>
-            <th>Total</th>
-            <th>Country</th>
-            <th>Status</th>
+            <th>{intl.formatMessage({ id: 'order_number' })}</th>
+            <th>{intl.formatMessage({ id: 'created' })}</th>
+            <th>{intl.formatMessage({ id: 'delivery_method' })}</th>
+            <th>{intl.formatMessage({ id: 'payment_method' })}</th>
+            <th>{intl.formatMessage({ id: 'payment_status' })}</th>
+            <th>{intl.formatMessage({ id: 'total' })}</th>
+            <th>{intl.formatMessage({ id: 'country' })}</th>
+            <th>{intl.formatMessage({ id: 'status' })}</th>
           </tr>
         </thead>
         <tbody>

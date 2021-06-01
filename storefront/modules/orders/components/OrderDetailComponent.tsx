@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useIntl } from 'react-intl';
 
 import renderPrice from '../../common/utils/renderPrice';
 import ListItem from '../../common/components/ListItem';
@@ -6,9 +7,12 @@ import formatDate from '../../common/utils/formatDate';
 import getMediaUrl from '../../common/utils/getMediaUrl';
 
 const OrderDetailComponent = ({ order }) => {
+  const intl = useIntl();
   return (
     <div>
-      <h2 className="text-center">Order details</h2>
+      <h2 className="text-center">
+        {intl.formatMessage({ id: 'order_details' })}
+      </h2>
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
@@ -45,7 +49,9 @@ const OrderDetailComponent = ({ order }) => {
             <div className="text-right">
               <div className="border-top py-3 mt-0">
                 <div className="d-flex flex-wrap justify-content-between">
-                  <div className="font-weight-bolder">delivery</div>
+                  <div className="font-weight-bolder">
+                    {intl.formatMessage({ id: 'delivery' })}
+                  </div>
                   <div className="font-weight-bolder">
                     {renderPrice(
                       order?.delivery?.provider?.simulatedPrice?.price,
@@ -57,7 +63,9 @@ const OrderDetailComponent = ({ order }) => {
             <div className="text-right">
               <div className="border-top py-3 mt-0">
                 <div className="d-flex flex-wrap justify-content-between">
-                  <div className="font-weight-bolder">Total</div>
+                  <div className="font-weight-bolder">
+                    {intl.formatMessage({ id: 'total' })}
+                  </div>
                   <div className="font-weight-bolder font-heading">
                     {renderPrice(order?.total)}
                   </div>

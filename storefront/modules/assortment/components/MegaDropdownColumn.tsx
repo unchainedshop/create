@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
+import { useIntl } from 'react-intl';
 import { useDesktopNavigationContext } from './DesktopNavigationContext';
 import Thumbnail from '../../common/components/thumbnail';
 
@@ -21,6 +22,7 @@ const MegaDropdownItem = ({
   path,
   media = [],
 }: Node) => {
+  const intl = useIntl();
   const { setHoverPath, hoverPath, isTouching } = useDesktopNavigationContext();
   const handleClick = () => {
     if (type === 'default' && isTouching && children) {
@@ -61,7 +63,13 @@ const MegaDropdownItem = ({
             </b>
           )}
 
-          {type === 'show_all' ? <small className="ml-2">Show all</small> : ''}
+          {type === 'show_all' ? (
+            <small className="ml-2">
+              {intl.formatMessage({ id: 'show_all' })}
+            </small>
+          ) : (
+            ''
+          )}
         </div>
       </a>
     </Link>

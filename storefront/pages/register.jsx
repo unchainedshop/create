@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
+import { useIntl } from 'react-intl';
 
 import useCreateUser from '../modules/auth/hooks/useCreateUser';
 import useUpdateCart from '../modules/checkout/hooks/useUpdateCart';
@@ -10,12 +11,13 @@ import Footer from '../modules/layout/components/Footer';
 import MetaTags from '../modules/common/components/MetaTags';
 
 const ErrorDisplay = ({ error }) => {
+  const intl = useIntl();
   if (!error) return '';
 
   if (error.message.includes('Email already exists.')) {
     return (
       <div className="form-error my-3">
-        👬 A user with this email address already exists.
+        👬 {intl.formatMessage({ id: 'email_exists' })}.
       </div>
     );
   }
@@ -26,6 +28,7 @@ const ErrorDisplay = ({ error }) => {
 const SignUp = () => {
   const router = useRouter();
   const { register, handleSubmit, watch, errors, setError } = useForm();
+  const intl = useIntl();
   const { updateCart } = useUpdateCart();
   const { createUser, error } = useCreateUser();
   const hasErrors = Object.keys(errors).length;
@@ -99,17 +102,21 @@ const SignUp = () => {
 
   return (
     <>
-      <MetaTags title="Login & Signup" />
+      <MetaTags
+        title={`${intl.formatMessage({
+          id: 'log_in',
+        })} or ${intl.formatMessage({ id: 'register' })}`}
+      />
       <Header />
       <div className="container">
         <div className="row">
           <div className="col-lg-6">
-            <h2>Login</h2>
-            <p>Do you already have an account? Then log in here: </p>
+            <h2>{intl.formatMessage({ id: 'log_in' })}</h2>
+            <p>{intl.formatMessage({ id: 'already_have_account' })} </p>
             <LoginForm onLogin={onLogin} />
           </div>
           <div className="col-lg-6">
-            <h2> Order without an account </h2>
+            <h2> {intl.formatMessage({ id: 'order_without_account' })} </h2>
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
               <div className="form-check mb-3">
                 <input
@@ -120,7 +127,7 @@ const SignUp = () => {
                   ref={register}
                 />
                 <label className="form-check-label mb-0" htmlFor="account">
-                  I want to create an account
+                  {intl.formatMessage({ id: 'create_an_account' })}
                 </label>
               </div>
               <div className="form-row">
@@ -129,7 +136,9 @@ const SignUp = () => {
                     errors.firstName ? 'form-error' : ''
                   }`}
                 >
-                  <label className="form-label">First name</label>
+                  <label className="form-label">
+                    {intl.formatMessage({ id: 'first_name' })}
+                  </label>
                   <input
                     className="form-control"
                     name="firstName"
@@ -141,7 +150,9 @@ const SignUp = () => {
                     errors.lastName ? 'form-error' : ''
                   }`}
                 >
-                  <label className="form-label">Last name</label>
+                  <label className="form-label">
+                    {intl.formatMessage({ id: 'last_name' })}
+                  </label>
                   <input
                     className={`form-control ${
                       errors.lastName && 'form-error'
@@ -155,7 +166,10 @@ const SignUp = () => {
                     errors.company ? 'form-error' : ''
                   }`}
                 >
-                  <label className="form-label">Company (optional)</label>
+                  <label className="form-label">
+                    `${intl.formatMessage({ id: 'company' })} $
+                    {intl.formatMessage({ id: 'optional' })}`
+                  </label>
                   <input
                     className="form-control"
                     name="company"
@@ -167,7 +181,9 @@ const SignUp = () => {
                     errors.addressLine ? 'form-error' : ''
                   }`}
                 >
-                  <label className="form-label">Address</label>
+                  <label className="form-label">
+                    {intl.formatMessage({ id: 'address' })}
+                  </label>
                   <input
                     className={`form-control ${
                       errors.addressLine && 'form-error'
@@ -181,7 +197,9 @@ const SignUp = () => {
                     errors.postalCode ? 'form-error' : ''
                   }`}
                 >
-                  <label className="form-label">Postal code</label>
+                  <label className="form-label">
+                    {intl.formatMessage({ id: 'postal_code' })}
+                  </label>
                   <input
                     className={`form-control ${
                       errors.postalCode && 'form-error'
@@ -193,7 +211,9 @@ const SignUp = () => {
                 <div
                   className={`mb-3 col-md-6 ${errors.city ? 'form-error' : ''}`}
                 >
-                  <label className="form-label">City</label>
+                  <label className="form-label">
+                    {intl.formatMessage({ id: 'city' })}
+                  </label>
                   <input
                     className={`form-control ${errors.city && 'form-error'}`}
                     name="city"
@@ -205,7 +225,9 @@ const SignUp = () => {
                     errors.emailAddress ? 'form-error' : ''
                   }`}
                 >
-                  <label className="form-label">E-mail</label>
+                  <label className="form-label">
+                    {intl.formatMessage({ id: 'city' })}
+                  </label>
                   <input
                     className={`form-control ${
                       errors.emailAddress && 'form-error'
@@ -219,7 +241,9 @@ const SignUp = () => {
                     errors.telNumber ? 'form-error' : ''
                   }`}
                 >
-                  <label className="form-label">Telephone</label>
+                  <label className="form-label">
+                    {intl.formatMessage({ id: 'telephone' })}
+                  </label>
                   <input
                     className={`form-control ${
                       errors.telNumber && 'form-error'
@@ -235,7 +259,9 @@ const SignUp = () => {
                         errors.password ? 'form-error' : ''
                       }`}
                     >
-                      <label className="form-label">Password</label>
+                      <label className="form-label">
+                        {intl.formatMessage({ id: 'password' })}
+                      </label>
                       <input
                         className="form-control"
                         name="password"
@@ -248,7 +274,9 @@ const SignUp = () => {
                         errors.password2 ? 'form-error' : ''
                       }`}
                     >
-                      <label className="form-label">Repeat Password</label>
+                      <label className="form-label">
+                        {intl.formatMessage({ id: 'repeat_password' })}
+                      </label>
                       <input
                         className="form-control"
                         name="password2"
@@ -277,7 +305,12 @@ const SignUp = () => {
                   }`}
                   htmlFor="conditions"
                 >
-                  I have read the <a href="/conditions">Terms and Conditions</a>
+                  {intl.formatMessage(
+                    {
+                      id: 'i_have_read_term',
+                    },
+                    { path: '/conditions' },
+                  )}
                 </label>
               </div>
 
@@ -288,7 +321,7 @@ const SignUp = () => {
                 type="submit"
                 disabled={hasErrors}
               >
-                Register
+                {intl.formatMessage({ id: 'register' })}
               </button>
             </form>
           </div>

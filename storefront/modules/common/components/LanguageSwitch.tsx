@@ -10,7 +10,7 @@ const LanguageSwitch = () => {
   return (
     <div className="select-wrap language-select">
       <label htmlFor="language-switcher" className="d-none">
-        Choose a language
+        {intl.formatMessage({ id: 'choose_language' })}
       </label>
       <select
         value={currentLang}

@@ -1,21 +1,29 @@
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useIntl } from 'react-intl';
 
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
 
 const LoginForm = ({ onLogin }) => {
   const { register, handleSubmit, errors, setError } = useForm();
+  const intl = useIntl();
   const { loginWithPassword, error } = useLoginWithPassword();
   const hasErrors = Object.keys(errors).length > 0;
 
   useEffect(() => {
     if (error?.message?.includes('User not found')) {
-      setError('email', 'doesNotExists', '🤷‍♀️ E-mail address already exists.');
-    } else if (error?.message?.includes('Incorrect password')) {
-      setError('password', 'incorrect', 'Falsches Passwort.');
+      setError(
+        'email',
+        'doesNotExists',
+        `🤷‍♀️ ${intl.formatMessage({ id: 'email_exists' })}`,
+      );
     } else if (error) {
-      setError('email', 'unknownError', '👷‍♀️ Invalid E-mail or Password');
+      setError(
+        'email',
+        'unknownError',
+        `👷‍♀️ ${intl.formatMessage({ id: 'invalid_email_password' })} `,
+      );
     }
   }, [error]);
 
@@ -32,7 +40,9 @@ const LoginForm = ({ onLogin }) => {
             errors.email ? 'form-error' : ''
           }`}
         >
-          <label className="form-label">E-mail</label>
+          <label className="form-label">
+            {intl.formatMessage({ id: 'email' })}
+          </label>
           <input
             className="form-control"
             name="email"
@@ -45,7 +55,9 @@ const LoginForm = ({ onLogin }) => {
             errors.password ? 'form-error' : ''
           }`}
         >
-          <label className="form-label">Password</label>
+          <label className="form-label">
+            {intl.formatMessage({ id: 'password' })}
+          </label>
           <input
             className="form-control"
             type="password"
@@ -55,7 +67,7 @@ const LoginForm = ({ onLogin }) => {
           <Link href="/account/forget-password">
             <a className="mt-2 text-right">
               <small id="passwordForgot" className="form-text text-muted">
-                Forgot password?
+                {intl.formatMessage({ id: 'forgot_password' })}
               </small>
             </a>
           </Link>
@@ -73,7 +85,7 @@ const LoginForm = ({ onLogin }) => {
         type="submit"
         disabled={hasErrors}
       >
-        Log in
+        {intl.formatMessage({ id: 'log_in' })}
       </button>
     </form>
   );

@@ -18,7 +18,7 @@ const Cart = () => {
 
   return (
     <>
-      <MetaTags title="Checkout order" />
+      <MetaTags title={intl.formatMessage({ id: 'checkout' })} />
       <Header />
       <div className="container">
         <div className="row">

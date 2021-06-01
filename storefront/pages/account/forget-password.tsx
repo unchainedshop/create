@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
 import useForgotPassword from '../../modules/auth/hooks/useForgotPassword';
@@ -10,15 +11,15 @@ import Header from '../../modules/layout/components/Header';
 const PasswordForget = () => {
   const { register, handleSubmit } = useForm();
   const { forgotPassword, loading } = useForgotPassword();
-
+  const intl = useIntl();
   const onSubmit = async ({ email }) => {
     const { success } = await forgotPassword({ email });
-    if (success) toast.success('A confirmation email is sent');
+    if (success) toast.success(intl.formatMessage({ id: 'confirmation_sent' }));
   };
 
   return (
     <>
-      <MetaTags title="Forget password?" />
+      <MetaTags title={intl.formatMessage({ id: 'forgot_password' })} />
       <Header />
       <div className="container">
         {loading ? (
@@ -26,9 +27,11 @@ const PasswordForget = () => {
         ) : (
           <div className="row">
             <div className="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-              <h1>Forgot Password?</h1>
+              <h1>{intl.formatMessage({ id: 'forgot_password' })}</h1>
               <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                <label className="form-label">Your E-mail</label>
+                <label className="form-label">
+                  {intl.formatMessage({ id: 'email' })}
+                </label>
                 <input
                   className="form-control"
                   name="email"
@@ -39,7 +42,7 @@ const PasswordForget = () => {
                   className="button button--primary button--big mt-3"
                   type="submit"
                 >
-                  Request new Password
+                  {intl.formatMessage({ id: 'request_new_password' })}
                 </button>
               </form>
             </div>

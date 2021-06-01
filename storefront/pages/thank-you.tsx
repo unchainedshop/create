@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useIntl } from 'react-intl';
 
 import useOrderDetail from '../modules/orders/hooks/useOrderDetail';
 import Header from '../modules/layout/components/Header';
@@ -8,6 +9,8 @@ import MetaTags from '../modules/common/components/MetaTags';
 
 const ThankYou = () => {
   const router = useRouter();
+  const intl = useIntl();
+
   if (!router.query.orderId) return '';
   const { order } = useOrderDetail({
     orderId: router.query?.orderId,
@@ -15,21 +18,25 @@ const ThankYou = () => {
 
   return (
     <>
-      <MetaTags title="Thank you" description="Thank you for your order" />
+      <MetaTags
+        title={intl.formatMessage({ id: 'thank_you' })}
+        description={intl.formatMessage({ id: 'thank_you_description' })}
+      />
       <Header />
       <div className="container">
         <div className="row">
           <div className="col-md-8 offset-md-2">
-            <h1>Thank You for Placing this Order with Us!</h1>
+            <h1>{intl.formatMessage({ id: 'thank_you_header' })}</h1>
+            <p>{intl.formatMessage({ id: 'thank_you_description' })}</p>
+            <h4>
+              {intl.formatMessage({ id: 'thank_you_order_number' })}
+              {'  '}
+              {order?.orderNumber}
+            </h4>
             <p>
-              It has reached us and an email with the order placement
-              confirmation is on its way. To avoid any potential
-              miscommunication, please check your spam, perhaps the email landed
-              there.
-            </p>
-            <h4>Your Order Number is: {order?.orderNumber}</h4>
-            <p>
-              The Date you placed the order is: {formatDate(order?.created)}
+              {intl.formatMessage({ id: 'thank_you_order_date' })}
+              {'  '}
+              {formatDate(order?.created)}
             </p>
           </div>
         </div>

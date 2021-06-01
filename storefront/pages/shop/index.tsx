@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import CatagoryListItem from '../../modules/assortment/components/CatagoryListItem';
 import useAssortments from '../../modules/assortment/hooks/useAssortments';
@@ -10,14 +11,17 @@ import Header from '../../modules/layout/components/Header';
 const Products = () => {
   const { assortments, loading } = useAssortments();
   const [currentUrl, setcurrentUrl] = useState('');
-
+  const intl = useIntl();
   useEffect(() => {
     setcurrentUrl(window.location.href);
   }, []);
 
   return (
     <>
-      <MetaTags title="Product Catagories" url={currentUrl} />
+      <MetaTags
+        title={intl.formatMessage({ id: 'product_catagories' })}
+        url={currentUrl}
+      />
       <Header />
       <div className="container mt-3">
         {loading ? (

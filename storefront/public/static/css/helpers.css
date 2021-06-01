@@ -144,6 +144,10 @@
   }
 }
 
+.width-0 {
+  width: 0;
+}
+
 @media (min-width: 768px) {
   .width-md-75 {
     width: 75%;

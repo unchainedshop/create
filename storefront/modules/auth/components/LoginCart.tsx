@@ -11,7 +11,7 @@ const LoginCart = () => {
   const context = useContext(CartContext);
 
   return user ? (
-    <div className="d-flex justify-content-end align-items-center flex-wrap">
+    <>
       <a
         className="no-button py-1 ml-md-3"
         onClick={() => context.toggleCart(!context.isCartOpen)}
@@ -48,9 +48,9 @@ const LoginCart = () => {
       ) : (
         ' '
       )}
-    </div>
+    </>
   ) : (
-    <div className="d-flex justify-content-end flex-wrap">
+    <div>
       <Link href="/sign-up">
         <a className="button button--secondary my-1 mr-2">
           {intl.formatMessage({ id: 'sign_up' })}

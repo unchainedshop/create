@@ -18,6 +18,7 @@ body {
 
 img {
   max-width: 100%;
+  vertical-align: middle;
 }
 
 a {
@@ -36,11 +37,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .bold {
   font-weight: 700;
-}
-
-.link:hover,
-.link:focus {
-  text-decoration: underline;
 }
 
 input,

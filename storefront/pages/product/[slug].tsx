@@ -29,9 +29,19 @@ const Detail = () => {
     paths,
     intl.formatMessage({ id: 'shop' }),
   );
+
   useEffect(() => {
     setcurrentUrl(window.location.href);
   }, []);
+  useEffect(() => {
+    if (product?.texts) {
+      const x = `/${intl.formatMessage({ id: 'product' })}/${
+        product?.texts?.slug
+      }`;
+
+      if (router.asPath !== x) router.replace(x);
+    }
+  });
 
   if (!product && !loading)
     return <NotFound page={intl.formatMessage({ id: 'products' })} />;

@@ -1,11 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 
 import getMediaUrl from '../../common/utils/getMediaUrl';
 
 const ProductListItem = ({ product }) => {
+  const intl = useIntl();
   return (
-    <Link href={`/product/${product?.texts?.slug}`}>
+    <Link
+      href={`/${intl.formatMessage({ id: 'product' })}/${product?.texts?.slug}`}
+    >
       <a>
         <div className="text-center">
           <Image

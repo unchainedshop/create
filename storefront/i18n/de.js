@@ -115,4 +115,5 @@ export default {
   'shop.unchained.invoice': 'Wire Transfer',
   'shop.unchained.datatrans': 'Credit Card',
   pay_now: 'Pay Now',
+  product: 'produkt',
 };

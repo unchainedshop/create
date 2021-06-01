@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 import getMediaUrl from '../../common/utils/getMediaUrl';
 
 import renderPrice from '../../common/utils/renderPrice';
@@ -12,6 +13,7 @@ const CartItem = ({ _id, quantity, product, total }) => {
   const { removeCartItem } = useRemoveCartItem();
   const [previousQuantity, setPreviousQuantity] = useState(quantity);
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
+  const intl = useIntl();
 
   const handleChange = (e) => {
     const amount = e.target.value;
@@ -62,7 +64,11 @@ const CartItem = ({ _id, quantity, product, total }) => {
         />
       </div>
       <div className="d-flex justify-content-between align-items-baseline">
-        <Link href={`/product/${product?.texts?.slug}`}>
+        <Link
+          href={`/${intl.formatMessage({ id: 'product' })}/${
+            product?.texts?.slug
+          }`}
+        >
           <a>
             <div className="item-info">
               {product?.texts && product?.texts.title}

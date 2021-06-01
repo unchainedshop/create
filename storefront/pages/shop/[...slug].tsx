@@ -41,15 +41,18 @@ const CategoryDetail = () => {
     paths,
     intl.formatMessage({ id: 'shop' }),
   );
-  if (texts) {
-    const x = `${
-      !assortmentPaths?.length ? `/${intl.formatMessage({ id: 'shop' })}` : ''
-    }/${assortmentPaths
-      ?.map((a) => a.slug)
-      .concat(texts?.slug)
-      .join('/')}`;
-    if (router.asPath !== `${x}`) router.replace(x);
-  }
+  useEffect(() => {
+    if (texts) {
+      const x = `${
+        !assortmentPaths?.length ? `/${intl.formatMessage({ id: 'shop' })}` : ''
+      }/${assortmentPaths
+        ?.map((a) => a.slug)
+        .concat(texts?.slug)
+        .join('/')}`;
+      if (router.asPath !== `${x}`) router.replace(x);
+    }
+  });
+
   useEffect(() => {
     setcurrentUrl(window.location.href);
   }, []);

@@ -4,6 +4,7 @@ console.log(process.version);
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('./node_env');
+const generateRewritesFromRoutes = require('./generateRouteRewrites');
 
 const {
   FRONTEND_URL,
@@ -37,15 +38,6 @@ module.exports = {
     defaultLocale: 'de',
   },
   async rewrites() {
-    return [
-      {
-        source: '/geschaft/:slug*',
-        destination: '/shop/:slug*',
-      },
-      {
-        source: '/geschaft',
-        destination: '/shop',
-      },
-    ];
+    return [...generateRewritesFromRoutes()];
   },
 };

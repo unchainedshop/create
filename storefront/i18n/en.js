@@ -111,4 +111,5 @@ export default {
   'shop.unchained.invoice': 'Wire Transfer',
   'shop.unchained.datatrans': 'Credit Card',
   sign_out: 'Sign out',
+  product: 'product',
 };

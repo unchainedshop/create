@@ -36,4 +36,16 @@ module.exports = {
     locales: ['en', 'de'],
     defaultLocale: 'de',
   },
+  async rewrites() {
+    return [
+      {
+        source: '/geschaft/:slug*',
+        destination: '/shop/:slug*',
+      },
+      {
+        source: '/geschaft',
+        destination: '/shop',
+      },
+    ];
+  },
 };

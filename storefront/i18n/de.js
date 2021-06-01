@@ -33,7 +33,7 @@ export default {
   total_amount: 'Gesamtmenge',
   add_to_cart: 'In den Warenkorb legen',
   menu: 'Menü',
-  shop: 'Geschäft',
+  shop: 'geschaft',
   show_all: 'Zeige alles',
   account: 'Konto',
   sign_in: 'Einloggen',

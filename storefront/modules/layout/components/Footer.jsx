@@ -17,7 +17,7 @@ const Footer = () => {
         <Link href="/imprint">
           <a className="link m-4">{intl.formatMessage({ id: 'imprint' })}</a>
         </Link>
-        <Link href="/about">
+        <Link href="/hello">
           <a className="link m-4">{intl.formatMessage({ id: 'about' })}</a>
         </Link>
       </div>

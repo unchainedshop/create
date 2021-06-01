@@ -1,13 +1,17 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 
 import getMediaUrl from '../../common/utils/getMediaUrl';
 
 const CategoryListItem = ({ category, className = '' }) => {
+  const intl = useIntl();
   return (
     <div className={className}>
-      <Link href={`shop/${category.texts.slug}`}>
+      <Link
+        href={`/${intl.formatMessage({ id: 'shop' })}/${category.texts.slug}`}
+      >
         <a>
           <div>
             <Image

@@ -227,7 +227,7 @@ const SignUp = () => {
                   }`}
                 >
                   <label className="form-label">
-                    {intl.formatMessage({ id: 'city' })}
+                    {intl.formatMessage({ id: 'email' })}
                   </label>
                   <input
                     className={`form-control ${
@@ -305,12 +305,15 @@ const SignUp = () => {
                     errors.agb && 'form-error'
                   }`}
                   htmlFor="conditions"
-                  dangerouslySetInnerHTML={{
-                    __html: intl.formatMessage({
-                      id: 'i_have_read_term',
-                    }),
-                  }}
-                />
+                >
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: intl.formatMessage({
+                        id: 'i_have_read_term',
+                      }),
+                    }}
+                  />
+                </label>
               </div>
 
               <ErrorDisplay error={error} />

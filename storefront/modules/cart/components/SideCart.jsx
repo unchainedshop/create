@@ -60,7 +60,7 @@ const SideCart = ({ isOpen }) => {
             </svg>
             <p>
               {intl.formatMessage({ id: 'no_product_in_cart' })}{' '}
-              <Link href="/shop">
+              <Link href={`/${intl.formatMessage({ id: 'shop' })}`}>
                 <a
                   onClick={() => context.toggleCart(false)}
                   className="link color-brand"
@@ -106,7 +106,7 @@ const SideCart = ({ isOpen }) => {
               {user?.cart?.items.length === 0 ? (
                 <p>
                   {intl.formatMessage({ id: 'no_product_in_cart' })}{' '}
-                  <Link href="/shop">
+                  <Link href={`/${intl.formatMessage({ id: 'shop' })}`}>
                     <a
                       onClick={() => context.toggleCart(false)}
                       className="link color-brand"
@@ -137,7 +137,7 @@ const SideCart = ({ isOpen }) => {
               >
                 {intl.formatMessage({ id: 'checkout_now' })}
               </a>
-              <Link href="/shop">
+              <Link href={`/${intl.formatMessage({ id: 'shop' })}`}>
                 <a
                   className="button button--secondary text-uppercase w-75 mb-3"
                   onClick={() => context.toggleCart(false)}

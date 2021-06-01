@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
+import { useIntl } from 'react-intl';
 import CategoriesList from '../../modules/assortment/components/CategoriesList';
 import useAssortmentProducts from '../../modules/assortment/hooks/useAssortmentProducts';
 import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';
@@ -16,6 +17,7 @@ import getMediaUrl from '../../modules/common/utils/getMediaUrl';
 
 const CategoryDetail = () => {
   const router = useRouter();
+  const intl = useIntl();
   const { slug: slugs } = router.query;
   const slug: string | string[] = slugs[slugs.length - 1];
   const [currentUrl, setcurrentUrl] = useState('');
@@ -35,8 +37,19 @@ const CategoryDetail = () => {
     includeLeaves: true,
   });
 
-  const assortmentPaths = getAssortmentPath(paths);
-
+  const assortmentPaths = getAssortmentPath(
+    paths,
+    intl.formatMessage({ id: 'shop' }),
+  );
+  if (texts) {
+    const x = `${
+      !assortmentPaths?.length ? `/${intl.formatMessage({ id: 'shop' })}` : ''
+    }/${assortmentPaths
+      ?.map((a) => a.slug)
+      .concat(texts?.slug)
+      .join('/')}`;
+    if (router.asPath !== `${x}`) router.replace(x);
+  }
   useEffect(() => {
     setcurrentUrl(window.location.href);
   }, []);

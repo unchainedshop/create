@@ -16,7 +16,9 @@ const DesktopNavigation = () => {
   const [hoverPath, setHoverPath] = useState([]);
   const [isTouching, setTouching] = useState(false);
 
-  const { assortmentTree } = useCategoriesTree({ root: 'shop' });
+  const { assortmentTree } = useCategoriesTree({
+    root: intl.formatMessage({ id: 'shop' }),
+  });
 
   const handleClick = (node) => (event) => {
     if (isTouching && node.children) {
@@ -57,7 +59,7 @@ const DesktopNavigation = () => {
         onTouchEnd={handleTouchEnd}
       >
         <div key="shop" className="d-inline-block font-size-0">
-          <Link href="/shop">
+          <Link href={`/${intl.formatMessage({ id: 'shop' })}`}>
             <a
               className="nav--main__item button button--secondary"
               data-in-hover-path={hoverPath.includes(assortmentTree.slug)}

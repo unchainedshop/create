@@ -30,7 +30,7 @@ export default {
   total_amount: 'Total amount',
   add_to_cart: 'Add to cart',
   menu: 'Menu',
-  shop: 'Shop',
+  shop: 'shop',
   show_all: 'Show all',
   account: 'Account',
   forgot_password: 'Forgot password?',

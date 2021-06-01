@@ -52,8 +52,8 @@ const useAssortmentProducts = (
       forceLocale: intl.locale,
     },
   });
-  const paths = (data?.assortment.assortmentPaths || []).flat().pop()?.links;
-  const products = data?.assortment?.searchProducts.products || [];
+  const paths = (data?.assortment?.assortmentPaths || []).flat().pop()?.links;
+  const products = data?.assortment?.searchProducts?.products || [];
 
   return {
     loading,

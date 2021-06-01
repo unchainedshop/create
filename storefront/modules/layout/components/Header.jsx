@@ -3,6 +3,7 @@ import Head from 'next/head';
 import getConfig from 'next/config';
 import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useIntl } from 'react-intl';
 
 import LoginCart from '../../auth/components/LoginCart';
 import SideCart from '../../cart/components/SideCart';
@@ -19,6 +20,7 @@ const Header = () => {
   const context = useContext(CartContext);
   const router = useRouter();
   const [isNavOpen, setNavOpenState] = useState(false);
+  const intl = useIntl();
 
   const setNavOpen = (isOpen) => {
     setNavOpenState(isOpen);
@@ -28,6 +30,11 @@ const Header = () => {
   }
   return (
     <>
+      <div className="color-bg-dark">
+        <div className="container color-white py-1 text-center font-weight-bold">
+          <p>{intl.formatMessage({ id: 'top_notification' })}</p>
+        </div>
+      </div>
       <header className="header sticky-top">
         <SideCart isOpen={context.isCartOpen} />
         <Head>

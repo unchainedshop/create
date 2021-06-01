@@ -7,4 +7,5 @@ export default {
   home: 'Home',
   registration: 'Registration',
   logged_out: 'You will be logged out',
+  top_notification: 'Top notification in english',
 };

@@ -116,7 +116,7 @@ const Review = () => {
       <div className="container mt-5">
         <div className="row">
           <div className="col-lg-8 mb-5">
-            <h2 className="h4 mt-0 mb-5">
+            <h2 className="mt-0 mb-5">
               {`${intl.formatMessage({
                 id: 'checkout',
               })} - ${intl.formatMessage({ id: 'order_review' })}`}
@@ -186,9 +186,9 @@ const Review = () => {
             </div>
           </div>
           <div className="col-lg-4">
-            <h4 className="mt-0 mb-5">
+            <h2 className="mt-0 mb-5">
               {intl.formatMessage({ id: 'order_summary' })}
-            </h4>
+            </h2>
             <ManageCart user={user} />
           </div>
         </div>

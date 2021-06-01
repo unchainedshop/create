@@ -4,7 +4,7 @@
 
 @media (min-width: 768px) {
   .nav--main {
-    display: block;
+    display: flex;
   }
 
   .nav--main__item {

@@ -52,7 +52,7 @@ const DesktopNavigation = () => {
       }}
     >
       <nav
-        className="nav nav--main d-flex align-items-center"
+        className="nav nav--main"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >

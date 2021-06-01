@@ -1,13 +1,11 @@
 {
   "injectStyles": ["", "body { background-color: white; }"],
   "assets": {
-    "logo": "https://www.dynoptic.ch/img/logo/dynoptic-logo.svg",
+    "logo": "/static/img/logo.png",
     "icon-180x180": "/static/img/apple-touch-icon.png",
     "icon-32x32": "/static/img/favicon-32x32.png",
     "icon-16x16": "/static/img/favicon-16x16.png",
-    "hero": "/static/img/hero.png",
-    "teaserOne": "/static/img/sonnenbrille-animation.gif",
-    "teaserTwo": "/static/img/brille-animation.gif"
+    "hero": "/static/img/hero.png"
   },
   "rootProperties": {
     "color-brand": "#232323",

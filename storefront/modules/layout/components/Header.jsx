@@ -28,13 +28,20 @@ const Header = () => {
   if (router?.events) {
     router.events.on('routeChangeStart', () => setNavOpen(false));
   }
+
+  const topNavigationText = intl.formatMessage({ id: 'top_notification' });
+  const showTopNav = !topNavigationText || topNavigationText !== "top_notification";
+
   return (
     <>
-      <div className="color-bg-dark">
+      {showTopNav && (
+        <div className="color-bg-dark">
         <div className="container color-white py-1 text-center font-weight-bold">
-          <p>{intl.formatMessage({ id: 'top_notification' })}</p>
+          <p>{topNavigationText}</p>
         </div>
       </div>
+      )}
+
       <header className="header sticky-top">
         <SideCart isOpen={context.isCartOpen} />
         <Head>
@@ -56,25 +63,25 @@ const Header = () => {
             href={theme.assets['icon-16x16']}
           />
         </Head>
-        <div className="container d-flex justify-content-between align-items-center flex-wrap hide-on-mobile">
-          <DesktopNavigation />
+        <div className="container d-flex align-items-center justify-content-between flex-wrap hide-on-mobile py-2">
+          <div className="d-flex justify-content-start flex-grow-1 width-0">
+            <DesktopNavigation />
+          </div>
           <Link href="/">
-            <a>
+            <a className="d-flex justify-content-center flex-grow-1 width-0">
               <img
-                className="my-2"
-                height="50px"
-                width="100px"
+                width="140px"
                 src={theme.assets.logo}
-                alt="Shop Logo"
+                alt="Shop logo"
               />
             </a>
           </Link>
-          <div>
+          <div className="d-flex justify-content-end flex-grow-1 width-0">
             <LoginCart />
           </div>
         </div>
         <div className="container">
-          <div className="mobile-header hide-on-not-mobile d-flex justify-content-between align-items-center">
+          <div className="mobile-header hide-on-not-mobile d-flex justify-content-between align-items-center py-2">
             <div className="d-flex align-items-center">
               <button
                 type="button"
@@ -93,11 +100,9 @@ const Header = () => {
               <Link href="/">
                 <a>
                   <img
-                    className="my-2"
-                    height="50px"
                     width="100px"
                     src={theme.assets.logo}
-                    alt="Shop Logo"
+                    alt="Shop logo"
                   />
                 </a>
               </Link>

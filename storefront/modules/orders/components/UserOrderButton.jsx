@@ -10,7 +10,7 @@ const OrderButton = () => {
 
   return (
     <Link href="/order">
-      <a className="d-inline-block nav--main__item">
+      <a className="ml-2 button button--secondary">
         {intl.formatMessage({ id: 'my_orders' })}
       </a>
     </Link>

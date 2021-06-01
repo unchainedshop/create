@@ -70,7 +70,7 @@ export default {
   payment_method: 'Payment method',
   payment_status: 'Payment status',
   status: 'Status',
-  my_order: 'My orders',
+  my_orders: 'My orders',
   change_password: 'Change password',
   current_password: 'Current password',
   new_password: 'New password',
@@ -93,7 +93,7 @@ export default {
   '505_sorry':
     'oops, Something went wrong when performing your request, please try again later!',
   about_detail:
-    'Dynoptic is the Swiss quality label for glasses and Contact lenses. Our more than 100 Dynoptic partners look forward to Your visit: online or on site.',
+    '...',
   order_review: 'Order Review',
   delivery_address: 'Delivery address',
   billing_address: 'Billing address',

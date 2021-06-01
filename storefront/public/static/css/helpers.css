@@ -141,7 +141,12 @@
   .link:focus,
   .link-hover:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
+}
+
+.width-0 {
+  width: 0;
 }
 
 @media (min-width: 768px) {

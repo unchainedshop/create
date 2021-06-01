@@ -23,7 +23,7 @@ const ThankYou = () => {
         description={intl.formatMessage({ id: 'thank_you_description' })}
       />
       <Header />
-      <div className="container">
+      <div className="container mt-5">
         <div className="row">
           <div className="col-md-8 offset-md-2">
             <h1>{intl.formatMessage({ id: 'thank_you_header' })}</h1>

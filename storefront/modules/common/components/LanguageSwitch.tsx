@@ -13,6 +13,7 @@ const LanguageSwitch = () => {
         {intl.formatMessage({ id: 'choose_language' })}
       </label>
       <select
+        className="link-hover"
         value={currentLang}
         onChange={(e) => changeLanguage(e.target.value)}
         id="language-switcher"

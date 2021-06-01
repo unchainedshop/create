@@ -10,7 +10,6 @@ const Footer = () => {
       <div className="d-flex justify-content-center">
         <Link href="/conditions">
           <a className="link m-4">
-            {' '}
             {intl.formatMessage({ id: 'conditions' })}
           </a>
         </Link>

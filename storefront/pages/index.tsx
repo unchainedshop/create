@@ -48,7 +48,7 @@ const Home = () => {
           <div className="col-md-6">
             <img
               className="my-2 mr-2"
-              src={theme.assets.glassesAnimation}
+              src={theme.assets.teaserTwo}
               alt=""
             />
             <Link href="/shop">
@@ -77,7 +77,7 @@ const Home = () => {
           <div className="col-md-6">
             <img
               className="my-2 mr-2"
-              src={theme.assets.sunglassesAnimation}
+              src={theme.assets.teaserOne}
               alt=""
             />
             <Link href="/shop">

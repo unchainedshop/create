@@ -1,12 +1,13 @@
-const routes = require('./routes');
+const config = require('./theme.json');
 
 const generateRouteRewrites = () => {
+  const routes = config.localizedRoutes || [];
   const rewrites = [];
-  Object.keys(routes).forEach((destination) => {
-    routes[destination].forEach((source) => {
+  Object.keys(routes).forEach((route) => {
+    routes[route].localizations.forEach((source) => {
       rewrites.push({
         source,
-        destination,
+        destination: routes[route].destination,
       });
     });
   });

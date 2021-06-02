@@ -2,6 +2,16 @@
   "name": "storefront",
   "version": "0.1.0",
   "private": false,
+  "scripts": {
+    "build": "SUPPRESS_ENV_ERRORS=1 next build",
+    "dev:local": "UNCHAINED_ENDPOINT=http://localhost:4010/graphql next dev",
+    "dev": "next dev",
+    "format": "npm run lint -- --fix",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx, .json modules pages api",
+    "test": "npm run lint && npm run typecheck",
+    "typecheck": "tsc --noEmit",
+    "start": "next start"
+  },
   "dependencies": {
     "@apollo/client": "^3.3.6",
     "@formatjs/intl-datetimeformat": "^4.1.2",
@@ -45,15 +55,5 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.2.0",
     "typescript": "^3.9.7"
-  },
-  "scripts": {
-    "build": "SUPPRESS_ENV_ERRORS=1 next build",
-    "dev:local": "UNCHAINED_ENDPOINT=http://localhost:4010/graphql next dev",
-    "dev": "next dev",
-    "format": "npm run lint -- --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx modules pages api",
-    "test": "npm run lint && npm run typecheck",
-    "typecheck": "tsc --noEmit",
-    "start": "next start"
   }
 }

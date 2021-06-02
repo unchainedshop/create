@@ -7,6 +7,7 @@ import Icon from '../../common/components/Icon';
 import OrderButton from '../../orders/components/UserOrderButton';
 import Thumbnail from '../../common/components/thumbnail';
 import changeLanguage from '../../common/utils/changeLanguage';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 
 const createPathFromArray = (path = []) => {
   return `/${(path || []).join('/')}`;
@@ -94,7 +95,7 @@ const Subtree = ({
 const MobileNavigation = ({ doClose, isNavOpen }) => {
   const intl = useIntl();
   const { assortmentTree } = useCategoriesTree({
-    root: intl.formatMessage({ id: 'shop' }),
+    root: intl.formatMessage({ id: ROUTES_CONFIG.shop.slug }),
   });
 
   return (

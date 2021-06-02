@@ -4,13 +4,16 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
 import getMediaUrl from '../../common/utils/getMediaUrl';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 
 const CategoryListItem = ({ category, className = '' }) => {
   const intl = useIntl();
   return (
     <div className={className}>
       <Link
-        href={`/${intl.formatMessage({ id: 'shop' })}/${category.texts.slug}`}
+        href={`/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}/${
+          category.texts.slug
+        }`}
       >
         <a>
           <div>

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import getMediaUrl from '../../common/utils/getMediaUrl';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 
 import renderPrice from '../../common/utils/renderPrice';
 import useRemoveCartItem from '../hooks/useRemoveCartItem';
@@ -65,7 +66,7 @@ const CartItem = ({ _id, quantity, product, total }) => {
       </div>
       <div className="d-flex justify-content-between align-items-baseline">
         <Link
-          href={`/${intl.formatMessage({ id: 'product' })}/${
+          href={`/${intl.formatMessage({ id: ROUTES_CONFIG.product.slug })}/${
             product?.texts?.slug
           }`}
         >

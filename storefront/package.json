@@ -7,7 +7,7 @@
     "dev:local": "UNCHAINED_ENDPOINT=http://localhost:4010/graphql next dev",
     "dev": "next dev",
     "format": "npm run lint -- --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx, .json modules pages api",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx, modules pages api",
     "test": "npm run lint && npm run typecheck",
     "typecheck": "tsc --noEmit",
     "start": "next start"

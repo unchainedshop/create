@@ -6,6 +6,7 @@ import DesktopNavigationContext from './DesktopNavigationContext';
 import OrderButton from '../../orders/components/UserOrderButton';
 import MegaDropdown from './MegaDropdown';
 import useCategoriesTree from '../hooks/useCategoriesTree';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 
 const arrayEqual = (a, b) =>
   a.length === b.length &&
@@ -17,7 +18,7 @@ const DesktopNavigation = () => {
   const [isTouching, setTouching] = useState(false);
 
   const { assortmentTree } = useCategoriesTree({
-    root: intl.formatMessage({ id: 'shop' }),
+    root: intl.formatMessage({ id: ROUTES_CONFIG.shop.slug }),
   });
 
   const handleClick = (node) => (event) => {
@@ -59,7 +60,9 @@ const DesktopNavigation = () => {
         onTouchEnd={handleTouchEnd}
       >
         <div key="shop" className="d-inline-block font-size-0">
-          <Link href={`/${intl.formatMessage({ id: 'shop' })}`}>
+          <Link
+            href={`/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}`}
+          >
             <a
               className="nav--main__item button button--secondary"
               data-in-hover-path={hoverPath.includes(assortmentTree.slug)}

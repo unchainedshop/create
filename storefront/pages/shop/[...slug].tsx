@@ -14,6 +14,7 @@ import MetaTags from '../../modules/common/components/MetaTags';
 import useCategoriesTree from '../../modules/assortment/hooks/useCategoriesTree';
 import LoadingItem from '../../modules/common/components/LoadingItem';
 import getMediaUrl from '../../modules/common/utils/getMediaUrl';
+import ROUTES_CONFIG from '../../modules/common/utils/getRouteConfig';
 
 const CategoryDetail = () => {
   const router = useRouter();
@@ -39,12 +40,14 @@ const CategoryDetail = () => {
 
   const assortmentPaths = getAssortmentPath(
     paths,
-    intl.formatMessage({ id: 'shop' }),
+    intl.formatMessage({ id: ROUTES_CONFIG.shop.slug }),
   );
   useEffect(() => {
     if (texts) {
       const x = `${
-        !assortmentPaths?.length ? `/${intl.formatMessage({ id: 'shop' })}` : ''
+        !assortmentPaths?.length
+          ? `/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}`
+          : ''
       }/${assortmentPaths
         ?.map((a) => a.slug)
         .concat(texts?.slug)

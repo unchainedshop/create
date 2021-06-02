@@ -16,6 +16,7 @@ import AssortmentBreadcrumbs from '../../modules/assortment/components/Assortmen
 import getMediaUrl from '../../modules/common/utils/getMediaUrl';
 import getMediaUrls from '../../modules/common/utils/getMediaUrls';
 import NotFound from '../404';
+import ROUTES_CONFIG from '../../modules/common/utils/getRouteConfig';
 
 const Detail = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const Detail = () => {
 
   const productPath = getAssortmentPath(
     paths,
-    intl.formatMessage({ id: 'shop' }),
+    intl.formatMessage({ id: ROUTES_CONFIG.shop.slug }),
   );
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const Detail = () => {
   }, []);
   useEffect(() => {
     if (product?.texts) {
-      const x = `/${intl.formatMessage({ id: 'product' })}/${
+      const x = `/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}/${
         product?.texts?.slug
       }`;
 

@@ -7,6 +7,7 @@ import renderPrice from '../../common/utils/renderPrice';
 import useUser from '../../auth/hooks/useUser';
 import { CartContext } from '../CartContext';
 import CartItem from './CartItem';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 
 const SideCart = ({ isOpen }) => {
   const { user } = useUser();
@@ -60,7 +61,9 @@ const SideCart = ({ isOpen }) => {
             </svg>
             <p>
               {intl.formatMessage({ id: 'no_product_in_cart' })}{' '}
-              <Link href={`/${intl.formatMessage({ id: 'shop' })}`}>
+              <Link
+                href={`/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}`}
+              >
                 <a
                   onClick={() => context.toggleCart(false)}
                   className="link color-brand"
@@ -106,7 +109,11 @@ const SideCart = ({ isOpen }) => {
               {user?.cart?.items.length === 0 ? (
                 <p>
                   {intl.formatMessage({ id: 'no_product_in_cart' })}{' '}
-                  <Link href={`/${intl.formatMessage({ id: 'shop' })}`}>
+                  <Link
+                    href={`/${intl.formatMessage({
+                      id: ROUTES_CONFIG.shop.slug,
+                    })}`}
+                  >
                     <a
                       onClick={() => context.toggleCart(false)}
                       className="link color-brand"
@@ -137,7 +144,9 @@ const SideCart = ({ isOpen }) => {
               >
                 {intl.formatMessage({ id: 'checkout_now' })}
               </a>
-              <Link href={`/${intl.formatMessage({ id: 'shop' })}`}>
+              <Link
+                href={`/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}`}
+              >
                 <a
                   className="button button--secondary text-uppercase w-75 mb-3"
                   onClick={() => context.toggleCart(false)}

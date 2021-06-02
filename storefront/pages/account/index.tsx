@@ -36,8 +36,8 @@ const Account = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
+            <h1>{intl.formatMessage({ id: 'profile' })}</h1>
             <div className="d-flex justify-content-between mb-5">
-              <b>{intl.formatMessage({ id: 'profile' })}</b>
               {updateProfile ? (
                 <button
                   type="button"
@@ -52,11 +52,11 @@ const Account = () => {
                   className="button button--primary"
                   onClick={() => setUpdateProfile(true)}
                 >
-                  {intl.formatMessage({ id: 'update_profile' })}
+                  {intl.formatMessage({ id: 'update' })}
                 </button>
               )}
               <Link href="account/change-password">
-                <a className="link" type="button">
+                <a className="button button--secondary">
                   {intl.formatMessage({ id: 'change_password' })}
                 </a>
               </Link>
@@ -75,7 +75,7 @@ const Account = () => {
                       <span> {user?.username} </span>
                       <button
                         type="button"
-                        className=" button button--primary"
+                        className=" button button--secondary"
                         onClick={() => setUpdateUserName(!updateUsername)}
                       >
                         {intl.formatMessage({ id: 'change' })}
@@ -84,6 +84,7 @@ const Account = () => {
                   ) : (
                     <>
                       <input
+                        className="form-control"
                         type="text"
                         onChange={(e) => setUserName(e.target.value)}
                         value={username}

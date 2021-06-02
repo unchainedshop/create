@@ -23,16 +23,16 @@ const ChangePassword = () => {
     <>
       <MetaTags title="Update Password" />
       <Header />
-      <div className="container">
+      <div className="container mt-5">
         {loading ? (
           <LoadingItem />
         ) : (
           <div className="row">
-            <div className="col-md-8 offset-md-2">
+            <div className="col-md-6 offset-md-3">
               <h1>{intl.formatMessage({ id: 'change_password' })}</h1>
               <form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <div
-                  className={`mb-3 col-md-6 ${
+                  className={`mb-3 ${
                     errors.password2 ? 'form-error' : ''
                   }`}
                 >
@@ -47,7 +47,7 @@ const ChangePassword = () => {
                   />
                 </div>
                 <div
-                  className={`mb-3 col-md-6 ${
+                  className={`mb-3 ${
                     errors.password2 ? 'form-error' : ''
                   }`}
                 >
@@ -62,7 +62,7 @@ const ChangePassword = () => {
                   />
                 </div>
                 <div
-                  className={`mb-3 col-md-6 ${
+                  className={`mb-3 ${
                     errors.password2 ? 'form-error' : ''
                   }`}
                 >

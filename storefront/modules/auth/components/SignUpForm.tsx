@@ -4,9 +4,10 @@ import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 
 import COUNTRIES from '../../common/data/countries-list';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 import useCreateUser from '../hooks/useCreateUser';
 
-const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
+const SignUpForm = ({ onSuccessGoTo = `/${ROUTES_CONFIG.account.slug}` }) => {
   const router = useRouter();
   const intl = useIntl();
   const { register, handleSubmit, errors, setError, watch } = useForm();

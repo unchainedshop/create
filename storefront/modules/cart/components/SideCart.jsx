@@ -14,10 +14,17 @@ const SideCart = ({ isOpen }) => {
   const intl = useIntl();
   const context = useContext(CartContext);
   const router = useRouter();
+  const reviewPath = `${intl.formatMessage({
+    id: ROUTES_CONFIG.checkout.slug,
+  })}?next=${intl.formatMessage({ id: ROUTES_CONFIG.review.slug })}`;
+
+  const checkoutPath = `${intl.formatMessage({
+    id: ROUTES_CONFIG.checkout.slug,
+  })}`;
 
   const checkOut = () => {
     context.toggleCart(false);
-    const path = user?.isGuest ?? true ? '/checkout?next=review' : '/checkout';
+    const path = user?.isGuest ?? true ? reviewPath : checkoutPath;
     router.push(path);
   };
 

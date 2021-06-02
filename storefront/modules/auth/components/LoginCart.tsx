@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { useIntl } from 'react-intl';
 
 import { CartContext } from '../../cart/CartContext';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 import useUser from '../hooks/useUser';
 
 const LoginCart = () => {
@@ -34,12 +35,16 @@ const LoginCart = () => {
       </a>
       {!user.isGuest ? (
         <>
-          <Link href="/logout">
+          <Link
+            href={`/${intl.formatMessage({ id: ROUTES_CONFIG.logout.slug })}`}
+          >
             <a className="button button--secondary ml-3 my-1">
-              {intl.formatMessage({ id: 'sign_out' })}
+              {intl.formatMessage({ id: 'log_out' })}
             </a>
           </Link>
-          <Link href="/account">
+          <Link
+            href={`/${intl.formatMessage({ id: ROUTES_CONFIG.account.slug })}`}
+          >
             <a className="button button--secondary ml-3 my-1">
               {intl.formatMessage({ id: 'account' })}
             </a>
@@ -51,12 +56,12 @@ const LoginCart = () => {
     </>
   ) : (
     <div>
-      <Link href="/sign-up">
+      <Link href={`/${intl.formatMessage({ id: ROUTES_CONFIG.sign_up.slug })}`}>
         <a className="button button--secondary my-1 mr-2">
           {intl.formatMessage({ id: 'sign_up' })}
         </a>
       </Link>
-      <Link href="/login">
+      <Link href={`/${intl.formatMessage({ id: ROUTES_CONFIG.login.slug })}`}>
         <a className="button button--secondary my-1">
           {intl.formatMessage({ id: 'log_in' })}
         </a>

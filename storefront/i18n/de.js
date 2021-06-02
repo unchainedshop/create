@@ -1,3 +1,5 @@
+const deSlugs = require('./slugs/de');
+
 export default {
   ladies: 'Damen',
   mens: 'Herren',
@@ -33,7 +35,7 @@ export default {
   total_amount: 'Gesamtmenge',
   add_to_cart: 'In den Warenkorb legen',
   menu: 'Menü',
-  shop: 'geschaft',
+  shop: 'Geschaft',
   show_all: 'Zeige alles',
   account: 'Konto',
   sign_in: 'Einloggen',
@@ -115,5 +117,6 @@ export default {
   'shop.unchained.invoice': 'Wire Transfer',
   'shop.unchained.datatrans': 'Credit Card',
   pay_now: 'Pay Now',
-  product: 'produkt',
+  product: 'Produkt',
+  ...deSlugs.default,
 };

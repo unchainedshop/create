@@ -5,11 +5,13 @@ import Header from '../modules/layout/components/Header';
 import LoginForm from '../modules/auth/components/LoginForm';
 import Footer from '../modules/layout/components/Footer';
 import MetaTags from '../modules/common/components/MetaTags';
+import ROUTES_CONFIG from '../modules/common/utils/getRouteConfig';
 
 const LogIn = () => {
   const router = useRouter();
   const intl = useIntl();
-  const onLogin = () => router.push('/account');
+  const onLogin = () =>
+    router.push(`/${intl.formatMessage({ id: ROUTES_CONFIG.account.slug })}`);
 
   return (
     <>

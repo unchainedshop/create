@@ -7,6 +7,7 @@ import useSetUsername from '../../modules/auth/hooks/useSetUsername';
 import useUser from '../../modules/auth/hooks/useUser';
 import MetaTags from '../../modules/common/components/MetaTags';
 import COUNTRIES from '../../modules/common/data/countries-list';
+import ROUTES_CONFIG from '../../modules/common/utils/getRouteConfig';
 import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
 
@@ -55,8 +56,14 @@ const Account = () => {
                   {intl.formatMessage({ id: 'update' })}
                 </button>
               )}
-              <Link href="account/change-password">
-                <a className="button button--secondary">
+              <Link
+                href={`/${intl.formatMessage({
+                  id: ROUTES_CONFIG.account.slug,
+                })}/${intl.formatMessage({
+                  id: ROUTES_CONFIG.change_password.slug,
+                })}`}
+              >
+                <a className="link" type="button">
                   {intl.formatMessage({ id: 'change_password' })}
                 </a>
               </Link>

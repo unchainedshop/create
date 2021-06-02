@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
 import formatDate from '../../common/utils/formatDate';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 import renderPrice from '../../common/utils/renderPrice';
 
 const OrderList = ({ orders }) => {
@@ -23,7 +24,15 @@ const OrderList = ({ orders }) => {
         </thead>
         <tbody>
           {orders.map((order) => (
-            <Link href="/order/[id]" as={`/order/${order._id}`} key={order._id}>
+            <Link
+              href={`/${intl.formatMessage({
+                id: ROUTES_CONFIG.order.slug,
+              })}/[id]`}
+              as={`/${intl.formatMessage({
+                id: ROUTES_CONFIG.order.slug,
+              })}/${order._id}`}
+              key={order._id}
+            >
               <tr>
                 <td className="font-weight-bolder p-2">{order.orderNumber}</td>
                 <td className="p-2"> {formatDate(order.created)} </td>

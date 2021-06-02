@@ -1,3 +1,5 @@
+const enSlugs = require('./slugs/en');
+
 export default {
   ladies: 'Ladies',
   mens: 'Men',
@@ -30,7 +32,7 @@ export default {
   total_amount: 'Total amount',
   add_to_cart: 'Add to cart',
   menu: 'Menu',
-  shop: 'shop',
+  shop: 'Shop',
   show_all: 'Show all',
   account: 'Account',
   forgot_password: 'Forgot password?',
@@ -111,5 +113,6 @@ export default {
   'shop.unchained.invoice': 'Wire Transfer',
   'shop.unchained.datatrans': 'Credit Card',
   sign_out: 'Sign out',
-  product: 'product',
+  product: 'Product',
+  ...enSlugs.default,
 };

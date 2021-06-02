@@ -5,5 +5,4 @@ const localizations = {
   de,
   en,
 };
-
 export default localizations;

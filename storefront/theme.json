@@ -24,148 +24,155 @@
       "localizations": [
         "/privatsphare"
       ],
-      "slug": "privacy",
+      "slug": "privacy_slug",
       "destination": "/privacy"
     },
     "about": {
       "localizations": [
         "/uber"
       ],
-      "slug": "about",
+      "slug": "about_slug",
       "destination": "/about"
     },
     "checkout": {
       "localizations": [
         "/auschecken"
       ],
-      "slug": "checkout",
+      "slug": "checkout_slug",
       "destination": "/checkout"
     },
-    "email-verified": {
+    "email_verified": {
       "localizations": [
         "/email-uberpruft"
       ],
-      "slug": "email-verified",
+      "slug": "email_verified_slug",
       "destination": "/email-verified"
     },
     "imprint": {
       "localizations": [
         "/impressum"
       ],
-      "slug": "imprint",
+      "slug": "imprint_slug",
       "destination": "/imprint"
     },
     "login": {
       "localizations": [
         "/anmeldung"
       ],
-      "slug": "login",
+      "slug": "login_slug",
       "destination": "/login"
     },
     "logout": {
       "localizations": [
         "/ausloggen"
       ],
-      "slug": "logout",
+      "slug": "logout_slug",
       "destination": "/logout"
     },
     "register": {
       "localizations": [
         "/registrieren"
       ],
-      "slug": "register",
+      "slug": "register_slug",
       "destination": "/register"
     },
-    "reset-password": {
+    "reset_password": {
       "localizations": [
         "/passwort-zurucksetzen"
       ],
-      "slug": "reset-password",
+      "slug": "reset_password_slug",
       "destination": "/reset-password"
     },
     "review": {
       "localizations": [
         "/rezension"
       ],
-      "slug": "review",
+      "slug": "review_slug",
       "destination": "/review"
     },
-    "sign-up": {
+    "sign_up": {
       "localizations": [
         "/anmelden"
       ],
-      "slug": "sign-up",
+      "slug": "sign_up_slug",
       "destination": "/sign-up"
     },
-    "thank-you": {
+    "thank_you": {
       "localizations": [
         "/danke"
       ],
-      "slug": "thank-you",
+      "slug": "thank_you_slug",
       "destination": "/thank-you"
     },
     "shop_detail": {
       "localizations": [
         "/geschaft/:slug*"
       ],
-      "slug": "shop",
+      "slug": "shop_slug",
       "destination": "/shop/:slug*"
     },
     "shop": {
       "localizations": [
         "/geschaft"
       ],
-      "slug": "shop",
+      "slug": "shop_slug",
       "destination": "/shop"
     },
     "product": {
       "localizations": [
         "/produkt"
       ],
-      "slug": "product",
+      "slug": "product_slug",
       "destination": "/product"
     },
     "product_detail": {
       "localizations": [
         "/produkt/:slug"
       ],
-      "slug": "product",
+      "slug": "product_slug",
       "destination": "/product/:slug"
     },
     "order_detail": {
       "localizations": [
         "/auftrag/:id"
       ],
-      "slug": "order",
+      "slug": "order_slug",
       "destination": "/order/:id"
     },
     "order": {
       "localizations": [
         "/auftrag"
       ],
-      "slug": "orders",
+      "slug": "orders_slug",
       "destination": "/order"
     },
     "account": {
       "localizations": [
         "/konto"
       ],
-      "slug": "account",
+      "slug": "account_slug",
       "destination": "/account"
     },
-    "account_change_password": {
+    "change_password": {
       "localizations": [
         "/konto/kennwort-andern"
       ],
-      "slug": "account-change-password",
+      "slug": "change_password_slug",
       "destination": "/account/change-password"
     },
-    "account_forget_password": {
+    "forget_password": {
       "localizations": [
         "/konto/passwort-vergessen"
       ],
-      "slug": "account-forget-password",
+      "slug": "forget_password_slug",
       "destination": "/account/forget-password"
+    },
+    "conditions": {
+      "localizations": [
+        "/bedingungen"
+      ],
+      "slug": "conditions_slug",
+      "destination": "/conditions"
     }
   }
 }

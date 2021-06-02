@@ -76,12 +76,6 @@ const Detail = () => {
                 />
               </div>
               <AddToCartButton productId={product?._id} />
-              <a
-                href="/"
-                className="button button--secondary button--big w-100"
-              >
-                {intl.formatMessage({ id: 'make_reservation' })}
-              </a>
             </div>
           </div>
         </div>

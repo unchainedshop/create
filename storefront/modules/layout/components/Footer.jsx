@@ -9,9 +9,7 @@ const Footer = () => {
     <footer className="footer container my-5 border-top pt-5">
       <div className="d-flex justify-content-center">
         <Link href="/conditions">
-          <a className="link m-4">
-            {intl.formatMessage({ id: 'conditions' })}
-          </a>
+          <a className="link m-4">{intl.formatMessage({ id: 'conditions' })}</a>
         </Link>
         <Link href="/privacy">
           <a className="link m-4">{intl.formatMessage({ id: 'privacy' })}</a>

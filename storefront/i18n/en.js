@@ -43,7 +43,7 @@ export default {
   telephone: 'Telephone',
   country: 'Country',
   region: 'Region',
-  optional: 'Optional',
+  optional: '(Optional)',
   city: 'City',
   postal_code: 'Postal code',
   address: 'Address',
@@ -92,8 +92,7 @@ export default {
   back_to_home: 'Back to home',
   '505_sorry':
     'oops, Something went wrong when performing your request, please try again later!',
-  about_detail:
-    '...',
+  about_detail: '...',
   order_review: 'Order Review',
   delivery_address: 'Delivery address',
   billing_address: 'Billing address',
@@ -103,9 +102,9 @@ export default {
   already_have_account: 'Do you already have an account? Then log in here:',
   order_without_account: 'Order without an account',
   create_an_account: 'I want to create an account',
-  i_have_read_term: 'I have read the <a href="{path}">Terms and Conditions</a>',
+  i_have_read_term:
+    'I have read the <a href="/conditions">Terms and Conditions</a>',
   register: 'Register',
   email_verified_success: 'Your email has been successfully verified',
   confirmation_sent: 'A confirmation email is sent',
-  my_orders: 'My Orders',
 };

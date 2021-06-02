@@ -31,11 +31,7 @@ const ChangePassword = () => {
             <div className="col-md-6 offset-md-3">
               <h1>{intl.formatMessage({ id: 'change_password' })}</h1>
               <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                <div
-                  className={`mb-3 ${
-                    errors.password2 ? 'form-error' : ''
-                  }`}
-                >
+                <div className={`mb-3 ${errors.password2 ? 'form-error' : ''}`}>
                   <label className="form-label">
                     {intl.formatMessage({ id: 'current_password' })}
                   </label>
@@ -46,11 +42,7 @@ const ChangePassword = () => {
                     ref={register({ required: true })}
                   />
                 </div>
-                <div
-                  className={`mb-3 ${
-                    errors.password2 ? 'form-error' : ''
-                  }`}
-                >
+                <div className={`mb-3 ${errors.password2 ? 'form-error' : ''}`}>
                   <label className="form-label">
                     {intl.formatMessage({ id: 'new_password' })}
                   </label>
@@ -61,11 +53,7 @@ const ChangePassword = () => {
                     ref={register({ required: true })}
                   />
                 </div>
-                <div
-                  className={`mb-3 ${
-                    errors.password2 ? 'form-error' : ''
-                  }`}
-                >
+                <div className={`mb-3 ${errors.password2 ? 'form-error' : ''}`}>
                   <label className="form-label">
                     {intl.formatMessage({ id: 'repeat_password' })}
                   </label>

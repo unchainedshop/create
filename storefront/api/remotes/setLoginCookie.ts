@@ -52,12 +52,8 @@ export default () =>
       // Set the token and expiration if the user successfully called loginWithPassword, or clear the
       // current cookie if the user called logout
       if (loginMethodResponse) {
-        const {
-          token,
-          tokenExpires,
-          __mutationName,
-          ...rest
-        } = loginMethodResponse;
+        const { token, tokenExpires, __mutationName, ...rest } =
+          loginMethodResponse;
         if (!tokenExpires || !token) {
           throw new Error(
             `Query token & tokenExpires on ${loginMethodResponse} so we can set the cookie server-side for you`,

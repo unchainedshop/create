@@ -30,16 +30,17 @@ const Header = () => {
   }
 
   const topNavigationText = intl.formatMessage({ id: 'top_notification' });
-  const showTopNav = !topNavigationText || topNavigationText !== "top_notification";
+  const showTopNav =
+    !topNavigationText || topNavigationText !== 'top_notification';
 
   return (
     <>
       {showTopNav && (
         <div className="color-bg-dark">
-        <div className="container color-white py-1 text-center font-weight-bold">
-          <p>{topNavigationText}</p>
+          <div className="container color-white py-1 text-center font-weight-bold">
+            <p>{topNavigationText}</p>
+          </div>
         </div>
-      </div>
       )}
 
       <header className="header sticky-top">
@@ -69,11 +70,7 @@ const Header = () => {
           </div>
           <Link href="/">
             <a className="d-flex justify-content-center flex-grow-1 width-0">
-              <img
-                width="140px"
-                src={theme.assets.logo}
-                alt="Shop logo"
-              />
+              <img width="140px" src={theme.assets.logo} alt="Shop logo" />
             </a>
           </Link>
           <div className="d-flex justify-content-end flex-grow-1 width-0">
@@ -99,11 +96,7 @@ const Header = () => {
 
               <Link href="/">
                 <a>
-                  <img
-                    width="100px"
-                    src={theme.assets.logo}
-                    alt="Shop logo"
-                  />
+                  <img width="100px" src={theme.assets.logo} alt="Shop logo" />
                 </a>
               </Link>
             </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
@@ -167,8 +168,8 @@ const SignUp = () => {
                   }`}
                 >
                   <label className="form-label">
-                    `${intl.formatMessage({ id: 'company' })} $
-                    {intl.formatMessage({ id: 'optional' })}`
+                    {intl.formatMessage({ id: 'company' })}{' '}
+                    {intl.formatMessage({ id: 'optional' })}
                   </label>
                   <input
                     className="form-control"
@@ -304,14 +305,12 @@ const SignUp = () => {
                     errors.agb && 'form-error'
                   }`}
                   htmlFor="conditions"
-                >
-                  {intl.formatMessage(
-                    {
+                  dangerouslySetInnerHTML={{
+                    __html: intl.formatMessage({
                       id: 'i_have_read_term',
-                    },
-                    { path: '/conditions' },
-                  )}
-                </label>
+                    }),
+                  }}
+                />
               </div>
 
               <ErrorDisplay error={error} />

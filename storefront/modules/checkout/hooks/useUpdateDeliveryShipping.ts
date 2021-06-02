@@ -31,6 +31,7 @@ const useUpdateOrderDeliveryShipping = () => {
   }) => {
     await updateOrderDeliveryShipping({
       variables: { orderDeliveryId, address, meta },
+      refetchQueries: ['user'],
     });
   };
 

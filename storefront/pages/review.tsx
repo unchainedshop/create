@@ -15,7 +15,7 @@ import MetaTags from '../modules/common/components/MetaTags';
 
 const titleForProvider = (_id) => {
   return {
-    tLnLqEfzzLetvmqgd: 'Wire Transfer',
+    uh2Qz5Cgh6jZeCZ7w: 'Wire Transfer',
   }[_id];
 };
 
@@ -171,7 +171,7 @@ const Review = () => {
 
             <div className="mt-5">
               {user?.cart?.paymentInfo?.provider?._id ===
-              'tLnLqEfzzLetvmqgd' ? (
+              'uh2Qz5Cgh6jZeCZ7w' ? (
                 <button
                   type="button"
                   role="link"

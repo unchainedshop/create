@@ -15,7 +15,7 @@ export default {
     'Es hat uns erreicht und eine E-Mail mit der Auftragserteilung Bestätigung ist auf dem Weg. Um jegliches Potenzial zu vermeiden Missverständnisse, überprüfen Sie bitte Ihren Spam, möglicherweise ist die E-Mail gelandet Dort.',
   thank_you_order_number: 'Deine Bestellnummer lautet:',
   thank_you_order_date:
-    'Das Datum, an dem Sie die Bestellung aufgegeben haben, ist:',
+    'Das Datum,  an dem Sie die Bestellung aufgegeben haben, ist:',
   sign_up: 'Anmelden',
   empty_cart: 'Leerer Einkaufswagen',
   no_product_in_cart:
@@ -77,7 +77,7 @@ export default {
   change_password: 'Change password',
   current_password: 'Jetztiges Passwort',
   new_password: 'Neues Passwort',
-  reset_password: 'Passwort zurücksetzen',
+  reset_password: 'Passwort ändern',
   password_not_match: 'Die Passwörter stimmen nicht überein',
   request_new_password: 'Fordere ein neues passwort an',
   update: 'Aktualisieren',

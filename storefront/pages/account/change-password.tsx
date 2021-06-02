@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 
@@ -9,15 +10,32 @@ import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
 
 const ChangePassword = () => {
-  const { register, handleSubmit, errors, watch } = useForm();
+  const { register, handleSubmit, errors, watch, setError } = useForm();
   const intl = useIntl();
+  const router = useRouter();
   const password = useRef({});
   password.current = watch('newPassword', '');
-  const { changePassword, loading } = useChangePassword();
+  const { changePassword, loading, error } = useChangePassword();
 
   const onSubmit = async ({ newPassword, oldPassword }) => {
-    await changePassword({ newPassword, oldPassword });
+    try {
+      await changePassword({ newPassword, oldPassword });
+      router.push('/account');
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
+    }
   };
+
+  useEffect(() => {
+    if (error?.message?.includes('Invalid credentials')) {
+      setError(
+        'oldPassword',
+        'wrongPassword',
+        'Wrong password, please try again',
+      );
+    }
+  }, [error]);
 
   return (
     <>
@@ -32,7 +50,11 @@ const ChangePassword = () => {
               <h1>{intl.formatMessage({ id: 'change_password' })}</h1>
               <form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <div className={`mb-3 ${errors.password2 ? 'form-error' : ''}`}>
-                  <label className="form-label">
+                  <label
+                    className={`form-label mb-3 col-md-6 ${
+                      errors.oldPassword ? 'form-error' : ''
+                    }`}
+                  >
                     {intl.formatMessage({ id: 'current_password' })}
                   </label>
                   <input
@@ -41,6 +63,12 @@ const ChangePassword = () => {
                     type="password"
                     ref={register({ required: true })}
                   />
+                  {errors.oldPassword && (
+                    <span className="error-message">
+                      {' '}
+                      {errors.oldPassword?.message}{' '}
+                    </span>
+                  )}
                 </div>
                 <div className={`mb-3 ${errors.password2 ? 'form-error' : ''}`}>
                   <label className="form-label">

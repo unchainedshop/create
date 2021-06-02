@@ -74,7 +74,7 @@ export default {
   change_password: 'Change password',
   current_password: 'Current password',
   new_password: 'New password',
-  reset_password: 'Reset Password',
+  reset_password: 'Set new password',
   password_not_match: 'The passwords do not match',
   request_new_password: 'Request new password',
   update: 'Update',

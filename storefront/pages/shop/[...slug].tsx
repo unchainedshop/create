@@ -54,7 +54,7 @@ const CategoryDetail = () => {
         .join('/')}`;
       if (router.asPath !== actualRoute) router.replace(actualRoute);
     }
-  });
+  }, [texts]);
 
   useEffect(() => {
     setcurrentUrl(window.location.href);

@@ -21,18 +21,26 @@ const UnchainedApp = ({ Component, pageProps, router }) => {
       toggleCart,
     });
   };
-  /* chenge root pages slug for there localy */
+  /* change root pages slug for there localy 
+  handles localization for routes /page | /page/1234
+  where 1234 is either id or slug */
   useEffect(() => {
-    if (!Object.keys(router.query).length) {
+    const idOrSlug = router?.query?.id || router?.query?.slug || '';
+    if (!Object.keys(router.query).length || idOrSlug) {
       const currentPage = router.route.split('/')[1];
+
       if (
-        router.asPath !== '/' &&
-        router.asPath !== `/${messages[ROUTES_CONFIG[currentPage].slug]}`
+        router.route !== '/' &&
+        `${router.asPath}/` !==
+          `/${messages[ROUTES_CONFIG[currentPage].slug]}/${idOrSlug}`
       ) {
-        router.push(`/${messages[ROUTES_CONFIG[currentPage].slug]}`);
+        router.push(
+          `/${messages[ROUTES_CONFIG[currentPage].slug]}/${idOrSlug}`,
+        );
       }
     }
-  }, []);
+  }, [router]);
+
   const [cartContext, setCartContext] = useState({
     isCartOpen: false,
     toggleCart,

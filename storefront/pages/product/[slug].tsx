@@ -35,14 +35,6 @@ const Detail = () => {
     setcurrentUrl(window.location.href);
   }, []);
 
-  /* show localize url */
-  useEffect(() => {
-    const actualRoute = `/${intl.formatMessage({
-      id: ROUTES_CONFIG.product.slug,
-    })}/${router.query?.slug}`;
-    if (router.asPath !== actualRoute) router.replace(actualRoute);
-  }, []);
-
   if (!product && !loading)
     return <NotFound page={intl.formatMessage({ id: 'products' })} />;
   return (

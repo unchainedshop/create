@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import { QRCode } from 'react-qr-svg';
 
 import useOrderDetail from '../modules/orders/hooks/useOrderDetail';
 import Header from '../modules/layout/components/Header';
@@ -39,6 +40,41 @@ const ThankYou = () => {
                   {'  '}
                   {intl.formatDate(order.created)}
                 </p>
+                {order?.payment?.provider?.interface?._id ===
+                  'shop.unchained.payment.bity' && (
+                  <div>
+                    <p>
+                      Please send <b>{order.meta.bityOrder.input.amount}</b>{' '}
+                      {order.meta.bityOrder.input.currency} to
+                    </p>
+                    <QRCode
+                      bgColor="#FFFFFF"
+                      fgColor="#000000"
+                      level="Q"
+                      style={{ width: 128 }}
+                      value={
+                        order.meta.bityOrder.payment_details.crypto_address
+                      }
+                      className="d-block mb-4"
+                    />
+                    <small>
+                      Bitcon Destination Address:{' '}
+                      {order.meta.bityOrder.payment_details.crypto_address}
+                    </small>
+
+                    <p>
+                      Once you have submitted the money,{' '}
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={`https://go.bity.com/order-status?id=${order.meta.bityOrder.id}`}
+                      >
+                        you can check here
+                      </a>{' '}
+                      to see the status of your payment
+                    </p>
+                  </div>
+                )}
               </>
             )}
           </div>

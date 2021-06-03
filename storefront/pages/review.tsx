@@ -159,7 +159,7 @@ const Review = () => {
                   ''
                 )}
                 {user?.cart?.paymentInfo?.provider?.interface?._id ===
-                'shop.unchained.bity' ? (
+                'shop.unchained.payment.bity' ? (
                   <BityPayment order={user?.cart} />
                 ) : (
                   ''

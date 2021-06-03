@@ -8,10 +8,11 @@ import MetaTags from '../../modules/common/components/MetaTags';
 import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
 
-const Products = () => {
+const Categories = () => {
   const { assortments, loading } = useAssortments();
   const [currentUrl, setcurrentUrl] = useState('');
   const intl = useIntl();
+
   useEffect(() => {
     setcurrentUrl(window.location.href);
   }, []);
@@ -43,4 +44,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Categories;

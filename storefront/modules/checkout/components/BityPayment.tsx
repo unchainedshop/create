@@ -40,7 +40,7 @@ const BityPayment = ({ cart }) => {
         </li>
         <li>
           Please always double and triple check the destination address so you
-          don't accidentally send the Bitcoins to somebody else.
+          don&apos;t accidentally send the Bitcoins to somebody else.
         </li>
         <li>
           Please start the payment immediately after submission of the order.

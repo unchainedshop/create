@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-
 import { useIntl } from 'react-intl';
+
 import CategoriesList from '../../modules/assortment/components/CategoriesList';
 import useAssortmentProducts from '../../modules/assortment/hooks/useAssortmentProducts';
 import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';
@@ -53,6 +53,10 @@ const CategoryDetail = () => {
         .concat(texts?.slug)
         .join('/')}`;
       if (router.asPath !== actualRoute) router.replace(actualRoute);
+      localStorage.setItem(
+        'lastVisitedCategory',
+        `/${router.locale}${actualRoute}`,
+      );
     }
   }, [texts]);
 

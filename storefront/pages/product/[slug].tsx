@@ -36,7 +36,7 @@ const Detail = () => {
   }, []);
   useEffect(() => {
     if (product?.texts) {
-      const x = `/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}/${
+      const x = `/${intl.formatMessage({ id: ROUTES_CONFIG.product.slug })}/${
         product?.texts?.slug
       }`;
 

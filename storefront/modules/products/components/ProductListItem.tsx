@@ -9,7 +9,7 @@ const ProductListItem = ({ product }) => {
   const intl = useIntl();
   return (
     <Link
-      href={`/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}/${
+      href={`/${intl.formatMessage({ id: ROUTES_CONFIG.product.slug })}/${
         product?.texts?.slug
       }`}
     >

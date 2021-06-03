@@ -1,11 +1,10 @@
-import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import useUser from '../modules/auth/hooks/useUser';
 import useSetOrderPaymentProvider from '../modules/orders/hooks/setPaymentOrderProvider';
-import useCheckOutCart from '../modules/cart/hooks/useCheckOutCart';
 import DatatransStatusGate from '../modules/checkout/components/DatatransStatusGate';
-import usePayWithDatatrans from '../modules/checkout/hooks/usePayWithDatatrans';
+import BityPayment from '../modules/checkout/components/BityPayment';
+import DatatransPayment from '../modules/checkout/components/DatatransPayment';
+import WireTransferPayment from '../modules/checkout/components/WireTransferPayment';
 
 import Header from '../modules/layout/components/Header';
 import Footer from '../modules/layout/components/Footer';
@@ -17,13 +16,8 @@ import useUpdateCart from '../modules/checkout/hooks/useUpdateCart';
 import MetaTags from '../modules/common/components/MetaTags';
 
 const Review = () => {
-  const router = useRouter();
   const { user } = useUser();
   const intl = useIntl();
-
-  const [isPaymentButtonDisabled, setPaymentButtonDisabled] = useState(false);
-  const { checkOutCart } = useCheckOutCart();
-  const payWithDatatrans = usePayWithDatatrans();
 
   const { setOrderPaymentProvider } = useSetOrderPaymentProvider();
   const { updateOrderDeliveryAddress } = useUpdateOrderDeliveryShipping();
@@ -41,27 +35,6 @@ const Review = () => {
         countryCode: user?.cart?.deliveryInfo?.address?.countryCode,
       },
     });
-  };
-
-  const checkout = async ({
-    paymentContext = undefined,
-    deliveryContext = undefined,
-    orderContext = undefined,
-  } = {}) => {
-    if (user?.cart?.deliveryInfo?.address === null) setBillingSameAsDelivery();
-    await checkOutCart({
-      orderId: user.cart._id,
-      orderContext,
-      paymentContext,
-      deliveryContext,
-    });
-
-    setTimeout(() => {
-      router.replace({
-        pathname: '/thank-you',
-        query: { orderId: user.cart._id },
-      });
-    }, 2000);
   };
 
   const selectPayment = async (providerId) => {
@@ -172,37 +145,22 @@ const Review = () => {
               <div className="mt-5">
                 {user?.cart?.paymentInfo?.provider?.interface?._id ===
                 'shop.unchained.invoice' ? (
-                  <button
-                    disabled={isPaymentButtonDisabled}
-                    type="button"
-                    role="link"
-                    className="button button--primary button--big"
-                    onClick={async () => {
-                      setPaymentButtonDisabled(true);
-                      await checkout(user?.cart);
-                      setPaymentButtonDisabled(false);
-                    }}
-                  >
-                    {intl.formatMessage({ id: 'confirm_purchase' })}
-                  </button>
+                  <WireTransferPayment
+                    setBillingSameAsDelivery={setBillingSameAsDelivery}
+                    cart={user?.cart}
+                  />
                 ) : (
                   ''
                 )}
                 {user?.cart?.paymentInfo?.provider?.interface?._id ===
                 'shop.unchained.datatrans' ? (
-                  <button
-                    type="button"
-                    role="link"
-                    disabled={isPaymentButtonDisabled}
-                    className="button button--primary button--big"
-                    onClick={async () => {
-                      setPaymentButtonDisabled(true);
-                      await payWithDatatrans(user?.cart);
-                      setPaymentButtonDisabled(false);
-                    }}
-                  >
-                    {intl.formatMessage({ id: 'pay_now' })}
-                  </button>
+                  <DatatransPayment cart={user?.cart} />
+                ) : (
+                  ''
+                )}
+                {user?.cart?.paymentInfo?.provider?.interface?._id ===
+                'shop.unchained.bity' ? (
+                  <BityPayment order={user?.cart} />
                 ) : (
                   ''
                 )}

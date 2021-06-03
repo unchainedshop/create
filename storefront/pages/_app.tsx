@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import App from 'next/app';
 import { ToastContainer } from 'react-toastify';
 
@@ -9,9 +9,11 @@ import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 import { CartContext } from '../modules/cart/CartContext';
 import withApollo from '../modules/apollo/utils/withApollo';
 import getMessages from '../modules/i18n/utils/getMessages';
+import ROUTES_CONFIG from '../modules/common/utils/getRouteConfig';
 
 const UnchainedApp = ({ Component, pageProps, router }) => {
   const messages = getMessages(router.locale);
+
   const toggleCart = (val) => {
     // eslint-disable-next-line no-use-before-define
     setCartContext({
@@ -19,7 +21,18 @@ const UnchainedApp = ({ Component, pageProps, router }) => {
       toggleCart,
     });
   };
-
+  /* chenge root pages slug for there localy */
+  useEffect(() => {
+    if (!Object.keys(router.query).length) {
+      const currentPage = router.route.split('/')[1];
+      if (
+        router.asPath !== '/' &&
+        router.asPath !== `/${messages[ROUTES_CONFIG[currentPage].slug]}`
+      ) {
+        router.push(`/${messages[ROUTES_CONFIG[currentPage].slug]}`);
+      }
+    }
+  }, []);
   const [cartContext, setCartContext] = useState({
     isCartOpen: false,
     toggleCart,

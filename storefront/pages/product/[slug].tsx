@@ -32,9 +32,6 @@ const Detail = () => {
   );
 
   useEffect(() => {
-    setcurrentUrl(window.location.href);
-  }, []);
-  useEffect(() => {
     if (product?.texts) {
       const x = `/${intl.formatMessage({ id: ROUTES_CONFIG.product.slug })}/${
         product?.texts?.slug
@@ -42,7 +39,8 @@ const Detail = () => {
 
       if (router.asPath !== x) router.replace(x);
     }
-  });
+    setcurrentUrl(window.location.href);
+  }, []);
 
   if (!product && !loading)
     return <NotFound page={intl.formatMessage({ id: 'products' })} />;

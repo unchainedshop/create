@@ -17,14 +17,18 @@ const OrderDetailQuery = gql`
 `;
 
 const useOrderDetail = ({ orderId }) => {
-  const { data, loading, error } = useQuery(OrderDetailQuery, {
+  const { data, loading, error, ...rest } = useQuery(OrderDetailQuery, {
     variables: { orderId },
+    notifyOnNetworkStatusChange: true,
+    ssr: false,
+    fetchPolicy: 'no-cache',
   });
 
   return {
     order: data?.order,
     loading,
     error,
+    ...rest,
   };
 };
 

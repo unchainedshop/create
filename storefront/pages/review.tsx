@@ -1,9 +1,12 @@
 import { useRouter } from 'next/router';
-
+import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import useUser from '../modules/auth/hooks/useUser';
 import useSetOrderPaymentProvider from '../modules/orders/hooks/setPaymentOrderProvider';
 import useCheckOutCart from '../modules/cart/hooks/useCheckOutCart';
+import DatatransStatusGate from '../modules/checkout/components/DatatransStatusGate';
+import usePayWithDatatrans from '../modules/checkout/hooks/usePayWithDatatrans';
+
 import Header from '../modules/layout/components/Header';
 import Footer from '../modules/layout/components/Footer';
 import ManageCart from '../modules/cart/components/ManageCart';
@@ -13,18 +16,15 @@ import useUpdateOrderDeliveryShipping from '../modules/checkout/hooks/useUpdateD
 import useUpdateCart from '../modules/checkout/hooks/useUpdateCart';
 import MetaTags from '../modules/common/components/MetaTags';
 
-const titleForProvider = (_id) => {
-  return {
-    tLnLqEfzzLetvmqgd: 'Wire Transfer',
-  }[_id];
-};
-
 const Review = () => {
   const router = useRouter();
   const { user } = useUser();
   const intl = useIntl();
 
+  const [isPaymentButtonDisabled, setPaymentButtonDisabled] = useState(false);
   const { checkOutCart } = useCheckOutCart();
+  const payWithDatatrans = usePayWithDatatrans();
+
   const { setOrderPaymentProvider } = useSetOrderPaymentProvider();
   const { updateOrderDeliveryAddress } = useUpdateOrderDeliveryShipping();
   const { updateCart } = useUpdateCart();
@@ -112,85 +112,119 @@ const Review = () => {
     <>
       <MetaTags title={intl.formatMessage({ id: 'order_review' })} />
       <Header />
-
       <div className="container mt-5">
         <div className="row">
-          <div className="col-lg-8 mb-5">
-            <h2 className="mt-0 mb-5">
-              {`${intl.formatMessage({
-                id: 'checkout',
-              })} - ${intl.formatMessage({ id: 'order_review' })}`}
-            </h2>
-            <h4>{intl.formatMessage({ id: 'delivery_address' })}</h4>
-            <DeliveryAddressEditable user={user} />
+          <DatatransStatusGate>
+            <div className="col-lg-8 mb-5">
+              <h2 className="mt-0 mb-5">
+                {`${intl.formatMessage({
+                  id: 'checkout',
+                })} - ${intl.formatMessage({ id: 'order_review' })}`}
+              </h2>
+              <h4>{intl.formatMessage({ id: 'delivery_address' })}</h4>
+              <DeliveryAddressEditable user={user} />
 
-            <h4 className="mt-5">
-              {intl.formatMessage({ id: 'billing_address' })}
-            </h4>
+              <h4 className="mt-5">
+                {intl.formatMessage({ id: 'billing_address' })}
+              </h4>
 
-            <div className="form-check my-3">
-              <label className="form-check-label mb-5" htmlFor="same">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id="same"
-                  defaultChecked={user?.cart?.deliveryInfo?.address === null}
-                  name="same"
-                  onChange={(e) => sameAsDeliveryChange(e)}
-                />
-                <span className="ml-3">
-                  {intl.formatMessage({ id: 'same_as_delivery' })}
-                </span>
-              </label>
+              <div className="form-check my-3">
+                <label className="form-check-label mb-5" htmlFor="same">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="same"
+                    defaultChecked={user?.cart?.deliveryInfo?.address === null}
+                    name="same"
+                    onChange={(e) => sameAsDeliveryChange(e)}
+                  />
+                  <span className="ml-3">
+                    {intl.formatMessage({ id: 'same_as_delivery' })}
+                  </span>
+                </label>
+              </div>
+              <BillingAddressEditable user={user} />
+
+              <h4 className="mt-5">
+                {intl.formatMessage({ id: 'payment_method' })}
+              </h4>
+              <section className="">
+                {user?.cart?.supportedPaymentProviders.map((pamentProvider) => (
+                  <div
+                    key={pamentProvider._id}
+                    className="form-check my-2 my-lg-1"
+                  >
+                    <label className="form-check-label">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        name="paymentmethods"
+                        value={pamentProvider._id}
+                        checked={
+                          pamentProvider._id ===
+                          user?.cart?.paymentInfo?.provider?._id
+                        }
+                        onChange={(e) => {
+                          e.preventDefault();
+                          selectPayment(pamentProvider._id);
+                        }}
+                      />
+                      <span className="ml-3">
+                        {intl.formatMessage({
+                          id: pamentProvider.interface?._id,
+                        })}
+                      </span>
+                    </label>
+                  </div>
+                ))}
+              </section>
+
+              <div className="mt-5">
+                {user?.cart?.paymentInfo?.provider?.interface?._id ===
+                'shop.unchained.invoice' ? (
+                  <button
+                    disabled={isPaymentButtonDisabled}
+                    type="button"
+                    role="link"
+                    className="button button--primary button--big"
+                    onClick={async () => {
+                      setPaymentButtonDisabled(true);
+                      await checkout(user?.cart);
+                      setPaymentButtonDisabled(false);
+                    }}
+                  >
+                    {intl.formatMessage({ id: 'confirm_purchase' })}
+                  </button>
+                ) : (
+                  ''
+                )}
+                {user?.cart?.paymentInfo?.provider?.interface?._id ===
+                'shop.unchained.datatrans' ? (
+                  <button
+                    type="button"
+                    role="link"
+                    disabled={isPaymentButtonDisabled}
+                    className="button button--primary button--big"
+                    onClick={async () => {
+                      setPaymentButtonDisabled(true);
+                      await payWithDatatrans(user?.cart);
+                      setPaymentButtonDisabled(false);
+                    }}
+                  >
+                    {intl.formatMessage({ id: 'pay_now' })}
+                  </button>
+                ) : (
+                  ''
+                )}
+              </div>
             </div>
-            <BillingAddressEditable user={user} />
-
-            <h4 className="mt-5">
-              {intl.formatMessage({ id: 'payment_method' })}
-            </h4>
-            <section className="">
-              {user?.cart?.supportedPaymentProviders.map(({ _id }) => (
-                <div key={_id} className="form-check my-2 my-lg-1">
-                  <label className="form-check-label">
-                    <input
-                      type="radio"
-                      className="form-check-input"
-                      name="paymentmethods"
-                      value={_id}
-                      checked={_id === user?.cart?.paymentInfo?.provider?._id}
-                      onChange={(e) => {
-                        e.preventDefault();
-                        selectPayment(_id);
-                      }}
-                    />
-                    <span className="ml-3">{titleForProvider(_id)}</span>
-                  </label>
-                </div>
-              ))}
-            </section>
-
-            <div className="mt-5">
-              {user?.cart?.paymentInfo?.provider?._id ===
-              'tLnLqEfzzLetvmqgd' ? (
-                <button
-                  type="button"
-                  role="link"
-                  className="button button--primary button--big"
-                  onClick={() => checkout()}
-                >
-                  {intl.formatMessage({ id: 'confirm_purchase' })}
-                </button>
-              ) : (
-                ''
-              )}
+            <div className="col-lg-4">
+              <h2 className="mt-0 mb-5">
+                {intl.formatMessage({ id: 'order_summary' })}
+              </h2>
+              <ManageCart user={user} />
             </div>
-          </div>
-          <div className="col-lg-4">
-            <h2 className="mt-0 mb-5">
-              {intl.formatMessage({ id: 'order_summary' })}
-            </h2>
-            <ManageCart user={user} />
-          </div>
+          </DatatransStatusGate>
         </div>
       </div>
       <Footer />

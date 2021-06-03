@@ -112,4 +112,7 @@ export default {
   register: 'Registrieren',
   email_verified_success: 'Ihre E-Mail wurde erfolgreich überprüft',
   confirmation_sent: 'Eine Bestätigungs-E-Mail wird gesendet',
+  'shop.unchained.invoice': 'Wire Transfer',
+  'shop.unchained.datatrans': 'Credit Card',
+  pay_now: 'Pay Now',
 };

@@ -98,6 +98,7 @@ export default {
   billing_address: 'Billing address',
   same_as_delivery: 'Same as delivery address',
   confirm_purchase: 'Confirm purchase',
+  pay_now: 'Pay Now',
   order_summary: 'Order summary',
   already_have_account: 'Do you already have an account? Then log in here:',
   order_without_account: 'Order without an account',
@@ -107,4 +108,7 @@ export default {
   register: 'Register',
   email_verified_success: 'Your email has been successfully verified',
   confirmation_sent: 'A confirmation email is sent',
+  'shop.unchained.invoice': 'Wire Transfer',
+  'shop.unchained.datatrans': 'Credit Card',
+  sign_out: 'Sign out',
 };

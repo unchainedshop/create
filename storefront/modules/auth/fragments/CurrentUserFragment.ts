@@ -57,6 +57,9 @@ const CurrentUserFragment = gql`
         provider {
           _id
           type
+          interface {
+            _id
+          }
         }
         ... on OrderPaymentGeneric {
           sign
@@ -90,6 +93,9 @@ const CurrentUserFragment = gql`
       supportedPaymentProviders {
         _id
         type
+        interface {
+          _id
+        }
       }
       supportedDeliveryProviders {
         _id

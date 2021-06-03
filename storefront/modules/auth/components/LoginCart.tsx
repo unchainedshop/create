@@ -13,7 +13,7 @@ const LoginCart = () => {
   return user ? (
     <>
       <a
-        className="no-button py-1 ml-md-3"
+        className="no-button py-1 ml-md-3 d-flex align-items-center"
         onClick={() => context.toggleCart(!context.isCartOpen)}
       >
         <svg

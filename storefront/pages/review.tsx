@@ -71,16 +71,6 @@ const Review = () => {
     });
   };
 
-  if (!user?.cart) {
-    return (
-      <>
-        <Header />
-        <div className="container mt-5" />
-        <Footer />
-      </>
-    );
-  }
-
   const sameAsDeliveryChange = (event) => {
     if (event.target.checked) {
       if (user?.cart?.deliveryInfo?.address) {

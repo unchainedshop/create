@@ -20,8 +20,8 @@ const useOrderDetail = ({ orderId }) => {
   const { data, loading, error, ...rest } = useQuery(OrderDetailQuery, {
     variables: { orderId },
     notifyOnNetworkStatusChange: true,
-    ssr: false,
     fetchPolicy: 'no-cache',
+    ssr: false,
   });
 
   return {

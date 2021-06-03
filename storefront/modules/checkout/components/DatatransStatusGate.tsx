@@ -25,7 +25,7 @@ const DatatransStatusGate: React.FC<DatatransStatusGateProps> = ({
     if (status === 'success' && order?.orderNumber) {
       push(`/thank-you?orderId=${order._id}`);
     }
-  }, [status]);
+  }, [status, order]);
 
   useEffect(() => {
     if (order && !order.orderNumber && !loading) {

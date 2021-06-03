@@ -1,4 +1,4 @@
-const enSlugs = require('./slugs/en');
+import enSlugs from './slugs/en';
 
 export default {
   ladies: 'Ladies',
@@ -114,5 +114,5 @@ export default {
   'shop.unchained.datatrans': 'Credit Card',
   sign_out: 'Sign out',
   product: 'Product',
-  ...enSlugs.default,
+  ...enSlugs,
 };

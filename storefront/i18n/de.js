@@ -1,4 +1,4 @@
-const deSlugs = require('./slugs/de');
+import deSlugs from './slugs/de';
 
 export default {
   ladies: 'Damen',
@@ -118,5 +118,5 @@ export default {
   'shop.unchained.datatrans': 'Credit Card',
   pay_now: 'Pay Now',
   product: 'Produkt',
-  ...deSlugs.default,
+  ...deSlugs,
 };

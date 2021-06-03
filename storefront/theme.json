@@ -143,7 +143,7 @@
       "localizations": [
         "/auftrag"
       ],
-      "slug": "orders_slug",
+      "slug": "order_slug",
       "destination": "/order"
     },
     "account": {

@@ -32,14 +32,15 @@ const Detail = () => {
   );
 
   useEffect(() => {
-    if (product?.texts) {
-      const x = `/${intl.formatMessage({ id: ROUTES_CONFIG.product.slug })}/${
-        product?.texts?.slug
-      }`;
-
-      if (router.asPath !== x) router.replace(x);
-    }
     setcurrentUrl(window.location.href);
+  }, []);
+
+  /* show localize url */
+  useEffect(() => {
+    const actualRoute = `/${intl.formatMessage({
+      id: ROUTES_CONFIG.product.slug,
+    })}/${router.query?.slug}`;
+    if (router.asPath !== actualRoute) router.replace(actualRoute);
   }, []);
 
   if (!product && !loading)

@@ -44,7 +44,7 @@ const CategoryDetail = () => {
   );
   useEffect(() => {
     if (texts) {
-      const x = `${
+      const actualRoute = `${
         !assortmentPaths?.length
           ? `/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}`
           : ''
@@ -52,7 +52,7 @@ const CategoryDetail = () => {
         ?.map((a) => a.slug)
         .concat(texts?.slug)
         .join('/')}`;
-      if (router.asPath !== `${x}`) router.replace(x);
+      if (router.asPath !== actualRoute) router.replace(actualRoute);
     }
   });
 

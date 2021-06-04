@@ -73,8 +73,9 @@
 .language-select select {
   border: 0;
   background: none;
-  padding: 0 0.75em;
+  padding: 0 0.75em 0 0;
   appearance: none;
+  margin-left: -0.25em;
 }
 
 .language-select::after {

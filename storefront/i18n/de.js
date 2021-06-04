@@ -85,7 +85,7 @@ export default {
   verified: 'Verifiziert',
   not_verified: 'Nicht verifiziert',
   number_of_orders: 'Anzahl der Bestellungen',
-  order: 'Auftrag',
+  order: 'Bestellung',
   secondary_address: 'Sekundäre Adresse',
   profile: 'Profil',
   guest: 'Gast',
@@ -98,7 +98,7 @@ export default {
   about_detail:
     'Dynoptic ist das Schweizer Qualitätslabel für Brillen und Kontaktlinsen. Unsere über 100 Dynoptic Partner freuen sich auf Ihren Besuch: online oder vor Ort.',
   log_out: 'Ausloggen',
-  order_review: 'Auftragsüberprüfung',
+  order_review: 'Bestellüberprüfung',
   delivery_address: 'Lieferadresse',
   billing_address: 'Rechnungsadresse',
   same_as_delivery: 'Gleich wie Lieferadresse',

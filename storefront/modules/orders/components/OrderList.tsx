@@ -1,59 +1,67 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
-import formatDate from '../../common/utils/formatDate';
 import renderPrice from '../../common/utils/renderPrice';
 
 const OrderList = ({ orders }) => {
   const intl = useIntl();
   return (
     <div className="table-responsive container mt-5">
+      <h1>Orders</h1>
       <table className="table table-bordered table-hover text-center table-striped">
         <thead>
           <tr>
-            <th>{intl.formatMessage({ id: 'order_number' })}</th>
-            <th>{intl.formatMessage({ id: 'created' })}</th>
-            <th>{intl.formatMessage({ id: 'delivery_method' })}</th>
-            <th>{intl.formatMessage({ id: 'payment_method' })}</th>
-            <th>{intl.formatMessage({ id: 'payment_status' })}</th>
-            <th>{intl.formatMessage({ id: 'total' })}</th>
-            <th>{intl.formatMessage({ id: 'country' })}</th>
-            <th>{intl.formatMessage({ id: 'status' })}</th>
+            <th className="p-3">
+              {intl.formatMessage({ id: 'order_number' })}
+            </th>
+            <th className="p-3">{intl.formatMessage({ id: 'created' })}</th>
+            <th className="p-3">
+              {intl.formatMessage({ id: 'delivery_method' })}
+            </th>
+            <th className="p-3">
+              {intl.formatMessage({ id: 'payment_method' })}
+            </th>
+            <th className="p-3">
+              {intl.formatMessage({ id: 'payment_status' })}
+            </th>
+            <th className="p-3">{intl.formatMessage({ id: 'total' })}</th>
+            <th className="p-3">{intl.formatMessage({ id: 'country' })}</th>
+            <th className="p-3">{intl.formatMessage({ id: 'status' })}</th>
           </tr>
         </thead>
         <tbody>
           {orders.map((order) => (
             <Link href="/order/[id]" as={`/order/${order._id}`} key={order._id}>
               <tr>
-                <td className="font-weight-bolder p-2">{order.orderNumber}</td>
-                <td className="p-2"> {intl.formatDate(order.created)} </td>
-                <td className="p-2">{order.delivery.provider.type} </td>
-                <td className="p-2">
+                <td className="font-weight-bolder p-3">{order.orderNumber}</td>
+                <td className="p-3"> {intl.formatDate(order.created)} </td>
+                <td className="p-3">{order.delivery.provider.type} </td>
+                <td className="p-3">
                   {' '}
                   {order.supportedPaymentProviders[0].type}
                 </td>
                 <td
-                  className={`p-2 font-weight-bolder ${
+                  className={`p-3 font-weight-bolder ${
                     order?.payment?.status === 'PAID'
-                      ? 'text-success'
-                      : 'text-warning'
+                      ? 'pill-success'
+                      : 'pill-warning'
                   }`}
                 >
-                  {order.payment.status}{' '}
+                  <span className="pill px-2 py-1">{order.payment.status}</span>
                 </td>
-                <td className="p-2"> {renderPrice(order.total)}</td>
-                <td className="p-2">
+                <td className="p-3"> {renderPrice(order.total)}</td>
+                <td className="p-3">
                   {order.country.name}
                   <span>{order.country.flagEmoji}</span>
                 </td>
                 <td
-                  className={`p-2 font-weight-bolder ${
+                  className={`p-3 font-weight-bolder ${
                     order?.status === 'CONFIRMED'
-                      ? 'text-success'
-                      : 'text-warning'
+                      ? 'pill-success'
+                      : 'pill-warning'
                   }`}
                 >
-                  {order.status}{' '}
+                  <span className="pill px-2 py-1">{order.status}</span>
                 </td>
               </tr>
             </Link>

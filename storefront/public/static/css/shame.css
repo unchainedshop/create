@@ -41,3 +41,22 @@
   height: 18px;
   width: 18px;
 }
+
+.pill {
+  border-radius: 1em;
+  border-width: 1px;
+  border-style: solid;
+  font-size: .75rem;
+}
+
+.pill-warning .pill {
+  background-color: var(--color-warning-100);
+  border-color: var(--color-warning-200);
+  color: var(--color-warning-900);
+}
+
+.pill-success .pill {
+  background-color: var(--color-success-100);
+  border-color: var(--color-success-200);
+  color: var(--color-success-900);
+}

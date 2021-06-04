@@ -52,16 +52,17 @@
 }
 
 .form-error {
-  color: var(--color-danger);
+  color: var(--color-danger-600);
 }
 
 .form-error .form-label,
 .form-error .form-check-label {
-  color: var(--color-danger);
+  color: var(--color-danger-600);
 }
 
 .form-error .form-control {
   border: 1px solid var(--color-danger);
+  color: var(--color-danger-600);
 }
 
 .form-text {

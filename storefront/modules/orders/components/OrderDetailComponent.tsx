@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl';
 
 import renderPrice from '../../common/utils/renderPrice';
 import ListItem from '../../common/components/ListItem';
-import formatDate from '../../common/utils/formatDate';
 import getMediaUrl from '../../common/utils/getMediaUrl';
 
 const OrderDetailComponent = ({ order }) => {
@@ -93,8 +92,14 @@ const OrderDetailComponent = ({ order }) => {
                 />
               </div>
               <div className="w-100-for-mobile w-25">
-                <ListItem title="Created" value={formatDate(order?.created)} />
-                <ListItem title="Ordered" value={formatDate(order?.ordered)} />
+                <ListItem
+                  title="Created"
+                  value={intl.formatDate(order?.created)}
+                />
+                <ListItem
+                  title="Ordered"
+                  value={intl.formatDate(order?.ordered)}
+                />
 
                 <ListItem
                   title="Country"

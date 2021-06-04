@@ -26,7 +26,7 @@ const OrderList = ({ orders }) => {
             <Link href="/order/[id]" as={`/order/${order._id}`} key={order._id}>
               <tr>
                 <td className="font-weight-bolder p-2">{order.orderNumber}</td>
-                <td className="p-2"> {formatDate(order.created)} </td>
+                <td className="p-2"> {intl.formatDate(order.created)} </td>
                 <td className="p-2">{order.delivery.provider.type} </td>
                 <td className="p-2">
                   {' '}

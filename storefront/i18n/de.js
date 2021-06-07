@@ -97,7 +97,7 @@ export default {
   '505_sorry':
     'Hoppla, bei der Ausführung Ihrer Anfrage ist bitte ein Fehler aufgetreten Versuchen Sie es später noch einmal!',
   about_detail:
-    'Dynoptic ist das Schweizer Qualitätslabel für Brillen und Kontaktlinsen. Unsere über 100 Dynoptic Partner freuen sich auf Ihren Besuch: online oder vor Ort.',
+    '...',
   log_out: 'Ausloggen',
   order_review: 'Bestellüberprüfung',
   delivery_address: 'Lieferadresse',
@@ -107,7 +107,7 @@ export default {
   order_summary: 'Bestellübersicht',
   new_here: 'Ich bin neu hier',
   create_an_account: 'Ich möchte ein Konto erstellen',
-  i_have_read_term: 'Ich habe die <a href="/bedingungen">AGBs</a> gelesen',
+  i_have_read_term: 'ja, ich habe die <a class="link" href="/terms-conditions">AGBs</a> gelesen',
   register: 'Registrieren',
   email_verified_success: 'Ihre E-Mail wurde erfolgreich überprüft',
   confirmation_sent: 'Eine Bestätigungs-E-Mail wird gesendet',

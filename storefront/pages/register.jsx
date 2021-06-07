@@ -290,14 +290,14 @@ const SignUp = () => {
                   ''
                 )}
               </div>
-              <div
-                className={`form-check mb-3 ${errors.agb ? 'form-error' : ''}`}
+              <p
+                className={`form-check mt-0 mb-4 ${errors.agb ? 'form-error' : ''}`}
               >
                 <input
                   type="checkbox"
                   className="form-check-input"
-                  id="agb"
-                  name="agb"
+                  id="conditions"
+                  name="conditions"
                   ref={register({ required: true })}
                 />
                 <label
@@ -311,7 +311,7 @@ const SignUp = () => {
                     }),
                   }}
                 />
-              </div>
+              </p>
 
               <ErrorDisplay error={error} />
 

@@ -70,7 +70,7 @@ const Header = () => {
           </div>
           <Link href="/">
             <a className="d-flex justify-content-center flex-grow-1 width-0">
-              <img width="140px" src={theme.assets.logo} alt="Shop logo" />
+              <img className="align-self-center" width="140px" src={theme.assets.logo} alt="Shop logo" />
             </a>
           </Link>
           <div className="d-flex justify-content-end flex-grow-1 width-0">

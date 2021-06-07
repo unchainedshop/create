@@ -65,15 +65,15 @@ const Header = () => {
           />
         </Head>
         <div className="container d-flex align-items-center justify-content-between flex-wrap hide-on-mobile py-2">
-          <div className="d-flex justify-content-start flex-grow-1 width-0">
+          <div className="d-flex justify-content-start align-items-center">
             <DesktopNavigation />
+            <Link href="/">
+              <a>
+                <img className="align-self-center ml-3" width="140px" src={theme.assets.logo} alt="Shop logo" />
+              </a>
+            </Link>
           </div>
-          <Link href="/">
-            <a className="d-flex justify-content-center flex-grow-1 width-0">
-              <img className="align-self-center" width="140px" src={theme.assets.logo} alt="Shop logo" />
-            </a>
-          </Link>
-          <div className="d-flex justify-content-end flex-grow-1 width-0">
+          <div className="d-flex justify-content-end">
             <LoginCart />
           </div>
         </div>

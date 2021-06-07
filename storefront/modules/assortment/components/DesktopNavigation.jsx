@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
 import DesktopNavigationContext from './DesktopNavigationContext';
-import OrderButton from '../../orders/components/UserOrderButton';
 import MegaDropdown from './MegaDropdown';
 import useCategoriesTree from '../hooks/useCategoriesTree';
+import Icon from '../../common/components/Icon';
 
 const arrayEqual = (a, b) =>
   a.length === b.length &&
@@ -56,10 +56,10 @@ const DesktopNavigation = () => {
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <div key="shop" className="d-inline-block font-size-0">
+        <div key="shop" className="d-inline-block">
           <Link href="/shop">
             <a
-              className="nav--main__item button button--secondary"
+              className="nav--main__item py-3 d-flex align-items-center"
               data-in-hover-path={hoverPath.includes(assortmentTree.slug)}
               onMouseEnter={() => {
                 if (!isTouching) {
@@ -74,6 +74,7 @@ const DesktopNavigation = () => {
               }}
               onClick={handleClick(assortmentTree)}
             >
+              <Icon className="mr-2" icon="navigation-menu" />
               {intl.formatMessage({ id: 'menu' })}
             </a>
           </Link>
@@ -81,7 +82,6 @@ const DesktopNavigation = () => {
             <MegaDropdown {...assortmentTree} />
           )}
         </div>
-        <OrderButton />
       </nav>
     </DesktopNavigationContext.Provider>
   );

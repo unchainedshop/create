@@ -23,7 +23,7 @@ const Cart = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-8 col-lg-6 mx-auto">
-            <h1>{intl.formatMessage({ id: 'shopping_cart' })}</h1>
+            <h1>{intl.formatMessage({ id: 'cart' })}</h1>
             {loading ? (
               <LoadingItem />
             ) : (

@@ -112,14 +112,14 @@ const SignUp = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-6">
-            <h2>{intl.formatMessage({ id: 'log_in' })}</h2>
-            <p>{intl.formatMessage({ id: 'already_have_account' })} </p>
+            <h2>{intl.formatMessage({ id: 'welcome_back' })}</h2>
+            <p className="mt-0 mb-3">{intl.formatMessage({ id: 'welcome_back_message' })} </p>
             <LoginForm onLogin={onLogin} />
           </div>
           <div className="col-lg-6">
-            <h2> {intl.formatMessage({ id: 'order_without_account' })} </h2>
+            <h2> {intl.formatMessage({ id: 'new_here' })} </h2>
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
-              <div className="form-check mb-3">
+              <p className="form-check mb-3">
                 <input
                   type="checkbox"
                   className="form-check-input"
@@ -130,7 +130,7 @@ const SignUp = () => {
                 <label className="form-check-label mb-0" htmlFor="account">
                   {intl.formatMessage({ id: 'create_an_account' })}
                 </label>
-              </div>
+              </p>
               <div className="form-row">
                 <div
                   className={`mb-3 col-md-6 ${
@@ -316,7 +316,7 @@ const SignUp = () => {
               <ErrorDisplay error={error} />
 
               <button
-                className="button button--primary button--big"
+                className="button button--primary button--big w-100"
                 type="submit"
                 disabled={hasErrors}
               >

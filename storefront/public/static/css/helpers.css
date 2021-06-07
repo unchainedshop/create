@@ -130,6 +130,7 @@
   font-weight: 400;
   color: var(--color-dark);
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .link + .link {
@@ -140,7 +141,6 @@
   .link:hover,
   .link:focus,
   .link-hover:hover {
-    text-decoration: underline;
     cursor: pointer;
   }
 }

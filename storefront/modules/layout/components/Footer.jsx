@@ -9,22 +9,22 @@ const Footer = () => {
     <footer className="footer d-flex flex-wrap justify-content-between container my-5 border-top pt-5">
       <div className="d-flex flex-wrap">
         <Link href="/conditions">
-          <a className="link mr-4 mb-3">
+          <a className="mr-4 mb-3">
             {intl.formatMessage({ id: 'conditions' })}
           </a>
         </Link>
         <Link href="/privacy">
-          <a className="link mr-4 mb-3">
+          <a className="mr-4 mb-3">
             {intl.formatMessage({ id: 'privacy' })}
           </a>
         </Link>
         <Link href="/imprint">
-          <a className="link mr-4 mb-3">
+          <a className="mr-4 mb-3">
             {intl.formatMessage({ id: 'imprint' })}
           </a>
         </Link>
         <Link href="/about">
-          <a className="link mr-4 mb-3">{intl.formatMessage({ id: 'about' })}</a>
+          <a className="mr-4 mb-3">{intl.formatMessage({ id: 'about' })}</a>
         </Link>
       </div>
       <div className="d-flex justify-content-around mb-3">

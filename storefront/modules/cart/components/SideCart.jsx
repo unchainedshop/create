@@ -135,7 +135,7 @@ const SideCart = ({ isOpen }) => {
                 className="button button--primary button--big text-uppercase w-75 mb-3"
                 onClick={() => checkOut()}
               >
-                {intl.formatMessage({ id: 'checkout_now' })}
+                {intl.formatMessage({ id: 'to_checkout' })}
               </a>
               <Link href={`${localStorage.getItem('lastVisitedCategory')}`}>
                 <a

@@ -124,7 +124,7 @@ const SideCart = ({ isOpen }) => {
             </div>
             <div className="text-center p-2">
               <div className="border-top border-bottom py-3 my-0 mb-3">
-                <div className="d-flex flex-wrap justify-content-between mr-3 align-items-center">
+                <div className="d-flex flex-wrap justify-content-between align-items-center">
                   <div className="mr-2">
                     {intl.formatMessage({ id: 'subtotal' })}{' '}
                   </div>

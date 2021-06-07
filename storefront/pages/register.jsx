@@ -227,7 +227,7 @@ const SignUp = () => {
                   }`}
                 >
                   <label className="form-label">
-                    {intl.formatMessage({ id: 'city' })}
+                    {intl.formatMessage({ id: 'email' })}
                   </label>
                   <input
                     className={`form-control ${

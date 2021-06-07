@@ -113,12 +113,16 @@ const SignUp = () => {
         <div className="row">
           <div className="col-lg-6">
             <h2>{intl.formatMessage({ id: 'welcome_back' })}</h2>
-            <p className="mt-0 mb-3">{intl.formatMessage({ id: 'welcome_back_message' })}</p>
+            <p className="mt-0 mb-3">
+              {intl.formatMessage({ id: 'welcome_back_message' })}
+            </p>
             <LoginForm onLogin={onLogin} />
           </div>
           <div className="col-lg-6">
             <h2> {intl.formatMessage({ id: 'new_here' })} </h2>
-            <p className="mt-0 mb-3">{intl.formatMessage({ id: 'new_here_message' })}</p>
+            <p className="mt-0 mb-3">
+              {intl.formatMessage({ id: 'new_here_message' })}
+            </p>
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
               <div className="form-row">
                 <div
@@ -294,7 +298,9 @@ const SignUp = () => {
                 )}
                 <div className="col-12">
                   <p
-                    className={`form-check mt-0 mb-4 ${errors.agb ? 'form-error' : ''}`}
+                    className={`form-check mt-0 mb-4 ${
+                      errors.agb ? 'form-error' : ''
+                    }`}
                   >
                     <input
                       type="checkbox"

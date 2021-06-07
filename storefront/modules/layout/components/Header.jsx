@@ -69,7 +69,12 @@ const Header = () => {
             <DesktopNavigation />
             <Link href="/">
               <a>
-                <img className="align-self-center ml-3" width="140px" src={theme.assets.logo} alt="Shop logo" />
+                <img
+                  className="align-self-center ml-3"
+                  width="140px"
+                  src={theme.assets.logo}
+                  alt="Shop logo"
+                />
               </a>
             </Link>
           </div>

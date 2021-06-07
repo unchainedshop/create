@@ -14,14 +14,10 @@ const Footer = () => {
           </a>
         </Link>
         <Link href="/privacy-policy">
-          <a className="mr-4 mb-3">
-            {intl.formatMessage({ id: 'privacy' })}
-          </a>
+          <a className="mr-4 mb-3">{intl.formatMessage({ id: 'privacy' })}</a>
         </Link>
         <Link href="/imprint">
-          <a className="mr-4 mb-3">
-            {intl.formatMessage({ id: 'imprint' })}
-          </a>
+          <a className="mr-4 mb-3">{intl.formatMessage({ id: 'imprint' })}</a>
         </Link>
         <Link href="/about">
           <a className="mr-4 mb-3">{intl.formatMessage({ id: 'about' })}</a>

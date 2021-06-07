@@ -50,14 +50,10 @@ const LoginCart = () => {
   ) : (
     <div>
       <Link href="/sign-up">
-        <a className="my-1 mr-3 ">
-          {intl.formatMessage({ id: 'sign_up' })}
-        </a>
+        <a className="my-1 mr-3 ">{intl.formatMessage({ id: 'sign_up' })}</a>
       </Link>
       <Link href="/login">
-        <a className="my-1">
-          {intl.formatMessage({ id: 'log_in' })}
-        </a>
+        <a className="my-1">{intl.formatMessage({ id: 'log_in' })}</a>
       </Link>
     </div>
   );

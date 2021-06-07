@@ -9,9 +9,7 @@ const OrderDetailComponent = ({ order }) => {
   const intl = useIntl();
   return (
     <div className="container mt-5">
-      <h1>
-        {intl.formatMessage({ id: 'order_details' })}
-      </h1>
+      <h1>{intl.formatMessage({ id: 'order_details' })}</h1>
       <div className="row">
         <div className="col-sm-12">
           <ListItem title="Order no." value={order?.orderNumber} />
@@ -20,23 +18,25 @@ const OrderDetailComponent = ({ order }) => {
               className="d-flex justify-content-between flex-wrap border-top py-2"
               key={item?._id}
             >
-              <div className="cart-img mr-2">
-                <Image
-                  src={`${
-                    getMediaUrl(item.product) ||
-                    '/static/img/sun-glass-placeholder.jpeg'
-                  }`}
-                  alt={item.product.texts.title}
-                  layout="responsive"
-                  objectFit="contain"
-                  quality={100}
-                  width="350px"
-                  height="350px"
-                />
-              </div>
-              <div className="w-50 m-2">
-                <div>
-                  {item.quantity} x {item.product.texts.title}
+              <div className="d-flex">
+                <div className="cart-img mr-2">
+                  <Image
+                    src={`${
+                      getMediaUrl(item.product) ||
+                      '/static/img/sun-glass-placeholder.jpeg'
+                    }`}
+                    alt={item.product.texts.title}
+                    layout="responsive"
+                    objectFit="contain"
+                    quality={100}
+                    width="350px"
+                    height="350px"
+                  />
+                </div>
+                <div className="m-2">
+                  <div>
+                    {item.quantity} x {item.product.texts.title}
+                  </div>
                 </div>
               </div>
               <div className="font-weight-bold my-2">
@@ -77,10 +77,7 @@ const OrderDetailComponent = ({ order }) => {
                 title="Payment method"
                 value={order?.supportedPaymentProviders[0]?.type}
               />
-              <ListItem
-                title="Payment status"
-                value={order?.payment?.status}
-              />
+              <ListItem title="Payment status" value={order?.payment?.status} />
               <ListItem
                 title="Delivery method"
                 value={order?.supportedDeliveryProviders[0]?.type}

@@ -68,10 +68,7 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
 
   return (
     <div className="container">
-
-      <h1 className="text-center">
-        {intl.formatMessage({ id: 'sign_up' })}
-      </h1>
+      <h1 className="text-center">{intl.formatMessage({ id: 'sign_up' })}</h1>
 
       <form className="form mt-5" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-row">

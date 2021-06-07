@@ -113,24 +113,13 @@ const SignUp = () => {
         <div className="row">
           <div className="col-lg-6">
             <h2>{intl.formatMessage({ id: 'welcome_back' })}</h2>
-            <p className="mt-0 mb-3">{intl.formatMessage({ id: 'welcome_back_message' })} </p>
+            <p className="mt-0 mb-3">{intl.formatMessage({ id: 'welcome_back_message' })}</p>
             <LoginForm onLogin={onLogin} />
           </div>
           <div className="col-lg-6">
             <h2> {intl.formatMessage({ id: 'new_here' })} </h2>
+            <p className="mt-0 mb-3">{intl.formatMessage({ id: 'new_here_message' })}</p>
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
-              <p className="form-check mb-3">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id="account"
-                  name="account"
-                  ref={register}
-                />
-                <label className="form-check-label mb-0" htmlFor="account">
-                  {intl.formatMessage({ id: 'create_an_account' })}
-                </label>
-              </p>
               <div className="form-row">
                 <div
                   className={`mb-3 col-md-6 ${
@@ -253,6 +242,20 @@ const SignUp = () => {
                     ref={register({ required: true })}
                   />
                 </div>
+                <div className="mb-3 col-md-12">
+                  <p className="form-check mb-3">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="account"
+                      name="account"
+                      ref={register}
+                    />
+                    <label className="form-check-label mb-0" htmlFor="account">
+                      {intl.formatMessage({ id: 'create_an_account' })}
+                    </label>
+                  </p>
+                </div>
                 {createAccount ? (
                   <>
                     <div
@@ -289,29 +292,31 @@ const SignUp = () => {
                 ) : (
                   ''
                 )}
+                <div className="col-12">
+                  <p
+                    className={`form-check mt-0 mb-4 ${errors.agb ? 'form-error' : ''}`}
+                  >
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="conditions"
+                      name="conditions"
+                      ref={register({ required: true })}
+                    />
+                    <label
+                      className={`form-check-label mb-0 ${
+                        errors.agb && 'form-error'
+                      }`}
+                      htmlFor="conditions"
+                      dangerouslySetInnerHTML={{
+                        __html: intl.formatMessage({
+                          id: 'i_have_read_term',
+                        }),
+                      }}
+                    />
+                  </p>
+                </div>
               </div>
-              <p
-                className={`form-check mt-0 mb-4 ${errors.agb ? 'form-error' : ''}`}
-              >
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id="conditions"
-                  name="conditions"
-                  ref={register({ required: true })}
-                />
-                <label
-                  className={`form-check-label mb-0 ${
-                    errors.agb && 'form-error'
-                  }`}
-                  htmlFor="conditions"
-                  dangerouslySetInnerHTML={{
-                    __html: intl.formatMessage({
-                      id: 'i_have_read_term',
-                    }),
-                  }}
-                />
-              </p>
 
               <ErrorDisplay error={error} />
 

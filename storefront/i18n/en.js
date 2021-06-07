@@ -42,7 +42,7 @@ export default {
   telephone: 'Telephone',
   country: 'Country',
   region: 'Region',
-  optional: '(Optional)',
+  optional: '(optional)',
   city: 'City',
   postal_code: 'Postal code',
   address: 'Address',
@@ -102,6 +102,7 @@ export default {
   pay_now: 'Pay Now',
   order_summary: 'Order summary',
   new_here: 'I’m new here',
+  new_here_message: 'Checkout as a Guest or create a customer account.',
   create_an_account: 'I want to create an account',
   i_have_read_term:
     'Yes, I have read the <a class="link" href="/terms-conditions">Terms and Conditions</a>',

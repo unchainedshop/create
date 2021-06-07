@@ -51,7 +51,7 @@ const LoginForm = ({ onLogin }) => {
           />
         </div>
         <div
-          className={`d-flex flex-column mt-2  justify-between w-100 ${
+          className={`d-flex flex-column mt-3  justify-between w-100 ${
             errors.password ? 'form-error' : ''
           }`}
         >

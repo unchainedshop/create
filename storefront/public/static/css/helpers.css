@@ -168,7 +168,7 @@
 }
 
 .error-message {
-  color: #e05b5b;
+  color: var(--color-danger-600);
 }
 
 .error-message ul {

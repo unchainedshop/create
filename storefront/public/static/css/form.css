@@ -61,7 +61,7 @@
 }
 
 .form-error .form-control {
-  border: 1px solid var(--color-danger);
+  border: 1px solid var(--color-danger-600);
   color: var(--color-danger-600);
 }
 

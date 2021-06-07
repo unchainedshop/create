@@ -19,7 +19,7 @@ const LogIn = () => {
         <div className="row">
           <div className="col-md-6 m-auto">
             <h1 className="text-center">
-              {intl.formatMessage({ id: 'registration' })}
+              {intl.formatMessage({ id: 'log_in' })}
             </h1>
             <LoginForm onLogin={onLogin} />
           </div>

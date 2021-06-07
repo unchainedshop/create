@@ -70,6 +70,10 @@
   margin-top: 0.25rem;
 }
 
+select.form-control {
+  height: 38px;
+}
+
 .language-select select {
   border: 0;
   background: none;

@@ -68,7 +68,12 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
 
   return (
     <div className="container">
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+
+      <h1 className="text-center">
+        {intl.formatMessage({ id: 'sign_up' })}
+      </h1>
+
+      <form className="form mt-5" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-row">
           <div
             className={`mb-3 col-md-6 ${errors.username ? 'form-error' : ''}`}
@@ -259,11 +264,9 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
             />
             {errors.password2 && <p>{errors.password2.message}</p>}
           </div>
-        </div>
-        <div>
           <input
             type="submit"
-            className="button button--primary my-1"
+            className="button button--primary button--big my-1 w-100"
             value={intl.formatMessage({ id: 'registration' })}
           />
         </div>

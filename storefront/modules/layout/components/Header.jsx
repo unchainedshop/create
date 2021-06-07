@@ -37,8 +37,8 @@ const Header = () => {
     <>
       {showTopNav && (
         <div className="color-bg-dark">
-          <div className="container color-white py-1 text-center font-weight-bold">
-            <p>{topNavigationText}</p>
+          <div className="container color-white py-2 text-center font-weight-bold">
+            <p className="my-0">{topNavigationText}</p>
           </div>
         </div>
       )}

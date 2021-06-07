@@ -3,7 +3,7 @@ export default {
   mens: 'Men',
   new_models: 'New models',
   shopping_cart: 'Shopping cart',
-  complete_order: 'Complete order',
+  to_checkout: 'Go to checkout',
   home: 'Home',
   registration: 'Registration',
   logged_out: 'You will be logged out',

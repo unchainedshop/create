@@ -38,7 +38,7 @@ const Cart = () => {
                     }
                   >
                     <a className="button button--primary button--big text-uppercase">
-                      {intl.formatMessage({ id: 'complete_order' })}
+                      {intl.formatMessage({ id: 'to_checkout' })}
                     </a>
                   </Link>
                 </div>

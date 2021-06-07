@@ -3,7 +3,7 @@ export default {
   mens: 'Herren',
   new_models: 'Neue Modelle',
   shopping_cart: 'Einkaufswagen',
-  complete_order: 'Bestellung abschliessen',
+  to_checkout: 'Zur Kasse',
   home: 'Startseite',
   registration: 'Anmeldung',
   logged_out: 'Sie wurden abgemeldet',

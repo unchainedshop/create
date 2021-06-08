@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import useCategoriesTree from '../hooks/useCategoriesTree';
 import Icon from '../../common/components/Icon';
-import OrderButton from '../../orders/components/UserOrderButton';
 import Thumbnail from '../../common/components/thumbnail';
 import changeLanguage from '../../common/utils/changeLanguage';
 

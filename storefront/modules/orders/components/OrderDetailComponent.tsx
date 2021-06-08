@@ -37,17 +37,13 @@ const OrderDetailComponent = ({ order }) => {
                   {item.quantity} x {item.product.texts.title}
                 </div>
               </div>
-              <div className="my-2">
-                {renderPrice(item.total)}
-              </div>
+              <div className="my-2">{renderPrice(item.total)}</div>
             </div>
           ))}
           <div className="text-right">
             <div className="border-top py-3 mt-0">
               <div className="d-flex flex-wrap justify-content-between">
-                <div>
-                  {intl.formatMessage({ id: 'delivery' })}
-                </div>
+                <div>{intl.formatMessage({ id: 'delivery' })}</div>
                 <div>
                   {renderPrice(
                     order?.delivery?.provider?.simulatedPrice?.price,
@@ -59,12 +55,8 @@ const OrderDetailComponent = ({ order }) => {
           <div className="text-right">
             <div className="border-top py-3 mt-0">
               <div className="d-flex flex-wrap justify-content-between">
-                <div>
-                  {intl.formatMessage({ id: 'total' })}
-                </div>
-                <div>
-                  {renderPrice(order?.total)}
-                </div>
+                <div>{intl.formatMessage({ id: 'total' })}</div>
+                <div>{renderPrice(order?.total)}</div>
               </div>
             </div>
           </div>
@@ -80,18 +72,9 @@ const OrderDetailComponent = ({ order }) => {
             title="Delivery method"
             value={order?.supportedDeliveryProviders[0]?.type}
           />
-          <ListItem
-            title="Delivery status"
-            value={order?.delivery?.status}
-          />
-          <ListItem
-            title="Created"
-            value={intl.formatDate(order?.created)}
-          />
-          <ListItem
-            title="Ordered"
-            value={intl.formatDate(order?.ordered)}
-          />
+          <ListItem title="Delivery status" value={order?.delivery?.status} />
+          <ListItem title="Created" value={intl.formatDate(order?.created)} />
+          <ListItem title="Ordered" value={intl.formatDate(order?.ordered)} />
         </div>
       </div>
     </div>

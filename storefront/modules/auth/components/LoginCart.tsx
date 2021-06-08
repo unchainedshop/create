@@ -24,7 +24,9 @@ const LoginCart = () => {
             ? user?.cart?.items.reduce((acc, item) => acc + item.quantity, 0)
             : 0}
         </span>
-        <span className="hide-on-mobile">{intl.formatMessage({ id: 'cart' })}</span>
+        <span className="hide-on-mobile">
+          {intl.formatMessage({ id: 'cart' })}
+        </span>
       </a>
       <div className="ml-2 ml-md-3">
         <OrderButton />
@@ -35,13 +37,17 @@ const LoginCart = () => {
           <Link href="/account">
             <a className="ml-2 ml-md-3 d-flex align-items-center">
               <Icon className="mr-2" icon="single-neutral-home" />
-              <span className="hide-on-mobile">{intl.formatMessage({ id: 'account' })}</span>
+              <span className="hide-on-mobile">
+                {intl.formatMessage({ id: 'account' })}
+              </span>
             </a>
           </Link>
           <Link href="/logout">
             <a className="ml-2 ml-md-3 d-flex align-items-center">
               <Icon className="mr-2" icon="logout-2" />
-              <span className="hide-on-mobile">{intl.formatMessage({ id: 'log_out' })}</span>
+              <span className="hide-on-mobile">
+                {intl.formatMessage({ id: 'log_out' })}
+              </span>
             </a>
           </Link>
         </>

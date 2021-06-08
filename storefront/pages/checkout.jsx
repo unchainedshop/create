@@ -10,6 +10,7 @@ import Header from '../modules/layout/components/Header';
 import LoginForm from '../modules/auth/components/LoginForm';
 import Footer from '../modules/layout/components/Footer';
 import MetaTags from '../modules/common/components/MetaTags';
+import COUNTRIES from '../modules/common/data/countries-list';
 
 const ErrorDisplay = ({ error }) => {
   const intl = useIntl();
@@ -53,7 +54,7 @@ const SignUp = () => {
     addressLine,
     postalCode,
     city,
-    country,
+    countryCode,
     emailAddress,
     telNumber,
     account,
@@ -79,7 +80,7 @@ const SignUp = () => {
             addressLine,
             postalCode,
             city,
-            country,
+            countryCode,
           },
         },
       });
@@ -94,7 +95,7 @@ const SignUp = () => {
         addressLine,
         postalCode,
         city,
-        country,
+        countryCode,
       },
     });
 
@@ -218,16 +219,27 @@ const SignUp = () => {
                   />
                 </div>
                 <div
-                  className={`mb-3 col-md-6 ${errors.country ? 'form-error' : ''}`}
+                  className={`mb-3 col-md-6 ${
+                    errors.countryCode ? 'form-error' : ''
+                  }`}
                 >
                   <label className="form-label">
                     {intl.formatMessage({ id: 'country' })}
                   </label>
-                  <input
-                    className={`form-control ${errors.country && 'form-error'}`}
-                    name="country"
+                  <select
+                    name="countryCode"
                     ref={register({ required: true })}
-                  />
+                    className={`form-control ${
+                      errors.countryCode && 'form-error'
+                    }`}
+                  >
+                    {COUNTRIES.map((c) => (
+                      <option key={c.code} value={c.code}>
+                        {' '}
+                        {c.name}{' '}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div
                   className={`mb-3 col-md-6 ${

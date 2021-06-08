@@ -12,7 +12,7 @@ const DatatransPayment = ({ cart }) => {
       type="button"
       role="link"
       disabled={isPaymentButtonDisabled}
-      className="button button--primary button--big"
+      className="button button--primary button--big w-100"
       onClick={async () => {
         setPaymentButtonDisabled(true);
         await payWithDatatrans(cart);

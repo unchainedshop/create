@@ -92,7 +92,7 @@ const Review = () => {
               </h4>
 
               <div className="form-check my-3">
-                <label className="form-check-label mb-5" htmlFor="same">
+                <label className="form-check-label mb-5 d-flex align-items-center " htmlFor="same">
                   <input
                     type="checkbox"
                     className="form-check-input"
@@ -117,7 +117,7 @@ const Review = () => {
                     key={pamentProvider._id}
                     className="form-check my-2 my-lg-1"
                   >
-                    <label className="form-check-label">
+                    <label className="form-check-label d-flex align-items-center">
                       <input
                         type="radio"
                         className="form-check-input"

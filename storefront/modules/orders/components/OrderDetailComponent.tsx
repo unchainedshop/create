@@ -11,15 +11,15 @@ const OrderDetailComponent = ({ order }) => {
     <div className="container mt-5">
       <h1>{intl.formatMessage({ id: 'order_details' })}</h1>
       <div className="row">
-        <div className="col-sm-12">
+        <div className="col-lg-6">
           <ListItem title="Order no." value={order?.orderNumber} />
           {order?.items.map((item) => (
             <div
-              className="d-flex justify-content-between flex-wrap border-top py-2"
+              className="d-flex align-items-center justify-content-between flex-wrap border-top py-2"
               key={item?._id}
             >
-              <div className="d-flex">
-                <div className="cart-img mr-2">
+              <div className="d-flex align-items-center">
+                <div className="mr-2" style={{ width: 100 }}>
                   <Image
                     src={`${
                       getMediaUrl(item.product) ||
@@ -34,12 +34,10 @@ const OrderDetailComponent = ({ order }) => {
                   />
                 </div>
                 <div className="m-2">
-                  <div>
-                    {item.quantity} x {item.product.texts.title}
-                  </div>
+                  {item.quantity} x {item.product.texts.title}
                 </div>
               </div>
-              <div className="font-weight-bold my-2">
+              <div className="my-2">
                 {renderPrice(item.total)}
               </div>
             </div>
@@ -47,10 +45,10 @@ const OrderDetailComponent = ({ order }) => {
           <div className="text-right">
             <div className="border-top py-3 mt-0">
               <div className="d-flex flex-wrap justify-content-between">
-                <div className="font-weight-bolder">
+                <div>
                   {intl.formatMessage({ id: 'delivery' })}
                 </div>
-                <div className="font-weight-bolder">
+                <div>
                   {renderPrice(
                     order?.delivery?.provider?.simulatedPrice?.price,
                   )}
@@ -61,49 +59,39 @@ const OrderDetailComponent = ({ order }) => {
           <div className="text-right">
             <div className="border-top py-3 mt-0">
               <div className="d-flex flex-wrap justify-content-between">
-                <div className="font-weight-bolder">
+                <div>
                   {intl.formatMessage({ id: 'total' })}
                 </div>
-                <div className="font-weight-bolder font-heading">
+                <div>
                   {renderPrice(order?.total)}
                 </div>
               </div>
             </div>
           </div>
-          <div className="d-flex justify-content-between flex-wrap mt-5">
-            <div className="w-100-for-mobile w-50">
-              <ListItem title="Status" value={order?.status} />
-              <ListItem
-                title="Payment method"
-                value={order?.supportedPaymentProviders[0]?.type}
-              />
-              <ListItem title="Payment status" value={order?.payment?.status} />
-              <ListItem
-                title="Delivery method"
-                value={order?.supportedDeliveryProviders[0]?.type}
-              />
-              <ListItem
-                title="Delivery status"
-                value={order?.delivery?.status}
-              />
-            </div>
-            <div className="w-100-for-mobile w-25">
-              <ListItem
-                title="Created"
-                value={intl.formatDate(order?.created)}
-              />
-              <ListItem
-                title="Ordered"
-                value={intl.formatDate(order?.ordered)}
-              />
-
-              <ListItem
-                title="Country"
-                value={`${order?.country.name}
-              ${order?.country.flagEmoji}`}
-              />
-            </div>
-          </div>
+        </div>
+        <div className="col-lg-6">
+          <ListItem title="Status" value={order?.status} />
+          <ListItem
+            title="Payment method"
+            value={order?.supportedPaymentProviders[0]?.type}
+          />
+          <ListItem title="Payment status" value={order?.payment?.status} />
+          <ListItem
+            title="Delivery method"
+            value={order?.supportedDeliveryProviders[0]?.type}
+          />
+          <ListItem
+            title="Delivery status"
+            value={order?.delivery?.status}
+          />
+          <ListItem
+            title="Created"
+            value={intl.formatDate(order?.created)}
+          />
+          <ListItem
+            title="Ordered"
+            value={intl.formatDate(order?.ordered)}
+          />
         </div>
       </div>
     </div>

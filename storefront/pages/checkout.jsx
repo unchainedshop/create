@@ -326,7 +326,7 @@ const SignUp = () => {
                 <div className="col-12">
                   <p
                     className={`form-check mt-0 mb-4 ${
-                      errors.agb ? 'form-error' : ''
+                      errors.conditions ? 'form-error' : ''
                     }`}
                   >
                     <input
@@ -338,7 +338,7 @@ const SignUp = () => {
                     />
                     <label
                       className={`form-check-label mb-0 ${
-                        errors.agb && 'form-error'
+                        errors.conditions && 'form-error'
                       }`}
                       htmlFor="conditions"
                       dangerouslySetInnerHTML={{

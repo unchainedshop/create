@@ -92,7 +92,10 @@ const Review = () => {
               </h4>
 
               <div className="form-check my-3">
-                <label className="form-check-label mb-5 d-flex align-items-center " htmlFor="same">
+                <label
+                  className="form-check-label mb-5 d-flex align-items-center "
+                  htmlFor="same"
+                >
                   <input
                     type="checkbox"
                     className="form-check-input"

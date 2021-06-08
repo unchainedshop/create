@@ -99,6 +99,7 @@ export default {
   about_detail:
     '...',
   log_out: 'Ausloggen',
+  to_order_review: 'zur Bestellüberprüfung',
   order_review: 'Bestellüberprüfung',
   delivery_address: 'Lieferadresse',
   billing_address: 'Rechnungsadresse',

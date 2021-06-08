@@ -71,7 +71,6 @@ const SignUp = () => {
         email: emailAddress,
         password,
         profile: {
-          displayName: lastName,
           phoneMobile: telNumber,
           address: {
             firstName,
@@ -351,7 +350,7 @@ const SignUp = () => {
                 </div>
               </div>
 
-              <ErrorDisplay error={error} />
+              <ErrorDisplay error={errors} />
 
               <button
                 className="button button--primary button--big w-100"

@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
+import LoadingItem from '../../common/components/LoadingItem';
 
 import COUNTRIES from '../../common/data/countries-list';
 import useCreateUser from '../hooks/useCreateUser';
@@ -10,13 +11,12 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
   const router = useRouter();
   const intl = useIntl();
   const { register, handleSubmit, errors, setError, watch } = useForm();
-  const { createUser, error } = useCreateUser();
+  const { createUser, error, loading } = useCreateUser();
   const password = useRef({});
   password.current = watch('password', '');
 
   const onSubmit = async (form) => {
     const {
-      username,
       firstName,
       lastName,
       company,
@@ -25,7 +25,6 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
       postalCode,
       city,
       emailAddress,
-      displayName,
       telNumber,
       regionCode,
       countryCode,
@@ -33,11 +32,9 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
     } = form;
 
     const userProfile = {
-      username,
       email: emailAddress,
       password: userPassword,
       profile: {
-        displayName,
         phoneMobile: telNumber,
         address: {
           firstName,
@@ -52,9 +49,13 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
         },
       },
     };
-
-    await createUser(userProfile);
-    router.push(onSuccessGoTo);
+    try {
+      await createUser(userProfile);
+      router.push(onSuccessGoTo);
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
+    }
   };
   useEffect(() => {
     if (error?.message?.includes('Email already exists')) {
@@ -72,32 +73,6 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
 
       <form className="form mt-5" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-row">
-          <div
-            className={`mb-3 col-md-6 ${errors.username ? 'form-error' : ''}`}
-          >
-            <label className="form-label">
-              {intl.formatMessage({ id: 'username' })}
-            </label>
-            <input
-              className="form-control"
-              name="username"
-              ref={register({ required: true })}
-            />
-          </div>
-          <div
-            className={`mb-3 col-md-6 ${
-              errors.displayName ? 'form-error' : ''
-            }`}
-          >
-            <label className="form-label">
-              {intl.formatMessage({ id: 'display_name' })}
-            </label>
-            <input
-              className="form-control"
-              name="displayName"
-              ref={register({ required: true })}
-            />
-          </div>
           <div
             className={`mb-3 col-md-6 ${errors.firstName ? 'form-error' : ''}`}
           >
@@ -261,6 +236,7 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
             />
             {errors.password2 && <p>{errors.password2.message}</p>}
           </div>
+          {loading && <LoadingItem />}
           <input
             type="submit"
             className="button button--primary button--big my-1 w-100"

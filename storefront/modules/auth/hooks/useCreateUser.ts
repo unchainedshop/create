@@ -6,18 +6,12 @@ import { UserQuery } from './useUser';
 
 const CreateUserMutation = gql`
   mutation createUser(
-    $username: String
     $email: String!
     $password: String!
     $profile: UserProfileInput
     $forceLocale: String
   ) {
-    createUser(
-      username: $username
-      email: $email
-      plainPassword: $password
-      profile: $profile
-    ) {
+    createUser(email: $email, plainPassword: $password, profile: $profile) {
       id
       token
       tokenExpires
@@ -32,40 +26,39 @@ const CreateUserMutation = gql`
 const useCreateUser = () => {
   const intl = useIntl();
   const client = useApolloClient();
-  const [createUserMutation, { error }] = useMutation(CreateUserMutation, {
-    update(cache, result) {
-      const newUser = result?.data?.createUser?.user;
+  const [createUserMutation, { error, loading }] = useMutation(
+    CreateUserMutation,
+    {
+      update(cache, result) {
+        const newUser = result?.data?.createUser?.user;
 
-      if (newUser) {
-        cache.writeQuery({
-          query: UserQuery,
-          data: { me: newUser },
-        });
-      }
+        if (newUser) {
+          cache.writeQuery({
+            query: UserQuery,
+            data: { me: newUser },
+          });
+        }
+      },
     },
-  });
+  );
 
-  const createUser = async ({ username, email, password, profile }) => {
-    try {
-      const result = await createUserMutation({
-        variables: {
-          username,
-          email,
-          password,
-          profile,
-          forceLocale: intl.locale,
-        },
-      });
-      await client.resetStore();
-      return result;
-    } catch (e) {
-      return '';
-    }
+  const createUser = async ({ email, password, profile }) => {
+    const result = await createUserMutation({
+      variables: {
+        email,
+        password,
+        profile,
+        forceLocale: intl.locale,
+      },
+    });
+    await client.resetStore();
+    return result;
   };
 
   return {
     createUser,
     error,
+    loading,
   };
 };
 

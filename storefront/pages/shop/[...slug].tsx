@@ -39,8 +39,11 @@ const CategoryDetail = () => {
 
   useEffect(() => {
     setcurrentUrl(window.location.href);
-    localStorage.setItem('lastVisitedCategory', router.asPath);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('lastVisitedCategory', router.asPath);
+  });
 
   return (
     <>

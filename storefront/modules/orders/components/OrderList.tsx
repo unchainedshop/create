@@ -31,7 +31,7 @@ const OrderList = ({ orders }) => {
         </thead>
         <tbody>
           {orders.map((order) => (
-            <Link href="/order/[id]" as={`/order/${order._id}`} key={order._id}>
+            <Link href="/orders/[id]" as={`/orders/${order._id}`} key={order._id}>
               <tr>
                 <td className="font-weight-bolder p-3">{order.orderNumber}</td>
                 <td className="p-3"> {intl.formatDate(order.created)} </td>

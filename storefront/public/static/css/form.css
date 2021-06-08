@@ -100,7 +100,7 @@ select.form-control {
   width: 9px;
   height: 9px;
   background-repeat: no-repeat;
-  background-image: url(/static/img/icon-streamline/arrow-button-down-nav.svg);
+  background-image: url(/static/img/icon-streamline/arrow-button-down.svg);
   pointer-events: none;
 }
 

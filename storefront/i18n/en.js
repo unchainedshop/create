@@ -100,6 +100,7 @@ export default {
   same_as_delivery: 'Same as delivery address',
   confirm_purchase: 'Confirm purchase',
   pay_now: 'Pay Now',
+  to_order_review: 'to Order summary',
   order_summary: 'Order summary',
   new_here: 'I’m new here',
   new_here_message: 'Checkout as a guest or create a customer account.',

@@ -53,6 +53,7 @@ const SignUp = () => {
     addressLine,
     postalCode,
     city,
+    country,
     emailAddress,
     telNumber,
     account,
@@ -78,6 +79,7 @@ const SignUp = () => {
             addressLine,
             postalCode,
             city,
+            country,
           },
         },
       });
@@ -92,6 +94,7 @@ const SignUp = () => {
         addressLine,
         postalCode,
         city,
+        country,
       },
     });
 
@@ -156,7 +159,7 @@ const SignUp = () => {
                   />
                 </div>
                 <div
-                  className={`mb-3 col-md-6 ${
+                  className={`mb-3 col-md-12 ${
                     errors.company ? 'form-error' : ''
                   }`}
                 >
@@ -215,6 +218,18 @@ const SignUp = () => {
                   />
                 </div>
                 <div
+                  className={`mb-3 col-md-6 ${errors.country ? 'form-error' : ''}`}
+                >
+                  <label className="form-label">
+                    {intl.formatMessage({ id: 'country' })}
+                  </label>
+                  <input
+                    className={`form-control ${errors.country && 'form-error'}`}
+                    name="country"
+                    ref={register({ required: true })}
+                  />
+                </div>
+                <div
                   className={`mb-3 col-md-6 ${
                     errors.emailAddress ? 'form-error' : ''
                   }`}
@@ -243,7 +258,7 @@ const SignUp = () => {
                       errors.telNumber && 'form-error'
                     }`}
                     name="telNumber"
-                    ref={register({ required: true })}
+                    ref={register({ required: false })}
                   />
                 </div>
                 <div className="mb-3 col-md-12">
@@ -331,7 +346,7 @@ const SignUp = () => {
                 type="submit"
                 disabled={hasErrors}
               >
-                {intl.formatMessage({ id: 'register' })}
+                {intl.formatMessage({ id: 'to_order_review' })}
               </button>
             </form>
           </div>

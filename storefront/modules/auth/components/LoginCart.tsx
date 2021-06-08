@@ -15,7 +15,7 @@ const LoginCart = () => {
   return user ? (
     <div className="d-flex align-items-center">
       <a
-        className="no-button py-1 ml-md-3 d-flex align-items-center"
+        className="ml-md-3 d-flex align-items-center"
         onClick={() => context.toggleCart(!context.isCartOpen)}
       >
         <Icon className="mr-2" icon="shopping-cart-empty-1" />
@@ -24,22 +24,24 @@ const LoginCart = () => {
             ? user?.cart?.items.reduce((acc, item) => acc + item.quantity, 0)
             : 0}
         </span>
-        {intl.formatMessage({ id: 'cart' })}
+        <span className="hide-on-mobile">{intl.formatMessage({ id: 'cart' })}</span>
       </a>
-      <OrderButton />
+      <div className="ml-2 ml-md-3">
+        <OrderButton />
+      </div>
 
       {!user.isGuest ? (
         <>
           <Link href="/account">
-            <a className="ml-3 my-3 d-flex align-items-center">
-              <Icon className="mr-2" icon="single-neutral-actions" />
-              {intl.formatMessage({ id: 'account' })}
+            <a className="ml-2 ml-md-3 d-flex align-items-center">
+              <Icon className="mr-2" icon="single-neutral-home" />
+              <span className="hide-on-mobile">{intl.formatMessage({ id: 'account' })}</span>
             </a>
           </Link>
           <Link href="/logout">
-            <a className="ml-3 my-1 d-flex align-items-center">
+            <a className="ml-2 ml-md-3 d-flex align-items-center">
               <Icon className="mr-2" icon="logout-2" />
-              {intl.formatMessage({ id: 'log_out' })}
+              <span className="hide-on-mobile">{intl.formatMessage({ id: 'log_out' })}</span>
             </a>
           </Link>
         </>

@@ -11,9 +11,9 @@ const OrderButton = () => {
 
   return (
     <Link href="/order">
-      <a className="ml-3 d-flex align-items-center">
-        <Icon className="icon--large mr-2" icon="receipt-slip" />
-        {intl.formatMessage({ id: 'my_orders' })}
+      <a className="d-flex align-items-center">
+        <Icon className="mr-2" icon="common-file-stack" />
+        <span className="hide-on-mobile">{intl.formatMessage({ id: 'my_orders' })}</span>
       </a>
     </Link>
   );

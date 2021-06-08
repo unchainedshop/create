@@ -109,10 +109,10 @@ const SideCart = ({ isOpen }) => {
                   <Link href="/shop">
                     <a
                       onClick={() => context.toggleCart(false)}
-                      className="link color-brand"
+                      className="link"
                       href="#"
                     >
-                      {intl.formatMessage({ id: 'products' })}
+                      {intl.formatMessage({ id: 'shop' })}
                     </a>
                   </Link>
                 </p>

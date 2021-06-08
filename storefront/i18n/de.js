@@ -24,7 +24,7 @@ export default {
   cart: 'Warenkorb',
   in_cart: 'In Ihrem Warenkorb',
   subtotal: 'Zwischensumme',
-  checkout: 'Auschecken',
+  checkout: 'Checkout',
   continue_shopping: 'Mit dem Einkaufen fortfahren',
   vat_included: 'inkl. MwSt',
   delivery_charges: 'Versandkosten',

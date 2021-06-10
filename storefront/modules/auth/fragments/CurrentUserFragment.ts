@@ -13,6 +13,7 @@ const CurrentUserFragment = gql`
       address
       verified
     }
+    roles
     orders {
       _id
     }

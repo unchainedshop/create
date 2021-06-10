@@ -18,6 +18,7 @@ const Account = () => {
   const { setUsername } = useSetUsername();
   const [updateProfile, setUpdateProfile] = useState(false);
   const showDebugInfo = false;
+  const showUsername = user?.roles?.includes('admin');
   const onProfileUpdateComplete = (value) => {
     if (value) setUpdateProfile(false);
   };
@@ -45,49 +46,51 @@ const Account = () => {
               />
             ) : (
               <div>
-                <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
-                  <span className="mb-1">
-                    {intl.formatMessage({ id: 'username' })}
-                  </span>
-                  {!updateUsername ? (
-                    <>
-                      <span className="mb-1">
-                        {user?.username ||
-                          intl.formatMessage({ id: 'no_username_set' })}
-                      </span>
-                      <button
-                        type="button"
-                        className=" button button--secondary"
-                        onClick={() => setUpdateUserName(!updateUsername)}
-                      >
-                        {intl.formatMessage({ id: 'change_username' })}
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <input
-                        className="form-control ml-2"
-                        type="text"
-                        onChange={(e) => setUserName(e.target.value)}
-                        value={username}
-                      />
-                      <button
-                        type="button"
-                        className="button button--primary ml-2"
-                        onClick={() => updateName(username)}
-                      >
-                        {intl.formatMessage({ id: 'save_username' })}
-                      </button>
-                      <button
-                        type="button"
-                        className="button text-danger ml-2"
-                        onClick={() => setUpdateUserName(!updateUsername)}
-                      >
-                        {intl.formatMessage({ id: 'cancel' })}
-                      </button>
-                    </>
-                  )}
-                </div>
+                {showUsername && (
+                  <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+                    <span className="mb-1">
+                      {intl.formatMessage({ id: 'username' })}
+                    </span>
+                    {!updateUsername ? (
+                      <>
+                        <span className="mb-1">
+                          {user?.username ||
+                            intl.formatMessage({ id: 'no_username_set' })}
+                        </span>
+                        <button
+                          type="button"
+                          className=" button button--secondary"
+                          onClick={() => setUpdateUserName(!updateUsername)}
+                        >
+                          {intl.formatMessage({ id: 'change_username' })}
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <input
+                          className="form-control ml-2"
+                          type="text"
+                          onChange={(e) => setUserName(e.target.value)}
+                          value={username}
+                        />
+                        <button
+                          type="button"
+                          className="button button--primary ml-2"
+                          onClick={() => updateName(username)}
+                        >
+                          {intl.formatMessage({ id: 'save_username' })}
+                        </button>
+                        <button
+                          type="button"
+                          className="button text-danger ml-2"
+                          onClick={() => setUpdateUserName(!updateUsername)}
+                        >
+                          {intl.formatMessage({ id: 'cancel' })}
+                        </button>
+                      </>
+                    )}
+                  </div>
+                )}
 
                 <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
                   <span className="mb-1">

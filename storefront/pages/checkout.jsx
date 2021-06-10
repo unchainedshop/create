@@ -14,16 +14,15 @@ import COUNTRIES from '../modules/common/data/countries-list';
 
 const ErrorDisplay = ({ error }) => {
   const intl = useIntl();
-  if (!error) return '';
+  if (!Object.keys(error).length) return '';
 
-  if (error.message.includes('Email already exists.')) {
+  if (error?.message?.includes('Email already exists.')) {
     return (
       <div className="form-error my-3">
         👬 {intl.formatMessage({ id: 'email_exists' })}.
       </div>
     );
   }
-
   return <div className="form-error my-3">👷‍♀️ An unknown error occurred.</div>;
 };
 

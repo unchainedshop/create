@@ -14,15 +14,15 @@ import COUNTRIES from '../modules/common/data/countries-list';
 
 const ErrorDisplay = ({ error }) => {
   const intl = useIntl();
-  if (!Object.keys(error).length) return '';
-
-  if (error?.message?.includes('Email already exists.')) {
+  if (!error) return '';
+  if (error.message?.includes('Email already exists')) {
     return (
       <div className="form-error my-3">
         👬 {intl.formatMessage({ id: 'email_exists' })}.
       </div>
     );
   }
+
   return <div className="form-error my-3">👷‍♀️ An unknown error occurred.</div>;
 };
 
@@ -31,18 +31,18 @@ const SignUp = () => {
   const { register, handleSubmit, watch, errors, setError } = useForm();
   const intl = useIntl();
   const { updateCart } = useUpdateCart();
-  const { createUser, error } = useCreateUser();
+  const { createUser, error: formError } = useCreateUser();
   const hasErrors = Object.keys(errors).length;
 
   useEffect(() => {
-    if (error?.message?.includes('Email already exists.')) {
+    if (formError?.message?.includes('Email already exists.')) {
       setError(
         'emailAddress',
         'alreadyExists',
         '👬 Es existiert bereits ein Benutzer mit dieser E-Mail Adresse.',
       );
     }
-  }, [error]);
+  }, [formError]);
 
   const createAccount = watch('account');
 
@@ -66,22 +66,26 @@ const SignUp = () => {
         setError('password2', 'notMatch', 'Passwörter sind nicht gleich');
         return false;
       }
-      await createUser({
-        email: emailAddress,
-        password,
-        profile: {
-          phoneMobile: telNumber,
-          address: {
-            firstName,
-            lastName,
-            company,
-            addressLine,
-            postalCode,
-            city,
-            countryCode,
+      try {
+        await createUser({
+          email: emailAddress,
+          password,
+          profile: {
+            phoneMobile: telNumber,
+            address: {
+              firstName,
+              lastName,
+              company,
+              addressLine,
+              postalCode,
+              city,
+              countryCode,
+            },
           },
-        },
-      });
+        });
+      } catch (e) {
+        return false;
+      }
     }
 
     await updateCart({
@@ -349,7 +353,7 @@ const SignUp = () => {
                 </div>
               </div>
 
-              <ErrorDisplay error={errors} />
+              <ErrorDisplay error={formError} />
 
               <button
                 className="button button--primary button--big w-100"

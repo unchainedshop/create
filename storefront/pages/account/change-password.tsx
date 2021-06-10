@@ -51,7 +51,7 @@ const ChangePassword = () => {
               <form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <div className={`mb-3 ${errors.password2 ? 'form-error' : ''}`}>
                   <label
-                    className={`form-label mb-3 col-md-6 ${
+                    className={`form-label ${
                       errors.oldPassword ? 'form-error' : ''
                     }`}
                   >
@@ -98,7 +98,7 @@ const ChangePassword = () => {
                   {errors.password2 && <p>{errors.password2.message}</p>}
                 </div>
                 <button
-                  className="button button--primary button--big mt-3"
+                  className="button button--primary button--big mt-3 w-100"
                   type="submit"
                 >
                   {intl.formatMessage({ id: 'reset_password' })}

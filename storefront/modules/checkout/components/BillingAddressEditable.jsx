@@ -22,6 +22,7 @@ const BillingAddressEditable = ({ user }) => {
   }) => {
     if (isEditing) {
       await updateCart({
+        orderId: user?.cart?._id,
         billingAddress: {
           firstName,
           lastName,

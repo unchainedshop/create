@@ -25,6 +25,7 @@ const Review = () => {
 
   const setBillingSameAsDelivery = () => {
     updateCart({
+      orderId: user?.cart?._id,
       billingAddress: {
         firstName: user?.cart?.deliveryInfo?.address?.firstName,
         lastName: user?.cart?.deliveryInfo?.address?.lastName,

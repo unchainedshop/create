@@ -40,11 +40,13 @@ const DeliveryAddressEditable = ({ user }) => {
           },
         });
         updateCart({
+          orderId: user?.cart?._id,
           contact: { emailAddress, telNumber },
           meta: { message },
         });
       } else {
         updateCart({
+          orderId: user?.cart?._id,
           contact: { emailAddress, telNumber },
           billingAddress: {
             firstName,

@@ -9,13 +9,22 @@ import MetaTags from '../../modules/common/components/MetaTags';
 import COUNTRIES from '../../modules/common/data/countries-list';
 import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
+import useRemoveEmail from '../../modules/auth/hooks/useRemoveEmail';
+import useAddEmail from '../../modules/auth/hooks/useAddEmail';
+import useResendVerificationEmail from '../../modules/auth/hooks/useResendVerificationEmail';
 
 const Account = () => {
   const { user } = useUser();
   const [updateUsername, setUpdateUserName] = useState(false);
   const intl = useIntl();
   const [username, setUserName] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+
   const { setUsername } = useSetUsername();
+  const { removeEmail } = useRemoveEmail();
+  const { addEmail } = useAddEmail();
+
+  const { resendVerificationEmail } = useResendVerificationEmail();
   const [updateProfile, setUpdateProfile] = useState(false);
   const showDebugInfo = false;
   const showUsername = user?.roles?.includes('admin');
@@ -115,14 +124,51 @@ const Account = () => {
                       </span>
                       <span className="mb-1">
                         {e.address}
+                        {user?.emails?.length > 1 && (
+                          <button
+                            type="button"
+                            className="button ml-2"
+                            onClick={() => removeEmail(e.address)}
+                          >
+                            {intl.formatMessage({
+                              id: 'remove_email',
+                            })}
+                          </button>
+                        )}
                         {e.verified ? (
-                          <b> {intl.formatMessage({ id: 'verified' })}</b>
+                          <>
+                            <b> {intl.formatMessage({ id: 'verified' })}</b>
+                          </>
                         ) : (
-                          <b> {intl.formatMessage({ id: 'not_verified' })}</b>
+                          <>
+                            <b> {intl.formatMessage({ id: 'not_verified' })}</b>
+                            <button
+                              type="button"
+                              className="button ml-2"
+                              onClick={() => resendVerificationEmail(e.address)}
+                            >
+                              {intl.formatMessage({
+                                id: 'resend_verification',
+                              })}
+                            </button>
+                          </>
                         )}
                       </span>
                     </div>
                   ))}
+                  <input
+                    className="form-control ml-2"
+                    type="text"
+                    onChange={(e) => setNewEmail(e.target.value)}
+                    value={newEmail}
+                  />
+                  <button
+                    type="button"
+                    className="button button--primary ml-2"
+                    onClick={() => addEmail(newEmail)}
+                  >
+                    {intl.formatMessage({ id: 'add_email' })}
+                  </button>
                 </div>
 
                 <h3>Address</h3>

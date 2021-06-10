@@ -8,6 +8,7 @@ const CurrentUserFragment = gql`
     _id
     isGuest
     name
+    username
     emails {
       address
       verified

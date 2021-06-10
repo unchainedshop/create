@@ -18,7 +18,7 @@ const Account = () => {
   const { setUsername } = useSetUsername();
   const [updateProfile, setUpdateProfile] = useState(false);
   const showDebugInfo = false;
-  const onProfileUpdateSuccess = (value) => {
+  const onProfileUpdateComplete = (value) => {
     if (value) setUpdateProfile(false);
   };
 
@@ -36,35 +36,12 @@ const Account = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h1>{intl.formatMessage({ id: 'profile' })}</h1>
-            <div className="d-flex justify-content-between mb-5">
-              {updateProfile ? (
-                <button
-                  type="button"
-                  className="button text-danger"
-                  onClick={() => setUpdateProfile(false)}
-                >
-                  {intl.formatMessage({ id: 'cancel' })}
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="button button--primary"
-                  onClick={() => setUpdateProfile(true)}
-                >
-                  {intl.formatMessage({ id: 'update' })}
-                </button>
-              )}
-              <Link href="account/change-password">
-                <a className="button button--secondary">
-                  {intl.formatMessage({ id: 'change_password' })}
-                </a>
-              </Link>
-            </div>
+            <h1>{intl.formatMessage({ id: 'account' })}</h1>
             {updateProfile ? (
               <UpdateProfileForm
                 user={user}
-                onSuccess={onProfileUpdateSuccess}
+                onSuccess={onProfileUpdateComplete}
+                onCancel={onProfileUpdateComplete}
               />
             ) : (
               <div>
@@ -83,7 +60,7 @@ const Account = () => {
                         className=" button button--secondary"
                         onClick={() => setUpdateUserName(!updateUsername)}
                       >
-                        {intl.formatMessage({ id: 'change' })}
+                        {intl.formatMessage({ id: 'change_username' })}
                       </button>
                     </>
                   ) : (
@@ -99,7 +76,7 @@ const Account = () => {
                         className="button button--primary ml-2"
                         onClick={() => updateName(username)}
                       >
-                        {intl.formatMessage({ id: 'update' })}
+                        {intl.formatMessage({ id: 'save_username' })}
                       </button>
                       <button
                         type="button"
@@ -112,6 +89,51 @@ const Account = () => {
                   )}
                 </div>
 
+                <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
+                  <span className="mb-1">
+                    {intl.formatMessage({ id: 'password' })}
+                  </span>
+                  <span className="mb-1">
+                    <Link href="account/change-password">
+                      <a className="button button--secondary">
+                        {intl.formatMessage({ id: 'change_password' })}
+                      </a>
+                    </Link>
+                  </span>
+                </div>
+                <div>
+                  {user?.emails?.map((e, i) => (
+                    <div
+                      key={e.address}
+                      className="d-flex flex-column flex-sm-row justify-content-between mb-2"
+                    >
+                      <span className="mb-1">
+                        {i + 1}. {intl.formatMessage({ id: 'email' })}
+                      </span>
+                      <span className="mb-1">
+                        {e.address}
+                        {e.verified ? (
+                          <b> {intl.formatMessage({ id: 'verified' })}</b>
+                        ) : (
+                          <b> {intl.formatMessage({ id: 'not_verified' })}</b>
+                        )}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <h3>Address</h3>
+                <div className="d-flex justify-content-between mb-5">
+                  {!updateProfile && (
+                    <button
+                      type="button"
+                      className="button button--primary"
+                      onClick={() => setUpdateProfile(true)}
+                    >
+                      {intl.formatMessage({ id: 'change_address' })}
+                    </button>
+                  )}
+                </div>
                 {showDebugInfo && (
                   <>
                     <div className="d-flex flex-column flex-sm-row justify-content-between mb-2">
@@ -221,28 +243,6 @@ const Account = () => {
                 </div>
               </div>
             )}
-
-            <div>
-              <h3>Emails</h3>
-              {user?.emails?.map((e, i) => (
-                <div
-                  key={e.address}
-                  className="d-flex flex-column flex-sm-row justify-content-between mb-2"
-                >
-                  <span className="mb-1">
-                    {i + 1}. {intl.formatMessage({ id: 'email' })}
-                  </span>
-                  <span className="mb-1">
-                    {e.address}
-                    {e.verified ? (
-                      <b> {intl.formatMessage({ id: 'verified' })}</b>
-                    ) : (
-                      <b> {intl.formatMessage({ id: 'not_verified' })}</b>
-                    )}
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>

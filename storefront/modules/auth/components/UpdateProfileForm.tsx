@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import COUNTRIES from '../../common/data/countries-list';
 import useUpdateUserProfile from '../hooks/useUpdateUserProfile';
 
-const UpdateProfileForm = ({ user, onSuccess }) => {
+const UpdateProfileForm = ({ user, onSuccess, onCancel }) => {
   const { register, handleSubmit, errors } = useForm();
   const intl = useIntl();
   const { profile = {} } = user;
@@ -176,7 +176,13 @@ const UpdateProfileForm = ({ user, onSuccess }) => {
           <input
             type="submit"
             className="button button--primary my-1"
-            value={intl.formatMessage({ id: 'registration' })}
+            value={intl.formatMessage({ id: 'save_address' })}
+          />
+          <input
+            type="button"
+            className="button button--primary my-1"
+            value={intl.formatMessage({ id: 'cancel' })}
+            onClick={onCancel}
           />
         </div>
       </form>

@@ -18,14 +18,12 @@ const UpdateProfileForm = ({ user, onSuccess }) => {
       postalCode,
       city,
       company,
-      displayName,
       telNumber,
       regionCode,
       countryCode,
     } = form;
 
     const userProfile = {
-      displayName,
       phoneMobile: telNumber,
       address: {
         firstName,
@@ -48,21 +46,6 @@ const UpdateProfileForm = ({ user, onSuccess }) => {
     <div className="container">
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-row">
-          <div
-            className={`mb-3 col-md-6 ${
-              errors.displayName ? 'form-error' : ''
-            }`}
-          >
-            <label className="form-label">
-              {intl.formatMessage({ id: 'display_name' })}
-            </label>
-            <input
-              className="form-control"
-              defaultValue={profile?.displayName}
-              name="displayName"
-              ref={register({ required: true })}
-            />
-          </div>
           <div
             className={`mb-3 col-md-6 ${errors.firstName ? 'form-error' : ''}`}
           >

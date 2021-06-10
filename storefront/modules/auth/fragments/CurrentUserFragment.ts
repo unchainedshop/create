@@ -6,7 +6,6 @@ import ProductFragment from '../../products/fragments/ProductFragment';
 const CurrentUserFragment = gql`
   fragment CurrentUserFragment on User {
     _id
-    username
     isGuest
     name
     emails {
@@ -24,7 +23,6 @@ const CurrentUserFragment = gql`
     }
 
     profile {
-      displayName
       phoneMobile
       address {
         ...AddressFragment

@@ -96,8 +96,7 @@ export default {
   back_to_home: 'Zurück nach Hause',
   '505_sorry':
     'Hoppla, bei der Ausführung Ihrer Anfrage ist bitte ein Fehler aufgetreten Versuchen Sie es später noch einmal!',
-  about_detail:
-    '...',
+  about_detail: '...',
   log_out: 'Ausloggen',
   to_order_review: 'zur Bestellüberprüfung',
   order_review: 'Bestellüberprüfung',
@@ -109,11 +108,13 @@ export default {
   new_here: 'Ich bin neu hier',
   new_here_message: 'Checke als Gast aus oder erstelle ein Kundenkonto.',
   create_an_account: 'Ja, ich möchte ein Konto erstellen',
-  i_have_read_term: 'Ja, ich habe die <a class="link" href="/terms-conditions">AGBs</a> gelesen',
+  i_have_read_term:
+    'Ja, ich habe die <a class="link" href="/terms-conditions">AGBs</a> gelesen',
   register: 'Registrieren',
   email_verified_success: 'Ihre E-Mail wurde erfolgreich überprüft',
   confirmation_sent: 'Eine Bestätigungs-E-Mail wird gesendet',
   'shop.unchained.invoice': 'Wire Transfer',
   'shop.unchained.datatrans': 'Credit Card',
   pay_now: 'Pay Now',
+  no_username_set: 'Kein Benutzername gesetzt',
 };

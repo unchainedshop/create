@@ -3,7 +3,9 @@
 const fetch = require('cross-fetch');
 const fs = require('fs');
 
-fetch(`https://engine.unchained.shop/graphql`, {
+const { UNCHAINED_ENDPOINT } = process.env;
+
+fetch(UNCHAINED_ENDPOINT, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({

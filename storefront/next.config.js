@@ -5,6 +5,15 @@ console.log(process.version);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('./node_env');
 
+function extractDomain(string) {
+  try {
+    const url = new URL(string);
+    return url.hostname;
+  } catch (e) {
+    return null;
+  }
+}
+
 const {
   FRONTEND_URL,
   GRAPHQL_ENDPOINT,
@@ -29,7 +38,12 @@ module.exports = {
     theme: JSON.parse(UNCHAINED_CREATE_THEME),
   },
   images: {
-    domains: ['localhost', 'dynoptic-template.unchained.wtf'],
+    domains: [
+      'localhost',
+      extractDomain(FRONTEND_URL),
+      extractDomain(GRAPHQL_ENDPOINT),
+      extractDomain(UNCHAINED_ENDPOINT),
+    ].filter(Boolean),
     sizes: [320, 480, 820, 1200, 1600],
   },
   i18n: {

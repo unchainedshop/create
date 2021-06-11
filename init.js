@@ -76,23 +76,21 @@ fs.readdir(process.cwd(), function(err, files) {
      } else {
        copyFolderRecursiveSync(__dirname, path.join(process.cwd(), '.'));
        const finish = new Date();
-       
+
        console.log(`
 
 Finished in ${finish-start} milliseconds.
 
 To get started run:
 
-$ npm run install-all
+$ npm install
 $ npm run dev
 
 - Open a web browser at http://localhost:3000 to see the front-end
-- Open a web browser at http://localhost:4010 to see the control panel. Login with username: admin@unchained.local / password: password
-- Open a web browser at http://localhost:4010/graphql to see the Unchained GraphQL Playground
+- Open a web browser at http://localhost:3000/api/graphql to see the Unchained GraphQL Playground
 
 Have fun!
 `       );
      }
   }
 });
-

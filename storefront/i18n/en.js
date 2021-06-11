@@ -121,5 +121,7 @@ export default {
   resend_verification: '(re)-send verification email',
   register_user: 'Register new user',
   language_en: 'English',
-  language_de: 'Deutsch'
+  language_de: 'Deutsch',
+  email_exists_please_login: 'A User with the same email exists already. Please sign-in',
+  old_password_not_correct: 'Wrong password, please try again'
 };

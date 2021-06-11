@@ -123,5 +123,7 @@ export default {
   remove_email: 'E-Mail Adresse löschen',
   save_address: 'Adresse speichern',
   language_en: 'English',
-  language_de: 'Deutsch'
+  language_de: 'Deutsch',
+  email_exists_please_login: 'Es existiert ein Benutzer mit dieser E-Mail Adresse. Bitte anmelden.',
+  old_password_not_correct: 'Altes Passwort ist nicht korrekt',
 };

@@ -61,8 +61,7 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
     if (error?.message?.includes('Email already exists')) {
       setError(
         'emailAddress',
-        'alreadyExists',
-        '👬 User with the same email exists.',
+        { type: 'manual', message: `👬 ${intl.formatMessage({ id: 'email_exists_please_login' })}`, shouldFocus: true }
       );
     }
   }, [error]);

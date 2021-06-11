@@ -10,21 +10,11 @@ const LoginForm = ({ onLogin }) => {
   const intl = useIntl();
   const { loginWithPassword, error } = useLoginWithPassword();
   const hasErrors = Object.keys(errors).length > 0;
-
   useEffect(() => {
-    if (error?.message?.includes('User not found')) {
-      setError(
-        'email',
-        'doesNotExists',
-        `🤷‍♀️ ${intl.formatMessage({ id: 'email_exists' })}`,
-      );
-    } else if (error) {
-      setError(
-        'email',
-        'unknownError',
-        `👷‍♀️ ${intl.formatMessage({ id: 'invalid_email_password' })} `,
-      );
-    }
+    setError(
+      'email',
+      { type: 'manual', message: `👷‍♀️ ${intl.formatMessage({ id: 'invalid_email_password' })}`, shouldFocus: true }
+    );
   }, [error]);
 
   const onSubmit = async ({ email, password }) => {

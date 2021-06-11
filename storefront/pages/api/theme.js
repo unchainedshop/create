@@ -20,10 +20,7 @@ const generateCSS = async (theme) => {
   ).join('\n');
 
   return `/* Generated through Unchained Create Theming */
-:root {
-${propDefinitions}
-}
-${injectStyles}
+
 `;
 };
 

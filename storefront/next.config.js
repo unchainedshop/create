@@ -4,6 +4,7 @@ console.log(process.version);
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('./node_env');
+const fs = require('fs');
 
 function extractDomain(string) {
   try {
@@ -25,6 +26,16 @@ const {
   DATATRANS_MERCHANT,
 } = process.env;
 
+const theme = JSON.parse(UNCHAINED_CREATE_THEME);
+
+// localizations
+const localizations = Object.fromEntries(
+  Object.keys(theme.locales).map((locale) => {
+    const text = fs.readFileSync(`.${theme.locales[locale]}`);
+    return [locale, JSON.parse(text)];
+  }),
+);
+
 module.exports = {
   serverRuntimeConfig: {},
   publicRuntimeConfig: {
@@ -35,7 +46,8 @@ module.exports = {
     UNCHAINED_ENDPOINT,
     DATATRANS_ENDPOINT,
     DATATRANS_MERCHANT,
-    theme: JSON.parse(UNCHAINED_CREATE_THEME),
+    theme,
+    localizations,
   },
   images: {
     domains: [
@@ -47,7 +59,7 @@ module.exports = {
     sizes: [320, 480, 820, 1200, 1600],
   },
   i18n: {
-    locales: ['en', 'de'],
-    defaultLocale: 'de',
+    locales: Object.keys(theme.locales),
+    defaultLocale: Object.keys(theme.locales)[0],
   },
 };

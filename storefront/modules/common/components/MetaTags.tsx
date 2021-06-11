@@ -6,7 +6,7 @@ import supportedLanguages from '../../i18n/utils/supportedLanguages';
 import getCurrentDomain from '../utils/getCurrentDomain';
 
 const {
-  publicRuntimeConfig: { FRONTEND_URL },
+  publicRuntimeConfig: { FRONTEND_URL, theme },
 } = getConfig();
 
 const MetaTags = ({
@@ -19,7 +19,7 @@ const MetaTags = ({
   return (
     <Head>
       <title>{title || ' '}</title>
-      {supportedLanguages()?.map((lang) => (
+      {Object.entries(theme.locales)?.map(([lang]) => (
         <link
           key={`${lang}${asPath}`}
           rel="alternate"

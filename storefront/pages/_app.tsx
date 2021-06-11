@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import App from 'next/app';
 import { ToastContainer } from 'react-toastify';
+import getConfig from 'next/config';
 
 import 'react-toastify/dist/ReactToastify.css';
 import '../public/static/css/all.css';
@@ -8,10 +9,14 @@ import '../public/static/css/all.css';
 import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 import { CartContext } from '../modules/cart/CartContext';
 import withApollo from '../modules/apollo/utils/withApollo';
-import getMessages from '../modules/i18n/utils/getMessages';
+
+const {
+  publicRuntimeConfig: { theme, localizations },
+} = getConfig();
 
 const UnchainedApp = ({ Component, pageProps, router }) => {
-  const messages = getMessages(router.locale);
+  const messages = localizations[router.locale];
+
   const toggleCart = (val) => {
     // eslint-disable-next-line no-use-before-define
     setCartContext({

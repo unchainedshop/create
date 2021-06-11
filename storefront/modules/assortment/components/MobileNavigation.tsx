@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-
+import getConfig from 'next/config';
 import { useIntl } from 'react-intl';
 import useCategoriesTree from '../hooks/useCategoriesTree';
 import Icon from '../../common/components/Icon';
@@ -10,6 +10,10 @@ import changeLanguage from '../../common/utils/changeLanguage';
 const createPathFromArray = (path = []) => {
   return `/${(path || []).join('/')}`;
 };
+
+const {
+  publicRuntimeConfig: { theme },
+} = getConfig();
 
 const Subtree = ({
   pageId,
@@ -132,22 +136,16 @@ const MobileNavigation = ({ doClose, isNavOpen }) => {
         </div>
 
         <div className="pt-3 my-3 ml-3">
-          <button
-            aria-label={intl.formatMessage({ id: 'language_de' })}
-            type="button"
-            className="no-button d-block mb-3"
-            onClick={() => changeLanguage('de')}
-          >
-            {intl.formatMessage({ id: 'language_de' })}
-          </button>
-          <button
-            aria-label={intl.formatMessage({ id: 'language_en' })}
-            type="button"
-            className="no-button d-block mb-3"
-            onClick={() => changeLanguage('en')}
-          >
-            {intl.formatMessage({ id: 'language_en' })}
-          </button>
+          {Object.entries(theme.locales)?.map(([lang]) => (
+            <button
+              aria-label={intl.formatMessage({ id: `language_${lang}` })}
+              type="button"
+              className="no-button d-block mb-3"
+              onClick={() => changeLanguage(lang)}
+            >
+              {intl.formatMessage({ id: `language_${lang}` })}
+            </button>
+          ))}
         </div>
       </nav>
     </div>

@@ -74,7 +74,7 @@ fs.readdir(process.cwd(), function(err, files) {
      if (files.length) {
        console.log('Error: Current working directory not empty. Run this command inside of an empty directory.')
      } else {
-       copyFolderRecursiveSync(__dirname, path.join(process.cwd(), '.'));
+       copyFolderRecursiveSync(`${__dirname}/storefront`, path.join(process.cwd(), '.'));
        const finish = new Date();
 
        console.log(`

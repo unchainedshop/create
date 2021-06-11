@@ -8,16 +8,24 @@ import useUser from '../../auth/hooks/useUser';
 import { CartContext } from '../CartContext';
 import Icon from '../../common/components/Icon';
 import CartItem from './CartItem';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 
 const SideCart = ({ isOpen }) => {
   const { user } = useUser();
   const intl = useIntl();
   const context = useContext(CartContext);
   const router = useRouter();
+  const reviewPath = `${intl.formatMessage({
+    id: ROUTES_CONFIG.checkout.slug,
+  })}?next=${intl.formatMessage({ id: ROUTES_CONFIG.review.slug })}`;
+
+  const checkoutPath = `${intl.formatMessage({
+    id: ROUTES_CONFIG.checkout.slug,
+  })}`;
 
   const checkOut = () => {
     context.toggleCart(false);
-    const path = user?.isGuest ?? true ? '/checkout?next=review' : '/review';
+    const path = user?.isGuest ?? true ? reviewPath : checkoutPath;
     router.push(path);
   };
 
@@ -84,7 +92,11 @@ const SideCart = ({ isOpen }) => {
               {user?.cart?.items.length === 0 ? (
                 <p>
                   {intl.formatMessage({ id: 'no_product_in_cart' })}{' '}
-                  <Link href="/shop">
+                  <Link
+                    href={`/${intl.formatMessage({
+                      id: ROUTES_CONFIG.shop.slug,
+                    })}`}
+                  >
                     <a
                       onClick={() => context.toggleCart(false)}
                       className="link"

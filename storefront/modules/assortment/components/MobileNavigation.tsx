@@ -6,6 +6,7 @@ import useCategoriesTree from '../hooks/useCategoriesTree';
 import Icon from '../../common/components/Icon';
 import Thumbnail from '../../common/components/thumbnail';
 import changeLanguage from '../../common/utils/changeLanguage';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 
 const createPathFromArray = (path = []) => {
   return `/${(path || []).join('/')}`;
@@ -96,7 +97,9 @@ const Subtree = ({
 
 const MobileNavigation = ({ doClose, isNavOpen }) => {
   const intl = useIntl();
-  const { assortmentTree } = useCategoriesTree({ root: 'shop' });
+  const { assortmentTree } = useCategoriesTree({
+    root: intl.formatMessage({ id: ROUTES_CONFIG.shop.slug }),
+  });
 
   return (
     <div className="mobile-menu-holder" data-is-open={isNavOpen}>

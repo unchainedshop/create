@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 
 const AssortmentBreadcrumbs = ({ paths = [], currentAssortment }) => {
   const intl = useIntl();
+
   return (
     <nav className="mt-2 mb-4 border-bottom pb-3">
       <Link href="/">
@@ -10,7 +12,7 @@ const AssortmentBreadcrumbs = ({ paths = [], currentAssortment }) => {
           {intl.formatMessage({ id: 'home' })}
         </a>
       </Link>
-      <Link href="/shop">
+      <Link href={`/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}`}>
         <a className="mr-2 breadcrumb-link">
           {intl.formatMessage({ id: 'shop' })}
         </a>

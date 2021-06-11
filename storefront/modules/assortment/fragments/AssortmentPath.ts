@@ -7,7 +7,7 @@ const AssortmentPathFragment = gql`
       link {
         parent {
           _id
-          texts {
+          texts(forceLocale: $forceLocale) {
             _id
             title
             slug
@@ -25,7 +25,7 @@ export const ProductAssortmentPathFragment = gql`
       link {
         parent {
           _id
-          texts {
+          texts(forceLocale: $forceLocale) {
             _id
             title
             slug

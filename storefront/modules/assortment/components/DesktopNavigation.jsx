@@ -6,6 +6,7 @@ import DesktopNavigationContext from './DesktopNavigationContext';
 import MegaDropdown from './MegaDropdown';
 import useCategoriesTree from '../hooks/useCategoriesTree';
 import Icon from '../../common/components/Icon';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 
 const arrayEqual = (a, b) =>
   a.length === b.length &&
@@ -16,7 +17,9 @@ const DesktopNavigation = () => {
   const [hoverPath, setHoverPath] = useState([]);
   const [isTouching, setTouching] = useState(false);
 
-  const { assortmentTree } = useCategoriesTree({ root: 'shop' });
+  const { assortmentTree } = useCategoriesTree({
+    root: intl.formatMessage({ id: ROUTES_CONFIG.shop.slug }),
+  });
 
   const handleClick = (node) => (event) => {
     if (isTouching && node.children) {

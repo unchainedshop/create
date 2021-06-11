@@ -1,5 +1,8 @@
 {
-  "injectStyles": ["", "body { background-color: white; }"],
+  "injectStyles": [
+    "",
+    "body { background-color: white; }"
+  ],
   "assets": {
     "logo": "/static/img/logo.png",
     "icon-180x180": "/static/img/apple-touch-icon.png",
@@ -28,5 +31,161 @@
   "locales": {
     "de": "/i18n/de.json",
     "en": "/i18n/en.json"
+  },
+  "localizedRoutes": {
+    "privacy": {
+      "localizations": [
+        "/privatsphare"
+      ],
+      "slug": "privacy_slug",
+      "destination": "/privacy"
+    },
+    "about": {
+      "localizations": [
+        "/uber"
+      ],
+      "slug": "about_slug",
+      "destination": "/about"
+    },
+    "checkout": {
+      "localizations": [
+        "/auschecken"
+      ],
+      "slug": "checkout_slug",
+      "destination": "/checkout"
+    },
+    "email_verified": {
+      "localizations": [
+        "/email-uberpruft"
+      ],
+      "slug": "email_verified_slug",
+      "destination": "/email-verified"
+    },
+    "imprint": {
+      "localizations": [
+        "/impressum"
+      ],
+      "slug": "imprint_slug",
+      "destination": "/imprint"
+    },
+    "login": {
+      "localizations": [
+        "/anmeldung"
+      ],
+      "slug": "login_slug",
+      "destination": "/login"
+    },
+    "logout": {
+      "localizations": [
+        "/ausloggen"
+      ],
+      "slug": "logout_slug",
+      "destination": "/logout"
+    },
+    "register": {
+      "localizations": [
+        "/registrieren"
+      ],
+      "slug": "register_slug",
+      "destination": "/register"
+    },
+    "reset_password": {
+      "localizations": [
+        "/passwort-zurucksetzen"
+      ],
+      "slug": "reset_password_slug",
+      "destination": "/reset-password"
+    },
+    "review": {
+      "localizations": [
+        "/rezension"
+      ],
+      "slug": "review_slug",
+      "destination": "/review"
+    },
+    "sign_up": {
+      "localizations": [
+        "/anmelden"
+      ],
+      "slug": "sign_up_slug",
+      "destination": "/sign-up"
+    },
+    "thank_you": {
+      "localizations": [
+        "/danke"
+      ],
+      "slug": "thank_you_slug",
+      "destination": "/thank-you"
+    },
+    "shop_detail": {
+      "localizations": [
+        "/geschaft/:slug*"
+      ],
+      "slug": "shop_slug",
+      "destination": "/shop/:slug*"
+    },
+    "shop": {
+      "localizations": [
+        "/geschaft"
+      ],
+      "slug": "shop_slug",
+      "destination": "/shop"
+    },
+    "product": {
+      "localizations": [
+        "/produkt"
+      ],
+      "slug": "product_slug",
+      "destination": "/product"
+    },
+    "product_detail": {
+      "localizations": [
+        "/produkt/:slug"
+      ],
+      "slug": "product_slug",
+      "destination": "/product/:slug"
+    },
+    "order_detail": {
+      "localizations": [
+        "/auftrag/:id"
+      ],
+      "slug": "order_slug",
+      "destination": "/order/:id"
+    },
+    "order": {
+      "localizations": [
+        "/auftrag"
+      ],
+      "slug": "order_slug",
+      "destination": "/order"
+    },
+    "account": {
+      "localizations": [
+        "/konto"
+      ],
+      "slug": "account_slug",
+      "destination": "/account"
+    },
+    "change_password": {
+      "localizations": [
+        "/konto/kennwort-andern"
+      ],
+      "slug": "change_password_slug",
+      "destination": "/account/change-password"
+    },
+    "forget_password": {
+      "localizations": [
+        "/konto/passwort-vergessen"
+      ],
+      "slug": "forget_password_slug",
+      "destination": "/account/forget-password"
+    },
+    "conditions": {
+      "localizations": [
+        "/bedingungen"
+      ],
+      "slug": "conditions_slug",
+      "destination": "/conditions"
+    }
   }
 }

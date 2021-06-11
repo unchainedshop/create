@@ -7,6 +7,7 @@ const OrderItemFragment = gql`
       media {
         _id
         file {
+          _id
           name
           url
           meta

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
+import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
 
@@ -54,7 +55,13 @@ const LoginForm = ({ onLogin }) => {
             name="password"
             ref={register({ required: true })}
           />
-          <Link href="/account/forget-password">
+          <Link
+            href={`/${intl.formatMessage({
+              id: ROUTES_CONFIG.account.slug,
+            })}/${intl.formatMessage({
+              id: ROUTES_CONFIG.forget_password.slug,
+            })}`}
+          >
             <a className="mt-2 text-right">
               <small id="passwordForgot" className="form-text text-muted">
                 {intl.formatMessage({ id: 'forgot_password' })}

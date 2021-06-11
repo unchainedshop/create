@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import Icon from '../../common/components/Icon';
 
+import Icon from '../../common/components/Icon';
 import useUserOrderOrderList from '../hooks/useUserOrderList';
 
 const OrderButton = () => {

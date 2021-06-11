@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 
 import LoadingItem from '../../modules/common/components/LoadingItem';
 import MetaTags from '../../modules/common/components/MetaTags';
+
 import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
 import OrderDetailComponent from '../../modules/orders/components/OrderDetailComponent';

@@ -11,6 +11,7 @@ import LoginForm from '../modules/auth/components/LoginForm';
 import Footer from '../modules/layout/components/Footer';
 import MetaTags from '../modules/common/components/MetaTags';
 import COUNTRIES from '../modules/common/data/countries-list';
+import ROUTES_CONFIG from '../modules/common/utils/getRouteConfig';
 
 const ErrorDisplay = ({ error }) => {
   const intl = useIntl();
@@ -33,6 +34,9 @@ const SignUp = () => {
   const { updateCart } = useUpdateCart();
   const { createUser, error: formError } = useCreateUser();
   const hasErrors = Object.keys(errors).length;
+  const reviewPath = `/${intl.formatMessage({
+    id: ROUTES_CONFIG.review.slug,
+  })}`;
 
   useEffect(() => {
     if (formError?.message?.includes('Email already exists.')) {
@@ -101,11 +105,11 @@ const SignUp = () => {
       },
     });
 
-    router.push('/review');
+    router.push(reviewPath);
     return true;
   };
 
-  const onLogin = () => router.push('/review');
+  const onLogin = () => router.push(reviewPath);
 
   return (
     <>

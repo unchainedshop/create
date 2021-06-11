@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import App from 'next/app';
 import { ToastContainer } from 'react-toastify';
 import getConfig from 'next/config';
@@ -24,6 +24,25 @@ const UnchainedApp = ({ Component, pageProps, router }) => {
       toggleCart,
     });
   };
+  /* change root pages slug for there localy 
+  handles localization for routes /page | /page/1234
+  where 1234 is either id or slug */
+  useEffect(() => {
+    const idOrSlug = router?.query?.id || router?.query?.slug || '';
+    if (!Object.keys(router.query).length || idOrSlug) {
+      const currentPage = router.route.split('/')[1];
+
+      if (
+        router.route !== '/' &&
+        `${router.asPath}/` !==
+          `/${messages[ROUTES_CONFIG[currentPage].slug]}/${idOrSlug}`
+      ) {
+        router.push(
+          `/${messages[ROUTES_CONFIG[currentPage].slug]}/${idOrSlug}`,
+        );
+      }
+    }
+  }, [router]);
 
   const [cartContext, setCartContext] = useState({
     isCartOpen: false,

@@ -118,4 +118,6 @@ export default {
   save_address: 'Save address',
   save_username: 'Save username',
   change_address: 'Change address',
+  add_email: 'Add Email',
+  resend_verification: '(re)-send verification email',
 };

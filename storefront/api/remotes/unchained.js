@@ -1,4 +1,4 @@
-import { makeRemoteExecutableSchema, introspectSchema } from 'graphql-tools';
+import { introspectSchema, makeRemoteExecutableSchema } from '@graphql-tools/wrap';
 import fetch from 'isomorphic-unfetch';
 import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from '@apollo/client/link/context';
@@ -6,6 +6,7 @@ import { ApolloLink } from '@apollo/client';
 import getConfig from 'next/config';
 
 import setLoginCookie from './setLoginCookie';
+import { linkToExecutor } from '@graphql-tools/links';
 
 const {
   publicRuntimeConfig: { UNCHAINED_ENDPOINT },
@@ -52,9 +53,10 @@ export const link = ApolloLink.from([
 
 export default async () => {
   try {
+    const executor = linkToExecutor(link);
     const schema = makeRemoteExecutableSchema({
-      schema: await introspectSchema(link),
-      link,
+      schema: await introspectSchema(executor),
+      executor,
     });
     return schema;
   } catch (e) {

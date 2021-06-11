@@ -22,7 +22,7 @@ export default {
   products: 'Produkte',
   close: 'Schließen',
   cart: 'Warenkorb',
-  in_cart: 'In Ihrem Warenkorb',
+  in_cart: 'Warenkorb',
   subtotal: 'Zwischensumme',
   checkout: 'Checkout',
   continue_shopping: 'Mit dem Einkaufen fortfahren',

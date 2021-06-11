@@ -4,7 +4,7 @@ export default {
   new_models: 'Neue Modelle',
   to_checkout: 'Zur Kasse',
   home: 'Startseite',
-  registration: 'Anmeldung',
+  register_user: 'Neuen Benutzer registrieren',
   logged_out: 'Sie wurden abgemeldet',
   top_notification: 'Top notification in deutsch',
   thank_you: 'Vielen Dank',
@@ -15,7 +15,7 @@ export default {
   thank_you_order_number: 'Deine Bestellnummer lautet:',
   thank_you_order_date:
     'Das Datum,  an dem Sie die Bestellung aufgegeben haben, ist:',
-  sign_up: 'Anmelden',
+  sign_up: 'Registrieren',
   empty_cart: 'Leerer Einkaufswagen',
   no_product_in_cart:
     'In Ihrem Warenkorb befinden sich keine Produkte. Stöbern Sie in unserem',
@@ -75,7 +75,7 @@ export default {
   payment_status: 'Zahlungsstatus',
   status: 'Status',
   my_orders: 'Meine Bestellungen',
-  change_password: 'Change password',
+  change_password: 'Passwort ändern',
   current_password: 'Jetztiges Passwort',
   new_password: 'Neues Passwort',
   reset_password: 'Passwort ändern',
@@ -117,4 +117,11 @@ export default {
   'shop.unchained.datatrans': 'Credit Card',
   pay_now: 'Pay Now',
   no_username_set: 'Kein Benutzername gesetzt',
+  resend_verification: "Verifizierungsmail (erneut) senden",
+  add_email: 'E-Mail Adresse hinzufügen',
+  change_address: "Adresse ändern",
+  remove_email: 'E-Mail Adresse löschen',
+  save_address: 'Adresse speichern',
+  language_en: 'English',
+  language_de: 'Deutsch'
 };

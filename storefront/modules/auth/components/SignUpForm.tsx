@@ -240,7 +240,7 @@ const SignUpForm = ({ onSuccessGoTo = '/account' }) => {
           <input
             type="submit"
             className="button button--primary button--big my-1 w-100"
-            value={intl.formatMessage({ id: 'registration' })}
+            value={intl.formatMessage({ id: 'register_user' })}
           />
         </div>
       </form>

@@ -133,20 +133,20 @@ const MobileNavigation = ({ doClose, isNavOpen }) => {
 
         <div className="pt-3 my-3 ml-3">
           <button
-            aria-label="Deutsch"
+            aria-label={intl.formatMessage({ id: 'language_de' })}
             type="button"
             className="no-button d-block mb-3"
             onClick={() => changeLanguage('de')}
           >
-            Deutsch
+            {intl.formatMessage({ id: 'language_de' })}
           </button>
           <button
-            aria-label="English"
+            aria-label={intl.formatMessage({ id: 'language_en' })}
             type="button"
             className="no-button d-block mb-3"
             onClick={() => changeLanguage('en')}
           >
-            English
+            {intl.formatMessage({ id: 'language_en' })}
           </button>
         </div>
       </nav>

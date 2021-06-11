@@ -154,22 +154,6 @@ const DeliveryAddressEditable = ({ user }) => {
             </div>
           </div>
         ))}
-        <div className="d-flex flex-wrap justify-content-start align-items-center my-2">
-          <div className="col-md-12 my-1 pl-0">
-            <label className="form-label">Message (optional)</label>
-            {isEditing ? (
-              <textarea
-                className="form-control"
-                defaultValue={user?.cart?.meta?.message}
-                name="message"
-                ref={register}
-                placeholder="Special instructions etc."
-              />
-            ) : (
-              <div>{user?.cart?.meta?.message}</div>
-            )}
-          </div>
-        </div>
       </div>
       <button className="button button--secondary mt-3" type="submit">
         {isEditing

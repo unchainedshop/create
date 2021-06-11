@@ -2,8 +2,8 @@
   "name": "@unchainedshop/create",
   "private": false,
   "description": "Starter storefront kit to start working with unchained engine with no initial configuration",
-  "version": "0.0.8",
-  "license": "EUPL-1.2",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/unchainedshop/create.git"
@@ -12,17 +12,5 @@
   "bin": {
     "create-unchainedshop": "./init.js"
   },
-  "homepage": "https://unchained.shop",
-  "scripts": {
-    "dev": "run-p --race --print-label dev:*",
-    "dev:storefront": "cd storefront && npm run dev:local",
-    "install-all": "npm install && run-p --print-label install:*",
-    "install:storefront": "cd storefront && npm install"
-  },
-  "devDependencies": {
-    "npm-run-all": "^4.1.5"
-  },
-  "dependencies": {
-    "react-intl": "^5.18.1"
-  }
+  "homepage": "https://unchained.shop"
 }

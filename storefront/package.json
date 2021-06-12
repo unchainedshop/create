@@ -18,6 +18,7 @@
     "@formatjs/intl-numberformat": "^7.1.2",
     "@formatjs/intl-pluralrules": "^4.0.22",
     "@formatjs/intl-relativetimeformat": "^9.1.2",
+    "@graphql-tools/links": "^7.1.0",
     "@graphql-tools/wrap": "^7.0.8",
     "apollo-server-micro": "^2.19.0",
     "apollo-server-plugin-response-cache": "^0.5.6",

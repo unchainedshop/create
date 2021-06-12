@@ -1,26 +1,25 @@
-import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
+import LocalizedLink from '../../common/components/LocalizedLink';
 
 const AssortmentBreadcrumbs = ({ paths = [], currentAssortment }) => {
   const intl = useIntl();
 
   return (
     <nav className="mt-2 mb-4 border-bottom pb-3">
-      <Link href="/">
+      <LocalizedLink href="/">
         <a className="mr-2 breadcrumb-link">
           {intl.formatMessage({ id: 'home' })}
         </a>
-      </Link>
-      <Link href={`/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}`}>
+      </LocalizedLink>
+      <LocalizedLink href="/shop">
         <a className="mr-2 breadcrumb-link">
           {intl.formatMessage({ id: 'shop' })}
         </a>
-      </Link>
+      </LocalizedLink>
       {paths?.map(({ id, slug, title }) => (
-        <Link href={`/${slug}`} as={`/${slug}`} key={id}>
+        <LocalizedLink href={`/${slug}`} key={id}>
           <a className="mr-2 breadcrumb-link">{title}</a>
-        </Link>
+        </LocalizedLink>
       ))}
       <a className="breadcrumb-link">
         <b>{currentAssortment?.title}</b>

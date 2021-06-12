@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import getConfig from 'next/config';
 import { useIntl } from 'react-intl';
+
 import useCategoriesTree from '../hooks/useCategoriesTree';
 import Icon from '../../common/components/Icon';
 import Thumbnail from '../../common/components/thumbnail';
 import changeLanguage from '../../common/utils/changeLanguage';
-import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
+import LocalizedLink from '../../common/components/LocalizedLink';
 
 const createPathFromArray = (path = []) => `/${(path || []).join('/')}`;
 
@@ -52,7 +52,7 @@ const Subtree = ({
       </button>
       {showSubtree ? (
         <div>
-          <Link href={createPathFromArray(path)}>
+          <LocalizedLink href={createPathFromArray(path)}>
             <a
               className={`border-top d-block text-uppercase link ${
                 levelClassMap[level + 1]
@@ -60,7 +60,7 @@ const Subtree = ({
             >
               {intl.formatMessage({ id: 'show_all' })}
             </a>
-          </Link>
+          </LocalizedLink>
 
           {Object.entries(children)
             .sort(([, aNode], [, bNode]) => aNode?.index - bNode.index)
@@ -80,21 +80,21 @@ const Subtree = ({
       )}
     </div>
   ) : (
-    <Link href={createPathFromArray(path)}>
+    <LocalizedLink href={createPathFromArray(path)}>
       <a
         className={`border-top d-block text-uppercase ${levelClassMap[level]}`}
       >
         <Thumbnail media={media} />
         {navigationTitle}
       </a>
-    </Link>
+    </LocalizedLink>
   );
 };
 
 const MobileNavigation = ({ doClose, isNavOpen }) => {
   const intl = useIntl();
   const { assortmentTree } = useCategoriesTree({
-    root: intl.formatMessage({ id: ROUTES_CONFIG.shop.slug }),
+    root: 'shop',
   });
 
   return (
@@ -128,7 +128,6 @@ const MobileNavigation = ({ doClose, isNavOpen }) => {
               subtree={node?.children}
               key={pageId}
               pageId={pageId}
-              intl
               {...node}
             />
           ))}

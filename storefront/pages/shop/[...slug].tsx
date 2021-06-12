@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import { useIntl } from 'react-intl';
 import CategoriesList from '../../modules/assortment/components/CategoriesList';
 import useAssortmentProducts from '../../modules/assortment/hooks/useAssortmentProducts';
 import getAssortmentPath from '../../modules/assortment/utils/getAssortmentPath';
@@ -14,11 +13,9 @@ import MetaTags from '../../modules/common/components/MetaTags';
 import useCategoriesTree from '../../modules/assortment/hooks/useCategoriesTree';
 import LoadingItem from '../../modules/common/components/LoadingItem';
 import getMediaUrl from '../../modules/common/utils/getMediaUrl';
-import ROUTES_CONFIG from '../../modules/common/utils/getRouteConfig';
 
 const CategoryDetail = () => {
   const router = useRouter();
-  const intl = useIntl();
   const { slug: slugs } = router.query;
   const slug: string | string[] = slugs[slugs.length - 1];
   const [currentUrl, setcurrentUrl] = useState('');
@@ -38,16 +35,11 @@ const CategoryDetail = () => {
     includeLeaves: true,
   });
 
-  const assortmentPaths = getAssortmentPath(
-    paths,
-    intl.formatMessage({ id: ROUTES_CONFIG.shop.slug }),
-  );
+  const assortmentPaths = getAssortmentPath(paths, 'shop');
   useEffect(() => {
     if (texts) {
       const actualRoute = `${
-        !assortmentPaths?.length
-          ? `/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}`
-          : ''
+        !assortmentPaths?.length ? '/shop' : ''
       }/${assortmentPaths
         ?.map((a) => a.slug)
         .concat(texts?.slug)

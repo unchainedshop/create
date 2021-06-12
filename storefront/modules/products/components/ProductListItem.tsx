@@ -1,18 +1,12 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import { useIntl } from 'react-intl';
+
+import LocalizedLink from '../../common/components/LocalizedLink';
 
 import getMediaUrl from '../../common/utils/getMediaUrl';
-import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 
 const ProductListItem = ({ product }) => {
-  const intl = useIntl();
   return (
-    <Link
-      href={`/${intl.formatMessage({ id: ROUTES_CONFIG.product.slug })}/${
-        product?.texts?.slug
-      }`}
-    >
+    <LocalizedLink href={`/product/${product?.texts?.slug}`}>
       <a>
         <div className="text-center">
           <Image
@@ -30,7 +24,7 @@ const ProductListItem = ({ product }) => {
           <h3 className="p-3">{product?.texts?.title}</h3>
         </div>
       </a>
-    </Link>
+    </LocalizedLink>
   );
 };
 

@@ -16,7 +16,6 @@ import AssortmentBreadcrumbs from '../../modules/assortment/components/Assortmen
 import getMediaUrl from '../../modules/common/utils/getMediaUrl';
 import getMediaUrls from '../../modules/common/utils/getMediaUrls';
 import NotFound from '../404';
-import ROUTES_CONFIG from '../../modules/common/utils/getRouteConfig';
 
 const Detail = () => {
   const router = useRouter();
@@ -26,10 +25,7 @@ const Detail = () => {
     slug: router.query.slug,
   });
 
-  const productPath = getAssortmentPath(
-    paths,
-    intl.formatMessage({ id: ROUTES_CONFIG.shop.slug }),
-  );
+  const productPath = getAssortmentPath(paths, 'shop');
 
   useEffect(() => {
     setcurrentUrl(window.location.href);

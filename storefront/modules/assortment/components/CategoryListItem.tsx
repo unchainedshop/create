@@ -1,20 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useIntl } from 'react-intl';
 
 import getMediaUrl from '../../common/utils/getMediaUrl';
-import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
+import LocalizedLink from '../../common/components/LocalizedLink';
 
 const CategoryListItem = ({ category, className = '' }) => {
-  const intl = useIntl();
   return (
     <div className={className}>
-      <Link
-        href={`/${intl.formatMessage({ id: ROUTES_CONFIG.shop.slug })}/${
-          category.texts.slug
-        }`}
-      >
+      <LocalizedLink href={`/shop/${category.texts.slug}`}>
         <a>
           <div>
             <Image
@@ -34,7 +27,7 @@ const CategoryListItem = ({ category, className = '' }) => {
             <h2 className="mt-2 mb-3">{category.texts?.title}</h2>
           </div>
         </a>
-      </Link>
+      </LocalizedLink>
     </div>
   );
 };

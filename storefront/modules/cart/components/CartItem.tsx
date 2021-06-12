@@ -1,21 +1,18 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { useIntl } from 'react-intl';
 
 import getMediaUrl from '../../common/utils/getMediaUrl';
 import Icon from '../../common/components/Icon';
 import renderPrice from '../../common/utils/renderPrice';
 import useRemoveCartItem from '../hooks/useRemoveCartItem';
 import useUpdateCartItemMutation from '../hooks/useUpdateCartItem';
-import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
+import LocalizedLink from '../../common/components/LocalizedLink';
 
 const CartItem = ({ _id, quantity, product, total }) => {
   const { updateCartItem } = useUpdateCartItemMutation();
   const { removeCartItem } = useRemoveCartItem();
   const [previousQuantity, setPreviousQuantity] = useState(quantity);
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
-  const intl = useIntl();
 
   const handleChange = (e) => {
     const amount = e.target.value;
@@ -66,17 +63,13 @@ const CartItem = ({ _id, quantity, product, total }) => {
         />
       </div>
       <div className="d-flex justify-content-between align-items-baseline">
-        <Link
-          href={`/${intl.formatMessage({ id: ROUTES_CONFIG.product.slug })}/${
-            product?.texts?.slug
-          }`}
-        >
+        <LocalizedLink href={`/product/${product?.texts?.slug}`}>
           <a>
             <div className="item-info">
               {product?.texts && product?.texts.title}
             </div>
           </a>
-        </Link>
+        </LocalizedLink>
         <button
           className="no-button"
           type="button"

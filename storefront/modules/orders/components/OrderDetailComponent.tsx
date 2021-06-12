@@ -34,7 +34,8 @@ const OrderDetailComponent = ({ order }) => {
                   />
                 </div>
                 <div className="m-2">
-                  {item.quantity} x {item.product.texts.title}
+                  {item.quantity} x
+{item.product.texts.title}
                 </div>
               </div>
               <div className="my-2">{renderPrice(item.total)}</div>

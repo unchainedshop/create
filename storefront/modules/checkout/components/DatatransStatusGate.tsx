@@ -4,9 +4,8 @@ import useOrderDetail from '../../orders/hooks/useOrderDetail';
 
 export interface DatatransStatusGateProps {}
 
-const getPercentage = (order, loading, status) => {
-  return (order?.orderNumber ? 50 : 0) + (status === 'success' ? 50 : 0);
-};
+const getPercentage = (order, loading, status) =>
+  (order?.orderNumber ? 50 : 0) + (status === 'success' ? 50 : 0);
 
 const DatatransStatusGate: React.FC<DatatransStatusGateProps> = ({
   children,
@@ -48,7 +47,9 @@ const DatatransStatusGate: React.FC<DatatransStatusGateProps> = ({
     <>
       {status && errorCode ? (
         <div className="col-lg-12 form-error">
-          <h2 className="mt-0 mb-5">{status}:</h2>
+          <h2 className="mt-0 mb-5">{status}
+:
+</h2>
           {errorMessage} ({errorCode})
         </div>
       ) : null}

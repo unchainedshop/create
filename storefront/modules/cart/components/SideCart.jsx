@@ -30,12 +30,10 @@ const SideCart = ({ isOpen }) => {
   };
 
   const subtotal = (user?.cart?.items || []).reduce(
-    (acc, item) => {
-      return {
-        ...acc,
-        amount: acc.amount + (item?.total?.amount || 0),
-      };
-    },
+    (acc, item) => ({
+      ...acc,
+      amount: acc.amount + (item?.total?.amount || 0),
+    }),
     {
       currency: user?.cart?.itemsTotal?.currency,
       amount: 0,
@@ -127,7 +125,11 @@ const SideCart = ({ isOpen }) => {
               >
                 {intl.formatMessage({ id: 'to_checkout' })}
               </a>
-              <Link href={`${localStorage.getItem('lastVisitedCategory') || '/shop'}`}>
+              <Link
+                href={`${
+                  localStorage.getItem('lastVisitedCategory') || '/shop'
+                }`}
+              >
                 <a
                   className="button button--secondary text-uppercase w-75 mb-3"
                   onClick={() => context.toggleCart(false)}

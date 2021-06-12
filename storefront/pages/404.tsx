@@ -15,8 +15,10 @@ const NotFound = ({ page = '' }) => {
       <div className="container text-center text-danger p-3 p-md-5">
         <div className="p-lg-5 mb-4">
           <h1 className="font-weight-bolder font-dax-ot-regular">
-            404: Requested {page || 'Page'} not found
-          </h1>
+            404: Requested {page || 'Page'}
+{' '}
+not found
+</h1>
           <div className="mb-5">
             <div className="text-center">
               <p>{intl.formatMessage({ id: '404_sorry' })} </p>

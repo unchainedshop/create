@@ -11,12 +11,11 @@ const AddEmailMutation = gql`
 const useaddEmail = () => {
   const [addEmailMutation, { error }] = useMutation(AddEmailMutation);
 
-  const addEmail = async (email) => {
-    return addEmailMutation({
+  const addEmail = async (email) =>
+    addEmailMutation({
       variables: { email },
       refetchQueries: ['user'],
     });
-  };
 
   return {
     addEmail,

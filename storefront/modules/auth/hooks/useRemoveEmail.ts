@@ -11,12 +11,11 @@ const RemoveEmailMutation = gql`
 const useRemoveEmail = () => {
   const [removeEmailMutation, { error }] = useMutation(RemoveEmailMutation);
 
-  const removeEmail = async (email) => {
-    return removeEmailMutation({
+  const removeEmail = async (email) =>
+    removeEmailMutation({
       variables: { email },
       refetchQueries: ['user'],
     });
-  };
 
   return {
     removeEmail,

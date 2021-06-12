@@ -76,21 +76,17 @@ const MegaDropdownItem = ({
   );
 };
 
-const MegaDropdownColumn = ({ ...rest }: Node) => {
-  return (
-    <div className="mega-col">
-      <MegaDropdownItem {...rest} type="show_all" />
+const MegaDropdownColumn = ({ ...rest }: Node) => (
+  <div className="mega-col">
+    <MegaDropdownItem {...rest} type="show_all" />
 
-      {rest.children &&
-        Object.entries(rest.children)
-          .sort(([, aNode], [, bNode]) => {
-            return aNode.index - bNode.index;
-          })
-          .map(([, subnode]) => (
-            <MegaDropdownItem key={subnode._id} {...subnode} type="default" />
-          ))}
-    </div>
-  );
-};
+    {rest.children &&
+      Object.entries(rest.children)
+        .sort(([, aNode], [, bNode]) => aNode.index - bNode.index)
+        .map(([, subnode]) => (
+          <MegaDropdownItem key={subnode._id} {...subnode} type="default" />
+        ))}
+  </div>
+);
 
 export default MegaDropdownColumn;

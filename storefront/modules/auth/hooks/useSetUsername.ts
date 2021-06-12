@@ -12,12 +12,11 @@ const SetUsernameMutation = gql`
 const useSetUsername = () => {
   const [setUsernameMutation, { error }] = useMutation(SetUsernameMutation);
 
-  const setUsername = async ({ username, userId }) => {
-    return setUsernameMutation({
+  const setUsername = async ({ username, userId }) =>
+    setUsernameMutation({
       variables: { username, userId },
       refetchQueries: ['user'],
     });
-  };
 
   return {
     setUsername,

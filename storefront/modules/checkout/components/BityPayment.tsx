@@ -72,7 +72,8 @@ const BityPayment = ({ cart }) => {
                 })}
               </h3>
               <p>
-                BTC/{cart?.total.currency}{' '}
+                BTC/
+                {cart?.total.currency}{' '}
                 {renderPrice({
                   amount: cart?.total.amount / payload.input.amount,
                   currency: cart?.total.currency,

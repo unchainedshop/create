@@ -13,8 +13,8 @@ const extractMutationFromDataObject = (
   // eslint-disable-next-line no-undef
   data?: object,
   mutations: string[] = [],
-) => {
-  return mutations.reduce((acc, mutationName) => {
+) =>
+  mutations.reduce((acc, mutationName) => {
     if (data && data[mutationName]) {
       return {
         ...data[mutationName],
@@ -23,13 +23,12 @@ const extractMutationFromDataObject = (
     }
     return acc;
   }, null);
-};
 
 export default () =>
-  new ApolloLink((operation, forward) => {
+  new ApolloLink((operation, forward) =>
     // Middleware: This block does actually nothing, it just forwards the operation,
     // thus hands over to the http link.
-    return forward(operation).map((response) => {
+    forward(operation).map((response) => {
       // Afterware: This block evaluates after the http link fetched data from the remote
 
       // Here, getContext is the ApolloServer's context defined below
@@ -77,5 +76,5 @@ export default () =>
         );
       }
       return response;
-    });
-  });
+    }),
+  );

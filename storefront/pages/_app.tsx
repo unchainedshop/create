@@ -9,9 +9,10 @@ import '../public/static/css/all.css';
 import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 import { CartContext } from '../modules/cart/CartContext';
 import withApollo from '../modules/apollo/utils/withApollo';
+import ROUTES_CONFIG from '../modules/common/utils/getRouteConfig';
 
 const {
-  publicRuntimeConfig: { theme, localizations },
+  publicRuntimeConfig: { localizations },
 } = getConfig();
 
 const UnchainedApp = ({ Component, pageProps, router }) => {

@@ -60,10 +60,13 @@ const SignUpForm = ({ onSuccessGoTo = `/${ROUTES_CONFIG.account.slug}` }) => {
   };
   useEffect(() => {
     if (error?.message?.includes('Email already exists')) {
-      setError(
-        'emailAddress',
-        { type: 'manual', message: `👬 ${intl.formatMessage({ id: 'email_exists_please_login' })}`, shouldFocus: true }
-      );
+      setError('emailAddress', {
+        type: 'manual',
+        message: `👬 ${intl.formatMessage({
+          id: 'email_exists_please_login',
+        })}`,
+        shouldFocus: true,
+      });
     }
   }, [error]);
 
@@ -101,7 +104,8 @@ const SignUpForm = ({ onSuccessGoTo = `/${ROUTES_CONFIG.account.slug}` }) => {
             className={`mb-3 col-md-6 ${errors.company ? 'form-error' : ''}`}
           >
             <label className="form-label">
-              {intl.formatMessage({ id: 'company' })} {'  '}{' '}
+              {intl.formatMessage({ id: 'company' })} {'  '}
+{' '}
               {intl.formatMessage({ id: 'optional' })}
             </label>
             <input className="form-control" name="company" ref={register} />

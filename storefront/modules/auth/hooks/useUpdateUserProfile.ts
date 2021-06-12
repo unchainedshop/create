@@ -13,12 +13,11 @@ const useUpdateUserProfile = () => {
     UpdateUserProfileMutation,
   );
 
-  const updateUserProfile = async ({ profile, userId }) => {
-    return updateUserProfileMutation({
+  const updateUserProfile = async ({ profile, userId }) =>
+    updateUserProfileMutation({
       variables: { userId, profile },
       refetchQueries: ['user'],
     });
-  };
 
   return {
     updateUserProfile,

@@ -4,19 +4,17 @@ import responseCachePlugin from 'apollo-server-plugin-response-cache';
 import mapForwardHeaders from './mapForwardHeaders';
 import { unchainedSchema } from './remotes';
 
-const createApolloServer = async () => {
-  return new ApolloServer({
+const createApolloServer = async () =>
+  new ApolloServer({
     schema: await unchainedSchema,
     introspection: true,
     cors: false,
     cacheControl: true,
     tracing: false,
-    context: (graphqlContext) => {
-      return {
-        ...graphqlContext,
-        forwardHeaders: mapForwardHeaders(graphqlContext.req),
-      };
-    },
+    context: (graphqlContext) => ({
+      ...graphqlContext,
+      forwardHeaders: mapForwardHeaders(graphqlContext.req),
+    }),
     playground: {
       settings: {
         'request.credentials': 'same-origin',
@@ -24,9 +22,7 @@ const createApolloServer = async () => {
     },
     plugins: [
       responseCachePlugin({
-        extraCacheKeyData: ({ context }) => {
-          return context?.locale?.normalized || '';
-        },
+        extraCacheKeyData: ({ context }) => context?.locale?.normalized || '',
         shouldReadFromCache: ({ req }) => {
           const bustCache = req?.query?.bustCache;
           return !bustCache;
@@ -38,7 +34,6 @@ const createApolloServer = async () => {
       }),
     ],
   });
-};
 
 const apolloServerPromise = createApolloServer();
 

@@ -1,7 +1,7 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+  "extends": ["airbnb", "plugin:prettier/recommended", "prettier"],
   "parserOptions": {
     "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
     "sourceType": "module", // Allows for the use of imports

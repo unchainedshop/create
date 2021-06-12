@@ -4,11 +4,9 @@ import { ApolloProvider } from '@apollo/client';
 import initApollo from './initApollo';
 
 export default withApollo(initApollo, {
-  render: ({ Page, props }) => {
-    return (
-      <ApolloProvider client={props.apollo}>
-        <Page {...props} />
-      </ApolloProvider>
-    );
-  },
+  render: ({ Page, props }) => (
+    <ApolloProvider client={props.apollo}>
+      <Page {...props} />
+    </ApolloProvider>
+  ),
 });

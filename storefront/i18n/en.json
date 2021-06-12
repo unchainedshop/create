@@ -119,5 +119,25 @@
   "language_en": "English",
   "language_de": "Deutsch",
   "email_exists_please_login": "A User with the same email exists already. Please sign-in",
-  "old_password_not_correct": "Wrong password, please try again"
+  "old_password_not_correct": "Wrong password, please try again",
+  "about_slug": "uber",
+  "checkout_slug": "auschecken",
+  "email_verified_slug": "email-uberpruft",
+  "imprint_slug": "impressum",
+  "login_slug": "anmeldung",
+  "logout_slug": "ausloggen",
+  "register_slug": "registrieren",
+  "reset_password_slug": "passwort-zurucksetzen",
+  "review_slug": "rezension",
+  "sign_up_slug": "anmelden",
+  "thank_you_slug": "danke",
+  "shop_slug": "geschaft",
+  "product_slug": "produkt",
+  "order_slug": "auftrag",
+  "account_slug": "konto",
+  "change_password_slug": "kennwort-andern",
+  "forget_password_slug": "passwort-vergessen",
+  "terms-conditions_slug": "bedingungen",
+  "privacy-policy_slug": "privacy"
+  
 }

@@ -13,12 +13,11 @@ const useResendVerificationEmail = () => {
     ResendVerificationEmailMutation,
   );
 
-  const resendVerificationEmail = async (email) => {
-    return resendVerificationEmailMutation({
+  const resendVerificationEmail = async (email) =>
+    resendVerificationEmailMutation({
       variables: { email },
       refetchQueries: ['user'],
     });
-  };
 
   return {
     resendVerificationEmail,

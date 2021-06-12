@@ -8,9 +8,7 @@ import Thumbnail from '../../common/components/thumbnail';
 import changeLanguage from '../../common/utils/changeLanguage';
 import ROUTES_CONFIG from '../../common/utils/getRouteConfig';
 
-const createPathFromArray = (path = []) => {
-  return `/${(path || []).join('/')}`;
-};
+const createPathFromArray = (path = []) => `/${(path || []).join('/')}`;
 
 const {
   publicRuntimeConfig: { theme },
@@ -65,9 +63,7 @@ const Subtree = ({
           </Link>
 
           {Object.entries(children)
-            .sort(([, aNode], [, bNode]) => {
-              return aNode?.index - bNode.index;
-            })
+            .sort(([, aNode], [, bNode]) => aNode?.index - bNode.index)
             .map(([subPageId, node]) => (
               <Subtree
                 path={node?.path}

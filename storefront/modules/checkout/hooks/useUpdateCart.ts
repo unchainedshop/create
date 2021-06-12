@@ -17,8 +17,8 @@ const useUpdateCart = () => {
     orderId = undefined,
     contact = undefined,
     billingAddress = undefined,
-  }) => {
-    return updateCartMutation({
+  }) =>
+    updateCartMutation({
       variables: { contact, billingAddress },
       optimisticResponse: {
         updateCart: {
@@ -28,7 +28,6 @@ const useUpdateCart = () => {
         },
       },
     });
-  };
 
   return {
     updateCart,

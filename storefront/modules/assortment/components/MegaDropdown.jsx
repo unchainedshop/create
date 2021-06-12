@@ -3,14 +3,11 @@ import React from 'react';
 import MegaDropdownColumn from './MegaDropdownColumn';
 import { useDesktopNavigationContext } from './DesktopNavigationContext';
 
-const findChildBySlug = (node, slug) => {
-  return (
-    node.children &&
-    Object.entries(node.children).find(
-      ([, childNode]) => childNode.slug === slug,
-    )
+const findChildBySlug = (node, slug) =>
+  node.children &&
+  Object.entries(node.children).find(
+    ([, childNode]) => childNode.slug === slug,
   );
-};
 
 const getColumn = (node, hoverPath, columnIndex) => {
   if (hoverPath.length <= columnIndex || !node) {

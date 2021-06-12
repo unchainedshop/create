@@ -32,15 +32,13 @@ const UnchainedApp = ({ Component, pageProps, router }) => {
     const idOrSlug = router?.query?.id || router?.query?.slug || '';
     if (!Object.keys(router.query).length || idOrSlug) {
       const currentPage = router.route.split('/')[1];
-
+      console.log(currentPage);
       if (
         router.route !== '/' &&
         `${router.asPath}/` !==
-          `/${messages[ROUTES_CONFIG[currentPage].slug]}/${idOrSlug}`
+          `/${messages[`${currentPage}_slug`]}/${idOrSlug}`
       ) {
-        router.push(
-          `/${messages[ROUTES_CONFIG[currentPage].slug]}/${idOrSlug}`,
-        );
+        router.push(`/${messages[`${currentPage}_slug`]}/${idOrSlug}`);
       }
     }
   }, [router]);

@@ -33,12 +33,12 @@
     "en": "/i18n/en.json"
   },
   "localizedRoutes": {
-    "privacy": {
+    "privacy-policy": {
       "localizations": [
-        "/privatsphare"
+        "/datenschutz-bestimmungen"
       ],
       "slug": "privacy_slug",
-      "destination": "/privacy"
+      "destination": "/privacy-policy"
     },
     "about": {
       "localizations": [
@@ -180,12 +180,12 @@
       "slug": "forget_password_slug",
       "destination": "/account/forget-password"
     },
-    "conditions": {
+    "terms-conditions": {
       "localizations": [
-        "/bedingungen"
+        "/terms-bedingungen"
       ],
       "slug": "conditions_slug",
-      "destination": "/conditions"
+      "destination": "/terms-conditions"
     }
   }
 }

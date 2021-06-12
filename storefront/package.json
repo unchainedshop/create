@@ -26,6 +26,7 @@
     "dotenv-extended": "^2.9.0",
     "fast-memoize": "^2.5.2",
     "geoip-country": "^4.0.43",
+    "graphql": "^15.5.0",
     "graphql-tools": "^4.0.8",
     "i": "^0.3.6",
     "isomorphic-unfetch": "^3.1.0",

@@ -137,6 +137,6 @@
   "account_slug": "konto",
   "change_password_slug": "kennwort-andern",
   "forget_password_slug": "passwort-vergessen",
-  "terms-conditions_slug": "bedingungen",
-  "privacy-policy_slug": "privatsphare"
+  "terms-conditions_slug": "terms-bedingungen",
+  "privacy-policy_slug": "datenschutz-bestimmungen"
 }

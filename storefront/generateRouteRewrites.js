@@ -6,8 +6,8 @@ const generateRouteRewrites = () => {
   Object.keys(routes).forEach((route) => {
     routes[route].localizations.forEach((source) => {
       rewrites.push({
-        source,
-        destination: routes[route].destination,
+        source: source.trim(),
+        destination: routes[route].destination.trim(),
       });
     });
   });

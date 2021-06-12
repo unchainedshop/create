@@ -16,6 +16,8 @@ function extractDomain(string) {
   }
 }
 
+console.log(generateRewritesFromRoutes());
+
 const {
   FRONTEND_URL,
   GRAPHQL_ENDPOINT,

@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-- Node.js >= v12
+- Node.js >= v14
 
 ## Quickstart
 

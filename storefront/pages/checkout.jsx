@@ -19,9 +19,8 @@ const ErrorDisplay = ({ error }) => {
   if (error.message?.includes('Email already exists')) {
     return (
       <div className="form-error my-3">
-        👬 {intl.formatMessage({ id: 'email_exists' })}
-.
-</div>
+        👬 {intl.formatMessage({ id: 'email_exists' })}.
+      </div>
     );
   }
 

@@ -127,8 +127,7 @@ const Account = () => {
                       className="d-flex flex-column flex-sm-row justify-content-between mb-2"
                     >
                       <span className="mb-1">
-                        {i + 1}.
-{intl.formatMessage({ id: 'email' })}
+                        {i + 1}.{intl.formatMessage({ id: 'email' })}
                       </span>
                       <span className="mb-1">
                         {e.address}

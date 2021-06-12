@@ -13,10 +13,7 @@ const ManageCart = ({ user }) => {
       <div className="text-right">
         <div className="border-top py-3 mt-0">
           <div className="d-flex flex-wrap justify-content-between">
-            <div>{intl.formatMessage({ id: 'vat_included' })}
-{' '}
-7.7%
-</div>
+            <div>{intl.formatMessage({ id: 'vat_included' })} 7.7%</div>
             <div>{renderPrice(user?.cart?.taxes)}</div>
           </div>
         </div>

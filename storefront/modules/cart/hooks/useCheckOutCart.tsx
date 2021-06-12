@@ -28,6 +28,11 @@ const useCheckOutCartMutation = () => {
     orderContext,
     paymentContext,
     deliveryContext,
+  }: {
+    orderId?: string;
+    orderContext?: any;
+    paymentContext?: any;
+    deliveryContext?: any;
   }) => {
     await checkOutCartMutation({
       variables: { orderId, orderContext, paymentContext, deliveryContext },

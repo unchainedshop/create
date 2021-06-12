@@ -1,7 +1,7 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier"],
+  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react", "prettier", "eslint:recommended"],
   "parserOptions": {
     "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
     "sourceType": "module", // Allows for the use of imports
@@ -46,7 +46,7 @@
       2,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
-    "jsx-a11y/alt-text": [0],
+    "jsx-a11y/alt-text": [1],
     "jsx-a11y/no-static-element-interactions": [0],
     "jsx-a11y/click-events-have-key-events": [0]
 

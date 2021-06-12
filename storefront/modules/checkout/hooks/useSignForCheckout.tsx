@@ -15,7 +15,13 @@ const SignPaymentProviderMutation = gql`
 const useSignPaymentProviderMutation = () => {
   const [signPaymentProvider] = useMutation(SignPaymentProviderMutation);
 
-  const signForCheckout = async ({ transactionContext, orderPaymentId }) => {
+  const signForCheckout = async ({
+    transactionContext,
+    orderPaymentId,
+  }: {
+    transactionContext?: any;
+    orderPaymentId?: string;
+  }) => {
     const result = await signPaymentProvider({
       variables: { orderPaymentId, transactionContext },
     });

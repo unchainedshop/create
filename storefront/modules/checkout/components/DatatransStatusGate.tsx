@@ -47,9 +47,7 @@ const DatatransStatusGate: React.FC<DatatransStatusGateProps> = ({
     <>
       {status && errorCode ? (
         <div className="col-lg-12 form-error">
-          <h2 className="mt-0 mb-5">{status}
-:
-</h2>
+          <h2 className="mt-0 mb-5">{status}:</h2>
           {errorMessage} ({errorCode})
         </div>
       ) : null}

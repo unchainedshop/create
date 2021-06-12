@@ -1,23 +1,34 @@
 import { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
+
 import useSignForCheckout from '../hooks/useSignForCheckout';
 import LoadingItem from '../../common/components/LoadingItem';
 import renderPrice from '../../common/utils/renderPrice';
 import useCheckOutCart from '../../cart/hooks/useCheckOutCart';
 
-const BityPayment = ({ cart }) => {
+export interface IOrderContext {
+  payload: any;
+  signature: string;
+}
+const BityPayment = ({ order }) => {
   const intl = useIntl();
   const { signForCheckout } = useSignForCheckout();
-  const [{ payload, signature }, setSign] = useState({});
+  const [{ payload, signature }, setSign] = useState<IOrderContext>({
+    payload: {},
+    signature: '',
+  });
   const [isPaymentButtonDisabled, setPaymentButtonDisabled] = useState(false);
   const { checkOutCart } = useCheckOutCart();
 
-  useEffect(async () => {
-    const sign = await signForCheckout({
-      orderPaymentId: cart?.paymentInfo._id,
-    });
-    setSign(JSON.parse(sign));
-  }, [cart]);
+  useEffect(() => {
+    const signCheckout = async () => {
+      const sign = await signForCheckout({
+        orderPaymentId: order?.paymentInfo._id,
+      });
+      setSign(JSON.parse(sign));
+    };
+    signCheckout();
+  }, [order]);
 
   if (!payload) return <LoadingItem />;
 
@@ -58,7 +69,7 @@ const BityPayment = ({ cart }) => {
             })}
           </h3>
         ) : (
-          renderPrice(cart?.total)
+          renderPrice(order?.total)
         )}
 
         {payload?.output?.currency !== 'BTC' &&
@@ -73,10 +84,10 @@ const BityPayment = ({ cart }) => {
               </h3>
               <p>
                 BTC/
-                {cart?.total.currency}{' '}
+                {order?.total.currency}{' '}
                 {renderPrice({
-                  amount: cart?.total.amount / payload.input.amount,
-                  currency: cart?.total.currency,
+                  amount: order?.total.amount / payload.input.amount,
+                  currency: order?.total.currency,
                   addBTCFraction: false,
                 })}{' '}
                 (includes comissions)

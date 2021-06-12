@@ -127,8 +127,7 @@ const UpdateProfileForm = ({ user, onSuccess, onCancel }) => {
             className={`mb-3 col-md-6 ${errors.regionCode ? 'form-error' : ''}`}
           >
             <label className="form-label">
-              {intl.formatMessage({ id: 'region' })} {'  '}
-{' '}
+              {intl.formatMessage({ id: 'region' })} {'  '}{' '}
               {intl.formatMessage({ id: 'optional' })}
             </label>
             <input

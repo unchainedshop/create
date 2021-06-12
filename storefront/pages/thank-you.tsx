@@ -44,8 +44,7 @@ const ThankYou = () => {
                   'shop.unchained.payment.bity' && (
                   <div>
                     <p>
-                      Please send <b>{order.meta.bityOrder.input.amount}</b>
-{' '}
+                      Please send <b>{order.meta.bityOrder.input.amount}</b>{' '}
                       {order.meta.bityOrder.input.currency} to
                     </p>
                     <QRCode

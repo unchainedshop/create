@@ -24,7 +24,6 @@ const Detail = () => {
   const { product, paths, loading } = useProductDetail({
     slug: router.query.slug,
   });
-
   const productPath = getAssortmentPath(paths);
   useEffect(() => {
     setcurrentUrl(window.location.href);

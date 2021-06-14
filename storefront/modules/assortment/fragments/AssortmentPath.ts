@@ -22,8 +22,22 @@ export const ProductAssortmentPathFragment = gql`
   fragment ProductAssortmentPathFragment on ProductAssortmentPath {
     links {
       assortmentId
+      assortmentTexts(forceLocale: $forceLocale) {
+        _id
+        title
+        slug
+        subtitle
+      }
       link {
         parent {
+          _id
+          texts {
+            _id
+            title
+            slug
+          }
+        }
+        child {
           _id
           texts {
             _id

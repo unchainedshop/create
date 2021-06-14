@@ -24,7 +24,6 @@ const useUpdateCart = () => {
         updateCart: {
           _id: orderId,
           __typename: 'Order',
-          ...billingAddress,
         },
       },
     });

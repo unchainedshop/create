@@ -14,9 +14,10 @@ import BillingAddressEditable from '../modules/checkout/components/BillingAddres
 import useUpdateOrderDeliveryShipping from '../modules/checkout/hooks/useUpdateDeliveryShipping';
 import useUpdateCart from '../modules/checkout/hooks/useUpdateCart';
 import MetaTags from '../modules/common/components/MetaTags';
+import LoadingItem from '../modules/common/components/LoadingItem';
 
 const Review = () => {
-  const { user } = useUser();
+  const { user, loading } = useUser();
   const intl = useIntl();
 
   const { setOrderPaymentProvider } = useSetOrderPaymentProvider();
@@ -71,7 +72,6 @@ const Review = () => {
       });
     }
   };
-
   return (
     <>
       <MetaTags title={intl.formatMessage({ id: 'order_review' })} />
@@ -79,104 +79,110 @@ const Review = () => {
       <div className="container mt-5">
         <div className="row">
           <DatatransStatusGate>
-            <div className="col-lg-8 mb-5">
-              <h2 className="mt-0 mb-5">
-                {`${intl.formatMessage({
-                  id: 'checkout',
-                })} - ${intl.formatMessage({ id: 'order_review' })}`}
-              </h2>
-              <h4>{intl.formatMessage({ id: 'delivery_address' })}</h4>
-              <DeliveryAddressEditable user={user} />
+            {loading ? (
+              <LoadingItem />
+            ) : (
+              <div className="col-lg-8 mb-5">
+                <h2 className="mt-0 mb-5">
+                  {`${intl.formatMessage({
+                    id: 'checkout',
+                  })} - ${intl.formatMessage({ id: 'order_review' })}`}
+                </h2>
+                <h4>{intl.formatMessage({ id: 'delivery_address' })}</h4>
+                <DeliveryAddressEditable key={user._id} user={user} />
 
-              <h4 className="mt-5">
-                {intl.formatMessage({ id: 'billing_address' })}
-              </h4>
+                <h4 className="mt-5">
+                  {intl.formatMessage({ id: 'billing_address' })}
+                </h4>
 
-              <div className="form-check my-3">
-                <label
-                  className="form-check-label mb-5 d-flex align-items-center "
-                  htmlFor="same"
-                >
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id="same"
-                    defaultChecked={user?.cart?.deliveryInfo?.address === null}
-                    name="same"
-                    onChange={sameAsDeliveryChange}
-                  />
-                  <span className="ml-3">
-                    {intl.formatMessage({ id: 'same_as_delivery' })}
-                  </span>
-                </label>
+                <div className="form-check my-3">
+                  <label
+                    className="form-check-label mb-5 d-flex align-items-center "
+                    htmlFor="same"
+                  >
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="same"
+                      defaultChecked={
+                        user?.cart?.deliveryInfo?.address === null
+                      }
+                      name="same"
+                      onChange={sameAsDeliveryChange}
+                    />
+                    <span className="ml-3">
+                      {intl.formatMessage({ id: 'same_as_delivery' })}
+                    </span>
+                  </label>
+                </div>
+                <BillingAddressEditable user={user} />
+                {!user?.cart?.billingAddress ? (
+                  ''
+                ) : (
+                  <>
+                    <h4 className="mt-5">
+                      {intl.formatMessage({ id: 'payment_method' })}
+                    </h4>
+                    <section className="">
+                      {user?.cart?.supportedPaymentProviders.map(
+                        (pamentProvider) => (
+                          <div
+                            key={pamentProvider._id}
+                            className="form-check my-2 my-lg-1"
+                          >
+                            <label className="form-check-label d-flex align-items-center">
+                              <input
+                                type="radio"
+                                className="form-check-input"
+                                name="paymentmethods"
+                                value={pamentProvider._id}
+                                checked={
+                                  pamentProvider._id ===
+                                  user?.cart?.paymentInfo?.provider?._id
+                                }
+                                onChange={(e) => {
+                                  e.preventDefault();
+                                  selectPayment(pamentProvider._id);
+                                }}
+                              />
+                              <span className="ml-3">
+                                {intl.formatMessage({
+                                  id: pamentProvider.interface?._id,
+                                })}
+                              </span>
+                            </label>
+                          </div>
+                        ),
+                      )}
+                    </section>
+
+                    <div className="mt-5">
+                      {user?.cart?.paymentInfo?.provider?.interface?._id ===
+                      'shop.unchained.invoice' ? (
+                        <WireTransferPayment
+                          setBillingSameAsDelivery={setBillingSameAsDelivery}
+                          cart={user?.cart}
+                        />
+                      ) : (
+                        ''
+                      )}
+                      {user?.cart?.paymentInfo?.provider?.interface?._id ===
+                      'shop.unchained.datatrans' ? (
+                        <DatatransPayment cart={user?.cart} />
+                      ) : (
+                        ''
+                      )}
+                      {user?.cart?.paymentInfo?.provider?.interface?._id ===
+                      'shop.unchained.payment.bity' ? (
+                        <BityPayment order={user?.cart} />
+                      ) : (
+                        ''
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
-              <BillingAddressEditable user={user} />
-              {!user?.cart?.billingAddress ? (
-                ''
-              ) : (
-                <>
-                  <h4 className="mt-5">
-                    {intl.formatMessage({ id: 'payment_method' })}
-                  </h4>
-                  <section className="">
-                    {user?.cart?.supportedPaymentProviders.map(
-                      (pamentProvider) => (
-                        <div
-                          key={pamentProvider._id}
-                          className="form-check my-2 my-lg-1"
-                        >
-                          <label className="form-check-label d-flex align-items-center">
-                            <input
-                              type="radio"
-                              className="form-check-input"
-                              name="paymentmethods"
-                              value={pamentProvider._id}
-                              checked={
-                                pamentProvider._id ===
-                                user?.cart?.paymentInfo?.provider?._id
-                              }
-                              onChange={(e) => {
-                                e.preventDefault();
-                                selectPayment(pamentProvider._id);
-                              }}
-                            />
-                            <span className="ml-3">
-                              {intl.formatMessage({
-                                id: pamentProvider.interface?._id,
-                              })}
-                            </span>
-                          </label>
-                        </div>
-                      ),
-                    )}
-                  </section>
-
-                  <div className="mt-5">
-                    {user?.cart?.paymentInfo?.provider?.interface?._id ===
-                    'shop.unchained.invoice' ? (
-                      <WireTransferPayment
-                        setBillingSameAsDelivery={setBillingSameAsDelivery}
-                        cart={user?.cart}
-                      />
-                    ) : (
-                      ''
-                    )}
-                    {user?.cart?.paymentInfo?.provider?.interface?._id ===
-                    'shop.unchained.datatrans' ? (
-                      <DatatransPayment cart={user?.cart} />
-                    ) : (
-                      ''
-                    )}
-                    {user?.cart?.paymentInfo?.provider?.interface?._id ===
-                    'shop.unchained.payment.bity' ? (
-                      <BityPayment order={user?.cart} />
-                    ) : (
-                      ''
-                    )}
-                  </div>
-                </>
-              )}
-            </div>
+            )}
 
             <div className="col-lg-4">
               <h2 className="mt-0 mb-5">

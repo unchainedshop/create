@@ -265,6 +265,7 @@ const SignUp = () => {
                     }`}
                     name="emailAddress"
                     ref={register({ required: true })}
+                    type="email"
                   />
                 </div>
                 <div

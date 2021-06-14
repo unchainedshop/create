@@ -14,11 +14,10 @@ export const UserQuery = gql`
 
 const useUser = () => {
   const intl = useIntl();
-  const { data, loading, error } = useQuery(UserQuery, {
+  const { data, loading, error, refetch } = useQuery(UserQuery, {
     variables: {
       forceLocale: intl.locale,
     },
-    fetchPolicy: 'cache-and-network',
   });
 
   return {
@@ -26,6 +25,7 @@ const useUser = () => {
     error,
     user: data?.me,
     cart: data?.me?.cart,
+    refetch,
   };
 };
 

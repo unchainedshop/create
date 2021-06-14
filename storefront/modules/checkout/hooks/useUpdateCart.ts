@@ -14,11 +14,18 @@ const useUpdateCart = () => {
   });
 
   const updateCart = async ({
+    orderId = undefined,
     contact = undefined,
     billingAddress = undefined,
   }) => {
     return updateCartMutation({
       variables: { contact, billingAddress },
+      optimisticResponse: {
+        updateCart: {
+          _id: orderId,
+          __typename: 'Order',
+        },
+      },
     });
   };
 

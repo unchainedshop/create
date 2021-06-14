@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import { useEffect } from 'react';
 import useUser from '../modules/auth/hooks/useUser';
 import useSetOrderPaymentProvider from '../modules/orders/hooks/setPaymentOrderProvider';
 import DatatransStatusGate from '../modules/checkout/components/DatatransStatusGate';
@@ -17,7 +18,7 @@ import MetaTags from '../modules/common/components/MetaTags';
 import LoadingItem from '../modules/common/components/LoadingItem';
 
 const Review = () => {
-  const { user, loading } = useUser();
+  const { user, loading, refetch } = useUser();
   const intl = useIntl();
 
   const { setOrderPaymentProvider } = useSetOrderPaymentProvider();
@@ -72,6 +73,9 @@ const Review = () => {
       });
     }
   };
+  useEffect(() => {
+    refetch();
+  }, []);
   return (
     <>
       <MetaTags title={intl.formatMessage({ id: 'order_review' })} />

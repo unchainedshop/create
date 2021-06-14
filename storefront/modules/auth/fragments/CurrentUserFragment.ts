@@ -40,9 +40,14 @@ const CurrentUserFragment = gql`
         telNumber
         emailAddress
       }
+      itemsTotal: total(category: ITEMS) {
+        amount
+        currency
+      }
       items {
         _id
         quantity
+
         total {
           amount
           currency

@@ -33,7 +33,6 @@ const SideCart = ({ isOpen }) => {
       amount: 0,
     },
   );
-
   return (
     <>
       <div

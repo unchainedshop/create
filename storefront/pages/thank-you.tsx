@@ -64,14 +64,25 @@ const ThankYou = () => {
 
                     <p>
                       Once you have submitted the money,{' '}
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={`https://go.bity.com/order-status?id=${order.meta.bityOrder.id}`}
-                      >
-                        you can check here
-                      </a>{' '}
-                      to see the status of your payment
+                      <b>
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={`https://go.bity.com/order-status?id=${order.meta.bityOrder.id}`}
+                        >
+                          you can check here
+                        </a>
+                      </b>{' '}
+                      to see the status of your payment, and
+                      <b>
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={`/orders/${order._id}`}
+                        >
+                          here to check when the order is confirmed
+                        </a>
+                      </b>{' '}
                     </p>
                   </div>
                 )}

@@ -32,7 +32,7 @@ const OrderList = ({ orders }) => {
         <tbody>
           {orders.map((order) => (
             <Link
-              href="/orders/[id]"
+              href="/orders/[_id]"
               as={`/orders/${order._id}`}
               key={order._id}
             >

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 import useSignForCheckout from '../hooks/useSignForCheckout';
 import LoadingItem from '../../common/components/LoadingItem';
 import renderPrice from '../../common/utils/renderPrice';
@@ -7,16 +8,32 @@ import useCheckOutCart from '../../cart/hooks/useCheckOutCart';
 
 const BityPayment = ({ cart }) => {
   const intl = useIntl();
+  const router = useRouter();
   const { signForCheckout } = useSignForCheckout();
   const [{ payload, signature }, setSign] = useState({}) as any;
   const [isPaymentButtonDisabled, setPaymentButtonDisabled] = useState(false);
   const { checkOutCart } = useCheckOutCart();
 
+  const checkout = async ({
+    paymentContext = undefined,
+    deliveryContext = undefined,
+  } = {}) => {
+    await checkOutCart({
+      orderId: cart._id,
+      paymentContext,
+      deliveryContext,
+      orderContext: { bityPayload: payload, bitySignature: signature },
+    });
+    router.replace({
+      query: { orderId: cart._id, status: 'success' },
+    });
+  };
+
   useEffect(() => {
     signForCheckout({
       orderPaymentId: cart?.paymentInfo._id,
-      transactionContext: {}
-    }).then(sign => {
+      transactionContext: {},
+    }).then((sign) => {
       setSign(JSON.parse(sign));
     });
   }, [cart]);
@@ -94,12 +111,7 @@ const BityPayment = ({ cart }) => {
         disabled={isPaymentButtonDisabled}
         onClick={async () => {
           setPaymentButtonDisabled(true);
-          await checkOutCart({
-            orderId: cart._id,
-            paymentContext: undefined,
-            deliveryContext: undefined,
-            orderContext: { bityPayload: payload, bitySignature: signature },
-          });
+          await checkout();
           setPaymentButtonDisabled(false);
         }}
       >

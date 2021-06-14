@@ -11,7 +11,9 @@ const OrderFragment = gql`
       flagEmoji
       name
     }
+    meta
     delivery {
+      _id
       provider {
         _id
         type
@@ -45,11 +47,19 @@ const OrderFragment = gql`
     }
 
     payment {
+      _id
       status
       paid
       fee {
         amount
         currency
+      }
+      provider {
+        _id
+        type
+        interface {
+          _id
+        }
       }
     }
   }

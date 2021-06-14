@@ -14,6 +14,7 @@ import COUNTRIES from '../modules/common/data/countries-list';
 
 const ErrorDisplay = ({ error }) => {
   const intl = useIntl();
+  console.log(error);
   if (!error) return '';
   if (error.message?.includes('Email already exists')) {
     return (

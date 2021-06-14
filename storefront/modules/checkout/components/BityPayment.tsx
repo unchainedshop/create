@@ -5,7 +5,7 @@ import LoadingItem from '../../common/components/LoadingItem';
 import renderPrice from '../../common/utils/renderPrice';
 import useCheckOutCart from '../../cart/hooks/useCheckOutCart';
 
-const BityPayment = ({ cart }) => {
+const BityPayment = ({ order }) => {
   const intl = useIntl();
   const { signForCheckout } = useSignForCheckout();
   const [{ payload, signature }, setSign] = useState({});
@@ -14,10 +14,10 @@ const BityPayment = ({ cart }) => {
 
   useEffect(async () => {
     const sign = await signForCheckout({
-      orderPaymentId: cart?.paymentInfo._id,
+      orderPaymentId: order?.paymentInfo._id,
     });
     setSign(JSON.parse(sign));
-  }, [cart]);
+  }, [order]);
 
   if (!payload) return <LoadingItem />;
 
@@ -58,7 +58,7 @@ const BityPayment = ({ cart }) => {
             })}
           </h3>
         ) : (
-          renderPrice(cart?.total)
+          renderPrice(order?.total)
         )}
 
         {payload?.output?.currency !== 'BTC' &&
@@ -72,10 +72,10 @@ const BityPayment = ({ cart }) => {
                 })}
               </h3>
               <p>
-                BTC/{cart?.total.currency}{' '}
+                BTC/{order?.total.currency}{' '}
                 {renderPrice({
-                  amount: cart?.total.amount / payload.input.amount,
-                  currency: cart?.total.currency,
+                  amount: order?.total.amount / payload.input.amount,
+                  currency: order?.total.currency,
                   addBTCFraction: false,
                 })}{' '}
                 (includes comissions)

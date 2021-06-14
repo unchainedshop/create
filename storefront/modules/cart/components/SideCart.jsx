@@ -115,7 +115,11 @@ const SideCart = ({ isOpen }) => {
               >
                 {intl.formatMessage({ id: 'to_checkout' })}
               </a>
-              <Link href={`${localStorage.getItem('lastVisitedCategory') || '/shop'}`}>
+              <Link
+                href={`${
+                  localStorage.getItem('lastVisitedCategory') || '/shop'
+                }`}
+              >
                 <a
                   className="button button--secondary text-uppercase w-75 mb-3"
                   onClick={() => context.toggleCart(false)}

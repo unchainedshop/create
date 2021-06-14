@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import useUpdateCart from '../hooks/useUpdateCart';
@@ -10,6 +10,10 @@ const BillingAddressEditable = ({ user }) => {
   const intl = useIntl();
   const { updateCart } = useUpdateCart();
   const { register, handleSubmit } = useForm();
+
+  useEffect(() => {
+    setEditing(!user?.cart?.billingAddress);
+  }, [user?.cart?.billingAddress]);
 
   const onSubmit = async ({
     firstName,

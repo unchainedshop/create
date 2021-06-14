@@ -2,7 +2,6 @@ import Head from 'next/head';
 import getConfig from 'next/config';
 import { useRouter } from 'next/router';
 
-import supportedLanguages from '../../i18n/utils/supportedLanguages';
 import getCurrentDomain from '../utils/getCurrentDomain';
 
 const {

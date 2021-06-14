@@ -11,10 +11,11 @@ const LoginForm = ({ onLogin }) => {
   const { loginWithPassword, error } = useLoginWithPassword();
   const hasErrors = Object.keys(errors).length > 0;
   useEffect(() => {
-    setError(
-      'email',
-      { type: 'manual', message: `👷‍♀️ ${intl.formatMessage({ id: 'invalid_email_password' })}`, shouldFocus: true }
-    );
+    setError('email', {
+      type: 'manual',
+      message: `👷‍♀️ ${intl.formatMessage({ id: 'invalid_email_password' })}`,
+      shouldFocus: true,
+    });
   }, [error]);
 
   const onSubmit = async ({ email, password }) => {

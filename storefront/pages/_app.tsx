@@ -11,7 +11,7 @@ import { CartContext } from '../modules/cart/CartContext';
 import withApollo from '../modules/apollo/utils/withApollo';
 
 const {
-  publicRuntimeConfig: { theme, localizations },
+  publicRuntimeConfig: { localizations },
 } = getConfig();
 
 const UnchainedApp = ({ Component, pageProps, router }) => {

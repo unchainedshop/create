@@ -1,12 +1,15 @@
-import { introspectSchema, makeRemoteExecutableSchema } from '@graphql-tools/wrap';
+import {
+  introspectSchema,
+  makeRemoteExecutableSchema,
+} from '@graphql-tools/wrap';
 import fetch from 'isomorphic-unfetch';
 import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from '@apollo/client/link/context';
 import { ApolloLink } from '@apollo/client';
 import getConfig from 'next/config';
 
-import setLoginCookie from './setLoginCookie';
 import { linkToExecutor } from '@graphql-tools/links';
+import setLoginCookie from './setLoginCookie';
 
 const {
   publicRuntimeConfig: { UNCHAINED_ENDPOINT },

@@ -64,10 +64,10 @@ const Subtree = ({
           </Link>
 
           {Object.entries(children)
-            .sort(([, aNode], [, bNode]) => {
+            .sort(([, aNode]: any, [, bNode]: any) => {
               return aNode?.index - bNode.index;
             })
-            .map(([subPageId, node]) => (
+            .map(([subPageId, node]: any) => (
               <Subtree
                 path={node?.path}
                 navigationTitle={node?.navigationTitle}
@@ -122,14 +122,13 @@ const MobileNavigation = ({ doClose, isNavOpen }) => {
             </small>
           </button>
 
-          {Object.entries(assortmentTree.children).map(([pageId, node]) => (
+          {Object.entries(assortmentTree.children).map(([pageId, node]: any) => (
             <Subtree
               path={node?.path}
               navigationTitle={node?.navigationTitle}
               subtree={node?.children}
               key={pageId}
               pageId={pageId}
-              intl
               {...node}
             />
           ))}

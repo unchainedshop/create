@@ -38,7 +38,7 @@ const SignUp = () => {
     if (formError?.message?.includes('Email already exists.')) {
       setError(
         'emailAddress',
-        { type: 'manual', message: '👬 User with the same email already exists. Please login', shouldFocus: true }
+        { type: 'manual', message: '👬 User with the same email already exists. Please login' }
       );
     }
   }, [formError]);
@@ -62,8 +62,8 @@ const SignUp = () => {
     if (account) {
       if (password !== password2) {
 
-        setError('password',{ type: 'manual', message: `👬 ${intl.formatMessage({ id: 'password_not_match' })}`, shouldFocus: true });
-        setError('password2',{ type: 'manual', message: `👬 ${intl.formatMessage({ id: 'password_not_match' })}`, shouldFocus: true });
+        setError('password',{ type: 'manual', message: `👬 ${intl.formatMessage({ id: 'password_not_match' })}` });
+        setError('password2',{ type: 'manual', message: `👬 ${intl.formatMessage({ id: 'password_not_match' })}` });
         return false;
       }
       try {

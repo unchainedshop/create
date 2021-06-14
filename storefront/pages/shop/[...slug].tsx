@@ -68,7 +68,7 @@ const CategoryDetail = () => {
             ) : (
               <CategoriesList
                 assortment={assortmentTree.children}
-                currentPath={slugs.join('/')}
+                currentPath={(slugs as any)?.join('/')}
               />
             )}
           </div>

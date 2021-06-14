@@ -38,6 +38,7 @@ const usePayWithDatatrans = () => {
     const { amount, currency } = cart?.total;
     const sign = await signForCheckout({
       orderPaymentId,
+      transactionContext: {}
     });
     const href = buildLink({
       sign,

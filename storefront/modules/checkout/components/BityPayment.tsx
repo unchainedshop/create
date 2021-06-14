@@ -8,15 +8,17 @@ import useCheckOutCart from '../../cart/hooks/useCheckOutCart';
 const BityPayment = ({ cart }) => {
   const intl = useIntl();
   const { signForCheckout } = useSignForCheckout();
-  const [{ payload, signature }, setSign] = useState({});
+  const [{ payload, signature }, setSign] = useState({}) as any;
   const [isPaymentButtonDisabled, setPaymentButtonDisabled] = useState(false);
   const { checkOutCart } = useCheckOutCart();
 
-  useEffect(async () => {
-    const sign = await signForCheckout({
+  useEffect(() => {
+    signForCheckout({
       orderPaymentId: cart?.paymentInfo._id,
+      transactionContext: {}
+    }).then(sign => {
+      setSign(JSON.parse(sign));
     });
-    setSign(JSON.parse(sign));
   }, [cart]);
 
   if (!payload) return <LoadingItem />;
@@ -93,6 +95,9 @@ const BityPayment = ({ cart }) => {
         onClick={async () => {
           setPaymentButtonDisabled(true);
           await checkOutCart({
+            orderId: cart._id,
+            paymentContext: undefined,
+            deliveryContext: undefined,
             orderContext: { bityPayload: payload, bitySignature: signature },
           });
           setPaymentButtonDisabled(false);

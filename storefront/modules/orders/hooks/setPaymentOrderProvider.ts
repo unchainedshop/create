@@ -13,9 +13,13 @@ const SetOrderPaymentProviderMutation = gql`
       ordered
       orderNumber
       payment {
+        _id
         provider {
-          type
           _id
+          type
+          interface {
+            _id
+          }
         }
       }
     }

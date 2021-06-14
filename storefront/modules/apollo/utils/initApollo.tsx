@@ -16,7 +16,7 @@ if (!process.browser) {
 }
 
 function create(initialState, ctx) {
-  const remoteAddress = ctx?.req?.connection.remoteAddress;
+  const remoteAddress = ctx?.req?.connection?.remoteAddress;
   const httpLink = new HttpLink({
     uri: GRAPHQL_ENDPOINT,
     credentials: 'same-origin',

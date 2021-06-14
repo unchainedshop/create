@@ -62,4 +62,13 @@ module.exports = {
     locales: Object.keys(theme.locales),
     defaultLocale: Object.keys(theme.locales)[0],
   },
+  async redirects() {
+    return [
+      {
+        source: '/order:path*',
+        destination: '/orders/[_id]',
+        permanent: true,
+      },
+    ];
+  },
 };

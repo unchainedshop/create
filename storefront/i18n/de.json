@@ -109,6 +109,7 @@
   "confirmation_sent": "Eine Bestätigungs-E-Mail wird gesendet",
   "shop.unchained.invoice": "Banküberweisung",
   "shop.unchained.datatrans": "Kreditkarte / PayPal / Twint",
+  "shop.unchained.payment.bity": "Bitcoin (native)",
   "pay_now": "Jetzt bezahlen",
   "no_username_set": "Kein Benutzername gesetzt",
   "resend_verification": "Verifizierungsmail (erneut) senden",
@@ -119,5 +120,6 @@
   "language_en": "English",
   "language_de": "Deutsch",
   "email_exists_please_login": "Es existiert ein Benutzer mit dieser E-Mail Adresse. Bitte anmelden.",
-  "old_password_not_correct": "Altes Passwort ist nicht korrekt"
+  "old_password_not_correct": "Altes Passwort ist nicht korrekt",
+  "confirm_order": "OK, ok, ok. Just let me pay"
 }

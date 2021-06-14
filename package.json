@@ -2,7 +2,7 @@
   "name": "@unchainedshop/create",
   "private": false,
   "description": "Starter storefront kit to start working with unchained engine with no initial configuration",
-  "version": "1.0.0-beta1",
+  "version": "1.0.0-beta2",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",

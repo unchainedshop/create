@@ -13,7 +13,7 @@ const OrderDetail = () => {
   const router = useRouter();
   const intl = useIntl();
   const { order, loading } = useOrderDetail({
-    orderId: router.query?.id,
+    orderId: router.query?._id,
   });
 
   if (!order && !loading)

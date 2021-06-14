@@ -13,7 +13,7 @@ const BillingAddressEditable = ({ user }) => {
 
   useEffect(() => {
     setEditing(!user?.cart?.billingAddress);
-  }, [user?.cart?.billingAddress]);
+  }, [user]);
 
   const onSubmit = async ({
     firstName,

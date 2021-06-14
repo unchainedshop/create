@@ -18,6 +18,7 @@ const useUser = () => {
     variables: {
       forceLocale: intl.locale,
     },
+    fetchPolicy: 'cache-and-network',
   });
 
   return {

@@ -10,22 +10,15 @@ const UpdateCartMutation = gql`
 
 const useUpdateCart = () => {
   const [updateCartMutation] = useMutation(UpdateCartMutation, {
-    refetchQueries: ['user', 'cart'],
+    refetchQueries: ['user'],
   });
 
   const updateCart = async ({
-    orderId = undefined,
     contact = undefined,
     billingAddress = undefined,
   }) => {
     return updateCartMutation({
       variables: { contact, billingAddress },
-      optimisticResponse: {
-        updateCart: {
-          _id: orderId,
-          __typename: 'Order',
-        },
-      },
     });
   };
 

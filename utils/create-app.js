@@ -39,15 +39,16 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
     process.exit(1)
   }
 
-  /* if (!isFolderEmpty(root, root.split('/')?.pop() || '')) {
+  if (!isFolderEmpty(root, root.split('/').pop() || '')) {
     process.exit(1)
-  } */
+  }
+
   if(example === 'minimal') {
     repoInfo = await getRepoInfo('unchained')
   }
   
     try {
-      console.log(`${chalk.cyan('Downloading files from repo . This might take a moment.' )}`);
+      console.log(`${chalk.cyan('Downloading files from repo . This might take a moment... \n' )}`);
       if(example === 'full_stack') {
         await makeDir(STORE_FRONT_DIR)
         console.log(`Creating a new Unchainedshop storefront template in ${chalk.green(STORE_FRONT_DIR)}.`);        
@@ -55,23 +56,20 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
           retries: 3,
         })
         await makeDir(ENGINE_DIR)
-    
-        console.log(`\nCreating a new Unchainedshop engine template in ${chalk.green(ENGINE_DIR)}.`)
+        console.log(`Creating a new Unchainedshop engine template in ${chalk.green(ENGINE_DIR)}.`)
         
         await retry(() => downloadAndExtractExample(ENGINE_DIR, 'minimal'), {
           retries: 3,
         });
 
-        /**
+    /**
      * Create a package.json for the new project.
-     */
+    */
     const packageJson = {
-      name: 'unchained',
+      name: 'my-unchained',
       version: '0.1.0',
-      private: true,
+      private: false,
       scripts: {
-        "dev": "dev:*",
-        "install": "install:*",
         "install:storefront": "cd storefront && npm install",
         "install:engine": "cd engine && npm install",
         "dev:engine": "cd engine && npm run dev",
@@ -80,7 +78,7 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
     }
 
     fs.writeFileSync(
-      path.join(process.cwd(), 'package.json'),
+      path.join(root, 'package.json'),
       JSON.stringify(packageJson, null, 2) + os.EOL
     )
 
@@ -88,11 +86,11 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
           if (!repoInfo) {
             await makeDir(STORE_FRONT_DIR)
             console.log()
-            await retry(() => downloadAndExtractStorefront(process.cwd()), {
+            await retry(() => downloadAndExtractStorefront(root), {
               retries: 3,
             })
           } else {
-            await retry(() => downloadAndExtractExample(process.cwd(), example), {
+            await retry(() => downloadAndExtractExample(root, example), {
               retries: 3,
             })
           }
@@ -102,7 +100,7 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
     }
 
 
-  console.log(`${chalk.green('Success!')}`)
-  console.log('Inside that directory, you can run several commands:')
-  console.log()
+  console.log(`${chalk.green('Congratulations template was generated Successfully!')}`)
+  console.log('Inside that directory, you can run several commands:');
+  console.log('Explore all of the commands available under package.json scripts')
 }

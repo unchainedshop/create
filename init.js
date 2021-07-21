@@ -11,9 +11,9 @@ async function start() {
     name: 'value',
     message: 'What type of template do you want',
     choices: [
-      { title: 'full stack e-commerce', value: 'full_stack' },
-      { title: 'Storefront template', value: 'storefront' },
-      { title: 'Unchained engine template', value: 'minimal' },
+      { title: 'Full stack e-commerce', value: 'full_stack' },
+      { title: 'Storefront', value: 'storefront' },
+      { title: 'Unchained engine', value: 'minimal' },
     ]
   })
 
@@ -29,7 +29,7 @@ async function start() {
 
 
 start()
-  .then((data) => {console.log(data)})
+  .then(() => {console.log()})
   .catch(async (reason) => {
     console.log()
     console.log('Aborting installation.')

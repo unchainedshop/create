@@ -1,6 +1,6 @@
 [![Codeship Status for unchainedshop/create](https://app.codeship.com/projects/2f18b4a0-57dc-0138-8b6d-4230a644a556/status?branch=master)](https://app.codeship.com/projects/391300)
 
-# Unchained E-Commerce Scaffold
+# Unchained E-Commerce Storefront template
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ Welcome to your new e-commerce online experience! To get started, simply run:
 ```bash
 mkdir your-awesome-ecommerce-project
 cd your-awesome-ecommerce-project
-npm init @unchainedshop
+npm init @unchainedshop storefront
 npm run install
 npm run dev
 ```
@@ -26,6 +26,21 @@ Now you have a fully running Unchained E-Commerce storefront environment running
 - <http://localhost:3000/api/graphql> to see the Unchained GraphQL Playground
 
 Go to [docs.unchained.shop](https://docs.unchained.shop) for more further information.
+
+
+### Theming
+
+App Theming works like this:
+
+- The theme is read from the environment variable `UNCHAINED_CREATE_THEME` or
+  provided as a path to `UNCHAINED_CREATE_THEME_FILE`. By default theme.json is
+  loaded via `UNCHAINED_CREATE_THEME_FILE=theme.json`
+- The theme is defined as a json (see theme.json for a complete example)
+- From environment it is then provided to the whole next app on runtime by using
+  next/config's publicRuntimeConfig feature. The page /api/theme generates CSS
+  variable's out of the rootProperties object, the other properties are used
+  throughout the app to translate certain content, configure logos and icons.
+
 
 #### Setup Datatrans
 

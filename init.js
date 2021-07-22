@@ -2,12 +2,13 @@
 import { createApp, DownloadError } from "./utils/create-app.js"
 import prompts from 'prompts'
 import chalk from "chalk"
+import { instruction } from "./utils/instructions.js";
 
 
 const onCancel = () => {
   process.exit(1);
 }
-
+let template = null;
 async function start() {
   const res = await prompts([{
     type: 'autocomplete',
@@ -48,14 +49,12 @@ async function start() {
       throw reason
     }
   }
+  template = res.templateType
 }
-
-
 
 start()
   .then(() => {
-    console.log()
-      console.log(`${chalk.green('Congratulations template was generated Successfully!')}`)
+      instruction(template)
       console.log('Inside that directory, you can run several commands:');
       console.log('Explore all of the commands available under package.json scripts')
   })

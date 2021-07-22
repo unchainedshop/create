@@ -11,13 +11,12 @@ import { tryGitInit } from './git.js'
 
 export class DownloadError extends Error {}
 
-const STORE_FRONT_DIR = `${process.cwd()}/storefront`;
-const ENGINE_DIR = `${process.cwd()}/engine`;
 
 export async function createApp({
   templateType,
   directoryPath,
-  projectName
+  projectName,
+  initGit,
 }){
 let repoInfo;
 
@@ -28,7 +27,7 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
 |_____|_|___|_____|__|__|__|__|_____|_|___|_____|____/
 
 
-`))
+`));
 
 
   const root = directoryPath ? path.resolve(directoryPath) : process.cwd();
@@ -54,17 +53,19 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
   }
   
     try {
+      const STOREFRONT_DIR = `${root}/storerfont`;
+      const ENGINE_DIR = `${root}/engine`
       console.log(`${chalk.cyan('Downloading files from repo . This might take a moment... \n' )}`);
       if(templateType === 'full_stack') {
-        await makeDir(`${root}/storerfont`)
-        console.log(`Creating a new Unchainedshop storefront template in ${chalk.green(`${root}/storerfont`)}.`);        
-        await retry(() => downloadAndExtractStorefront(`${root}/storerfont`), {
+        await makeDir(STOREFRONT_DIR)
+        console.log(`Creating a new Unchainedshop storefront template in ${chalk.green(STOREFRONT_DIR)}.`);        
+        await retry(() => downloadAndExtractStorefront(STOREFRONT_DIR), {
           retries: 3,
         })
-        await makeDir(`${root}/engine`)
-        console.log(`Creating a new Unchainedshop engine template in ${chalk.green(`${root}/engine`)}.`)
+        await makeDir(ENGINE_DIR)
+        console.log(`Creating a new Unchainedshop engine template in ${chalk.green(ENGINE_DIR)}.`)
         
-        await retry(() => downloadAndExtractExample(`${root}/engine`, 'minimal'), {
+        await retry(() => downloadAndExtractExample(ENGINE_DIR, 'minimal'), {
           retries: 3,
         });
 
@@ -72,7 +73,7 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
      * Create a package.json for the new project.
     */
     const packageJson = {
-      name: 'my-unchained',
+      name: projectName || 'my-unchained',
       version: '0.1.0',
       private: false,
       scripts: {
@@ -100,8 +101,7 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
             })
           }
     }
-console.log('try git')
-    if (tryGitInit(root)) {
+    if (initGit && tryGitInit(root)) {
       console.log('Initialized a git repository.')
       console.log()
     }

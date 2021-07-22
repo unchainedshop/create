@@ -2,6 +2,8 @@
 import { createApp, DownloadError } from "./utils/create-app.js"
 import prompts from 'prompts'
 import chalk from "chalk"
+
+
 const onCancel = () => {
   process.exit(1);
 }
@@ -11,6 +13,7 @@ async function start() {
     type: 'autocomplete',
     name: 'templateType',
     message: 'What type of template do you want',
+    format: val => val || 'full_stack',
     choices: [
       { title: 'Full stack e-commerce', value: 'full_stack' },
       { title: 'Storefront', value: 'storefront' },
@@ -20,15 +23,24 @@ async function start() {
   {
     type: prev => prev == 'full_stack' ? 'text' : null,
     name: 'projectName',
-    message: 'Name of project'
+    format: val => (val || " ").trim().replace(/\W/g, '-') ,
+    message: 'Name of project',
   },
   {
     type: 'text',
     name: 'directoryPath',
+    format: val => (val || " ").trim(),
     message: 'Directory name relative to current directory \n (press Enter to use current directory)',
+  },
+  {
+    type: 'toggle',
+    name: 'initGit',
+    message: 'Do you want Initialize git?',
+    initial: false,
+    active: 'yes',
+    inactive: 'no'
   }
 ], {onCancel})
-console.log( res)
   try {
     await createApp({ ...res })
   } catch (reason) {
@@ -42,6 +54,7 @@ console.log( res)
 
 start()
   .then(() => {
+    console.log()
       console.log(`${chalk.green('Congratulations template was generated Successfully!')}`)
       console.log('Inside that directory, you can run several commands:');
       console.log('Explore all of the commands available under package.json scripts')

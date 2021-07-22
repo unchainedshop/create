@@ -1,9 +1,9 @@
 {
   "name": "@unchainedshop/create",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "private": false,
-  "description": "Starter storefront kit to start working with unchained engine with no initial configuration",
+  "description": "Starter kit generator to start working with unchained engine with no initial configuration",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",

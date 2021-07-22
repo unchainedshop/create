@@ -118,7 +118,7 @@ export const isFolderEmpty = (root, name) => {
   export const downloadAndExtractStorefront = ( root ) => {
     return pipeline(
       got.stream(
-        `https://codeload.github.com/unchainedshop/create/tar.gz/master`
+        `https://codeload.github.com/unchainedshop/storefront/tar.gz/main`
       ),
       tar.extract({ cwd: root, strip: 1 },  [`create-master`])
     )

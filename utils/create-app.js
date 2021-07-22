@@ -77,10 +77,10 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
       version: '0.1.0',
       private: false,
       scripts: {
-        "install:storefront": "cd storefront && npm install",
-        "install:engine": "cd engine && npm install",
-        "dev:engine": "cd engine && npm run dev",
-        "dev:storefront": "cd storefront && npm run dev:local"
+        "install:storefront": "cd ../storefront && npm install",
+      "install:engine": "cd ./engine && npm install",
+      "dev:engine": "cd ./engine && npm run dev",
+      "dev:storefront": "cd ../storefront && npm run dev"
       },
     }
 

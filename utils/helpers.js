@@ -120,6 +120,6 @@ export const isFolderEmpty = (root, name) => {
       got.stream(
         `https://codeload.github.com/unchainedshop/storefront/tar.gz/main`
       ),
-      tar.extract({ cwd: root, strip: 1 },  [`create-master`])
+      tar.extract({ cwd: root, strip: 1 },  [`storefront-main`])
     )
   }

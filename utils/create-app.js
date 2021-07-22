@@ -38,12 +38,12 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
     )
     process.exit(1)
   }
-
+console.log(root);
   if (!isFolderEmpty(root, root.split('/').pop() || '')) {
     process.exit(1)
   }
 
-  if(example === 'minimal') {
+  if(example === 'boilerplate') {
     repoInfo = await getRepoInfo('unchained')
   }
   
@@ -84,7 +84,6 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
 
       } else {
           if (!repoInfo) {
-            await makeDir(STORE_FRONT_DIR)
             console.log()
             await retry(() => downloadAndExtractStorefront(root), {
               retries: 3,

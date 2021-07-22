@@ -1,6 +1,6 @@
 {
   "name": "@unchainedshop/create",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "private": false,
   "description": "Starter kit generator to start working with unchained engine with no initial configuration",

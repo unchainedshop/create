@@ -29,17 +29,6 @@ export const isUrlOk = async (url) => {
   return res.statusCode === 200
 }
 
-export const hasRepo = ({
-  name,
-  branch,
-  filePath,
-}) => {
-  const contentsUrl = `https://api.github.com/repos/unchainedshop/${name}/contents`
-  const packagePath = `${filePath ? `/${filePath}` : ''}/package.json`
-
-  return isUrlOk(contentsUrl + packagePath + `?ref=${branch}`)
-}
-
 export const hasExample = (name) => {
   return isUrlOk(
     `https://api.github.com/repos/unchainedshop/unchained/contents/examples/${encodeURIComponent(

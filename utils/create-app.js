@@ -14,7 +14,9 @@ const STORE_FRONT_DIR = `${process.cwd()}/storefront`;
 const ENGINE_DIR = `${process.cwd()}/engine`;
 
 export async function createApp({
-  example,
+  templateType,
+  directoryPath,
+  projectName
 }){
 let repoInfo;
 
@@ -27,29 +29,32 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
 
 `))
 
-  const root = process.cwd()
 
-  if (!(await isWriteable(path.dirname(root), root))) {
-    console.error(
-      'The application path is not writable, please check folder permissions and try again.'
-    )
-    console.error(
+  const root = directoryPath ? path.resolve(directoryPath) : process.cwd();
+
+  if (!(await isWriteable(path.dirname(root)))) {
+    console.error(chalk.red( 'The application path is not writable, please check folder permissions and try again.'))
+    console.error(chalk.white(
       'It is likely you do not have write permissions for this folder.'
     )
+    )
     process.exit(1)
   }
-console.log(root);
-  if (!isFolderEmpty(root, root.split('/').pop() || '')) {
+  const appName = path.basename(root)
+
+  await makeDir(root)
+
+  if (!isFolderEmpty(root, appName)) {
     process.exit(1)
   }
 
-  if(example === 'boilerplate') {
+  if(templateType === 'boilerplate') {
     repoInfo = await getRepoInfo('unchained')
   }
   
     try {
       console.log(`${chalk.cyan('Downloading files from repo . This might take a moment... \n' )}`);
-      if(example === 'full_stack') {
+      if(templateType === 'full_stack') {
         await makeDir(STORE_FRONT_DIR)
         console.log(`Creating a new Unchainedshop storefront template in ${chalk.green(STORE_FRONT_DIR)}.`);        
         await retry(() => downloadAndExtractStorefront(STORE_FRONT_DIR), {
@@ -89,7 +94,7 @@ console.log(root);
               retries: 3,
             })
           } else {
-            await retry(() => downloadAndExtractExample(root, example), {
+            await retry(() => downloadAndExtractExample(root, templateType), {
               retries: 3,
             })
           }

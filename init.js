@@ -2,12 +2,11 @@
 import { createApp, DownloadError } from "./utils/create-app.js"
 import prompts from 'prompts'
 import chalk from "chalk"
-
-const onCancel = prompt => {
+const onCancel = () => {
   process.exit(1);
 }
-async function start() {
 
+async function start() {
   const res = await prompts([{
     type: 'autocomplete',
     name: 'templateType',
@@ -24,7 +23,7 @@ async function start() {
     message: 'Name of project'
   },
   {
-    type: (_, answers) => answers.templateType !== 'full_stack' ? 'text' : null,
+    type: 'text',
     name: 'directoryPath',
     message: 'Directory name relative to current directory \n (press Enter to use current directory)',
   }
@@ -42,7 +41,11 @@ console.log( res)
 
 
 start()
-  .then(() => {console.log()})
+  .then(() => {
+      console.log(`${chalk.green('Congratulations template was generated Successfully!')}`)
+      console.log('Inside that directory, you can run several commands:');
+      console.log('Explore all of the commands available under package.json scripts')
+  })
   .catch(async (reason) => {
     console.log()
     console.log('Aborting installation.')

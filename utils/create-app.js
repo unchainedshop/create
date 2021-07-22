@@ -7,6 +7,7 @@ import path from 'path'
 import { makeDir } from './make-dir.js'
 import { downloadAndExtractExample, downloadAndExtractStorefront, getRepoInfo, isFolderEmpty } from './helpers.js'
 import { isWriteable } from './is-writeable.js'
+import { tryGitInit } from './git.js'
 
 export class DownloadError extends Error {}
 
@@ -55,15 +56,15 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
     try {
       console.log(`${chalk.cyan('Downloading files from repo . This might take a moment... \n' )}`);
       if(templateType === 'full_stack') {
-        await makeDir(STORE_FRONT_DIR)
-        console.log(`Creating a new Unchainedshop storefront template in ${chalk.green(STORE_FRONT_DIR)}.`);        
-        await retry(() => downloadAndExtractStorefront(STORE_FRONT_DIR), {
+        await makeDir(`${root}/storerfont`)
+        console.log(`Creating a new Unchainedshop storefront template in ${chalk.green(`${root}/storerfont`)}.`);        
+        await retry(() => downloadAndExtractStorefront(`${root}/storerfont`), {
           retries: 3,
         })
-        await makeDir(ENGINE_DIR)
-        console.log(`Creating a new Unchainedshop engine template in ${chalk.green(ENGINE_DIR)}.`)
+        await makeDir(`${root}/engine`)
+        console.log(`Creating a new Unchainedshop engine template in ${chalk.green(`${root}/engine`)}.`)
         
-        await retry(() => downloadAndExtractExample(ENGINE_DIR, 'minimal'), {
+        await retry(() => downloadAndExtractExample(`${root}/engine`, 'minimal'), {
           retries: 3,
         });
 
@@ -99,12 +100,13 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
             })
           }
     }
+console.log('try git')
+    if (tryGitInit(root)) {
+      console.log('Initialized a git repository.')
+      console.log()
+    }
     } catch (reason) {
       throw new DownloadError(reason)
     }
 
-
-  console.log(`${chalk.green('Congratulations template was generated Successfully!')}`)
-  console.log('Inside that directory, you can run several commands:');
-  console.log('Explore all of the commands available under package.json scripts')
 }

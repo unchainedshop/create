@@ -1,0 +1,62 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+  "parserOptions": {
+    "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module", // Allows for the use of imports
+    "project": "tsconfig.json"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "jsx-a11y/label-has-associated-control": [0],
+    "react/prop-types": [0],
+    "react/jsx-props-no-spreading": [0],
+    "no-underscore-dangle": ["error", { "allow": ["_id", "__typename", "__mutationName"] }],
+    "react/react-in-jsx-scope": [0],
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80,
+        "semi": true,
+        "trailingComma": "all",
+        "singleQuote": true,
+        "proseWrap": "always"
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/anchor-has-content": "off",
+
+    "import/no-unresolved": [0],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "jsx-a11y/alt-text": [0],
+    "jsx-a11y/no-static-element-interactions": [0],
+    "jsx-a11y/click-events-have-key-events": [0]
+
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
+}
+

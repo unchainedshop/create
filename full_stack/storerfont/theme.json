@@ -1,0 +1,32 @@
+{
+  "injectStyles": ["", "body { background-color: white; }"],
+  "assets": {
+    "logo": "/static/img/logo.png",
+    "icon-180x180": "/static/img/apple-touch-icon.png",
+    "icon-32x32": "/static/img/favicon-32x32.png",
+    "icon-16x16": "/static/img/favicon-16x16.png",
+    "hero": "/static/img/hero.png"
+  },
+  "rootProperties": {
+    "color-brand": "#232323",
+    "color-brand-lightest": "#e7e7e7",
+    "color-brand-darker": "#121212",
+    "color-dark": "#232323",
+    "color-grey-lightest": "#ececec",
+    "color-danger-100": "#FEE2E2",
+    "color-danger-200": "#FECACA",
+    "color-danger-600": "#DC2626",
+    "color-danger-900": "#7F1D1D",
+    "color-warning-100": "#FEF3C7",
+    "color-warning-200": "#FDE68A",
+    "color-warning-900": "#78350F",
+    "color-success-100": "#D1FAE5",
+    "color-success-200": "#A7F3D0",
+    "color-success-900": "#064E3B",
+    "border-radius": "0"
+  },
+  "locales": {
+    "de": "/i18n/de.json",
+    "en": "/i18n/en.json"
+  }
+}

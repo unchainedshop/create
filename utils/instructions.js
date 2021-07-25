@@ -42,12 +42,12 @@ export const instruction = (template) => {
                chalk.cyan (`
             npm install
 
-            if you have issue with the above command you can navigate to each directory separatly and run
+            if you have issue with the above command navigate to each directory separatly and run
 
             npm install
     
-            Add required enviroment vatiable under by
-            creating .env files inside each directory accordingly
+            Add required enviroment variables under each directory (storefront & engine) 
+            by creating .env file
 
             storefront/
             UNCHAINED_ENDPOINT=http://localhost:4010/graphql
@@ -60,7 +60,7 @@ export const instruction = (template) => {
 
             npm run dev
 
-            if you have issue with the above command you can navigate to each directory separatly and run
+            if you have issue with the above command navigate to each directory separatly and run
 
             npm run dev
             `));

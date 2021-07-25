@@ -1,6 +1,7 @@
 import retry from 'async-retry'
 import chalk from 'chalk'
 import fs from 'fs'
+import cpy from 'cpy'
 import os from 'os'
 import path from 'path'
 
@@ -94,7 +95,7 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
       path.join(root, 'package.json'),
       JSON.stringify(packageJson, null, 2) + os.EOL
     )
-
+    const orginalRoot = process.cwd();
     process.chdir(root)
 
     const dependencies = []
@@ -116,6 +117,27 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
       }
       await install(devDependencies, { devDependencies: true })
     }
+
+  console.log('Generating default configuration files');
+
+    await cpy('**', root, {
+      cwd: path.join(orginalRoot, 'configs'),
+      filter: ({name}) => {
+        if(!initGit && name === 'gitignore') return false
+        else return true
+      },
+      rename: (name) => {
+        switch (name) {
+          case 'gitignore':
+          case 'eslintrc': {
+            return '.'.concat(name)
+          }
+          default: {
+            return name
+          }
+        }
+      },
+    })
 
       } else {
           if (!repoInfo) {

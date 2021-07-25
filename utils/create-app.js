@@ -8,6 +8,7 @@ import { makeDir } from './make-dir.js'
 import { downloadAndExtractExample, downloadAndExtractStorefront, getRepoInfo, isFolderEmpty } from './helpers.js'
 import { isWriteable } from './is-writeable.js'
 import { tryGitInit } from './git.js'
+import { install } from './install.js'
 
 export class DownloadError extends Error {}
 
@@ -53,7 +54,7 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
   }
   
     try {
-      const STOREFRONT_DIR = `${root}/storerfont`;
+      const STOREFRONT_DIR = `${root}/storefront`;
       const ENGINE_DIR = `${root}/engine`
       console.log(`${chalk.cyan('Downloading files from repo . This might take a moment... \n' )}`);
       if(templateType === 'full_stack') {
@@ -74,20 +75,47 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
     */
     const packageJson = {
       name: projectName || 'my-unchained',
-      version: '0.1.0',
+      description: "Full stack unchained e-commerce boilerplate",
+      version: '0.0.1',
+      license: "EUPL-1.2",
       private: false,
       scripts: {
-        "install:storefront": "cd ../storefront && npm install",
-      "install:engine": "cd ./engine && npm install",
-      "dev:engine": "cd ./engine && npm run dev",
-      "dev:storefront": "cd ../storefront && npm run dev"
+        "install": "run-p --print-label install:*",
+        "install:storefront": "cd storefront && npm install",
+        "install:engine": "cd engine && npm install",
+        "dev": "run-p --print-label dev:*",
+        "dev:engine": "cd engine && npm run dev",
+        "dev:storefront": "cd storefront && npm run dev"
       },
     }
+  
 
     fs.writeFileSync(
       path.join(root, 'package.json'),
       JSON.stringify(packageJson, null, 2) + os.EOL
     )
+
+    process.chdir(root)
+
+    const dependencies = []
+    const devDependencies = ['npm-run-all'];
+
+    if (dependencies.length) {
+      console.log('Installing dependencies:')
+      for (const dependency of dependencies) {
+        console.log(`- ${chalk.cyan(dependency)}`)
+      }
+
+      await install(dependencies)
+    }
+    if (devDependencies.length) {
+      console.log()
+      console.log('Installing devDependencies:')
+      for (const devDependency of devDependencies) {
+        console.log(`- ${chalk.cyan(devDependency)}`)
+      }
+      await install(devDependencies, { devDependencies: true })
+    }
 
       } else {
           if (!repoInfo) {

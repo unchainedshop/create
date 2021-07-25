@@ -40,11 +40,12 @@ export const instruction = (template) => {
                
            console.log(
                chalk.cyan (`
+            npm install
 
-            npm run install:engine
+            if you have issue with the above command you can navigate to each directory separatly and run
 
-            npm run install:storefront
-
+            npm install
+    
             Add required enviroment vatiable under by
             creating .env files inside each directory accordingly
 
@@ -54,12 +55,10 @@ export const instruction = (template) => {
             engine/
             SUPPRESS_ENV_ERRORS=false
 
-            Finally from the root directory run the following commands to start both
+            Finally from the root directory run the following command to start both
             storefront and engine
 
-            npm run dev:storefront
-
-            npm run dev:engine
+            npm run dev
 
             if you have issue with the above command you can navigate to each directory separatly and run
 

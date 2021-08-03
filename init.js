@@ -2,16 +2,19 @@
 import { createApp, DownloadError } from "./utils/create-app.js"
 import prompts from 'prompts'
 import chalk from "chalk"
+import { instruction } from "./utils/instructions.js";
 
-const onCancel = prompt => {
+
+const onCancel = () => {
   process.exit(1);
 }
+let template = null;
 async function start() {
-
   const res = await prompts([{
     type: 'autocomplete',
     name: 'templateType',
     message: 'What type of template do you want',
+    format: val => val || 'full_stack',
     choices: [
       { title: 'Full stack e-commerce', value: 'full_stack' },
       { title: 'Storefront', value: 'storefront' },
@@ -21,15 +24,24 @@ async function start() {
   {
     type: prev => prev == 'full_stack' ? 'text' : null,
     name: 'projectName',
-    message: 'Name of project'
+    format: val => (val || " ").trim().replace(/\W/g, '-') ,
+    message: 'Name of project',
   },
   {
-    type: (_, answers) => answers.templateType !== 'full_stack' ? 'text' : null,
+    type: 'text',
     name: 'directoryPath',
+    format: val => (val || " ").trim(),
     message: 'Directory name relative to current directory \n (press Enter to use current directory)',
+  },
+  {
+    type: 'toggle',
+    name: 'initGit',
+    message: 'Do you want Initialize git?',
+    initial: false,
+    active: 'yes',
+    inactive: 'no'
   }
 ], {onCancel})
-console.log( res)
   try {
     await createApp({ ...res })
   } catch (reason) {
@@ -37,12 +49,15 @@ console.log( res)
       throw reason
     }
   }
+  template = res.templateType
 }
 
-
-
 start()
-  .then(() => {console.log()})
+  .then(() => {
+      instruction(template)
+      console.log('Inside that directory, you can run several commands:');
+      console.log('Explore all of the commands available under package.json scripts')
+  })
   .catch(async (reason) => {
     console.log()
     console.log('Aborting installation.')

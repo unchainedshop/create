@@ -1,6 +1,6 @@
 {
   "name": "@unchainedshop/create",
-  "version": "1.0.3",
+  "version": "1.0.8",
   "type": "module",
   "private": false,
   "description": "Starter kit generator to start working with unchained engine with no initial configuration",
@@ -14,14 +14,18 @@
     "create-unchainedshop": "./init.js"
   },
   "homepage": "https://unchained.shop",
+  "keywords": ["unchainedshop", "unchained", "headless", "e-commerce", "npm-script", "unchained-boilerplate", "starter-kit", "generator"],
   "dependencies": {
     "async-retry": "^1.3.1",
     "chalk": "2.4.2",
+    "cpy": "^8.1.2",
+    "cross-spawn": "^7.0.3",
     "exec": "^0.2.1",
     "extract-zip": "^2.0.1",
     "github-download": "^0.5.0",
     "got": "^11.8.2",
     "prompts": "2.1.0",
+    "rimraf": "^3.0.2",
     "tar": "^6.1.0"
   }
 }

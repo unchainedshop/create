@@ -7,18 +7,18 @@ export const instruction = (template) => {
     `))
     
     console.log(chalk.blueBright(`
-            Install dependencies by runing.
+            Install dependencies by running.
     `))
     switch (template) {
         case 'boilerplate':
         console.log(chalk.cyan(`
             npm install
 
-            Add required enviroment variable under by creating .env file
+            Add required environment variables under by creating .env file
 
             SUPPRESS_ENV_ERRORS=false
 
-            Start up the engine by runing
+            Start up the engine by running
 
             npm run dev
         `));
@@ -27,11 +27,11 @@ export const instruction = (template) => {
         console.log(chalk.cyan(`
             npm install
 
-            Add required enviroment variable under by creating .env file
+            Add required environment variable under by creating .env file
 
-            UNCHAINED_ENDPOINT=http|s://unchained-engine-instace-url/graphql
+            UNCHAINED_ENDPOINT=http|s://unchained-engine-instance-url/graphql
 
-            Start up the frontend by runing
+            Start up the frontend by running
 
             npm run dev
         `));
@@ -42,11 +42,11 @@ export const instruction = (template) => {
                chalk.cyan (`
             npm install
 
-            if you have issue with the above command navigate to each directory separatly and run
+            if you have issue with the above command navigate to each directory separately and run
 
             npm install
     
-            Add required enviroment variables under each directory (storefront & engine) 
+            Add required environment variables under each directory (storefront & engine) 
             by creating .env file
 
             storefront/
@@ -60,7 +60,7 @@ export const instruction = (template) => {
 
             npm run dev
 
-            if you have issue with the above command navigate to each directory separatly and run
+            if you have issue with the above command navigate to each directory separately and run
 
             npm run dev
             `));

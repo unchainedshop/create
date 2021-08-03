@@ -1,5 +1,3 @@
-[![Codeship Status for unchainedshop/create](https://app.codeship.com/projects/2f18b4a0-57dc-0138-8b6d-4230a644a556/status?branch=master)](https://app.codeship.com/projects/391300)
-
 # Unchained E-Commerce template Scaffolder
 
 ## Prerequisites
@@ -11,8 +9,8 @@
 Welcome to your new e-commerce online experience! To get started, simply run:
 
 ```bash
-mkdir your-awesome-ecommerce-project
-cd your-awesome-ecommerce-project
+mkdir your-awesome-commerce-project
+cd your-awesome-commerce-project
 npm init @unchainedshop
 ```
 
@@ -27,4 +25,4 @@ Enjoy your UNCHAINED App!
 
 ## Contribute
 
-See [contributing.md](./contributing.md)
+See [contributing.md](./CONTRIBUTING.md)

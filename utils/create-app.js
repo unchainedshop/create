@@ -86,7 +86,10 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
         "install:engine": "cd engine && npm install",
         "dev": "run-p --print-label dev:*",
         "dev:engine": "cd engine && npm run dev",
-        "dev:storefront": "cd storefront && npm run dev"
+        "dev:storefront": "cd storefront && npm run dev",
+        "lint": "run-p --print-label lint:*",
+        "lint:engine": "cd engine && npm run lint",
+        "lint:storefront": "cd storefront && npm run lint"
       },
     }
   

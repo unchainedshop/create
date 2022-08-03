@@ -50,7 +50,7 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
     process.exit(1)
   }
 
-  if(templateType === 'boilerplate') {
+  if(templateType === 'kitchensink') {
     repoInfo = await getRepoInfo('unchained')
   }
   
@@ -67,7 +67,7 @@ _____ _____ _____ _____ _____ _____ _____ _____ ____
         await makeDir(ENGINE_DIR)
         console.log(`Creating a new Unchainedshop engine template in ${chalk.green(ENGINE_DIR)}.`)
         
-        await retry(() => downloadAndExtractExample(ENGINE_DIR, 'minimal'), {
+        await retry(() => downloadAndExtractExample(ENGINE_DIR, 'kitchensink'), {
           retries: 3,
         });
 

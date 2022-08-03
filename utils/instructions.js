@@ -10,7 +10,7 @@ export const instruction = (template) => {
             Install dependencies by running.
     `))
     switch (template) {
-        case 'boilerplate':
+        case 'kitchensink':
         console.log(chalk.cyan(`
             npm install
 

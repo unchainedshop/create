@@ -18,7 +18,7 @@ async function start() {
     choices: [
       { title: 'Full stack e-commerce', value: 'full_stack' },
       { title: 'Storefront', value: 'storefront' },
-      { title: 'Unchained engine', value: 'boilerplate' },
+      { title: 'Unchained engine', value: 'kitchensink' },
     ]
   },
   {

@@ -11,7 +11,7 @@
   },
   "main": "./init.js",
   "bin": {
-    "create-unchainedshop": "./init.js"
+    "create-unchainedshop": "init.js"
   },
   "homepage": "https://unchained.shop",
   "keywords": [

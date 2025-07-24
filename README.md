@@ -1,8 +1,8 @@
-# Unchained E-Commerce template Scaffolder
+# Unchained E-Commerce Scaffolder
 
 ## Prerequisites
 
-- Node.js >= v14
+- Node.js >= 22
 
 ## Quickstart
 
@@ -15,14 +15,9 @@ npm init @unchainedshop
 ```
 
 Then select the template you want to scaffold.
-- Full stack e-commerce
-- unchained engine boiler plate
-- Storefront
 
-Get a fully managed trial instance of unchained engine here: https://unchained-test.ucc.dev/login 
+- Full Stack E-commerce: Full-Stack but Minimal Monorepo with a Backend and a Storefront
+- Unchained Engine Kitchensink: Backend with all plugins and extensions enabled
+- Storefront: Just the frontend based on https://github.com/unchainedshop/unchained-storefront
 
-Enjoy your UNCHAINED App!
-
-## Contribute
-
-See [contributing.md](./CONTRIBUTING.md)
+Enjoy!
